@@ -13,22 +13,30 @@
 package module_test
 
 import (
-	gra "github.com/craterdog/go-syntax-notation/v5"
+	fmt "fmt"
+	syn "github.com/craterdog/go-syntax-notation/v5"
 	ass "github.com/stretchr/testify/assert"
 	osx "os"
 	tes "testing"
 )
 
-const syntaxFile = "Syntax.cdsn"
+var testDirectories = []string{
+	"../../go-test-framework/v5/",
+}
 
 func TestRoundTrips(t *tes.T) {
-	var bytes, err = osx.ReadFile(syntaxFile)
-	if err != nil {
-		panic(err)
+	fmt.Println("Round Trip Tests:")
+	for _, directory := range testDirectories {
+		fmt.Printf("   %v\n", directory)
+		var bytes, err = osx.ReadFile(directory + "Syntax.cdsn")
+		if err != nil {
+			panic(err)
+		}
+		var source = string(bytes)
+		var syntax = syn.ParseSource(source)
+		syn.ValidateSyntax(syntax)
+		var actual = syn.FormatSyntax(syntax)
+		ass.Equal(t, source, actual)
 	}
-	var source = string(bytes)
-	var syntax = gra.ParseSource(source)
-	gra.ValidateSyntax(syntax)
-	var actual = gra.FormatSyntax(syntax)
-	ass.Equal(t, actual, source)
+	fmt.Println("Done.")
 }

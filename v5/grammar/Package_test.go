@@ -22,6 +22,8 @@ import (
 
 var filenames = []string{
 	"../Syntax.cdsn",
+	"../testdata/gcmn.cdsn",
+	"../testdata/full.cdsn",
 }
 
 func TestRoundTrips(t *tes.T) {
