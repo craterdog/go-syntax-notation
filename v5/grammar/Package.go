@@ -180,7 +180,7 @@ type FormatterLike interface {
 		syntax ast.SyntaxLike,
 	) string
 
-	// Aspect Methods
+	// Aspect Interfaces
 	Methodical
 }
 
@@ -206,7 +206,7 @@ type ProcessorLike interface {
 	// Primary Methods
 	GetClass() ProcessorClassLike
 
-	// Aspect Methods
+	// Aspect Interfaces
 	Methodical
 }
 
@@ -248,7 +248,7 @@ type ValidatorLike interface {
 		syntax ast.SyntaxLike,
 	)
 
-	// Aspect Methods
+	// Aspect Interfaces
 	Methodical
 }
 
