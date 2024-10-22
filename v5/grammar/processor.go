@@ -83,6 +83,9 @@ func (v *processor_) ProcessLiteral(literal string) {
 func (v *processor_) ProcessLowercase(lowercase string) {
 }
 
+func (v *processor_) ProcessNewline(newline string) {
+}
+
 func (v *processor_) ProcessNote(note string) {
 }
 
@@ -93,6 +96,9 @@ func (v *processor_) ProcessOptional(optional string) {
 }
 
 func (v *processor_) ProcessRepeated(repeated string) {
+}
+
+func (v *processor_) ProcessSpace(space string) {
 }
 
 func (v *processor_) ProcessUppercase(uppercase string) {

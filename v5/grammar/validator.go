@@ -116,6 +116,10 @@ func (v *validator_) ProcessLowercase(lowercase string) {
 	v.ValidateToken(lowercase, LowercaseToken)
 }
 
+func (v *validator_) ProcessNewline(newline string) {
+	v.ValidateToken(newline, NewlineToken)
+}
+
 func (v *validator_) ProcessNote(note string) {
 	v.ValidateToken(note, NoteToken)
 }
@@ -130,6 +134,10 @@ func (v *validator_) ProcessOptional(optional string) {
 
 func (v *validator_) ProcessRepeated(repeated string) {
 	v.ValidateToken(repeated, RepeatedToken)
+}
+
+func (v *validator_) ProcessSpace(space string) {
+	v.ValidateToken(space, SpaceToken)
 }
 
 func (v *validator_) ProcessUppercase(uppercase string) {

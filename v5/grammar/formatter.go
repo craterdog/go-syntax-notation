@@ -93,6 +93,12 @@ func (v *formatter_) ProcessLowercase(
 	v.appendString(lowercase)
 }
 
+func (v *formatter_) ProcessNewline(
+	newline string,
+) {
+	v.appendString(newline)
+}
+
 func (v *formatter_) ProcessNote(
 	note string,
 ) {
@@ -116,6 +122,12 @@ func (v *formatter_) ProcessRepeated(
 	repeated string,
 ) {
 	v.appendString(repeated)
+}
+
+func (v *formatter_) ProcessSpace(
+	space string,
+) {
+	v.appendString(space)
 }
 
 func (v *formatter_) ProcessUppercase(
