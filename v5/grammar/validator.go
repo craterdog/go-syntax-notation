@@ -17,62 +17,622 @@ import (
 	ast "github.com/craterdog/go-syntax-notation/v5/ast"
 )
 
-// CLASS ACCESS
+// CLASS INTERFACE
 
-// Reference
-
-var validatorClass = &validatorClass_{
-	// Initialize the class constants.
-}
-
-// Function
+// Access Function
 
 func Validator() ValidatorClassLike {
-	return validatorClass
+	return validatorReference()
 }
 
-// CLASS METHODS
-
-// Target
-
-type validatorClass_ struct {
-	// Define the class constants.
-}
-
-// Constructors
+// Constructor Methods
 
 func (c *validatorClass_) Make() ValidatorLike {
-	var validator = &validator_{
+	var instance = &validator_{
 		// Initialize the instance attributes.
-		class_: c,
 
 		// Initialize the inherited aspects.
 		Methodical: Processor().Make(),
 	}
-	validator.visitor_ = Visitor().Make(validator)
-	return validator
+	instance.visitor_ = Visitor().Make(instance)
+	return instance
 }
 
-// INSTANCE METHODS
+// INSTANCE INTERFACE
 
-// Target
-
-type validator_ struct {
-	// Define the instance attributes.
-	class_   *validatorClass_
-	visitor_ VisitorLike
-
-	// Define the inherited aspects.
-	Methodical
-}
-
-// Public
+// Primary Methods
 
 func (v *validator_) GetClass() ValidatorClassLike {
-	return v.class_
+	return validatorReference()
 }
 
-func (v *validator_) ValidateToken(
+func (v *validator_) ValidateSyntax(
+	syntax ast.SyntaxLike,
+) {
+	v.visitor_.VisitSyntax(syntax)
+}
+
+// Methodical Methods
+
+func (v *validator_) ProcessComment(
+	comment string,
+) {
+	v.validateToken(comment, CommentToken)
+}
+
+func (v *validator_) ProcessExcluded(
+	excluded string,
+) {
+	v.validateToken(excluded, ExcludedToken)
+}
+
+func (v *validator_) ProcessGlyph(
+	glyph string,
+) {
+	v.validateToken(glyph, GlyphToken)
+}
+
+func (v *validator_) ProcessIntrinsic(
+	intrinsic string,
+) {
+	v.validateToken(intrinsic, IntrinsicToken)
+}
+
+func (v *validator_) ProcessLiteral(
+	literal string,
+) {
+	v.validateToken(literal, LiteralToken)
+}
+
+func (v *validator_) ProcessLowercase(
+	lowercase string,
+) {
+	v.validateToken(lowercase, LowercaseToken)
+}
+
+func (v *validator_) ProcessNewline(
+	newline string,
+) {
+	v.validateToken(newline, NewlineToken)
+}
+
+func (v *validator_) ProcessNote(
+	note string,
+) {
+	v.validateToken(note, NoteToken)
+}
+
+func (v *validator_) ProcessNumber(
+	number string,
+) {
+	v.validateToken(number, NumberToken)
+}
+
+func (v *validator_) ProcessOptional(
+	optional string,
+) {
+	v.validateToken(optional, OptionalToken)
+}
+
+func (v *validator_) ProcessRepeated(
+	repeated string,
+) {
+	v.validateToken(repeated, RepeatedToken)
+}
+
+func (v *validator_) ProcessSpace(
+	space string,
+) {
+	v.validateToken(space, SpaceToken)
+}
+
+func (v *validator_) ProcessUppercase(
+	uppercase string,
+) {
+	v.validateToken(uppercase, UppercaseToken)
+}
+
+func (v *validator_) PreprocessAlternative(
+	alternative ast.AlternativeLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessAlternativeSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessAlternative(
+	alternative ast.AlternativeLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessCardinality(
+	cardinality ast.CardinalityLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessCardinalitySlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessCardinality(
+	cardinality ast.CardinalityLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessCharacter(
+	character ast.CharacterLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessCharacterSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessCharacter(
+	character ast.CharacterLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessConstrained(
+	constrained ast.ConstrainedLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessConstrainedSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessConstrained(
+	constrained ast.ConstrainedLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessDefinition(
+	definition ast.DefinitionLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessDefinitionSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessDefinition(
+	definition ast.DefinitionLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessElement(
+	element ast.ElementLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessElementSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessElement(
+	element ast.ElementLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessExplicit(
+	explicit ast.ExplicitLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessExplicitSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessExplicit(
+	explicit ast.ExplicitLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessExpression(
+	expression ast.ExpressionLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessExpressionSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessExpression(
+	expression ast.ExpressionLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessExtent(
+	extent ast.ExtentLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessExtentSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessExtent(
+	extent ast.ExtentLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessFilter(
+	filter ast.FilterLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessFilterSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessFilter(
+	filter ast.FilterLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessGroup(
+	group ast.GroupLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessGroupSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessGroup(
+	group ast.GroupLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessIdentifier(
+	identifier ast.IdentifierLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessIdentifierSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessIdentifier(
+	identifier ast.IdentifierLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessInline(
+	inline ast.InlineLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessInlineSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessInline(
+	inline ast.InlineLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessLimit(
+	limit ast.LimitLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessLimitSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessLimit(
+	limit ast.LimitLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessLine(
+	line ast.LineLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessLineSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessLine(
+	line ast.LineLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessMultiline(
+	multiline ast.MultilineLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessMultilineSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessMultiline(
+	multiline ast.MultilineLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessNotice(
+	notice ast.NoticeLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessNoticeSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessNotice(
+	notice ast.NoticeLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessOption(
+	option ast.OptionLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessOptionSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessOption(
+	option ast.OptionLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessPattern(
+	pattern ast.PatternLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessPatternSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessPattern(
+	pattern ast.PatternLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessQuantified(
+	quantified ast.QuantifiedLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessQuantifiedSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessQuantified(
+	quantified ast.QuantifiedLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessReference(
+	reference ast.ReferenceLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessReferenceSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessReference(
+	reference ast.ReferenceLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessRepetition(
+	repetition ast.RepetitionLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessRepetitionSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessRepetition(
+	repetition ast.RepetitionLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessRule(
+	rule ast.RuleLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessRuleSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessRule(
+	rule ast.RuleLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessSyntax(
+	syntax ast.SyntaxLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessSyntaxSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessSyntax(
+	syntax ast.SyntaxLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessTerm(
+	term ast.TermLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessTermSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessTerm(
+	term ast.TermLike,
+	index uint,
+	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessText(
+	text ast.TextLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessTextSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessText(
+	text ast.TextLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+// PROTECTED INTERFACE
+
+// Private Methods
+
+func (v *validator_) validateToken(
 	tokenValue string,
 	tokenType TokenType,
 ) {
@@ -86,69 +646,28 @@ func (v *validator_) ValidateToken(
 	}
 }
 
-func (v *validator_) ValidateSyntax(syntax ast.SyntaxLike) {
-	v.visitor_.VisitSyntax(syntax)
+// Instance Structure
+
+type validator_ struct {
+	// Declare the instance attributes.
+	visitor_ VisitorLike
+
+	// Declare the inherited aspects.
+	Methodical
 }
 
-// Methodical
+// Class Structure
 
-func (v *validator_) ProcessComment(comment string) {
-	v.ValidateToken(comment, CommentToken)
+type validatorClass_ struct {
+	// Declare the class constants.
 }
 
-func (v *validator_) ProcessExcluded(excluded string) {
-	v.ValidateToken(excluded, ExcludedToken)
+// Class Reference
+
+func validatorReference() *validatorClass_ {
+	return validatorReference_
 }
 
-func (v *validator_) ProcessGlyph(glyph string) {
-	v.ValidateToken(glyph, GlyphToken)
-}
-
-func (v *validator_) ProcessIntrinsic(intrinsic string) {
-	v.ValidateToken(intrinsic, IntrinsicToken)
-}
-
-func (v *validator_) ProcessLiteral(literal string) {
-	v.ValidateToken(literal, LiteralToken)
-}
-
-func (v *validator_) ProcessLowercase(lowercase string) {
-	v.ValidateToken(lowercase, LowercaseToken)
-}
-
-func (v *validator_) ProcessNewline(newline string) {
-	v.ValidateToken(newline, NewlineToken)
-}
-
-func (v *validator_) ProcessNote(note string) {
-	v.ValidateToken(note, NoteToken)
-}
-
-func (v *validator_) ProcessNumber(number string) {
-	v.ValidateToken(number, NumberToken)
-}
-
-func (v *validator_) ProcessOptional(optional string) {
-	v.ValidateToken(optional, OptionalToken)
-}
-
-func (v *validator_) ProcessRepeated(repeated string) {
-	v.ValidateToken(repeated, RepeatedToken)
-}
-
-func (v *validator_) ProcessSpace(space string) {
-	v.ValidateToken(space, SpaceToken)
-}
-
-func (v *validator_) ProcessUppercase(uppercase string) {
-	v.ValidateToken(uppercase, UppercaseToken)
-}
-
-func (v *validator_) PreprocessSyntax(syntax ast.SyntaxLike) {
-}
-
-func (v *validator_) ProcessSyntaxSlot(slot uint) {
-}
-
-func (v *validator_) PostprocessSyntax(syntax ast.SyntaxLike) {
+var validatorReference_ = &validatorClass_{
+	// Initialize the class constants.
 }
