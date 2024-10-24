@@ -12,29 +12,19 @@
 
 package grammar
 
-// CLASS ACCESS
+import (
+	uti "github.com/craterdog/go-missing-utilities/v2"
+)
 
-// Reference
+// CLASS INTERFACE
 
-var tokenClass = &tokenClass_{
-	// Initialize the class constants.
-}
-
-// Function
+// Access Function
 
 func Token() TokenClassLike {
-	return tokenClass
+	return tokenReference()
 }
 
-// CLASS METHODS
-
-// Target
-
-type tokenClass_ struct {
-	// Define the class constants.
-}
-
-// Constructors
+// Constructor Methods
 
 func (c *tokenClass_) Make(
 	line uint,
@@ -42,36 +32,38 @@ func (c *tokenClass_) Make(
 	type_ TokenType,
 	value string,
 ) TokenLike {
-	return &token_{
+	if uti.IsUndefined(line) {
+		panic("The \"line\" attribute is required by this class.")
+	}
+	if uti.IsUndefined(position) {
+		panic("The \"position\" attribute is required by this class.")
+	}
+	if uti.IsUndefined(type_) {
+		panic("The \"type\" attribute is required by this class.")
+	}
+	if uti.IsUndefined(value) {
+		panic("The \"value\" attribute is required by this class.")
+	}
+	var instance = &token_{
 		// Initialize the instance attributes.
-		class_:    c,
 		line_:     line,
 		position_: position,
 		type_:     type_,
 		value_:    value,
 	}
+	return instance
 }
 
-// INSTANCE METHODS
+// INSTANCE INTERFACE
 
-// Target
-
-type token_ struct {
-	// Define the instance attributes.
-	class_    *tokenClass_
-	line_     uint
-	position_ uint
-	type_     TokenType
-	value_    string
-}
-
-// Public
+// Primary Methods
 
 func (v *token_) GetClass() TokenClassLike {
-	return v.class_
+	return tokenReference()
 }
 
-// Attributes
+// Attribute Methods
+// Attribute Methods
 
 func (v *token_) GetLine() uint {
 	return v.line_
@@ -87,4 +79,34 @@ func (v *token_) GetType() TokenType {
 
 func (v *token_) GetValue() string {
 	return v.value_
+}
+
+// PROTECTED INTERFACE
+
+// Private Methods
+
+// Instance Structure
+
+type token_ struct {
+	// Declare the instance attributes.
+	line_     uint
+	position_ uint
+	type_     TokenType
+	value_    string
+}
+
+// Class Structure
+
+type tokenClass_ struct {
+	// Declare the class constants.
+}
+
+// Class Reference
+
+func tokenReference() *tokenClass_ {
+	return tokenReference_
+}
+
+var tokenReference_ = &tokenClass_{
+	// Initialize the class constants.
 }
