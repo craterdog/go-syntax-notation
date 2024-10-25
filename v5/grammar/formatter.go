@@ -36,7 +36,6 @@ func (c *formatterClass_) Make() FormatterLike {
 	}
 	instance.visitor_ = Visitor().Make(instance)
 	return instance
-
 }
 
 // INSTANCE INTERFACE
@@ -47,12 +46,9 @@ func (v *formatter_) GetClass() FormatterClassLike {
 	return formatterReference()
 }
 
-func (v *formatter_) FormatSyntax(
-	syntax ast.SyntaxLike,
-) string {
+func (v *formatter_) FormatSyntax(syntax ast.SyntaxLike) string {
 	v.visitor_.VisitSyntax(syntax)
-	var result_ = v.getResult()
-	return result_
+	return v.getResult()
 }
 
 // Methodical Methods
@@ -681,7 +677,7 @@ type formatter_ struct {
 	depth_   uint
 	result_  sts.Builder
 
-	// Define the inherited aspects.
+	// Declare the inherited aspects.
 	Methodical
 }
 
