@@ -36,7 +36,6 @@ func (c *parserClass_) Make() ParserLike {
 		// Initialize the instance attributes.
 	}
 	return instance
-
 }
 
 // INSTANCE INTERFACE
