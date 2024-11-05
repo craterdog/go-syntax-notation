@@ -72,6 +72,7 @@ type (
 // Grammar
 
 type (
+	AnalyzerLike  = gra.AnalyzerLike
 	FormatterLike = gra.FormatterLike
 	ParserLike    = gra.ParserLike
 	ProcessorLike = gra.ProcessorLike
@@ -998,6 +999,29 @@ func Text(arguments ...any) TextLike {
 }
 
 // Grammar
+
+func Analyzer(arguments ...any) AnalyzerLike {
+	// Initialize the possible arguments.
+	var syntax SyntaxLike
+
+	// Process the actual arguments.
+	for _, argument := range arguments {
+		switch actual := argument.(type) {
+		case SyntaxLike:
+			syntax = actual
+		default:
+			var message = fmt.Sprintf(
+				"An unknown argument type passed into the analyzer constructor: %T\n",
+				actual,
+			)
+			panic(message)
+		}
+	}
+
+	// Call the constructor.
+	var analyzer = gra.Analyzer().Make(syntax)
+	return analyzer
+}
 
 func Formatter(arguments ...any) FormatterLike {
 	if len(arguments) > 0 {
