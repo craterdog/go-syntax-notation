@@ -33,4 +33,5 @@ func TestRoundTrips(t *tes.T) {
 	var formatter = gra.Formatter().Make()
 	var actual = formatter.FormatSyntax(syntax)
 	ass.Equal(t, source, actual)
+	gra.Analyzer().Make(syntax)
 }
