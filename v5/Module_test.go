@@ -39,7 +39,6 @@ func TestRoundTrips(t *tes.T) {
 		not.ValidateSyntax(syntax)
 		var actual = not.FormatSyntax(syntax)
 		ass.Equal(t, source, actual)
-		not.Analyzer(syntax)
 	}
 	fmt.Println("Done.")
 }
