@@ -28,7 +28,9 @@ import (
 	abs "github.com/craterdog/go-collection-framework/v4/collection"
 )
 
-// Class Definitions
+// Type Declarations
+
+// Class Declarations
 
 /*
 AlternativeClassLike is a class interface that defines the complete set
@@ -357,7 +359,7 @@ type TextClassLike interface {
 	) TextLike
 }
 
-// Instance Definitions
+// Instance Declarations
 
 /*
 AlternativeLike is an instance interface that defines the complete set
@@ -711,3 +713,5 @@ type TextLike interface {
 	// Attribute Methods
 	GetAny() any
 }
+
+// Aspect Declarations

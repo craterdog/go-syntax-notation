@@ -40,7 +40,7 @@ import (
 	ast "github.com/craterdog/go-syntax-notation/v5/ast"
 )
 
-// Type Definitions
+// Type Declarations
 
 /*
 TokenType is a constrained type representing any token type recognized by a
@@ -66,7 +66,7 @@ const (
 	UppercaseToken
 )
 
-// Class Definitions
+// Class Declarations
 
 /*
 AnalyzerClassLike defines the set of class constants, constructors and
@@ -177,7 +177,7 @@ type VisitorClassLike interface {
 	) VisitorLike
 }
 
-// Instance Definitions
+// Instance Declarations
 
 /*
 AnalyzerLike defines the set of aspects and methods that must be supported by
@@ -316,7 +316,7 @@ type VisitorLike interface {
 	)
 }
 
-// Aspect Definitions
+// Aspect Declarations
 
 /*
 Methodical defines the set of method signatures that must be supported
