@@ -58,16 +58,16 @@ func (c *scannerClass_) FormatToken(
 	token TokenLike,
 ) string {
 	var value = token.GetValue()
-	var s = fmt.Sprintf("%q", value)
-	if len(s) > 40 {
-		s = fmt.Sprintf("%.40q...", value)
+	value = fmt.Sprintf("%q", value)
+	if len(value) > 40 {
+		value = fmt.Sprintf("%.40q...", value)
 	}
 	return fmt.Sprintf(
 		"Token [type: %s, line: %d, position: %d]: %s",
 		c.tokens_[token.GetType()],
 		token.GetLine(),
 		token.GetPosition(),
-		s,
+		value,
 	)
 }
 
@@ -83,7 +83,7 @@ func (c *scannerClass_) MatchesType(
 ) bool {
 	var matcher = c.matchers_[tokenType]
 	var match = matcher.FindString(tokenValue)
-	return len(match) > 0
+	return uti.IsDefined(match)
 }
 
 // INSTANCE INTERFACE
@@ -131,7 +131,7 @@ func (v *scanner_) foundToken(tokenType TokenType) bool {
 	var text = string(v.runes_[v.next_:])
 	var matcher = scannerReference().matchers_[tokenType]
 	var match = matcher.FindString(text)
-	if len(match) == 0 {
+	if uti.IsUndefined(match) {
 		return false
 	}
 
@@ -227,6 +227,7 @@ func scannerReference() *scannerClass_ {
 var scannerReference_ = &scannerClass_{
 	// Initialize the class constants.
 	tokens_: map[TokenType]string{
+		// Define identifiers for each type of token.
 		ErrorToken:     "error",
 		CommentToken:   "comment",
 		DelimiterToken: "delimiter",
@@ -268,9 +269,9 @@ var scannerReference_ = &scannerClass_{
 NOTE:
 These private constants define the regular expression sub-patterns that make up
 the intrinsic types and token types.  Unfortunately there is no way to make them
-private to the scanner class since they must be TRUE Go constants to be combined
-in this way.  We append an underscore to each name to lessen the chance of a
-name collision with other private Go class constants in this package.
+private to the scanner class since they must be TRUE Go constants to be used in
+this way.  We append an underscore to each name to lessen the chance of a name
+collision with other private Go class constants in this package.
 */
 const (
 	// Define the regular expression patterns for each intrinsic type.

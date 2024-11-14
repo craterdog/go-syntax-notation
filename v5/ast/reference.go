@@ -42,6 +42,10 @@ func (c *referenceClass_) Make(
 
 }
 
+// Constant Methods
+
+// Function Methods
+
 // INSTANCE INTERFACE
 
 // Primary Methods

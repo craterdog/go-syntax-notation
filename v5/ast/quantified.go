@@ -42,6 +42,10 @@ func (c *quantifiedClass_) Make(
 
 }
 
+// Constant Methods
+
+// Function Methods
+
 // INSTANCE INTERFACE
 
 // Primary Methods

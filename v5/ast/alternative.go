@@ -40,6 +40,10 @@ func (c *alternativeClass_) Make(
 
 }
 
+// Constant Methods
+
+// Function Methods
+
 // INSTANCE INTERFACE
 
 // Primary Methods

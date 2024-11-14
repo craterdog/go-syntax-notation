@@ -33,6 +33,10 @@ func (c *limitClass_) Make(
 
 }
 
+// Constant Methods
+
+// Function Methods
+
 // INSTANCE INTERFACE
 
 // Primary Methods

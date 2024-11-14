@@ -35,9 +35,12 @@ func TestRoundTrips(t *tes.T) {
 			panic(err)
 		}
 		var source = string(bytes)
-		var syntax = not.ParseSource(source)
-		not.ValidateSyntax(syntax)
-		var actual = not.FormatSyntax(syntax)
+		var parser = not.Parser()
+		var syntax = parser.ParseSource(source)
+		var validator = not.Validator()
+		validator.ValidateSyntax(syntax)
+		var formatter = not.Formatter()
+		var actual = formatter.FormatSyntax(syntax)
 		ass.Equal(t, source, actual)
 	}
 	fmt.Println("Done.")

@@ -11,26 +11,19 @@
 */
 
 /*
-Package "module" defines a universal constructor for each class that is exported
-by this module.  Each constructor delegates the actual construction process to
-one of the classes defined in a subpackage for this module.
+Package "module" defines type aliases for the commonly used types defined in the
+packages contained in this module.  It also provides a universal constructor for
+each commonly used class that is exported by the module.  Each constructor
+delegates the actual construction process to its corresponding concrete class
+defined in the corresponding package contained within this module.
 
 For detailed documentation on this entire module refer to the wiki:
-  - https://github.com/craterdog/go-model-framework/wiki
-
-This package follows the Crater Dog Technologies™ (craterdog) Go Coding
-Conventions located here:
-  - https://github.com/craterdog/go-model-framework/wiki
-
-The classes defined in this module provide the ability to parse, validate and
-format Go Class Model Notation (GCMN).  They can also generate concrete class
-implementation files for each abstract class defined in the Packgra.go file.
+  - github.com/craterdog/go-syntax-notation/wiki
 */
 package module
 
 import (
 	fmt "fmt"
-	col "github.com/craterdog/go-collection-framework/v4"
 	abs "github.com/craterdog/go-collection-framework/v4/collection"
 	ast "github.com/craterdog/go-syntax-notation/v5/ast"
 	gra "github.com/craterdog/go-syntax-notation/v5/grammar"
@@ -38,7 +31,7 @@ import (
 
 // TYPE ALIASES
 
-// AST
+// Ast
 
 type (
 	AlternativeLike = ast.AlternativeLike
@@ -72,927 +65,1113 @@ type (
 // Grammar
 
 type (
+	TokenType     = gra.TokenType
 	FormatterLike = gra.FormatterLike
 	ParserLike    = gra.ParserLike
 	ProcessorLike = gra.ProcessorLike
 	ScannerLike   = gra.ScannerLike
-	TokenType     = gra.TokenType
+	TokenLike     = gra.TokenLike
 	ValidatorLike = gra.ValidatorLike
 	VisitorLike   = gra.VisitorLike
 	Methodical    = gra.Methodical
 )
 
-const (
-	ErrorToken     = gra.ErrorToken
-	CommentToken   = gra.CommentToken
-	DelimiterToken = gra.DelimiterToken
-	ExcludedToken  = gra.ExcludedToken
-	GlyphToken     = gra.GlyphToken
-	IntrinsicToken = gra.IntrinsicToken
-	LiteralToken   = gra.LiteralToken
-	LowercaseToken = gra.LowercaseToken
-	NewlineToken   = gra.NewlineToken
-	NoteToken      = gra.NoteToken
-	NumberToken    = gra.NumberToken
-	OptionalToken  = gra.OptionalToken
-	RepeatedToken  = gra.RepeatedToken
-	SpaceToken     = gra.SpaceToken
-	UppercaseToken = gra.UppercaseToken
-)
-
 // UNIVERSAL CONSTRUCTORS
 
-// AST
+// Ast
 
 func Alternative(arguments ...any) AlternativeLike {
-	// Initialize the possible arguments.
-	var option OptionLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case OptionLike:
-			option = actual
+			argumentTypes += "OptionLike, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the alternative constructor: %T\n",
+				"An unexpected argument type was passed into the Alternative constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var alternative = ast.Alternative().Make(option)
+	// Call the corresponding constructor.
+	var alternative AlternativeLike
+	switch argumentTypes {
+	case "OptionLike":
+		var option = arguments[0].(OptionLike)
+		alternative = ast.Alternative().Make(
+			option,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Alternative constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return alternative
 }
 
 func Cardinality(arguments ...any) CardinalityLike {
-	// Initialize the possible arguments.
-	var constrained ConstrainedLike
-	var quantified QuantifiedLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case ConstrainedLike:
-			constrained = actual
-		case QuantifiedLike:
-			quantified = actual
+		case any:
+			argumentTypes += "any, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the cardinality constructor: %T\n",
+				"An unexpected argument type was passed into the Cardinality constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
+	// Call the corresponding constructor.
 	var cardinality CardinalityLike
-	switch {
-	case col.IsDefined(constrained):
-		cardinality = ast.Cardinality().Make(constrained)
-	case col.IsDefined(quantified):
-		cardinality = ast.Cardinality().Make(quantified)
+	switch argumentTypes {
+	case "any":
+		var any_ = arguments[0]
+		cardinality = ast.Cardinality().Make(
+			any_,
+		)
 	default:
-		panic("The constructor for a cardinality requires an argument.")
+		var message = fmt.Sprintf(
+			"No Cardinality constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
 	}
 	return cardinality
 }
 
 func Character(arguments ...any) CharacterLike {
-	// Initialize the possible arguments.
-	var explicit ExplicitLike
-	var intrinsic string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case ExplicitLike:
-			explicit = actual
-		case string:
-			intrinsic = actual
+		case any:
+			argumentTypes += "any, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the character constructor: %T\n",
+				"An unexpected argument type was passed into the Character constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
+	// Call the corresponding constructor.
 	var character CharacterLike
-	switch {
-	case col.IsDefined(explicit):
-		character = ast.Character().Make(explicit)
-	case col.IsDefined(intrinsic):
-		character = ast.Character().Make(intrinsic)
+	switch argumentTypes {
+	case "any":
+		var any_ = arguments[0]
+		character = ast.Character().Make(
+			any_,
+		)
 	default:
-		panic("The constructor for a character requires an argument.")
+		var message = fmt.Sprintf(
+			"No Character constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
 	}
 	return character
 }
 
 func Constrained(arguments ...any) ConstrainedLike {
-	// Initialize the possible arguments.
-	var optional string
-	var repeated string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case string:
-			switch {
-			case MatchesType(actual, OptionalToken):
-				optional = actual
-			case MatchesType(actual, RepeatedToken):
-				repeated = actual
-			default:
-				var message = fmt.Sprintf(
-					"An invalid string was passed into the constrained constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+		case any:
+			argumentTypes += "any, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the constrained constructor: %T\n",
+				"An unexpected argument type was passed into the Constrained constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
+	// Call the corresponding constructor.
 	var constrained ConstrainedLike
-	switch {
-	case col.IsDefined(optional):
-		constrained = ast.Constrained().Make(optional)
-	case col.IsDefined(repeated):
-		constrained = ast.Constrained().Make(repeated)
+	switch argumentTypes {
+	case "any":
+		var any_ = arguments[0]
+		constrained = ast.Constrained().Make(
+			any_,
+		)
 	default:
-		panic("The constructor for an constrained requires an argument.")
+		var message = fmt.Sprintf(
+			"No Constrained constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
 	}
 	return constrained
 }
 
 func Definition(arguments ...any) DefinitionLike {
-	// Initialize the possible arguments.
-	var inline InlineLike
-	var multiline MultilineLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case InlineLike:
-			inline = actual
-		case MultilineLike:
-			multiline = actual
+		case any:
+			argumentTypes += "any, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the definition constructor: %T\n",
+				"An unexpected argument type was passed into the Definition constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
+	// Call the corresponding constructor.
 	var definition DefinitionLike
-	switch {
-	case col.IsDefined(inline):
-		definition = ast.Definition().Make(inline)
-	case col.IsDefined(multiline):
-		definition = ast.Definition().Make(multiline)
+	switch argumentTypes {
+	case "any":
+		var any_ = arguments[0]
+		definition = ast.Definition().Make(
+			any_,
+		)
 	default:
-		panic("The constructor for a definition requires an argument.")
+		var message = fmt.Sprintf(
+			"No Definition constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
 	}
 	return definition
 }
 
 func Element(arguments ...any) ElementLike {
-	// Initialize the possible arguments.
-	var group GroupLike
-	var filter FilterLike
-	var text TextLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case GroupLike:
-			group = actual
-		case FilterLike:
-			filter = actual
-		case TextLike:
-			text = actual
+		case any:
+			argumentTypes += "any, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the element constructor: %T\n",
+				"An unexpected argument type was passed into the Element constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
+	// Call the corresponding constructor.
 	var element ElementLike
-	switch {
-	case col.IsDefined(group):
-		element = ast.Element().Make(group)
-	case col.IsDefined(filter):
-		element = ast.Element().Make(filter)
-	case col.IsDefined(text):
-		element = ast.Element().Make(text)
+	switch argumentTypes {
+	case "any":
+		var any_ = arguments[0]
+		element = ast.Element().Make(
+			any_,
+		)
 	default:
-		panic("The constructor for an element requires an argument.")
+		var message = fmt.Sprintf(
+			"No Element constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
 	}
 	return element
 }
 
 func Explicit(arguments ...any) ExplicitLike {
-	// Initialize the possible arguments.
-	var glyph string
-	var extent ExtentLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case string:
-			switch {
-			case MatchesType(actual, GlyphToken):
-				glyph = actual
-			default:
-				var message = fmt.Sprintf(
-					"An unknown argument value was passed into the explicit constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+			argumentTypes += "string, "
 		case ExtentLike:
-			extent = actual
+			argumentTypes += "ExtentLike, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed was into the explicit constructor: %T\n",
+				"An unexpected argument type was passed into the Explicit constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var explicit = ast.Explicit().Make(
-		glyph,
-		extent,
-	)
+	// Call the corresponding constructor.
+	var explicit ExplicitLike
+	switch argumentTypes {
+	case "string, ExtentLike":
+		var glyph = arguments[0].(string)
+		var optionalExtent = arguments[1].(ExtentLike)
+		explicit = ast.Explicit().Make(
+			glyph,
+			optionalExtent,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Explicit constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return explicit
 }
 
 func Expression(arguments ...any) ExpressionLike {
-	// Initialize the possible arguments.
-	var lowercase string
-	var pattern PatternLike
-	var note string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case string:
-			switch {
-			case MatchesType(actual, LowercaseToken):
-				lowercase = actual
-			case MatchesType(actual, NoteToken):
-				note = actual
-			default:
-				var message = fmt.Sprintf(
-					"An unknown argument value was passed into the expression constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+			argumentTypes += "string, "
 		case PatternLike:
-			pattern = actual
+			argumentTypes += "PatternLike, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the expression constructor: %T\n",
+				"An unexpected argument type was passed into the Expression constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var expression = ast.Expression().Make(
-		lowercase,
-		pattern,
-		note,
-	)
+	// Call the corresponding constructor.
+	var expression ExpressionLike
+	switch argumentTypes {
+	case "string, PatternLike, string":
+		var lowercase = arguments[0].(string)
+		var pattern = arguments[1].(PatternLike)
+		var optionalNote = arguments[2].(string)
+		expression = ast.Expression().Make(
+			lowercase,
+			pattern,
+			optionalNote,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Expression constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return expression
 }
 
 func Extent(arguments ...any) ExtentLike {
-	// Initialize the possible arguments.
-	var glyph string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case string:
-			switch {
-			case MatchesType(actual, GlyphToken):
-				glyph = actual
-			default:
-				var message = fmt.Sprintf(
-					"An unknown argument value was passed into the extent constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+			argumentTypes += "string, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the extent constructor: %T\n",
+				"An unexpected argument type was passed into the Extent constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var extent = ast.Extent().Make(glyph)
+	// Call the corresponding constructor.
+	var extent ExtentLike
+	switch argumentTypes {
+	case "string":
+		var glyph = arguments[0].(string)
+		extent = ast.Extent().Make(
+			glyph,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Extent constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return extent
 }
 
 func Filter(arguments ...any) FilterLike {
-	// Initialize the possible arguments.
-	var excluded string
-	var characters abs.Sequential[CharacterLike]
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case string:
-			excluded = actual
+			argumentTypes += "string, "
 		case abs.Sequential[CharacterLike]:
-			characters = actual
+			argumentTypes += "abs.Sequential[CharacterLike], "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the filter constructor: %T\n",
+				"An unexpected argument type was passed into the Filter constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var filter = ast.Filter().Make(
-		excluded,
-		characters,
-	)
+	// Call the corresponding constructor.
+	var filter FilterLike
+	switch argumentTypes {
+	case "string, abs.Sequential[CharacterLike]":
+		var optionalExcluded = arguments[0].(string)
+		var characters = arguments[1].(abs.Sequential[CharacterLike])
+		filter = ast.Filter().Make(
+			optionalExcluded,
+			characters,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Filter constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return filter
 }
 
 func Group(arguments ...any) GroupLike {
-	// Initialize the possible arguments.
-	var pattern PatternLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case PatternLike:
-			pattern = actual
+			argumentTypes += "PatternLike, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the group constructor: %T\n",
+				"An unexpected argument type was passed into the Group constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var group = ast.Group().Make(
-		pattern,
-	)
+	// Call the corresponding constructor.
+	var group GroupLike
+	switch argumentTypes {
+	case "PatternLike":
+		var pattern = arguments[0].(PatternLike)
+		group = ast.Group().Make(
+			pattern,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Group constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return group
 }
 
 func Identifier(arguments ...any) IdentifierLike {
-	// Initialize the possible arguments.
-	var lowercase string
-	var uppercase string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case string:
-			switch {
-			case MatchesType(actual, LowercaseToken):
-				lowercase = actual
-			case MatchesType(actual, UppercaseToken):
-				uppercase = actual
-			default:
-				var message = fmt.Sprintf(
-					"An invalid string was passed into the identifier constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+		case any:
+			argumentTypes += "any, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the identifier constructor: %T\n",
+				"An unexpected argument type was passed into the Identifier constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
+	// Call the corresponding constructor.
 	var identifier IdentifierLike
-	switch {
-	case col.IsDefined(lowercase):
-		identifier = ast.Identifier().Make(lowercase)
-	case col.IsDefined(uppercase):
-		identifier = ast.Identifier().Make(uppercase)
+	switch argumentTypes {
+	case "any":
+		var any_ = arguments[0]
+		identifier = ast.Identifier().Make(
+			any_,
+		)
 	default:
-		panic("The constructor for an identifier requires an argument.")
+		var message = fmt.Sprintf(
+			"No Identifier constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
 	}
 	return identifier
 }
 
 func Inline(arguments ...any) InlineLike {
-	// Initialize the possible arguments.
-	var terms abs.Sequential[TermLike]
-	var note string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case abs.Sequential[TermLike]:
-			terms = actual
+			argumentTypes += "abs.Sequential[TermLike], "
 		case string:
-			note = actual
+			argumentTypes += "string, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the inline constructor: %T\n",
+				"An unexpected argument type was passed into the Inline constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var inline = ast.Inline().Make(
-		terms,
-		note,
-	)
+	// Call the corresponding constructor.
+	var inline InlineLike
+	switch argumentTypes {
+	case "abs.Sequential[TermLike], string":
+		var terms = arguments[0].(abs.Sequential[TermLike])
+		var optionalNote = arguments[1].(string)
+		inline = ast.Inline().Make(
+			terms,
+			optionalNote,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Inline constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return inline
 }
 
 func Limit(arguments ...any) LimitLike {
-	// Initialize the possible arguments.
-	var number string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case string:
-			switch {
-			case MatchesType(actual, NumberToken):
-				number = actual
-			default:
-				var message = fmt.Sprintf(
-					"An unknown argument value was passed into the limit constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+			argumentTypes += "string, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the limit constructor: %T\n",
+				"An unexpected argument type was passed into the Limit constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var limit = ast.Limit().Make(number)
+	// Call the corresponding constructor.
+	var limit LimitLike
+	switch argumentTypes {
+	case "string":
+		var optionalNumber = arguments[0].(string)
+		limit = ast.Limit().Make(
+			optionalNumber,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Limit constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return limit
 }
 
 func Line(arguments ...any) LineLike {
-	// Initialize the possible arguments.
-	var identifier IdentifierLike
-	var note string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case IdentifierLike:
-			identifier = actual
+			argumentTypes += "IdentifierLike, "
 		case string:
-			note = actual
+			argumentTypes += "string, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the line constructor: %T\n",
+				"An unexpected argument type was passed into the Line constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var line = ast.Line().Make(
-		identifier,
-		note,
-	)
+	// Call the corresponding constructor.
+	var line LineLike
+	switch argumentTypes {
+	case "IdentifierLike, string":
+		var identifier = arguments[0].(IdentifierLike)
+		var optionalNote = arguments[1].(string)
+		line = ast.Line().Make(
+			identifier,
+			optionalNote,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Line constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return line
 }
 
 func Multiline(arguments ...any) MultilineLike {
-	// Initialize the possible arguments.
-	var lines abs.Sequential[LineLike]
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case abs.Sequential[LineLike]:
-			lines = actual
+			argumentTypes += "abs.Sequential[LineLike], "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the multiline constructor: %T\n",
+				"An unexpected argument type was passed into the Multiline constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var multiline = ast.Multiline().Make(lines)
+	// Call the corresponding constructor.
+	var multiline MultilineLike
+	switch argumentTypes {
+	case "abs.Sequential[LineLike]":
+		var lines = arguments[0].(abs.Sequential[LineLike])
+		multiline = ast.Multiline().Make(
+			lines,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Multiline constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return multiline
 }
 
 func Notice(arguments ...any) NoticeLike {
-	// Initialize the possible arguments.
-	var comment string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case string:
-			switch {
-			case MatchesType(actual, CommentToken):
-				comment = actual
-			default:
-				var message = fmt.Sprintf(
-					"An unknown argument value was passed into the notice constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+			argumentTypes += "string, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the notice constructor: %T\n",
+				"An unexpected argument type was passed into the Notice constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var notice = ast.Notice().Make(comment)
+	// Call the corresponding constructor.
+	var notice NoticeLike
+	switch argumentTypes {
+	case "string":
+		var comment = arguments[0].(string)
+		notice = ast.Notice().Make(
+			comment,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Notice constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return notice
 }
 
 func Option(arguments ...any) OptionLike {
-	// Initialize the possible arguments.
-	var repetitions = col.List[RepetitionLike]()
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case RepetitionLike:
-			repetitions.AppendValue(actual)
 		case abs.Sequential[RepetitionLike]:
-			repetitions.AppendValues(actual)
+			argumentTypes += "abs.Sequential[RepetitionLike], "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the option constructor: %T\n",
+				"An unexpected argument type was passed into the Option constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
-	if repetitions.IsEmpty() {
-		panic("The option constructor requires at least one argument.")
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
 	}
 
-	// Call the constructor.
-	var option = ast.Option().Make(repetitions)
+	// Call the corresponding constructor.
+	var option OptionLike
+	switch argumentTypes {
+	case "abs.Sequential[RepetitionLike]":
+		var repetitions = arguments[0].(abs.Sequential[RepetitionLike])
+		option = ast.Option().Make(
+			repetitions,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Option constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return option
 }
 
 func Pattern(arguments ...any) PatternLike {
-	// Initialize the possible arguments.
-	var option OptionLike
-	var alternatives = col.List[AlternativeLike]()
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case OptionLike:
-			option = actual
-		case AlternativeLike:
-			alternatives.AppendValue(actual)
+			argumentTypes += "OptionLike, "
 		case abs.Sequential[AlternativeLike]:
-			alternatives.AppendValues(actual)
+			argumentTypes += "abs.Sequential[AlternativeLike], "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the pattern constructor: %T\n",
+				"An unexpected argument type was passed into the Pattern constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var pattern = ast.Pattern().Make(
-		option,
-		alternatives,
-	)
+	// Call the corresponding constructor.
+	var pattern PatternLike
+	switch argumentTypes {
+	case "OptionLike, abs.Sequential[AlternativeLike]":
+		var option = arguments[0].(OptionLike)
+		var alternatives = arguments[1].(abs.Sequential[AlternativeLike])
+		pattern = ast.Pattern().Make(
+			option,
+			alternatives,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Pattern constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return pattern
 }
 
 func Quantified(arguments ...any) QuantifiedLike {
-	// Initialize the possible arguments.
-	var number string
-	var limit LimitLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case string:
-			switch {
-			case MatchesType(actual, NumberToken):
-				number = actual
-			default:
-				var message = fmt.Sprintf(
-					"An unknown argument value was passed into the quantified constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+			argumentTypes += "string, "
 		case LimitLike:
-			limit = actual
+			argumentTypes += "LimitLike, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed was into the quantified constructor: %T\n",
+				"An unexpected argument type was passed into the Quantified constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var quantified = ast.Quantified().Make(
-		number,
-		limit,
-	)
+	// Call the corresponding constructor.
+	var quantified QuantifiedLike
+	switch argumentTypes {
+	case "string, LimitLike":
+		var number = arguments[0].(string)
+		var optionalLimit = arguments[1].(LimitLike)
+		quantified = ast.Quantified().Make(
+			number,
+			optionalLimit,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Quantified constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return quantified
 }
 
 func Reference(arguments ...any) ReferenceLike {
-	// Initialize the possible arguments.
-	var identifier IdentifierLike
-	var cardinality CardinalityLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case IdentifierLike:
-			identifier = actual
+			argumentTypes += "IdentifierLike, "
 		case CardinalityLike:
-			cardinality = actual
+			argumentTypes += "CardinalityLike, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the reference constructor: %T\n",
+				"An unexpected argument type was passed into the Reference constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var reference = ast.Reference().Make(
-		identifier,
-		cardinality,
-	)
+	// Call the corresponding constructor.
+	var reference ReferenceLike
+	switch argumentTypes {
+	case "IdentifierLike, CardinalityLike":
+		var identifier = arguments[0].(IdentifierLike)
+		var optionalCardinality = arguments[1].(CardinalityLike)
+		reference = ast.Reference().Make(
+			identifier,
+			optionalCardinality,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Reference constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return reference
 }
 
 func Repetition(arguments ...any) RepetitionLike {
-	// Initialize the possible arguments.
-	var element ElementLike
-	var cardinality CardinalityLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case ElementLike:
-			element = actual
+			argumentTypes += "ElementLike, "
 		case CardinalityLike:
-			cardinality = actual
+			argumentTypes += "CardinalityLike, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the repetition constructor: %T\n",
+				"An unexpected argument type was passed into the Repetition constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var repetition = ast.Repetition().Make(
-		element,
-		cardinality,
-	)
+	// Call the corresponding constructor.
+	var repetition RepetitionLike
+	switch argumentTypes {
+	case "ElementLike, CardinalityLike":
+		var element = arguments[0].(ElementLike)
+		var optionalCardinality = arguments[1].(CardinalityLike)
+		repetition = ast.Repetition().Make(
+			element,
+			optionalCardinality,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Repetition constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return repetition
 }
 
 func Rule(arguments ...any) RuleLike {
-	// Initialize the possible arguments.
-	var uppercase string
-	var definition DefinitionLike
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case string:
-			switch {
-			case MatchesType(actual, UppercaseToken):
-				uppercase = actual
-			default:
-				var message = fmt.Sprintf(
-					"An invalid string was passed into the rule constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+			argumentTypes += "string, "
 		case DefinitionLike:
-			definition = actual
+			argumentTypes += "DefinitionLike, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the rule constructor: %T\n",
+				"An unexpected argument type was passed into the Rule constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var rule = ast.Rule().Make(
-		uppercase,
-		definition,
-	)
+	// Call the corresponding constructor.
+	var rule RuleLike
+	switch argumentTypes {
+	case "string, DefinitionLike":
+		var uppercase = arguments[0].(string)
+		var definition = arguments[1].(DefinitionLike)
+		rule = ast.Rule().Make(
+			uppercase,
+			definition,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Rule constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return rule
 }
 
 func Syntax(arguments ...any) SyntaxLike {
-	// Initialize the possible arguments.
-	var notice NoticeLike
-	var comment1 string
-	var rules abs.Sequential[RuleLike]
-	var comment2 string
-	var expressions abs.Sequential[ExpressionLike]
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
 		case NoticeLike:
-			notice = actual
-		case abs.Sequential[RuleLike]:
-			rules = actual
-		case abs.Sequential[ExpressionLike]:
-			expressions = actual
+			argumentTypes += "NoticeLike, "
 		case string:
-			if col.IsUndefined(comment1) {
-				comment1 = actual
-			} else {
-				comment2 = actual
-			}
+			argumentTypes += "string, "
+		case abs.Sequential[RuleLike]:
+			argumentTypes += "abs.Sequential[RuleLike], "
+		case abs.Sequential[ExpressionLike]:
+			argumentTypes += "abs.Sequential[ExpressionLike], "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the syntax constructor: %T\n",
+				"An unexpected argument type was passed into the Syntax constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var syntax = ast.Syntax().Make(
-		notice,
-		comment1,
-		rules,
-		comment2,
-		expressions,
-	)
+	// Call the corresponding constructor.
+	var syntax SyntaxLike
+	switch argumentTypes {
+	case "NoticeLike, string, abs.Sequential[RuleLike], string, abs.Sequential[ExpressionLike]":
+		var notice = arguments[0].(NoticeLike)
+		var comment1 = arguments[1].(string)
+		var rules = arguments[2].(abs.Sequential[RuleLike])
+		var comment2 = arguments[3].(string)
+		var expressions = arguments[4].(abs.Sequential[ExpressionLike])
+		syntax = ast.Syntax().Make(
+			notice,
+			comment1,
+			rules,
+			comment2,
+			expressions,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Syntax constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return syntax
 }
 
 func Term(arguments ...any) TermLike {
-	// Initialize the possible arguments.
-	var reference ReferenceLike
-	var literal string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case ReferenceLike:
-			reference = actual
-		case string:
-			switch {
-			case MatchesType(actual, LiteralToken):
-				literal = actual
-			default:
-				var message = fmt.Sprintf(
-					"An unknown argument value was passed into the term constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+		case any:
+			argumentTypes += "any, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed was into the term constructor: %T\n",
+				"An unexpected argument type was passed into the Term constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
+	// Call the corresponding constructor.
 	var term TermLike
-	switch {
-	case col.IsDefined(reference):
-		term = ast.Term().Make(reference)
-	case col.IsDefined(literal):
-		term = ast.Term().Make(literal)
+	switch argumentTypes {
+	case "any":
+		var any_ = arguments[0]
+		term = ast.Term().Make(
+			any_,
+		)
 	default:
-		panic("The constructor for a term requires an argument.")
+		var message = fmt.Sprintf(
+			"No Term constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
 	}
 	return term
 }
 
 func Text(arguments ...any) TextLike {
-	// Initialize the possible arguments.
-	var intrinsic string
-	var glyph string
-	var literal string
-	var lowercase string
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case string:
-			switch {
-			case MatchesType(actual, IntrinsicToken):
-				intrinsic = actual
-			case MatchesType(actual, GlyphToken):
-				glyph = actual
-			case MatchesType(actual, LiteralToken):
-				literal = actual
-			case MatchesType(actual, LowercaseToken):
-				lowercase = actual
-			default:
-				var message = fmt.Sprintf(
-					"An invalid string was passed into the text constructor: %q\n",
-					actual,
-				)
-				panic(message)
-			}
+		case any:
+			argumentTypes += "any, "
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the text constructor: %T\n",
+				"An unexpected argument type was passed into the Text constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
+	// Call the corresponding constructor.
 	var text TextLike
-	switch {
-	case col.IsDefined(intrinsic):
-		text = Text(intrinsic)
-	case col.IsDefined(glyph):
-		text = Text(glyph)
-	case col.IsDefined(literal):
-		text = Text(literal)
-	case col.IsDefined(lowercase):
-		text = Text(lowercase)
+	switch argumentTypes {
+	case "any":
+		var any_ = arguments[0]
+		text = ast.Text().Make(
+			any_,
+		)
 	default:
-		panic("The constructor for an string requires an argument.")
+		var message = fmt.Sprintf(
+			"No Text constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
 	}
 	return text
 }
@@ -1000,82 +1179,275 @@ func Text(arguments ...any) TextLike {
 // Grammar
 
 func Formatter(arguments ...any) FormatterLike {
-	if len(arguments) > 0 {
-		panic("The formatter constructor does not take any arguments.")
-	}
-	var formatter = gra.Formatter().Make()
-	return formatter
-}
-
-func Parser(arguments ...any) ParserLike {
-	if len(arguments) > 0 {
-		panic("The parser constructor does not take any arguments.")
-	}
-	var parser = gra.Parser().Make()
-	return parser
-}
-
-func Processor(arguments ...any) ProcessorLike {
-	if len(arguments) > 0 {
-		panic("The processor constructor does not take any arguments.")
-	}
-	var processor = gra.Processor().Make()
-	return processor
-}
-
-func Validator(arguments ...any) ValidatorLike {
-	if len(arguments) > 0 {
-		panic("The validator constructor does not take any arguments.")
-	}
-	var validator = gra.Validator().Make()
-	return validator
-}
-
-func Visitor(arguments ...any) VisitorLike {
-	// Initialize the possible arguments.
-	var processor Methodical
-
-	// Process the actual arguments.
+	// Analyze the arguments.
+	var argumentTypes string
 	for _, argument := range arguments {
 		switch actual := argument.(type) {
-		case Methodical:
-			processor = actual
 		default:
 			var message = fmt.Sprintf(
-				"An unknown argument type passed into the visitor constructor: %T\n",
+				"An unexpected argument type was passed into the Formatter constructor: %v of type %T",
+				argument,
 				actual,
 			)
 			panic(message)
 		}
 	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
 
-	// Call the constructor.
-	var visitor = gra.Visitor().Make(processor)
+	// Call the corresponding constructor.
+	var formatter FormatterLike
+	switch argumentTypes {
+	case "":
+		formatter = gra.Formatter().Make()
+	default:
+		var message = fmt.Sprintf(
+			"No Formatter constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
+	return formatter
+}
+
+func Parser(arguments ...any) ParserLike {
+	// Analyze the arguments.
+	var argumentTypes string
+	for _, argument := range arguments {
+		switch actual := argument.(type) {
+		default:
+			var message = fmt.Sprintf(
+				"An unexpected argument type was passed into the Parser constructor: %v of type %T",
+				argument,
+				actual,
+			)
+			panic(message)
+		}
+	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
+
+	// Call the corresponding constructor.
+	var parser ParserLike
+	switch argumentTypes {
+	case "":
+		parser = gra.Parser().Make()
+	default:
+		var message = fmt.Sprintf(
+			"No Parser constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
+	return parser
+}
+
+func Processor(arguments ...any) ProcessorLike {
+	// Analyze the arguments.
+	var argumentTypes string
+	for _, argument := range arguments {
+		switch actual := argument.(type) {
+		default:
+			var message = fmt.Sprintf(
+				"An unexpected argument type was passed into the Processor constructor: %v of type %T",
+				argument,
+				actual,
+			)
+			panic(message)
+		}
+	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
+
+	// Call the corresponding constructor.
+	var processor ProcessorLike
+	switch argumentTypes {
+	case "":
+		processor = gra.Processor().Make()
+	default:
+		var message = fmt.Sprintf(
+			"No Processor constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
+	return processor
+}
+
+func Scanner(arguments ...any) ScannerLike {
+	// Analyze the arguments.
+	var argumentTypes string
+	for _, argument := range arguments {
+		switch actual := argument.(type) {
+		case string:
+			argumentTypes += "string, "
+		case abs.QueueLike[TokenLike]:
+			argumentTypes += "abs.QueueLike[TokenLike], "
+		default:
+			var message = fmt.Sprintf(
+				"An unexpected argument type was passed into the Scanner constructor: %v of type %T",
+				argument,
+				actual,
+			)
+			panic(message)
+		}
+	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
+
+	// Call the corresponding constructor.
+	var scanner ScannerLike
+	switch argumentTypes {
+	case "string, abs.QueueLike[TokenLike]":
+		var source = arguments[0].(string)
+		var tokens = arguments[1].(abs.QueueLike[TokenLike])
+		scanner = gra.Scanner().Make(
+			source,
+			tokens,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Scanner constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
+	return scanner
+}
+
+func Token(arguments ...any) TokenLike {
+	// Analyze the arguments.
+	var argumentTypes string
+	for _, argument := range arguments {
+		switch actual := argument.(type) {
+		case uint:
+			argumentTypes += "uint, "
+		case TokenType:
+			argumentTypes += "TokenType, "
+		case string:
+			argumentTypes += "string, "
+		default:
+			var message = fmt.Sprintf(
+				"An unexpected argument type was passed into the Token constructor: %v of type %T",
+				argument,
+				actual,
+			)
+			panic(message)
+		}
+	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
+
+	// Call the corresponding constructor.
+	var token TokenLike
+	switch argumentTypes {
+	case "uint, uint, TokenType, string":
+		var line = arguments[0].(uint)
+		var position = arguments[1].(uint)
+		var type_ = arguments[2].(TokenType)
+		var value = arguments[3].(string)
+		token = gra.Token().Make(
+			line,
+			position,
+			type_,
+			value,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Token constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
+	return token
+}
+
+func Validator(arguments ...any) ValidatorLike {
+	// Analyze the arguments.
+	var argumentTypes string
+	for _, argument := range arguments {
+		switch actual := argument.(type) {
+		default:
+			var message = fmt.Sprintf(
+				"An unexpected argument type was passed into the Validator constructor: %v of type %T",
+				argument,
+				actual,
+			)
+			panic(message)
+		}
+	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
+
+	// Call the corresponding constructor.
+	var validator ValidatorLike
+	switch argumentTypes {
+	case "":
+		validator = gra.Validator().Make()
+	default:
+		var message = fmt.Sprintf(
+			"No Validator constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
+	return validator
+}
+
+func Visitor(arguments ...any) VisitorLike {
+	// Analyze the arguments.
+	var argumentTypes string
+	for _, argument := range arguments {
+		switch actual := argument.(type) {
+		case Methodical:
+			argumentTypes += "Methodical, "
+		default:
+			var message = fmt.Sprintf(
+				"An unexpected argument type was passed into the Visitor constructor: %v of type %T",
+				argument,
+				actual,
+			)
+			panic(message)
+		}
+	}
+	var length = len(argumentTypes)
+	if length > 0 {
+		// Remove the trailing comma.
+		argumentTypes = argumentTypes[:length-1]
+	}
+
+	// Call the corresponding constructor.
+	var visitor VisitorLike
+	switch argumentTypes {
+	case "Methodical":
+		var processor = arguments[0].(Methodical)
+		visitor = gra.Visitor().Make(
+			processor,
+		)
+	default:
+		var message = fmt.Sprintf(
+			"No Visitor constructor matching the arguments was found: %v\n",
+			arguments,
+		)
+		panic(message)
+	}
 	return visitor
-}
-
-// GLOBAL FUNCTIONS
-
-// Grammar
-
-func FormatSyntax(syntax SyntaxLike) string {
-	var formatter = gra.Formatter().Make()
-	var source = formatter.FormatSyntax(syntax)
-	return source
-}
-
-func MatchesType(tokenValue string, tokenType TokenType) bool {
-	var scannerClass = gra.Scanner()
-	return scannerClass.MatchesType(tokenValue, tokenType)
-}
-
-func ParseSource(source string) SyntaxLike {
-	var parser = gra.Parser().Make()
-	var syntax = parser.ParseSource(source)
-	return syntax
-}
-
-func ValidateSyntax(syntax SyntaxLike) {
-	var validator = gra.Validator().Make()
-	validator.ValidateSyntax(syntax)
 }

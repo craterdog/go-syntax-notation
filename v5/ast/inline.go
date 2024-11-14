@@ -43,6 +43,10 @@ func (c *inlineClass_) Make(
 
 }
 
+// Constant Methods
+
+// Function Methods
+
 // INSTANCE INTERFACE
 
 // Primary Methods
