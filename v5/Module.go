@@ -103,11 +103,11 @@ func Alternative(arguments ...any) AlternativeLike {
 	}
 
 	// Call the corresponding constructor.
-	var alternative AlternativeLike
+	var instance_ AlternativeLike
 	switch argumentTypes {
 	case "OptionLike":
 		var option = arguments[0].(OptionLike)
-		alternative = ast.Alternative().Make(
+		instance_ = ast.Alternative().Make(
 			option,
 		)
 	default:
@@ -117,7 +117,7 @@ func Alternative(arguments ...any) AlternativeLike {
 		)
 		panic(message)
 	}
-	return alternative
+	return instance_
 }
 
 func Cardinality(arguments ...any) CardinalityLike {
@@ -143,11 +143,11 @@ func Cardinality(arguments ...any) CardinalityLike {
 	}
 
 	// Call the corresponding constructor.
-	var cardinality CardinalityLike
+	var instance_ CardinalityLike
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		cardinality = ast.Cardinality().Make(
+		instance_ = ast.Cardinality().Make(
 			any_,
 		)
 	default:
@@ -157,7 +157,7 @@ func Cardinality(arguments ...any) CardinalityLike {
 		)
 		panic(message)
 	}
-	return cardinality
+	return instance_
 }
 
 func Character(arguments ...any) CharacterLike {
@@ -183,11 +183,11 @@ func Character(arguments ...any) CharacterLike {
 	}
 
 	// Call the corresponding constructor.
-	var character CharacterLike
+	var instance_ CharacterLike
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		character = ast.Character().Make(
+		instance_ = ast.Character().Make(
 			any_,
 		)
 	default:
@@ -197,7 +197,7 @@ func Character(arguments ...any) CharacterLike {
 		)
 		panic(message)
 	}
-	return character
+	return instance_
 }
 
 func Constrained(arguments ...any) ConstrainedLike {
@@ -223,11 +223,11 @@ func Constrained(arguments ...any) ConstrainedLike {
 	}
 
 	// Call the corresponding constructor.
-	var constrained ConstrainedLike
+	var instance_ ConstrainedLike
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		constrained = ast.Constrained().Make(
+		instance_ = ast.Constrained().Make(
 			any_,
 		)
 	default:
@@ -237,7 +237,7 @@ func Constrained(arguments ...any) ConstrainedLike {
 		)
 		panic(message)
 	}
-	return constrained
+	return instance_
 }
 
 func Definition(arguments ...any) DefinitionLike {
@@ -263,11 +263,11 @@ func Definition(arguments ...any) DefinitionLike {
 	}
 
 	// Call the corresponding constructor.
-	var definition DefinitionLike
+	var instance_ DefinitionLike
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		definition = ast.Definition().Make(
+		instance_ = ast.Definition().Make(
 			any_,
 		)
 	default:
@@ -277,7 +277,7 @@ func Definition(arguments ...any) DefinitionLike {
 		)
 		panic(message)
 	}
-	return definition
+	return instance_
 }
 
 func Element(arguments ...any) ElementLike {
@@ -303,11 +303,11 @@ func Element(arguments ...any) ElementLike {
 	}
 
 	// Call the corresponding constructor.
-	var element ElementLike
+	var instance_ ElementLike
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		element = ast.Element().Make(
+		instance_ = ast.Element().Make(
 			any_,
 		)
 	default:
@@ -317,7 +317,7 @@ func Element(arguments ...any) ElementLike {
 		)
 		panic(message)
 	}
-	return element
+	return instance_
 }
 
 func Explicit(arguments ...any) ExplicitLike {
@@ -345,12 +345,12 @@ func Explicit(arguments ...any) ExplicitLike {
 	}
 
 	// Call the corresponding constructor.
-	var explicit ExplicitLike
+	var instance_ ExplicitLike
 	switch argumentTypes {
 	case "string, ExtentLike":
 		var glyph = arguments[0].(string)
 		var optionalExtent = arguments[1].(ExtentLike)
-		explicit = ast.Explicit().Make(
+		instance_ = ast.Explicit().Make(
 			glyph,
 			optionalExtent,
 		)
@@ -361,7 +361,7 @@ func Explicit(arguments ...any) ExplicitLike {
 		)
 		panic(message)
 	}
-	return explicit
+	return instance_
 }
 
 func Expression(arguments ...any) ExpressionLike {
@@ -389,13 +389,13 @@ func Expression(arguments ...any) ExpressionLike {
 	}
 
 	// Call the corresponding constructor.
-	var expression ExpressionLike
+	var instance_ ExpressionLike
 	switch argumentTypes {
 	case "string, PatternLike, string":
 		var lowercase = arguments[0].(string)
 		var pattern = arguments[1].(PatternLike)
 		var optionalNote = arguments[2].(string)
-		expression = ast.Expression().Make(
+		instance_ = ast.Expression().Make(
 			lowercase,
 			pattern,
 			optionalNote,
@@ -407,7 +407,7 @@ func Expression(arguments ...any) ExpressionLike {
 		)
 		panic(message)
 	}
-	return expression
+	return instance_
 }
 
 func Extent(arguments ...any) ExtentLike {
@@ -433,11 +433,11 @@ func Extent(arguments ...any) ExtentLike {
 	}
 
 	// Call the corresponding constructor.
-	var extent ExtentLike
+	var instance_ ExtentLike
 	switch argumentTypes {
 	case "string":
 		var glyph = arguments[0].(string)
-		extent = ast.Extent().Make(
+		instance_ = ast.Extent().Make(
 			glyph,
 		)
 	default:
@@ -447,7 +447,7 @@ func Extent(arguments ...any) ExtentLike {
 		)
 		panic(message)
 	}
-	return extent
+	return instance_
 }
 
 func Filter(arguments ...any) FilterLike {
@@ -475,12 +475,12 @@ func Filter(arguments ...any) FilterLike {
 	}
 
 	// Call the corresponding constructor.
-	var filter FilterLike
+	var instance_ FilterLike
 	switch argumentTypes {
 	case "string, abs.Sequential[CharacterLike]":
 		var optionalExcluded = arguments[0].(string)
 		var characters = arguments[1].(abs.Sequential[CharacterLike])
-		filter = ast.Filter().Make(
+		instance_ = ast.Filter().Make(
 			optionalExcluded,
 			characters,
 		)
@@ -491,7 +491,7 @@ func Filter(arguments ...any) FilterLike {
 		)
 		panic(message)
 	}
-	return filter
+	return instance_
 }
 
 func Group(arguments ...any) GroupLike {
@@ -517,11 +517,11 @@ func Group(arguments ...any) GroupLike {
 	}
 
 	// Call the corresponding constructor.
-	var group GroupLike
+	var instance_ GroupLike
 	switch argumentTypes {
 	case "PatternLike":
 		var pattern = arguments[0].(PatternLike)
-		group = ast.Group().Make(
+		instance_ = ast.Group().Make(
 			pattern,
 		)
 	default:
@@ -531,7 +531,7 @@ func Group(arguments ...any) GroupLike {
 		)
 		panic(message)
 	}
-	return group
+	return instance_
 }
 
 func Identifier(arguments ...any) IdentifierLike {
@@ -557,11 +557,11 @@ func Identifier(arguments ...any) IdentifierLike {
 	}
 
 	// Call the corresponding constructor.
-	var identifier IdentifierLike
+	var instance_ IdentifierLike
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		identifier = ast.Identifier().Make(
+		instance_ = ast.Identifier().Make(
 			any_,
 		)
 	default:
@@ -571,7 +571,7 @@ func Identifier(arguments ...any) IdentifierLike {
 		)
 		panic(message)
 	}
-	return identifier
+	return instance_
 }
 
 func Inline(arguments ...any) InlineLike {
@@ -599,12 +599,12 @@ func Inline(arguments ...any) InlineLike {
 	}
 
 	// Call the corresponding constructor.
-	var inline InlineLike
+	var instance_ InlineLike
 	switch argumentTypes {
 	case "abs.Sequential[TermLike], string":
 		var terms = arguments[0].(abs.Sequential[TermLike])
 		var optionalNote = arguments[1].(string)
-		inline = ast.Inline().Make(
+		instance_ = ast.Inline().Make(
 			terms,
 			optionalNote,
 		)
@@ -615,7 +615,7 @@ func Inline(arguments ...any) InlineLike {
 		)
 		panic(message)
 	}
-	return inline
+	return instance_
 }
 
 func Limit(arguments ...any) LimitLike {
@@ -641,11 +641,11 @@ func Limit(arguments ...any) LimitLike {
 	}
 
 	// Call the corresponding constructor.
-	var limit LimitLike
+	var instance_ LimitLike
 	switch argumentTypes {
 	case "string":
 		var optionalNumber = arguments[0].(string)
-		limit = ast.Limit().Make(
+		instance_ = ast.Limit().Make(
 			optionalNumber,
 		)
 	default:
@@ -655,7 +655,7 @@ func Limit(arguments ...any) LimitLike {
 		)
 		panic(message)
 	}
-	return limit
+	return instance_
 }
 
 func Line(arguments ...any) LineLike {
@@ -683,12 +683,12 @@ func Line(arguments ...any) LineLike {
 	}
 
 	// Call the corresponding constructor.
-	var line LineLike
+	var instance_ LineLike
 	switch argumentTypes {
 	case "IdentifierLike, string":
 		var identifier = arguments[0].(IdentifierLike)
 		var optionalNote = arguments[1].(string)
-		line = ast.Line().Make(
+		instance_ = ast.Line().Make(
 			identifier,
 			optionalNote,
 		)
@@ -699,7 +699,7 @@ func Line(arguments ...any) LineLike {
 		)
 		panic(message)
 	}
-	return line
+	return instance_
 }
 
 func Multiline(arguments ...any) MultilineLike {
@@ -725,11 +725,11 @@ func Multiline(arguments ...any) MultilineLike {
 	}
 
 	// Call the corresponding constructor.
-	var multiline MultilineLike
+	var instance_ MultilineLike
 	switch argumentTypes {
 	case "abs.Sequential[LineLike]":
 		var lines = arguments[0].(abs.Sequential[LineLike])
-		multiline = ast.Multiline().Make(
+		instance_ = ast.Multiline().Make(
 			lines,
 		)
 	default:
@@ -739,7 +739,7 @@ func Multiline(arguments ...any) MultilineLike {
 		)
 		panic(message)
 	}
-	return multiline
+	return instance_
 }
 
 func Notice(arguments ...any) NoticeLike {
@@ -765,11 +765,11 @@ func Notice(arguments ...any) NoticeLike {
 	}
 
 	// Call the corresponding constructor.
-	var notice NoticeLike
+	var instance_ NoticeLike
 	switch argumentTypes {
 	case "string":
 		var comment = arguments[0].(string)
-		notice = ast.Notice().Make(
+		instance_ = ast.Notice().Make(
 			comment,
 		)
 	default:
@@ -779,7 +779,7 @@ func Notice(arguments ...any) NoticeLike {
 		)
 		panic(message)
 	}
-	return notice
+	return instance_
 }
 
 func Option(arguments ...any) OptionLike {
@@ -805,11 +805,11 @@ func Option(arguments ...any) OptionLike {
 	}
 
 	// Call the corresponding constructor.
-	var option OptionLike
+	var instance_ OptionLike
 	switch argumentTypes {
 	case "abs.Sequential[RepetitionLike]":
 		var repetitions = arguments[0].(abs.Sequential[RepetitionLike])
-		option = ast.Option().Make(
+		instance_ = ast.Option().Make(
 			repetitions,
 		)
 	default:
@@ -819,7 +819,7 @@ func Option(arguments ...any) OptionLike {
 		)
 		panic(message)
 	}
-	return option
+	return instance_
 }
 
 func Pattern(arguments ...any) PatternLike {
@@ -847,12 +847,12 @@ func Pattern(arguments ...any) PatternLike {
 	}
 
 	// Call the corresponding constructor.
-	var pattern PatternLike
+	var instance_ PatternLike
 	switch argumentTypes {
 	case "OptionLike, abs.Sequential[AlternativeLike]":
 		var option = arguments[0].(OptionLike)
 		var alternatives = arguments[1].(abs.Sequential[AlternativeLike])
-		pattern = ast.Pattern().Make(
+		instance_ = ast.Pattern().Make(
 			option,
 			alternatives,
 		)
@@ -863,7 +863,7 @@ func Pattern(arguments ...any) PatternLike {
 		)
 		panic(message)
 	}
-	return pattern
+	return instance_
 }
 
 func Quantified(arguments ...any) QuantifiedLike {
@@ -891,12 +891,12 @@ func Quantified(arguments ...any) QuantifiedLike {
 	}
 
 	// Call the corresponding constructor.
-	var quantified QuantifiedLike
+	var instance_ QuantifiedLike
 	switch argumentTypes {
 	case "string, LimitLike":
 		var number = arguments[0].(string)
 		var optionalLimit = arguments[1].(LimitLike)
-		quantified = ast.Quantified().Make(
+		instance_ = ast.Quantified().Make(
 			number,
 			optionalLimit,
 		)
@@ -907,7 +907,7 @@ func Quantified(arguments ...any) QuantifiedLike {
 		)
 		panic(message)
 	}
-	return quantified
+	return instance_
 }
 
 func Reference(arguments ...any) ReferenceLike {
@@ -935,12 +935,12 @@ func Reference(arguments ...any) ReferenceLike {
 	}
 
 	// Call the corresponding constructor.
-	var reference ReferenceLike
+	var instance_ ReferenceLike
 	switch argumentTypes {
 	case "IdentifierLike, CardinalityLike":
 		var identifier = arguments[0].(IdentifierLike)
 		var optionalCardinality = arguments[1].(CardinalityLike)
-		reference = ast.Reference().Make(
+		instance_ = ast.Reference().Make(
 			identifier,
 			optionalCardinality,
 		)
@@ -951,7 +951,7 @@ func Reference(arguments ...any) ReferenceLike {
 		)
 		panic(message)
 	}
-	return reference
+	return instance_
 }
 
 func Repetition(arguments ...any) RepetitionLike {
@@ -979,12 +979,12 @@ func Repetition(arguments ...any) RepetitionLike {
 	}
 
 	// Call the corresponding constructor.
-	var repetition RepetitionLike
+	var instance_ RepetitionLike
 	switch argumentTypes {
 	case "ElementLike, CardinalityLike":
 		var element = arguments[0].(ElementLike)
 		var optionalCardinality = arguments[1].(CardinalityLike)
-		repetition = ast.Repetition().Make(
+		instance_ = ast.Repetition().Make(
 			element,
 			optionalCardinality,
 		)
@@ -995,7 +995,7 @@ func Repetition(arguments ...any) RepetitionLike {
 		)
 		panic(message)
 	}
-	return repetition
+	return instance_
 }
 
 func Rule(arguments ...any) RuleLike {
@@ -1023,12 +1023,12 @@ func Rule(arguments ...any) RuleLike {
 	}
 
 	// Call the corresponding constructor.
-	var rule RuleLike
+	var instance_ RuleLike
 	switch argumentTypes {
 	case "string, DefinitionLike":
 		var uppercase = arguments[0].(string)
 		var definition = arguments[1].(DefinitionLike)
-		rule = ast.Rule().Make(
+		instance_ = ast.Rule().Make(
 			uppercase,
 			definition,
 		)
@@ -1039,7 +1039,7 @@ func Rule(arguments ...any) RuleLike {
 		)
 		panic(message)
 	}
-	return rule
+	return instance_
 }
 
 func Syntax(arguments ...any) SyntaxLike {
@@ -1071,7 +1071,7 @@ func Syntax(arguments ...any) SyntaxLike {
 	}
 
 	// Call the corresponding constructor.
-	var syntax SyntaxLike
+	var instance_ SyntaxLike
 	switch argumentTypes {
 	case "NoticeLike, string, abs.Sequential[RuleLike], string, abs.Sequential[ExpressionLike]":
 		var notice = arguments[0].(NoticeLike)
@@ -1079,7 +1079,7 @@ func Syntax(arguments ...any) SyntaxLike {
 		var rules = arguments[2].(abs.Sequential[RuleLike])
 		var comment2 = arguments[3].(string)
 		var expressions = arguments[4].(abs.Sequential[ExpressionLike])
-		syntax = ast.Syntax().Make(
+		instance_ = ast.Syntax().Make(
 			notice,
 			comment1,
 			rules,
@@ -1093,7 +1093,7 @@ func Syntax(arguments ...any) SyntaxLike {
 		)
 		panic(message)
 	}
-	return syntax
+	return instance_
 }
 
 func Term(arguments ...any) TermLike {
@@ -1119,11 +1119,11 @@ func Term(arguments ...any) TermLike {
 	}
 
 	// Call the corresponding constructor.
-	var term TermLike
+	var instance_ TermLike
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		term = ast.Term().Make(
+		instance_ = ast.Term().Make(
 			any_,
 		)
 	default:
@@ -1133,7 +1133,7 @@ func Term(arguments ...any) TermLike {
 		)
 		panic(message)
 	}
-	return term
+	return instance_
 }
 
 func Text(arguments ...any) TextLike {
@@ -1159,11 +1159,11 @@ func Text(arguments ...any) TextLike {
 	}
 
 	// Call the corresponding constructor.
-	var text TextLike
+	var instance_ TextLike
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		text = ast.Text().Make(
+		instance_ = ast.Text().Make(
 			any_,
 		)
 	default:
@@ -1173,7 +1173,7 @@ func Text(arguments ...any) TextLike {
 		)
 		panic(message)
 	}
-	return text
+	return instance_
 }
 
 // Grammar
@@ -1199,10 +1199,10 @@ func Formatter(arguments ...any) FormatterLike {
 	}
 
 	// Call the corresponding constructor.
-	var formatter FormatterLike
+	var instance_ FormatterLike
 	switch argumentTypes {
 	case "":
-		formatter = gra.Formatter().Make()
+		instance_ = gra.Formatter().Make()
 	default:
 		var message = fmt.Sprintf(
 			"No Formatter constructor matching the arguments was found: %v\n",
@@ -1210,7 +1210,7 @@ func Formatter(arguments ...any) FormatterLike {
 		)
 		panic(message)
 	}
-	return formatter
+	return instance_
 }
 
 func Parser(arguments ...any) ParserLike {
@@ -1234,10 +1234,10 @@ func Parser(arguments ...any) ParserLike {
 	}
 
 	// Call the corresponding constructor.
-	var parser ParserLike
+	var instance_ ParserLike
 	switch argumentTypes {
 	case "":
-		parser = gra.Parser().Make()
+		instance_ = gra.Parser().Make()
 	default:
 		var message = fmt.Sprintf(
 			"No Parser constructor matching the arguments was found: %v\n",
@@ -1245,7 +1245,7 @@ func Parser(arguments ...any) ParserLike {
 		)
 		panic(message)
 	}
-	return parser
+	return instance_
 }
 
 func Processor(arguments ...any) ProcessorLike {
@@ -1269,10 +1269,10 @@ func Processor(arguments ...any) ProcessorLike {
 	}
 
 	// Call the corresponding constructor.
-	var processor ProcessorLike
+	var instance_ ProcessorLike
 	switch argumentTypes {
 	case "":
-		processor = gra.Processor().Make()
+		instance_ = gra.Processor().Make()
 	default:
 		var message = fmt.Sprintf(
 			"No Processor constructor matching the arguments was found: %v\n",
@@ -1280,7 +1280,7 @@ func Processor(arguments ...any) ProcessorLike {
 		)
 		panic(message)
 	}
-	return processor
+	return instance_
 }
 
 func Scanner(arguments ...any) ScannerLike {
@@ -1308,12 +1308,12 @@ func Scanner(arguments ...any) ScannerLike {
 	}
 
 	// Call the corresponding constructor.
-	var scanner ScannerLike
+	var instance_ ScannerLike
 	switch argumentTypes {
 	case "string, abs.QueueLike[TokenLike]":
 		var source = arguments[0].(string)
 		var tokens = arguments[1].(abs.QueueLike[TokenLike])
-		scanner = gra.Scanner().Make(
+		instance_ = gra.Scanner().Make(
 			source,
 			tokens,
 		)
@@ -1324,7 +1324,7 @@ func Scanner(arguments ...any) ScannerLike {
 		)
 		panic(message)
 	}
-	return scanner
+	return instance_
 }
 
 func Token(arguments ...any) TokenLike {
@@ -1354,14 +1354,14 @@ func Token(arguments ...any) TokenLike {
 	}
 
 	// Call the corresponding constructor.
-	var token TokenLike
+	var instance_ TokenLike
 	switch argumentTypes {
 	case "uint, uint, TokenType, string":
 		var line = arguments[0].(uint)
 		var position = arguments[1].(uint)
 		var type_ = arguments[2].(TokenType)
 		var value = arguments[3].(string)
-		token = gra.Token().Make(
+		instance_ = gra.Token().Make(
 			line,
 			position,
 			type_,
@@ -1374,7 +1374,7 @@ func Token(arguments ...any) TokenLike {
 		)
 		panic(message)
 	}
-	return token
+	return instance_
 }
 
 func Validator(arguments ...any) ValidatorLike {
@@ -1398,10 +1398,10 @@ func Validator(arguments ...any) ValidatorLike {
 	}
 
 	// Call the corresponding constructor.
-	var validator ValidatorLike
+	var instance_ ValidatorLike
 	switch argumentTypes {
 	case "":
-		validator = gra.Validator().Make()
+		instance_ = gra.Validator().Make()
 	default:
 		var message = fmt.Sprintf(
 			"No Validator constructor matching the arguments was found: %v\n",
@@ -1409,7 +1409,7 @@ func Validator(arguments ...any) ValidatorLike {
 		)
 		panic(message)
 	}
-	return validator
+	return instance_
 }
 
 func Visitor(arguments ...any) VisitorLike {
@@ -1435,11 +1435,11 @@ func Visitor(arguments ...any) VisitorLike {
 	}
 
 	// Call the corresponding constructor.
-	var visitor VisitorLike
+	var instance_ VisitorLike
 	switch argumentTypes {
 	case "Methodical":
 		var processor = arguments[0].(Methodical)
-		visitor = gra.Visitor().Make(
+		instance_ = gra.Visitor().Make(
 			processor,
 		)
 	default:
@@ -1449,5 +1449,5 @@ func Visitor(arguments ...any) VisitorLike {
 		)
 		panic(message)
 	}
-	return visitor
+	return instance_
 }
