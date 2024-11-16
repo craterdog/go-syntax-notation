@@ -11,6 +11,11 @@
 */
 
 /*
+┌────────────────────────────────── WARNING ───────────────────────────────────┐
+│             THIS "Package.go" FILE WAS AUTOMATICALLY GENERATED.              │
+│                    ANY UPDATES TO IT WILL BE OVERWRITTEN.                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+
 Package "ast" provides the abstract syntax tree (AST) classes for this module
 based on the "Syntax.cdsn" grammar for the module.  Each AST class manages the
 attributes associated with its corresponding rule definition found in the
@@ -33,6 +38,10 @@ package ast
 import (
 	abs "github.com/craterdog/go-collection-framework/v4/collection"
 )
+
+// Type Declarations
+
+// Functional Declarations
 
 // Class Declarations
 
@@ -717,3 +726,5 @@ type TextLike interface {
 	// Attribute Methods
 	GetAny() any
 }
+
+// Aspect Declarations

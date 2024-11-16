@@ -10,6 +10,13 @@
 ................................................................................
 */
 
+/*
+┌────────────────────────────────── WARNING ───────────────────────────────────┐
+│                 THIS CLASS FILE WAS AUTOMATICALLY GENERATED.                 │
+│                    ANY UPDATES TO IT WILL BE OVERWRITTEN.                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+*/
+
 package ast
 
 import (
@@ -38,7 +45,6 @@ func (c *multilineClass_) Make(
 		lines_: lines,
 	}
 	return instance
-
 }
 
 // Constant Methods

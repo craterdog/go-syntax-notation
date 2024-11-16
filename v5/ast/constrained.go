@@ -10,6 +10,13 @@
 ................................................................................
 */
 
+/*
+┌────────────────────────────────── WARNING ───────────────────────────────────┐
+│                 THIS CLASS FILE WAS AUTOMATICALLY GENERATED.                 │
+│                    ANY UPDATES TO IT WILL BE OVERWRITTEN.                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+*/
+
 package ast
 
 import (
@@ -37,7 +44,6 @@ func (c *constrainedClass_) Make(
 		any_: any_,
 	}
 	return instance
-
 }
 
 // Constant Methods

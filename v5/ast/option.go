@@ -10,6 +10,13 @@
 ................................................................................
 */
 
+/*
+┌────────────────────────────────── WARNING ───────────────────────────────────┐
+│                 THIS CLASS FILE WAS AUTOMATICALLY GENERATED.                 │
+│                    ANY UPDATES TO IT WILL BE OVERWRITTEN.                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+*/
+
 package ast
 
 import (
@@ -38,7 +45,6 @@ func (c *optionClass_) Make(
 		repetitions_: repetitions,
 	}
 	return instance
-
 }
 
 // Constant Methods

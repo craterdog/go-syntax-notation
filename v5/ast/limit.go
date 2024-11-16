@@ -10,7 +10,16 @@
 ................................................................................
 */
 
+/*
+┌────────────────────────────────── WARNING ───────────────────────────────────┐
+│                 THIS CLASS FILE WAS AUTOMATICALLY GENERATED.                 │
+│                    ANY UPDATES TO IT WILL BE OVERWRITTEN.                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+*/
+
 package ast
+
+import ()
 
 // CLASS INTERFACE
 
@@ -30,7 +39,6 @@ func (c *limitClass_) Make(
 		optionalNumber_: optionalNumber,
 	}
 	return instance
-
 }
 
 // Constant Methods
