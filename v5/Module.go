@@ -70,15 +70,7 @@ type (
 // Grammar
 
 type (
-	TokenType     = gra.TokenType
-	FormatterLike = gra.FormatterLike
-	ParserLike    = gra.ParserLike
-	ProcessorLike = gra.ProcessorLike
-	ScannerLike   = gra.ScannerLike
-	TokenLike     = gra.TokenLike
-	ValidatorLike = gra.ValidatorLike
-	VisitorLike   = gra.VisitorLike
-	Methodical    = gra.Methodical
+	TokenType = gra.TokenType
 )
 
 const (
@@ -97,6 +89,20 @@ const (
 	RepeatedToken  = gra.RepeatedToken
 	SpaceToken     = gra.SpaceToken
 	UppercaseToken = gra.UppercaseToken
+)
+
+type (
+	FormatterLike = gra.FormatterLike
+	ParserLike    = gra.ParserLike
+	ProcessorLike = gra.ProcessorLike
+	ScannerLike   = gra.ScannerLike
+	TokenLike     = gra.TokenLike
+	ValidatorLike = gra.ValidatorLike
+	VisitorLike   = gra.VisitorLike
+)
+
+type (
+	Methodical = gra.Methodical
 )
 
 // UNIVERSAL CONSTRUCTORS
