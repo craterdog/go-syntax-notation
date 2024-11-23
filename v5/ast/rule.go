@@ -12,8 +12,8 @@
 
 /*
 ┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 THIS CLASS FILE WAS AUTOMATICALLY GENERATED.                 │
-│                    ANY UPDATES TO IT WILL BE OVERWRITTEN.                    │
+│                 This class file was automatically generated.                 │
+│   Updates to any section other than the Private Methods may be overwritten.  │
 └──────────────────────────────────────────────────────────────────────────────┘
 */
 
@@ -57,7 +57,7 @@ func (c *ruleClass_) Make(
 
 // INSTANCE INTERFACE
 
-// Primary Methods
+// Principal Methods
 
 func (v *rule_) GetClass() RuleClassLike {
 	return ruleReference()
