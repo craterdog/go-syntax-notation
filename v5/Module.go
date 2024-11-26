@@ -126,8 +126,8 @@ func Alternative(arguments ...any) AlternativeLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -166,8 +166,8 @@ func Cardinality(arguments ...any) CardinalityLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -206,8 +206,8 @@ func Character(arguments ...any) CharacterLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -246,8 +246,8 @@ func Constrained(arguments ...any) ConstrainedLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -286,8 +286,8 @@ func Definition(arguments ...any) DefinitionLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -326,8 +326,8 @@ func Element(arguments ...any) ElementLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -368,8 +368,8 @@ func Explicit(arguments ...any) ExplicitLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -412,8 +412,8 @@ func Expression(arguments ...any) ExpressionLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -456,8 +456,8 @@ func Extent(arguments ...any) ExtentLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -498,8 +498,8 @@ func Filter(arguments ...any) FilterLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -540,8 +540,8 @@ func Group(arguments ...any) GroupLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -580,8 +580,8 @@ func Identifier(arguments ...any) IdentifierLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -622,8 +622,8 @@ func Inline(arguments ...any) InlineLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -664,8 +664,8 @@ func Limit(arguments ...any) LimitLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -706,8 +706,8 @@ func Line(arguments ...any) LineLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -748,8 +748,8 @@ func Multiline(arguments ...any) MultilineLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -788,8 +788,8 @@ func Notice(arguments ...any) NoticeLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -828,8 +828,8 @@ func Option(arguments ...any) OptionLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -870,8 +870,8 @@ func Pattern(arguments ...any) PatternLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -914,8 +914,8 @@ func Quantified(arguments ...any) QuantifiedLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -958,8 +958,8 @@ func Reference(arguments ...any) ReferenceLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1002,8 +1002,8 @@ func Repetition(arguments ...any) RepetitionLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1046,8 +1046,8 @@ func Rule(arguments ...any) RuleLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1094,8 +1094,8 @@ func Syntax(arguments ...any) SyntaxLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1142,8 +1142,8 @@ func Term(arguments ...any) TermLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1182,8 +1182,8 @@ func Text(arguments ...any) TextLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1222,8 +1222,8 @@ func Formatter(arguments ...any) FormatterLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1257,8 +1257,8 @@ func Parser(arguments ...any) ParserLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1292,8 +1292,8 @@ func Processor(arguments ...any) ProcessorLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1331,8 +1331,8 @@ func Scanner(arguments ...any) ScannerLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1377,8 +1377,8 @@ func Token(arguments ...any) TokenLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1421,8 +1421,8 @@ func Validator(arguments ...any) ValidatorLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
@@ -1458,8 +1458,8 @@ func Visitor(arguments ...any) VisitorLike {
 	}
 	var length = len(argumentTypes)
 	if length > 0 {
-		// Remove the trailing comma.
-		argumentTypes = argumentTypes[:length-1]
+		// Remove the trailing comma and space.
+		argumentTypes = argumentTypes[:length-2]
 	}
 
 	// Call the corresponding constructor.
