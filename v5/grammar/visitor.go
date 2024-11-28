@@ -68,7 +68,9 @@ func (v *visitor_) VisitSyntax(
 
 // Private Methods
 
-func (v *visitor_) visitAlternative(alternative ast.AlternativeLike) {
+func (v *visitor_) visitAlternative(
+	alternative ast.AlternativeLike,
+) {
 	// Visit a single option rule.
 	var option = alternative.GetOption()
 	v.processor_.PreprocessOption(option)
@@ -76,7 +78,9 @@ func (v *visitor_) visitAlternative(alternative ast.AlternativeLike) {
 	v.processor_.PostprocessOption(option)
 }
 
-func (v *visitor_) visitCardinality(cardinality ast.CardinalityLike) {
+func (v *visitor_) visitCardinality(
+	cardinality ast.CardinalityLike,
+) {
 	// Visit the possible cardinality types.
 	switch actual := cardinality.GetAny().(type) {
 	case ast.ConstrainedLike:
@@ -97,7 +101,9 @@ func (v *visitor_) visitCardinality(cardinality ast.CardinalityLike) {
 	}
 }
 
-func (v *visitor_) visitCharacter(character ast.CharacterLike) {
+func (v *visitor_) visitCharacter(
+	character ast.CharacterLike,
+) {
 	// Visit the possible character types.
 	switch actual := character.GetAny().(type) {
 	case ast.ExplicitLike:
@@ -116,7 +122,9 @@ func (v *visitor_) visitCharacter(character ast.CharacterLike) {
 	}
 }
 
-func (v *visitor_) visitConstrained(constrained ast.ConstrainedLike) {
+func (v *visitor_) visitConstrained(
+	constrained ast.ConstrainedLike,
+) {
 	// Visit the possible constrained types.
 	switch actual := constrained.GetAny().(type) {
 	case string:
@@ -133,7 +141,9 @@ func (v *visitor_) visitConstrained(constrained ast.ConstrainedLike) {
 	}
 }
 
-func (v *visitor_) visitDefinition(definition ast.DefinitionLike) {
+func (v *visitor_) visitDefinition(
+	definition ast.DefinitionLike,
+) {
 	// Visit the possible definition types.
 	switch actual := definition.GetAny().(type) {
 	case ast.MultilineLike:
@@ -154,7 +164,9 @@ func (v *visitor_) visitDefinition(definition ast.DefinitionLike) {
 	}
 }
 
-func (v *visitor_) visitElement(element ast.ElementLike) {
+func (v *visitor_) visitElement(
+	element ast.ElementLike,
+) {
 	// Visit the possible element types.
 	switch actual := element.GetAny().(type) {
 	case ast.GroupLike:
@@ -179,7 +191,9 @@ func (v *visitor_) visitElement(element ast.ElementLike) {
 	}
 }
 
-func (v *visitor_) visitExplicit(explicit ast.ExplicitLike) {
+func (v *visitor_) visitExplicit(
+	explicit ast.ExplicitLike,
+) {
 	// Visit a single glyph token.
 	var glyph = explicit.GetGlyph()
 	v.processor_.ProcessGlyph(glyph)
@@ -196,7 +210,9 @@ func (v *visitor_) visitExplicit(explicit ast.ExplicitLike) {
 	}
 }
 
-func (v *visitor_) visitExpression(expression ast.ExpressionLike) {
+func (v *visitor_) visitExpression(
+	expression ast.ExpressionLike,
+) {
 	// Visit a single lowercase token.
 	var lowercase = expression.GetLowercase()
 	v.processor_.ProcessLowercase(lowercase)
@@ -220,13 +236,17 @@ func (v *visitor_) visitExpression(expression ast.ExpressionLike) {
 	}
 }
 
-func (v *visitor_) visitExtent(extent ast.ExtentLike) {
+func (v *visitor_) visitExtent(
+	extent ast.ExtentLike,
+) {
 	// Visit a single glyph token.
 	var glyph = extent.GetGlyph()
 	v.processor_.ProcessGlyph(glyph)
 }
 
-func (v *visitor_) visitFilter(filter ast.FilterLike) {
+func (v *visitor_) visitFilter(
+	filter ast.FilterLike,
+) {
 	// Visit an optional excluded token.
 	var optionalExcluded = filter.GetOptionalExcluded()
 	if uti.IsDefined(optionalExcluded) {
@@ -257,7 +277,9 @@ func (v *visitor_) visitFilter(filter ast.FilterLike) {
 	}
 }
 
-func (v *visitor_) visitGroup(group ast.GroupLike) {
+func (v *visitor_) visitGroup(
+	group ast.GroupLike,
+) {
 	// Visit a single pattern rule.
 	var pattern = group.GetPattern()
 	v.processor_.PreprocessPattern(pattern)
@@ -265,7 +287,9 @@ func (v *visitor_) visitGroup(group ast.GroupLike) {
 	v.processor_.PostprocessPattern(pattern)
 }
 
-func (v *visitor_) visitIdentifier(identifier ast.IdentifierLike) {
+func (v *visitor_) visitIdentifier(
+	identifier ast.IdentifierLike,
+) {
 	// Visit the possible identifier types.
 	switch actual := identifier.GetAny().(type) {
 	case string:
@@ -282,7 +306,9 @@ func (v *visitor_) visitIdentifier(identifier ast.IdentifierLike) {
 	}
 }
 
-func (v *visitor_) visitInline(inline ast.InlineLike) {
+func (v *visitor_) visitInline(
+	inline ast.InlineLike,
+) {
 	// Visit each term rule.
 	var termIndex uint
 	var terms = inline.GetTerms().GetIterator()
@@ -313,7 +339,9 @@ func (v *visitor_) visitInline(inline ast.InlineLike) {
 	}
 }
 
-func (v *visitor_) visitLimit(limit ast.LimitLike) {
+func (v *visitor_) visitLimit(
+	limit ast.LimitLike,
+) {
 	// Visit an optional number token.
 	var optionalNumber = limit.GetOptionalNumber()
 	if uti.IsDefined(optionalNumber) {
@@ -321,7 +349,9 @@ func (v *visitor_) visitLimit(limit ast.LimitLike) {
 	}
 }
 
-func (v *visitor_) visitLine(line ast.LineLike) {
+func (v *visitor_) visitLine(
+	line ast.LineLike,
+) {
 	// Visit a single identifier rule.
 	var identifier = line.GetIdentifier()
 	v.processor_.PreprocessIdentifier(identifier)
@@ -338,7 +368,9 @@ func (v *visitor_) visitLine(line ast.LineLike) {
 	}
 }
 
-func (v *visitor_) visitMultiline(multiline ast.MultilineLike) {
+func (v *visitor_) visitMultiline(
+	multiline ast.MultilineLike,
+) {
 	// Visit each line rule.
 	var lineIndex uint
 	var lines = multiline.GetLines().GetIterator()
@@ -360,13 +392,17 @@ func (v *visitor_) visitMultiline(multiline ast.MultilineLike) {
 	}
 }
 
-func (v *visitor_) visitNotice(notice ast.NoticeLike) {
+func (v *visitor_) visitNotice(
+	notice ast.NoticeLike,
+) {
 	// Visit a single comment token.
 	var comment = notice.GetComment()
 	v.processor_.ProcessComment(comment)
 }
 
-func (v *visitor_) visitOption(option ast.OptionLike) {
+func (v *visitor_) visitOption(
+	option ast.OptionLike,
+) {
 	// Visit each repetition rule.
 	var repetitionIndex uint
 	var repetitions = option.GetRepetitions().GetIterator()
@@ -388,7 +424,9 @@ func (v *visitor_) visitOption(option ast.OptionLike) {
 	}
 }
 
-func (v *visitor_) visitPattern(pattern ast.PatternLike) {
+func (v *visitor_) visitPattern(
+	pattern ast.PatternLike,
+) {
 	// Visit a single option rule.
 	var option = pattern.GetOption()
 	v.processor_.PreprocessOption(option)
@@ -419,7 +457,9 @@ func (v *visitor_) visitPattern(pattern ast.PatternLike) {
 	}
 }
 
-func (v *visitor_) visitQuantified(quantified ast.QuantifiedLike) {
+func (v *visitor_) visitQuantified(
+	quantified ast.QuantifiedLike,
+) {
 	// Visit a single number token.
 	var number = quantified.GetNumber()
 	v.processor_.ProcessNumber(number)
@@ -436,7 +476,9 @@ func (v *visitor_) visitQuantified(quantified ast.QuantifiedLike) {
 	}
 }
 
-func (v *visitor_) visitReference(reference ast.ReferenceLike) {
+func (v *visitor_) visitReference(
+	reference ast.ReferenceLike,
+) {
 	// Visit a single identifier rule.
 	var identifier = reference.GetIdentifier()
 	v.processor_.PreprocessIdentifier(identifier)
@@ -455,7 +497,9 @@ func (v *visitor_) visitReference(reference ast.ReferenceLike) {
 	}
 }
 
-func (v *visitor_) visitRepetition(repetition ast.RepetitionLike) {
+func (v *visitor_) visitRepetition(
+	repetition ast.RepetitionLike,
+) {
 	// Visit a single element rule.
 	var element = repetition.GetElement()
 	v.processor_.PreprocessElement(element)
@@ -474,7 +518,9 @@ func (v *visitor_) visitRepetition(repetition ast.RepetitionLike) {
 	}
 }
 
-func (v *visitor_) visitRule(rule ast.RuleLike) {
+func (v *visitor_) visitRule(
+	rule ast.RuleLike,
+) {
 	// Visit a single uppercase token.
 	var uppercase = rule.GetUppercase()
 	v.processor_.ProcessUppercase(uppercase)
@@ -489,7 +535,9 @@ func (v *visitor_) visitRule(rule ast.RuleLike) {
 	v.processor_.PostprocessDefinition(definition)
 }
 
-func (v *visitor_) visitSyntax(syntax ast.SyntaxLike) {
+func (v *visitor_) visitSyntax(
+	syntax ast.SyntaxLike,
+) {
 	// Visit a single notice rule.
 	var notice = syntax.GetNotice()
 	v.processor_.PreprocessNotice(notice)
@@ -557,7 +605,9 @@ func (v *visitor_) visitSyntax(syntax ast.SyntaxLike) {
 	}
 }
 
-func (v *visitor_) visitTerm(term ast.TermLike) {
+func (v *visitor_) visitTerm(
+	term ast.TermLike,
+) {
 	// Visit the possible term types.
 	switch actual := term.GetAny().(type) {
 	case ast.ReferenceLike:
@@ -576,7 +626,9 @@ func (v *visitor_) visitTerm(term ast.TermLike) {
 	}
 }
 
-func (v *visitor_) visitText(text ast.TextLike) {
+func (v *visitor_) visitText(
+	text ast.TextLike,
+) {
 	// Visit the possible text types.
 	switch actual := text.GetAny().(type) {
 	case string:
