@@ -1482,22 +1482,31 @@ func Visitor(arguments ...any) VisitorLike {
 
 // GLOBAL FUNCTIONS
 
-func FormatSyntax(syntax SyntaxLike) string {
+func FormatSyntax(
+	syntax SyntaxLike,
+) string {
 	var formatter = Formatter()
 	return formatter.FormatSyntax(syntax)
 }
 
-func MatchesType(tokenValue string, tokenType TokenType) bool {
+func MatchesType(
+	tokenValue string,
+	tokenType TokenType,
+) bool {
 	var scannerClass = gra.Scanner()
 	return scannerClass.MatchesType(tokenValue, tokenType)
 }
 
-func ParseSource(source string) SyntaxLike {
+func ParseSource(
+	source string,
+) SyntaxLike {
 	var parser = Parser()
 	return parser.ParseSource(source)
 }
 
-func ValidateSyntax(syntax SyntaxLike) {
+func ValidateSyntax(
+	syntax SyntaxLike,
+) {
 	var validator = Validator()
 	validator.ValidateSyntax(syntax)
 }
