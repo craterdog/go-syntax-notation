@@ -19,7 +19,9 @@ fame.
 For more information on CDSN see the wiki at:
   - https://github.com/craterdog/go-syntax-notation/wiki
 
-RULE DEFINITIONS
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                               RULE DEFINITIONS                               │
+└──────────────────────────────────────────────────────────────────────────────┘
 <!
 $Syntax: Notice comment Rule+ comment Expression+
 
@@ -93,7 +95,9 @@ $Text:
   - lowercase
 
 !>
-EXPRESSION PATTERNS
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                            EXPRESSION DEFINITIONS                            │
+└──────────────────────────────────────────────────────────────────────────────┘
 <!
 $base16: ['0'..'9' 'a'..'f']
 
