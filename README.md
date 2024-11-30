@@ -16,7 +16,7 @@ For more information on this project click on the following links:
 To include the Go packages for this module use the following import statement:
 ```go
 import (
-	col "github.com/craterdog/go-syntax-notation/v5"
+	not "github.com/craterdog/go-syntax-notation/v5"
 )
 ```
 
