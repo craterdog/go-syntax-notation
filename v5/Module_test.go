@@ -14,7 +14,7 @@ package module_test
 
 import (
 	fmt "fmt"
-	syn "github.com/craterdog/go-syntax-notation/v5"
+	not "github.com/craterdog/go-syntax-notation/v5"
 	ass "github.com/stretchr/testify/assert"
 	osx "os"
 	tes "testing"
@@ -35,9 +35,9 @@ func TestRoundTrips(t *tes.T) {
 			panic(err)
 		}
 		var source = string(bytes)
-		var syntax = syn.ParseSource(source)
-		syn.ValidateSyntax(syntax)
-		var actual = syn.FormatSyntax(syntax)
+		var syntax = not.ParseSource(source)
+		not.ValidateSyntax(syntax)
+		var actual = not.FormatSyntax(syntax)
 		ass.Equal(t, source, actual)
 	}
 	fmt.Println("Done.")
