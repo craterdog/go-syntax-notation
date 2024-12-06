@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Repetition() RepetitionClassLike {
-	return repetitionReference()
+func RepetitionClass() RepetitionClassLike {
+	return repetitionClassReference()
 }
 
 // Constructor Methods
@@ -57,7 +50,7 @@ func (c *repetitionClass_) Make(
 // Principal Methods
 
 func (v *repetition_) GetClass() RepetitionClassLike {
-	return repetitionReference()
+	return repetitionClassReference()
 }
 
 // Attribute Methods
@@ -90,10 +83,10 @@ type repetitionClass_ struct {
 
 // Class Reference
 
-func repetitionReference() *repetitionClass_ {
-	return repetitionReference_
+func repetitionClassReference() *repetitionClass_ {
+	return repetitionClassReference_
 }
 
-var repetitionReference_ = &repetitionClass_{
+var repetitionClassReference_ = &repetitionClass_{
 	// Initialize the class constants.
 }

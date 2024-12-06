@@ -29,8 +29,8 @@ import (
 
 // Access Function
 
-func Visitor() VisitorClassLike {
-	return visitorReference()
+func VisitorClass() VisitorClassLike {
+	return visitorClassReference()
 }
 
 // Constructor Methods
@@ -53,7 +53,7 @@ func (c *visitorClass_) Make(
 // Principal Methods
 
 func (v *visitor_) GetClass() VisitorClassLike {
-	return visitorReference()
+	return visitorClassReference()
 }
 
 func (v *visitor_) VisitSyntax(
@@ -112,7 +112,7 @@ func (v *visitor_) visitCharacter(
 		v.processor_.PostprocessExplicit(actual)
 	case string:
 		switch {
-		case Scanner().MatchesType(actual, IntrinsicToken):
+		case ScannerClass().MatchesType(actual, IntrinsicToken):
 			v.processor_.ProcessIntrinsic(actual)
 		default:
 			panic(fmt.Sprintf("Invalid token: %v", actual))
@@ -129,9 +129,9 @@ func (v *visitor_) visitConstrained(
 	switch actual := constrained.GetAny().(type) {
 	case string:
 		switch {
-		case Scanner().MatchesType(actual, OptionalToken):
+		case ScannerClass().MatchesType(actual, OptionalToken):
 			v.processor_.ProcessOptional(actual)
-		case Scanner().MatchesType(actual, RepeatedToken):
+		case ScannerClass().MatchesType(actual, RepeatedToken):
 			v.processor_.ProcessRepeated(actual)
 		default:
 			panic(fmt.Sprintf("Invalid token: %v", actual))
@@ -294,9 +294,9 @@ func (v *visitor_) visitIdentifier(
 	switch actual := identifier.GetAny().(type) {
 	case string:
 		switch {
-		case Scanner().MatchesType(actual, LowercaseToken):
+		case ScannerClass().MatchesType(actual, LowercaseToken):
 			v.processor_.ProcessLowercase(actual)
-		case Scanner().MatchesType(actual, UppercaseToken):
+		case ScannerClass().MatchesType(actual, UppercaseToken):
 			v.processor_.ProcessUppercase(actual)
 		default:
 			panic(fmt.Sprintf("Invalid token: %v", actual))
@@ -616,7 +616,7 @@ func (v *visitor_) visitTerm(
 		v.processor_.PostprocessReference(actual)
 	case string:
 		switch {
-		case Scanner().MatchesType(actual, LiteralToken):
+		case ScannerClass().MatchesType(actual, LiteralToken):
 			v.processor_.ProcessLiteral(actual)
 		default:
 			panic(fmt.Sprintf("Invalid token: %v", actual))
@@ -633,13 +633,13 @@ func (v *visitor_) visitText(
 	switch actual := text.GetAny().(type) {
 	case string:
 		switch {
-		case Scanner().MatchesType(actual, IntrinsicToken):
+		case ScannerClass().MatchesType(actual, IntrinsicToken):
 			v.processor_.ProcessIntrinsic(actual)
-		case Scanner().MatchesType(actual, GlyphToken):
+		case ScannerClass().MatchesType(actual, GlyphToken):
 			v.processor_.ProcessGlyph(actual)
-		case Scanner().MatchesType(actual, LiteralToken):
+		case ScannerClass().MatchesType(actual, LiteralToken):
 			v.processor_.ProcessLiteral(actual)
-		case Scanner().MatchesType(actual, LowercaseToken):
+		case ScannerClass().MatchesType(actual, LowercaseToken):
 			v.processor_.ProcessLowercase(actual)
 		default:
 			panic(fmt.Sprintf("Invalid token: %v", actual))
@@ -664,10 +664,10 @@ type visitorClass_ struct {
 
 // Class Reference
 
-func visitorReference() *visitorClass_ {
-	return visitorReference_
+func visitorClassReference() *visitorClass_ {
+	return visitorClassReference_
 }
 
-var visitorReference_ = &visitorClass_{
+var visitorClassReference_ = &visitorClass_{
 	// Initialize the class constants.
 }

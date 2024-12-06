@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -28,8 +21,8 @@ import (
 
 // Access Function
 
-func Pattern() PatternClassLike {
-	return patternReference()
+func PatternClass() PatternClassLike {
+	return patternClassReference()
 }
 
 // Constructor Methods
@@ -61,7 +54,7 @@ func (c *patternClass_) Make(
 // Principal Methods
 
 func (v *pattern_) GetClass() PatternClassLike {
-	return patternReference()
+	return patternClassReference()
 }
 
 // Attribute Methods
@@ -94,10 +87,10 @@ type patternClass_ struct {
 
 // Class Reference
 
-func patternReference() *patternClass_ {
-	return patternReference_
+func patternClassReference() *patternClass_ {
+	return patternClassReference_
 }
 
-var patternReference_ = &patternClass_{
+var patternClassReference_ = &patternClass_{
 	// Initialize the class constants.
 }

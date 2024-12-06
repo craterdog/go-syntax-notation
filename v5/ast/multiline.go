@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -28,8 +21,8 @@ import (
 
 // Access Function
 
-func Multiline() MultilineClassLike {
-	return multilineReference()
+func MultilineClass() MultilineClassLike {
+	return multilineClassReference()
 }
 
 // Constructor Methods
@@ -56,7 +49,7 @@ func (c *multilineClass_) Make(
 // Principal Methods
 
 func (v *multiline_) GetClass() MultilineClassLike {
-	return multilineReference()
+	return multilineClassReference()
 }
 
 // Attribute Methods
@@ -84,10 +77,10 @@ type multilineClass_ struct {
 
 // Class Reference
 
-func multilineReference() *multilineClass_ {
-	return multilineReference_
+func multilineClassReference() *multilineClass_ {
+	return multilineClassReference_
 }
 
-var multilineReference_ = &multilineClass_{
+var multilineClassReference_ = &multilineClass_{
 	// Initialize the class constants.
 }

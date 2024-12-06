@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -28,8 +21,8 @@ import (
 
 // Access Function
 
-func Filter() FilterClassLike {
-	return filterReference()
+func FilterClass() FilterClassLike {
+	return filterClassReference()
 }
 
 // Constructor Methods
@@ -58,7 +51,7 @@ func (c *filterClass_) Make(
 // Principal Methods
 
 func (v *filter_) GetClass() FilterClassLike {
-	return filterReference()
+	return filterClassReference()
 }
 
 // Attribute Methods
@@ -91,10 +84,10 @@ type filterClass_ struct {
 
 // Class Reference
 
-func filterReference() *filterClass_ {
-	return filterReference_
+func filterClassReference() *filterClass_ {
+	return filterClassReference_
 }
 
-var filterReference_ = &filterClass_{
+var filterClassReference_ = &filterClass_{
 	// Initialize the class constants.
 }

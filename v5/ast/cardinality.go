@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Cardinality() CardinalityClassLike {
-	return cardinalityReference()
+func CardinalityClass() CardinalityClassLike {
+	return cardinalityClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *cardinalityClass_) Make(
 // Principal Methods
 
 func (v *cardinality_) GetClass() CardinalityClassLike {
-	return cardinalityReference()
+	return cardinalityClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type cardinalityClass_ struct {
 
 // Class Reference
 
-func cardinalityReference() *cardinalityClass_ {
-	return cardinalityReference_
+func cardinalityClassReference() *cardinalityClass_ {
+	return cardinalityClassReference_
 }
 
-var cardinalityReference_ = &cardinalityClass_{
+var cardinalityClassReference_ = &cardinalityClass_{
 	// Initialize the class constants.
 }

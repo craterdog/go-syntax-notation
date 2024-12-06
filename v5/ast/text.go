@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Text() TextClassLike {
-	return textReference()
+func TextClass() TextClassLike {
+	return textClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *textClass_) Make(
 // Principal Methods
 
 func (v *text_) GetClass() TextClassLike {
-	return textReference()
+	return textClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type textClass_ struct {
 
 // Class Reference
 
-func textReference() *textClass_ {
-	return textReference_
+func textClassReference() *textClass_ {
+	return textClassReference_
 }
 
-var textReference_ = &textClass_{
+var textClassReference_ = &textClass_{
 	// Initialize the class constants.
 }

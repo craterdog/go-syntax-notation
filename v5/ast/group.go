@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Group() GroupClassLike {
-	return groupReference()
+func GroupClass() GroupClassLike {
+	return groupClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *groupClass_) Make(
 // Principal Methods
 
 func (v *group_) GetClass() GroupClassLike {
-	return groupReference()
+	return groupClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type groupClass_ struct {
 
 // Class Reference
 
-func groupReference() *groupClass_ {
-	return groupReference_
+func groupClassReference() *groupClass_ {
+	return groupClassReference_
 }
 
-var groupReference_ = &groupClass_{
+var groupClassReference_ = &groupClass_{
 	// Initialize the class constants.
 }

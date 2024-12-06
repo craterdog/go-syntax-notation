@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Rule() RuleClassLike {
-	return ruleReference()
+func RuleClass() RuleClassLike {
+	return ruleClassReference()
 }
 
 // Constructor Methods
@@ -60,7 +53,7 @@ func (c *ruleClass_) Make(
 // Principal Methods
 
 func (v *rule_) GetClass() RuleClassLike {
-	return ruleReference()
+	return ruleClassReference()
 }
 
 // Attribute Methods
@@ -93,10 +86,10 @@ type ruleClass_ struct {
 
 // Class Reference
 
-func ruleReference() *ruleClass_ {
-	return ruleReference_
+func ruleClassReference() *ruleClass_ {
+	return ruleClassReference_
 }
 
-var ruleReference_ = &ruleClass_{
+var ruleClassReference_ = &ruleClass_{
 	// Initialize the class constants.
 }

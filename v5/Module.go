@@ -137,7 +137,7 @@ func Alternative(arguments ...any) AlternativeLike {
 	switch argumentTypes {
 	case "OptionLike":
 		var option = arguments[0].(OptionLike)
-		instance_ = ast.Alternative().Make(
+		instance_ = ast.AlternativeClass().Make(
 			option,
 		)
 	default:
@@ -177,7 +177,7 @@ func Cardinality(arguments ...any) CardinalityLike {
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		instance_ = ast.Cardinality().Make(
+		instance_ = ast.CardinalityClass().Make(
 			any_,
 		)
 	default:
@@ -217,7 +217,7 @@ func Character(arguments ...any) CharacterLike {
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		instance_ = ast.Character().Make(
+		instance_ = ast.CharacterClass().Make(
 			any_,
 		)
 	default:
@@ -257,7 +257,7 @@ func Constrained(arguments ...any) ConstrainedLike {
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		instance_ = ast.Constrained().Make(
+		instance_ = ast.ConstrainedClass().Make(
 			any_,
 		)
 	default:
@@ -297,7 +297,7 @@ func Definition(arguments ...any) DefinitionLike {
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		instance_ = ast.Definition().Make(
+		instance_ = ast.DefinitionClass().Make(
 			any_,
 		)
 	default:
@@ -337,7 +337,7 @@ func Element(arguments ...any) ElementLike {
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		instance_ = ast.Element().Make(
+		instance_ = ast.ElementClass().Make(
 			any_,
 		)
 	default:
@@ -380,7 +380,7 @@ func Explicit(arguments ...any) ExplicitLike {
 	case "string, ExtentLike":
 		var glyph = arguments[0].(string)
 		var optionalExtent = arguments[1].(ExtentLike)
-		instance_ = ast.Explicit().Make(
+		instance_ = ast.ExplicitClass().Make(
 			glyph,
 			optionalExtent,
 		)
@@ -425,7 +425,7 @@ func Expression(arguments ...any) ExpressionLike {
 		var lowercase = arguments[0].(string)
 		var pattern = arguments[1].(PatternLike)
 		var optionalNote = arguments[2].(string)
-		instance_ = ast.Expression().Make(
+		instance_ = ast.ExpressionClass().Make(
 			lowercase,
 			pattern,
 			optionalNote,
@@ -467,7 +467,7 @@ func Extent(arguments ...any) ExtentLike {
 	switch argumentTypes {
 	case "string":
 		var glyph = arguments[0].(string)
-		instance_ = ast.Extent().Make(
+		instance_ = ast.ExtentClass().Make(
 			glyph,
 		)
 	default:
@@ -510,7 +510,7 @@ func Filter(arguments ...any) FilterLike {
 	case "string, abs.Sequential[CharacterLike]":
 		var optionalExcluded = arguments[0].(string)
 		var characters = arguments[1].(abs.Sequential[CharacterLike])
-		instance_ = ast.Filter().Make(
+		instance_ = ast.FilterClass().Make(
 			optionalExcluded,
 			characters,
 		)
@@ -551,7 +551,7 @@ func Group(arguments ...any) GroupLike {
 	switch argumentTypes {
 	case "PatternLike":
 		var pattern = arguments[0].(PatternLike)
-		instance_ = ast.Group().Make(
+		instance_ = ast.GroupClass().Make(
 			pattern,
 		)
 	default:
@@ -591,7 +591,7 @@ func Identifier(arguments ...any) IdentifierLike {
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		instance_ = ast.Identifier().Make(
+		instance_ = ast.IdentifierClass().Make(
 			any_,
 		)
 	default:
@@ -634,7 +634,7 @@ func Inline(arguments ...any) InlineLike {
 	case "abs.Sequential[TermLike], string":
 		var terms = arguments[0].(abs.Sequential[TermLike])
 		var optionalNote = arguments[1].(string)
-		instance_ = ast.Inline().Make(
+		instance_ = ast.InlineClass().Make(
 			terms,
 			optionalNote,
 		)
@@ -675,7 +675,7 @@ func Limit(arguments ...any) LimitLike {
 	switch argumentTypes {
 	case "string":
 		var optionalNumber = arguments[0].(string)
-		instance_ = ast.Limit().Make(
+		instance_ = ast.LimitClass().Make(
 			optionalNumber,
 		)
 	default:
@@ -718,7 +718,7 @@ func Line(arguments ...any) LineLike {
 	case "IdentifierLike, string":
 		var identifier = arguments[0].(IdentifierLike)
 		var optionalNote = arguments[1].(string)
-		instance_ = ast.Line().Make(
+		instance_ = ast.LineClass().Make(
 			identifier,
 			optionalNote,
 		)
@@ -759,7 +759,7 @@ func Multiline(arguments ...any) MultilineLike {
 	switch argumentTypes {
 	case "abs.Sequential[LineLike]":
 		var lines = arguments[0].(abs.Sequential[LineLike])
-		instance_ = ast.Multiline().Make(
+		instance_ = ast.MultilineClass().Make(
 			lines,
 		)
 	default:
@@ -799,7 +799,7 @@ func Notice(arguments ...any) NoticeLike {
 	switch argumentTypes {
 	case "string":
 		var comment = arguments[0].(string)
-		instance_ = ast.Notice().Make(
+		instance_ = ast.NoticeClass().Make(
 			comment,
 		)
 	default:
@@ -839,7 +839,7 @@ func Option(arguments ...any) OptionLike {
 	switch argumentTypes {
 	case "abs.Sequential[RepetitionLike]":
 		var repetitions = arguments[0].(abs.Sequential[RepetitionLike])
-		instance_ = ast.Option().Make(
+		instance_ = ast.OptionClass().Make(
 			repetitions,
 		)
 	default:
@@ -882,7 +882,7 @@ func Pattern(arguments ...any) PatternLike {
 	case "OptionLike, abs.Sequential[AlternativeLike]":
 		var option = arguments[0].(OptionLike)
 		var alternatives = arguments[1].(abs.Sequential[AlternativeLike])
-		instance_ = ast.Pattern().Make(
+		instance_ = ast.PatternClass().Make(
 			option,
 			alternatives,
 		)
@@ -926,7 +926,7 @@ func Quantified(arguments ...any) QuantifiedLike {
 	case "string, LimitLike":
 		var number = arguments[0].(string)
 		var optionalLimit = arguments[1].(LimitLike)
-		instance_ = ast.Quantified().Make(
+		instance_ = ast.QuantifiedClass().Make(
 			number,
 			optionalLimit,
 		)
@@ -970,7 +970,7 @@ func Reference(arguments ...any) ReferenceLike {
 	case "IdentifierLike, CardinalityLike":
 		var identifier = arguments[0].(IdentifierLike)
 		var optionalCardinality = arguments[1].(CardinalityLike)
-		instance_ = ast.Reference().Make(
+		instance_ = ast.ReferenceClass().Make(
 			identifier,
 			optionalCardinality,
 		)
@@ -1014,7 +1014,7 @@ func Repetition(arguments ...any) RepetitionLike {
 	case "ElementLike, CardinalityLike":
 		var element = arguments[0].(ElementLike)
 		var optionalCardinality = arguments[1].(CardinalityLike)
-		instance_ = ast.Repetition().Make(
+		instance_ = ast.RepetitionClass().Make(
 			element,
 			optionalCardinality,
 		)
@@ -1058,7 +1058,7 @@ func Rule(arguments ...any) RuleLike {
 	case "string, DefinitionLike":
 		var uppercase = arguments[0].(string)
 		var definition = arguments[1].(DefinitionLike)
-		instance_ = ast.Rule().Make(
+		instance_ = ast.RuleClass().Make(
 			uppercase,
 			definition,
 		)
@@ -1109,7 +1109,7 @@ func Syntax(arguments ...any) SyntaxLike {
 		var rules = arguments[2].(abs.Sequential[RuleLike])
 		var comment2 = arguments[3].(string)
 		var expressions = arguments[4].(abs.Sequential[ExpressionLike])
-		instance_ = ast.Syntax().Make(
+		instance_ = ast.SyntaxClass().Make(
 			notice,
 			comment1,
 			rules,
@@ -1153,7 +1153,7 @@ func Term(arguments ...any) TermLike {
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		instance_ = ast.Term().Make(
+		instance_ = ast.TermClass().Make(
 			any_,
 		)
 	default:
@@ -1193,7 +1193,7 @@ func Text(arguments ...any) TextLike {
 	switch argumentTypes {
 	case "any":
 		var any_ = arguments[0]
-		instance_ = ast.Text().Make(
+		instance_ = ast.TextClass().Make(
 			any_,
 		)
 	default:
@@ -1232,7 +1232,7 @@ func Formatter(arguments ...any) FormatterLike {
 	var instance_ FormatterLike
 	switch argumentTypes {
 	case "":
-		instance_ = gra.Formatter().Make()
+		instance_ = gra.FormatterClass().Make()
 	default:
 		var message = fmt.Sprintf(
 			"No Formatter constructor matching the arguments was found: %v\n",
@@ -1267,7 +1267,7 @@ func Parser(arguments ...any) ParserLike {
 	var instance_ ParserLike
 	switch argumentTypes {
 	case "":
-		instance_ = gra.Parser().Make()
+		instance_ = gra.ParserClass().Make()
 	default:
 		var message = fmt.Sprintf(
 			"No Parser constructor matching the arguments was found: %v\n",
@@ -1302,7 +1302,7 @@ func Processor(arguments ...any) ProcessorLike {
 	var instance_ ProcessorLike
 	switch argumentTypes {
 	case "":
-		instance_ = gra.Processor().Make()
+		instance_ = gra.ProcessorClass().Make()
 	default:
 		var message = fmt.Sprintf(
 			"No Processor constructor matching the arguments was found: %v\n",
@@ -1343,7 +1343,7 @@ func Scanner(arguments ...any) ScannerLike {
 	case "string, abs.QueueLike[TokenLike]":
 		var source = arguments[0].(string)
 		var tokens = arguments[1].(abs.QueueLike[TokenLike])
-		instance_ = gra.Scanner().Make(
+		instance_ = gra.ScannerClass().Make(
 			source,
 			tokens,
 		)
@@ -1391,7 +1391,7 @@ func Token(arguments ...any) TokenLike {
 		var position = arguments[1].(uint)
 		var type_ = arguments[2].(TokenType)
 		var value = arguments[3].(string)
-		instance_ = gra.Token().Make(
+		instance_ = gra.TokenClass().Make(
 			line,
 			position,
 			type_,
@@ -1431,7 +1431,7 @@ func Validator(arguments ...any) ValidatorLike {
 	var instance_ ValidatorLike
 	switch argumentTypes {
 	case "":
-		instance_ = gra.Validator().Make()
+		instance_ = gra.ValidatorClass().Make()
 	default:
 		var message = fmt.Sprintf(
 			"No Validator constructor matching the arguments was found: %v\n",
@@ -1469,7 +1469,7 @@ func Visitor(arguments ...any) VisitorLike {
 	switch argumentTypes {
 	case "Methodical":
 		var processor = arguments[0].(Methodical)
-		instance_ = gra.Visitor().Make(
+		instance_ = gra.VisitorClass().Make(
 			processor,
 		)
 	default:
@@ -1495,7 +1495,7 @@ func MatchesType(
 	tokenValue string,
 	tokenType TokenType,
 ) bool {
-	var scannerClass = gra.Scanner()
+	var scannerClass = gra.ScannerClass()
 	return scannerClass.MatchesType(tokenValue, tokenType)
 }
 

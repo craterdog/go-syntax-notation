@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Identifier() IdentifierClassLike {
-	return identifierReference()
+func IdentifierClass() IdentifierClassLike {
+	return identifierClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *identifierClass_) Make(
 // Principal Methods
 
 func (v *identifier_) GetClass() IdentifierClassLike {
-	return identifierReference()
+	return identifierClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type identifierClass_ struct {
 
 // Class Reference
 
-func identifierReference() *identifierClass_ {
-	return identifierReference_
+func identifierClassReference() *identifierClass_ {
+	return identifierClassReference_
 }
 
-var identifierReference_ = &identifierClass_{
+var identifierClassReference_ = &identifierClass_{
 	// Initialize the class constants.
 }

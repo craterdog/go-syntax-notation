@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Notice() NoticeClassLike {
-	return noticeReference()
+func NoticeClass() NoticeClassLike {
+	return noticeClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *noticeClass_) Make(
 // Principal Methods
 
 func (v *notice_) GetClass() NoticeClassLike {
-	return noticeReference()
+	return noticeClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type noticeClass_ struct {
 
 // Class Reference
 
-func noticeReference() *noticeClass_ {
-	return noticeReference_
+func noticeClassReference() *noticeClass_ {
+	return noticeClassReference_
 }
 
-var noticeReference_ = &noticeClass_{
+var noticeClassReference_ = &noticeClass_{
 	// Initialize the class constants.
 }

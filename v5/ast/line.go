@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Line() LineClassLike {
-	return lineReference()
+func LineClass() LineClassLike {
+	return lineClassReference()
 }
 
 // Constructor Methods
@@ -57,7 +50,7 @@ func (c *lineClass_) Make(
 // Principal Methods
 
 func (v *line_) GetClass() LineClassLike {
-	return lineReference()
+	return lineClassReference()
 }
 
 // Attribute Methods
@@ -90,10 +83,10 @@ type lineClass_ struct {
 
 // Class Reference
 
-func lineReference() *lineClass_ {
-	return lineReference_
+func lineClassReference() *lineClass_ {
+	return lineClassReference_
 }
 
-var lineReference_ = &lineClass_{
+var lineClassReference_ = &lineClass_{
 	// Initialize the class constants.
 }

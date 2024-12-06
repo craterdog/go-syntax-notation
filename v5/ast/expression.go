@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Expression() ExpressionClassLike {
-	return expressionReference()
+func ExpressionClass() ExpressionClassLike {
+	return expressionClassReference()
 }
 
 // Constructor Methods
@@ -62,7 +55,7 @@ func (c *expressionClass_) Make(
 // Principal Methods
 
 func (v *expression_) GetClass() ExpressionClassLike {
-	return expressionReference()
+	return expressionClassReference()
 }
 
 // Attribute Methods
@@ -100,10 +93,10 @@ type expressionClass_ struct {
 
 // Class Reference
 
-func expressionReference() *expressionClass_ {
-	return expressionReference_
+func expressionClassReference() *expressionClass_ {
+	return expressionClassReference_
 }
 
-var expressionReference_ = &expressionClass_{
+var expressionClassReference_ = &expressionClass_{
 	// Initialize the class constants.
 }

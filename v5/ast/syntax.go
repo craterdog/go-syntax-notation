@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -28,8 +21,8 @@ import (
 
 // Access Function
 
-func Syntax() SyntaxClassLike {
-	return syntaxReference()
+func SyntaxClass() SyntaxClassLike {
+	return syntaxClassReference()
 }
 
 // Constructor Methods
@@ -76,7 +69,7 @@ func (c *syntaxClass_) Make(
 // Principal Methods
 
 func (v *syntax_) GetClass() SyntaxClassLike {
-	return syntaxReference()
+	return syntaxClassReference()
 }
 
 // Attribute Methods
@@ -124,10 +117,10 @@ type syntaxClass_ struct {
 
 // Class Reference
 
-func syntaxReference() *syntaxClass_ {
-	return syntaxReference_
+func syntaxClassReference() *syntaxClass_ {
+	return syntaxClassReference_
 }
 
-var syntaxReference_ = &syntaxClass_{
+var syntaxClassReference_ = &syntaxClass_{
 	// Initialize the class constants.
 }

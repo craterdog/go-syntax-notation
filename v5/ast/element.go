@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Element() ElementClassLike {
-	return elementReference()
+func ElementClass() ElementClassLike {
+	return elementClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *elementClass_) Make(
 // Principal Methods
 
 func (v *element_) GetClass() ElementClassLike {
-	return elementReference()
+	return elementClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type elementClass_ struct {
 
 // Class Reference
 
-func elementReference() *elementClass_ {
-	return elementReference_
+func elementClassReference() *elementClass_ {
+	return elementClassReference_
 }
 
-var elementReference_ = &elementClass_{
+var elementClassReference_ = &elementClass_{
 	// Initialize the class constants.
 }

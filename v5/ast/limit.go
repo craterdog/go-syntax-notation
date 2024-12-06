@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import ()
@@ -25,8 +18,8 @@ import ()
 
 // Access Function
 
-func Limit() LimitClassLike {
-	return limitReference()
+func LimitClass() LimitClassLike {
+	return limitClassReference()
 }
 
 // Constructor Methods
@@ -50,7 +43,7 @@ func (c *limitClass_) Make(
 // Principal Methods
 
 func (v *limit_) GetClass() LimitClassLike {
-	return limitReference()
+	return limitClassReference()
 }
 
 // Attribute Methods
@@ -78,10 +71,10 @@ type limitClass_ struct {
 
 // Class Reference
 
-func limitReference() *limitClass_ {
-	return limitReference_
+func limitClassReference() *limitClass_ {
+	return limitClassReference_
 }
 
-var limitReference_ = &limitClass_{
+var limitClassReference_ = &limitClass_{
 	// Initialize the class constants.
 }

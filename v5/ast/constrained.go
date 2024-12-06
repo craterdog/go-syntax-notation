@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Constrained() ConstrainedClassLike {
-	return constrainedReference()
+func ConstrainedClass() ConstrainedClassLike {
+	return constrainedClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *constrainedClass_) Make(
 // Principal Methods
 
 func (v *constrained_) GetClass() ConstrainedClassLike {
-	return constrainedReference()
+	return constrainedClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type constrainedClass_ struct {
 
 // Class Reference
 
-func constrainedReference() *constrainedClass_ {
-	return constrainedReference_
+func constrainedClassReference() *constrainedClass_ {
+	return constrainedClassReference_
 }
 
-var constrainedReference_ = &constrainedClass_{
+var constrainedClassReference_ = &constrainedClass_{
 	// Initialize the class constants.
 }

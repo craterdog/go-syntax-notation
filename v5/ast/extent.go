@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Extent() ExtentClassLike {
-	return extentReference()
+func ExtentClass() ExtentClassLike {
+	return extentClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *extentClass_) Make(
 // Principal Methods
 
 func (v *extent_) GetClass() ExtentClassLike {
-	return extentReference()
+	return extentClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type extentClass_ struct {
 
 // Class Reference
 
-func extentReference() *extentClass_ {
-	return extentReference_
+func extentClassReference() *extentClass_ {
+	return extentClassReference_
 }
 
-var extentReference_ = &extentClass_{
+var extentClassReference_ = &extentClass_{
 	// Initialize the class constants.
 }

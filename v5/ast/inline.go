@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -28,8 +21,8 @@ import (
 
 // Access Function
 
-func Inline() InlineClassLike {
-	return inlineReference()
+func InlineClass() InlineClassLike {
+	return inlineClassReference()
 }
 
 // Constructor Methods
@@ -58,7 +51,7 @@ func (c *inlineClass_) Make(
 // Principal Methods
 
 func (v *inline_) GetClass() InlineClassLike {
-	return inlineReference()
+	return inlineClassReference()
 }
 
 // Attribute Methods
@@ -91,10 +84,10 @@ type inlineClass_ struct {
 
 // Class Reference
 
-func inlineReference() *inlineClass_ {
-	return inlineReference_
+func inlineClassReference() *inlineClass_ {
+	return inlineClassReference_
 }
 
-var inlineReference_ = &inlineClass_{
+var inlineClassReference_ = &inlineClass_{
 	// Initialize the class constants.
 }

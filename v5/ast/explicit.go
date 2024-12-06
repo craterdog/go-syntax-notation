@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Explicit() ExplicitClassLike {
-	return explicitReference()
+func ExplicitClass() ExplicitClassLike {
+	return explicitClassReference()
 }
 
 // Constructor Methods
@@ -57,7 +50,7 @@ func (c *explicitClass_) Make(
 // Principal Methods
 
 func (v *explicit_) GetClass() ExplicitClassLike {
-	return explicitReference()
+	return explicitClassReference()
 }
 
 // Attribute Methods
@@ -90,10 +83,10 @@ type explicitClass_ struct {
 
 // Class Reference
 
-func explicitReference() *explicitClass_ {
-	return explicitReference_
+func explicitClassReference() *explicitClass_ {
+	return explicitClassReference_
 }
 
-var explicitReference_ = &explicitClass_{
+var explicitClassReference_ = &explicitClass_{
 	// Initialize the class constants.
 }

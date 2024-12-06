@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Term() TermClassLike {
-	return termReference()
+func TermClass() TermClassLike {
+	return termClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *termClass_) Make(
 // Principal Methods
 
 func (v *term_) GetClass() TermClassLike {
-	return termReference()
+	return termClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type termClass_ struct {
 
 // Class Reference
 
-func termReference() *termClass_ {
-	return termReference_
+func termClassReference() *termClass_ {
+	return termClassReference_
 }
 
-var termReference_ = &termClass_{
+var termClassReference_ = &termClass_{
 	// Initialize the class constants.
 }

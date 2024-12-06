@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Character() CharacterClassLike {
-	return characterReference()
+func CharacterClass() CharacterClassLike {
+	return characterClassReference()
 }
 
 // Constructor Methods
@@ -55,7 +48,7 @@ func (c *characterClass_) Make(
 // Principal Methods
 
 func (v *character_) GetClass() CharacterClassLike {
-	return characterReference()
+	return characterClassReference()
 }
 
 // Attribute Methods
@@ -83,10 +76,10 @@ type characterClass_ struct {
 
 // Class Reference
 
-func characterReference() *characterClass_ {
-	return characterReference_
+func characterClassReference() *characterClass_ {
+	return characterClassReference_
 }
 
-var characterReference_ = &characterClass_{
+var characterClassReference_ = &characterClass_{
 	// Initialize the class constants.
 }

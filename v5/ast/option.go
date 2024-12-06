@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -28,8 +21,8 @@ import (
 
 // Access Function
 
-func Option() OptionClassLike {
-	return optionReference()
+func OptionClass() OptionClassLike {
+	return optionClassReference()
 }
 
 // Constructor Methods
@@ -56,7 +49,7 @@ func (c *optionClass_) Make(
 // Principal Methods
 
 func (v *option_) GetClass() OptionClassLike {
-	return optionReference()
+	return optionClassReference()
 }
 
 // Attribute Methods
@@ -84,10 +77,10 @@ type optionClass_ struct {
 
 // Class Reference
 
-func optionReference() *optionClass_ {
-	return optionReference_
+func optionClassReference() *optionClass_ {
+	return optionClassReference_
 }
 
-var optionReference_ = &optionClass_{
+var optionClassReference_ = &optionClass_{
 	// Initialize the class constants.
 }

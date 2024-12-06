@@ -10,13 +10,6 @@
 ................................................................................
 */
 
-/*
-┌────────────────────────────────── WARNING ───────────────────────────────────┐
-│                 This class file was automatically generated.                 │
-│                     Any updates to it may be overwritten.                    │
-└──────────────────────────────────────────────────────────────────────────────┘
-*/
-
 package ast
 
 import (
@@ -27,8 +20,8 @@ import (
 
 // Access Function
 
-func Quantified() QuantifiedClassLike {
-	return quantifiedReference()
+func QuantifiedClass() QuantifiedClassLike {
+	return quantifiedClassReference()
 }
 
 // Constructor Methods
@@ -57,7 +50,7 @@ func (c *quantifiedClass_) Make(
 // Principal Methods
 
 func (v *quantified_) GetClass() QuantifiedClassLike {
-	return quantifiedReference()
+	return quantifiedClassReference()
 }
 
 // Attribute Methods
@@ -90,10 +83,10 @@ type quantifiedClass_ struct {
 
 // Class Reference
 
-func quantifiedReference() *quantifiedClass_ {
-	return quantifiedReference_
+func quantifiedClassReference() *quantifiedClass_ {
+	return quantifiedClassReference_
 }
 
-var quantifiedReference_ = &quantifiedClass_{
+var quantifiedClassReference_ = &quantifiedClass_{
 	// Initialize the class constants.
 }
