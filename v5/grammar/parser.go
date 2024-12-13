@@ -57,8 +57,8 @@ func (v *parser_) GetClass() ParserClassLike {
 func (v *parser_) ParseSource(
 	source string,
 ) ast.SyntaxLike {
-	v.source_ = source
 	var class = parserClassReference()
+	v.source_ = source
 	v.tokens_ = col.AnyQueue[TokenLike](class.queueSize_)
 	v.next_ = col.AnyStack[TokenLike](class.stackSize_)
 
