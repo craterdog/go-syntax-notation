@@ -29,7 +29,7 @@ For detailed documentation on this entire module refer to the wiki:
 package module
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v4/collection"
+	abs "github.com/craterdog/go-collection-framework/v5/collection"
 	ast "github.com/craterdog/go-syntax-notation/v5/ast"
 	gra "github.com/craterdog/go-syntax-notation/v5/grammar"
 )

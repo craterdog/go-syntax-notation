@@ -41,7 +41,7 @@ on interfaces, not on each other.
 package grammar
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v4/collection"
+	abs "github.com/craterdog/go-collection-framework/v5/collection"
 	ast "github.com/craterdog/go-syntax-notation/v5/ast"
 )
 
