@@ -26,7 +26,7 @@ func RuleClass() RuleClassLike {
 
 // Constructor Methods
 
-func (c *ruleClass_) Make(
+func (c *ruleClass_) Rule(
 	uppercase string,
 	definition DefinitionLike,
 ) RuleLike {

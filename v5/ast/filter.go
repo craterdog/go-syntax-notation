@@ -27,7 +27,7 @@ func FilterClass() FilterClassLike {
 
 // Constructor Methods
 
-func (c *filterClass_) Make(
+func (c *filterClass_) Filter(
 	optionalExcluded string,
 	characters abs.Sequential[CharacterLike],
 ) FilterLike {

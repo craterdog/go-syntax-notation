@@ -27,7 +27,7 @@ func PatternClass() PatternClassLike {
 
 // Constructor Methods
 
-func (c *patternClass_) Make(
+func (c *patternClass_) Pattern(
 	option OptionLike,
 	alternatives abs.Sequential[AlternativeLike],
 ) PatternLike {

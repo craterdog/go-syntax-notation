@@ -112,7 +112,7 @@ type (
 func Alternative(
 	option OptionLike,
 ) AlternativeLike {
-	return ast.AlternativeClass().Make(
+	return ast.AlternativeClass().Alternative(
 		option,
 	)
 }
@@ -120,7 +120,7 @@ func Alternative(
 func Cardinality(
 	any_ any,
 ) CardinalityLike {
-	return ast.CardinalityClass().Make(
+	return ast.CardinalityClass().Cardinality(
 		any_,
 	)
 }
@@ -128,7 +128,7 @@ func Cardinality(
 func Character(
 	any_ any,
 ) CharacterLike {
-	return ast.CharacterClass().Make(
+	return ast.CharacterClass().Character(
 		any_,
 	)
 }
@@ -136,7 +136,7 @@ func Character(
 func Constrained(
 	any_ any,
 ) ConstrainedLike {
-	return ast.ConstrainedClass().Make(
+	return ast.ConstrainedClass().Constrained(
 		any_,
 	)
 }
@@ -144,7 +144,7 @@ func Constrained(
 func Definition(
 	any_ any,
 ) DefinitionLike {
-	return ast.DefinitionClass().Make(
+	return ast.DefinitionClass().Definition(
 		any_,
 	)
 }
@@ -152,7 +152,7 @@ func Definition(
 func Element(
 	any_ any,
 ) ElementLike {
-	return ast.ElementClass().Make(
+	return ast.ElementClass().Element(
 		any_,
 	)
 }
@@ -161,7 +161,7 @@ func Explicit(
 	glyph string,
 	optionalExtent ExtentLike,
 ) ExplicitLike {
-	return ast.ExplicitClass().Make(
+	return ast.ExplicitClass().Explicit(
 		glyph,
 		optionalExtent,
 	)
@@ -172,7 +172,7 @@ func Expression(
 	pattern PatternLike,
 	optionalNote string,
 ) ExpressionLike {
-	return ast.ExpressionClass().Make(
+	return ast.ExpressionClass().Expression(
 		lowercase,
 		pattern,
 		optionalNote,
@@ -182,7 +182,7 @@ func Expression(
 func Extent(
 	glyph string,
 ) ExtentLike {
-	return ast.ExtentClass().Make(
+	return ast.ExtentClass().Extent(
 		glyph,
 	)
 }
@@ -191,7 +191,7 @@ func Filter(
 	optionalExcluded string,
 	characters abs.Sequential[CharacterLike],
 ) FilterLike {
-	return ast.FilterClass().Make(
+	return ast.FilterClass().Filter(
 		optionalExcluded,
 		characters,
 	)
@@ -200,7 +200,7 @@ func Filter(
 func Group(
 	pattern PatternLike,
 ) GroupLike {
-	return ast.GroupClass().Make(
+	return ast.GroupClass().Group(
 		pattern,
 	)
 }
@@ -208,7 +208,7 @@ func Group(
 func Identifier(
 	any_ any,
 ) IdentifierLike {
-	return ast.IdentifierClass().Make(
+	return ast.IdentifierClass().Identifier(
 		any_,
 	)
 }
@@ -217,7 +217,7 @@ func Inline(
 	terms abs.Sequential[TermLike],
 	optionalNote string,
 ) InlineLike {
-	return ast.InlineClass().Make(
+	return ast.InlineClass().Inline(
 		terms,
 		optionalNote,
 	)
@@ -226,7 +226,7 @@ func Inline(
 func Limit(
 	optionalNumber string,
 ) LimitLike {
-	return ast.LimitClass().Make(
+	return ast.LimitClass().Limit(
 		optionalNumber,
 	)
 }
@@ -235,7 +235,7 @@ func Line(
 	identifier IdentifierLike,
 	optionalNote string,
 ) LineLike {
-	return ast.LineClass().Make(
+	return ast.LineClass().Line(
 		identifier,
 		optionalNote,
 	)
@@ -244,7 +244,7 @@ func Line(
 func Multiline(
 	lines abs.Sequential[LineLike],
 ) MultilineLike {
-	return ast.MultilineClass().Make(
+	return ast.MultilineClass().Multiline(
 		lines,
 	)
 }
@@ -252,7 +252,7 @@ func Multiline(
 func Notice(
 	comment string,
 ) NoticeLike {
-	return ast.NoticeClass().Make(
+	return ast.NoticeClass().Notice(
 		comment,
 	)
 }
@@ -260,7 +260,7 @@ func Notice(
 func Option(
 	repetitions abs.Sequential[RepetitionLike],
 ) OptionLike {
-	return ast.OptionClass().Make(
+	return ast.OptionClass().Option(
 		repetitions,
 	)
 }
@@ -269,7 +269,7 @@ func Pattern(
 	option OptionLike,
 	alternatives abs.Sequential[AlternativeLike],
 ) PatternLike {
-	return ast.PatternClass().Make(
+	return ast.PatternClass().Pattern(
 		option,
 		alternatives,
 	)
@@ -279,7 +279,7 @@ func Quantified(
 	number string,
 	optionalLimit LimitLike,
 ) QuantifiedLike {
-	return ast.QuantifiedClass().Make(
+	return ast.QuantifiedClass().Quantified(
 		number,
 		optionalLimit,
 	)
@@ -289,7 +289,7 @@ func Reference(
 	identifier IdentifierLike,
 	optionalCardinality CardinalityLike,
 ) ReferenceLike {
-	return ast.ReferenceClass().Make(
+	return ast.ReferenceClass().Reference(
 		identifier,
 		optionalCardinality,
 	)
@@ -299,7 +299,7 @@ func Repetition(
 	element ElementLike,
 	optionalCardinality CardinalityLike,
 ) RepetitionLike {
-	return ast.RepetitionClass().Make(
+	return ast.RepetitionClass().Repetition(
 		element,
 		optionalCardinality,
 	)
@@ -309,7 +309,7 @@ func Rule(
 	uppercase string,
 	definition DefinitionLike,
 ) RuleLike {
-	return ast.RuleClass().Make(
+	return ast.RuleClass().Rule(
 		uppercase,
 		definition,
 	)
@@ -322,7 +322,7 @@ func Syntax(
 	comment2 string,
 	expressions abs.Sequential[ExpressionLike],
 ) SyntaxLike {
-	return ast.SyntaxClass().Make(
+	return ast.SyntaxClass().Syntax(
 		notice,
 		comment1,
 		rules,
@@ -334,7 +334,7 @@ func Syntax(
 func Term(
 	any_ any,
 ) TermLike {
-	return ast.TermClass().Make(
+	return ast.TermClass().Term(
 		any_,
 	)
 }
@@ -342,7 +342,7 @@ func Term(
 func Text(
 	any_ any,
 ) TextLike {
-	return ast.TextClass().Make(
+	return ast.TextClass().Text(
 		any_,
 	)
 }
@@ -350,22 +350,22 @@ func Text(
 // Grammar
 
 func Formatter() FormatterLike {
-	return gra.FormatterClass().Make()
+	return gra.FormatterClass().Formatter()
 }
 
 func Parser() ParserLike {
-	return gra.ParserClass().Make()
+	return gra.ParserClass().Parser()
 }
 
 func Processor() ProcessorLike {
-	return gra.ProcessorClass().Make()
+	return gra.ProcessorClass().Processor()
 }
 
 func Scanner(
 	source string,
 	tokens abs.QueueLike[TokenLike],
 ) ScannerLike {
-	return gra.ScannerClass().Make(
+	return gra.ScannerClass().Scanner(
 		source,
 		tokens,
 	)
@@ -377,7 +377,7 @@ func Token(
 	type_ TokenType,
 	value string,
 ) TokenLike {
-	return gra.TokenClass().Make(
+	return gra.TokenClass().Token(
 		line,
 		position,
 		type_,
@@ -386,13 +386,13 @@ func Token(
 }
 
 func Validator() ValidatorLike {
-	return gra.ValidatorClass().Make()
+	return gra.ValidatorClass().Validator()
 }
 
 func Visitor(
 	processor Methodical,
 ) VisitorLike {
-	return gra.VisitorClass().Make(
+	return gra.VisitorClass().Visitor(
 		processor,
 	)
 }

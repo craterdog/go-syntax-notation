@@ -27,7 +27,7 @@ func InlineClass() InlineClassLike {
 
 // Constructor Methods
 
-func (c *inlineClass_) Make(
+func (c *inlineClass_) Inline(
 	terms abs.Sequential[TermLike],
 	optionalNote string,
 ) InlineLike {

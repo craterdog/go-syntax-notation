@@ -26,7 +26,7 @@ func CharacterClass() CharacterClassLike {
 
 // Constructor Methods
 
-func (c *characterClass_) Make(
+func (c *characterClass_) Character(
 	any_ any,
 ) CharacterLike {
 	if uti.IsUndefined(any_) {

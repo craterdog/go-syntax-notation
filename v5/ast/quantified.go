@@ -26,7 +26,7 @@ func QuantifiedClass() QuantifiedClassLike {
 
 // Constructor Methods
 
-func (c *quantifiedClass_) Make(
+func (c *quantifiedClass_) Quantified(
 	number string,
 	optionalLimit LimitLike,
 ) QuantifiedLike {

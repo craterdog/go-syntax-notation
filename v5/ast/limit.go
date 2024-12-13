@@ -24,7 +24,7 @@ func LimitClass() LimitClassLike {
 
 // Constructor Methods
 
-func (c *limitClass_) Make(
+func (c *limitClass_) Limit(
 	optionalNumber string,
 ) LimitLike {
 	var instance = &limit_{

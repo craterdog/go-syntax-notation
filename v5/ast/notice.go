@@ -26,7 +26,7 @@ func NoticeClass() NoticeClassLike {
 
 // Constructor Methods
 
-func (c *noticeClass_) Make(
+func (c *noticeClass_) Notice(
 	comment string,
 ) NoticeLike {
 	if uti.IsUndefined(comment) {

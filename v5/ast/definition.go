@@ -26,7 +26,7 @@ func DefinitionClass() DefinitionClassLike {
 
 // Constructor Methods
 
-func (c *definitionClass_) Make(
+func (c *definitionClass_) Definition(
 	any_ any,
 ) DefinitionLike {
 	if uti.IsUndefined(any_) {

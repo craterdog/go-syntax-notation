@@ -26,7 +26,7 @@ func LineClass() LineClassLike {
 
 // Constructor Methods
 
-func (c *lineClass_) Make(
+func (c *lineClass_) Line(
 	identifier IdentifierLike,
 	optionalNote string,
 ) LineLike {

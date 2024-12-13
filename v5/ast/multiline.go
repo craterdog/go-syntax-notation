@@ -27,7 +27,7 @@ func MultilineClass() MultilineClassLike {
 
 // Constructor Methods
 
-func (c *multilineClass_) Make(
+func (c *multilineClass_) Multiline(
 	lines abs.Sequential[LineLike],
 ) MultilineLike {
 	if uti.IsUndefined(lines) {

@@ -26,7 +26,7 @@ func ExpressionClass() ExpressionClassLike {
 
 // Constructor Methods
 
-func (c *expressionClass_) Make(
+func (c *expressionClass_) Expression(
 	lowercase string,
 	pattern PatternLike,
 	optionalNote string,

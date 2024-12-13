@@ -26,7 +26,7 @@ func RepetitionClass() RepetitionClassLike {
 
 // Constructor Methods
 
-func (c *repetitionClass_) Make(
+func (c *repetitionClass_) Repetition(
 	element ElementLike,
 	optionalCardinality CardinalityLike,
 ) RepetitionLike {

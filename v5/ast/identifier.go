@@ -26,7 +26,7 @@ func IdentifierClass() IdentifierClassLike {
 
 // Constructor Methods
 
-func (c *identifierClass_) Make(
+func (c *identifierClass_) Identifier(
 	any_ any,
 ) IdentifierLike {
 	if uti.IsUndefined(any_) {

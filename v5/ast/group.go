@@ -26,7 +26,7 @@ func GroupClass() GroupClassLike {
 
 // Constructor Methods
 
-func (c *groupClass_) Make(
+func (c *groupClass_) Group(
 	pattern PatternLike,
 ) GroupLike {
 	if uti.IsUndefined(pattern) {

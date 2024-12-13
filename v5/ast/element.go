@@ -26,7 +26,7 @@ func ElementClass() ElementClassLike {
 
 // Constructor Methods
 
-func (c *elementClass_) Make(
+func (c *elementClass_) Element(
 	any_ any,
 ) ElementLike {
 	if uti.IsUndefined(any_) {

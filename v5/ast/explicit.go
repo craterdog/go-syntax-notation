@@ -26,7 +26,7 @@ func ExplicitClass() ExplicitClassLike {
 
 // Constructor Methods
 
-func (c *explicitClass_) Make(
+func (c *explicitClass_) Explicit(
 	glyph string,
 	optionalExtent ExtentLike,
 ) ExplicitLike {

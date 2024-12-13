@@ -26,7 +26,7 @@ func TextClass() TextClassLike {
 
 // Constructor Methods
 
-func (c *textClass_) Make(
+func (c *textClass_) Text(
 	any_ any,
 ) TextLike {
 	if uti.IsUndefined(any_) {

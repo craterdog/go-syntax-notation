@@ -39,7 +39,7 @@ func ParserClass() ParserClassLike {
 
 // Constructor Methods
 
-func (c *parserClass_) Make() ParserLike {
+func (c *parserClass_) Parser() ParserLike {
 	var instance = &parser_{
 		// Initialize the instance attributes.
 	}
@@ -62,7 +62,7 @@ func (v *parser_) ParseSource(
 	v.next_ = col.Stack[TokenLike]()
 
 	// The scanner runs in a separate Go routine.
-	ScannerClass().Make(v.source_, v.tokens_)
+	ScannerClass().Scanner(v.source_, v.tokens_)
 
 	// Attempt to parse the syntax.
 	var syntax, token, ok = v.parseSyntax()
@@ -121,7 +121,7 @@ func (v *parser_) parseAlternative() (
 	// Found a single Alternative rule.
 	ok = true
 	v.remove(tokens)
-	alternative = ast.AlternativeClass().Make(option)
+	alternative = ast.AlternativeClass().Alternative(option)
 	return
 }
 
@@ -135,7 +135,7 @@ func (v *parser_) parseCardinality() (
 	constrained, token, ok = v.parseConstrained()
 	if ok {
 		// Found a single Constrained Cardinality.
-		cardinality = ast.CardinalityClass().Make(constrained)
+		cardinality = ast.CardinalityClass().Cardinality(constrained)
 		return
 	}
 
@@ -144,7 +144,7 @@ func (v *parser_) parseCardinality() (
 	quantified, token, ok = v.parseQuantified()
 	if ok {
 		// Found a single Quantified Cardinality.
-		cardinality = ast.CardinalityClass().Make(quantified)
+		cardinality = ast.CardinalityClass().Cardinality(quantified)
 		return
 	}
 
@@ -162,7 +162,7 @@ func (v *parser_) parseCharacter() (
 	explicit, token, ok = v.parseExplicit()
 	if ok {
 		// Found a single Explicit Character.
-		character = ast.CharacterClass().Make(explicit)
+		character = ast.CharacterClass().Character(explicit)
 		return
 	}
 
@@ -171,7 +171,7 @@ func (v *parser_) parseCharacter() (
 	intrinsic, token, ok = v.parseToken(IntrinsicToken)
 	if ok {
 		// Found a single intrinsic Character.
-		character = ast.CharacterClass().Make(intrinsic)
+		character = ast.CharacterClass().Character(intrinsic)
 		return
 	}
 
@@ -189,7 +189,7 @@ func (v *parser_) parseConstrained() (
 	optional, token, ok = v.parseToken(OptionalToken)
 	if ok {
 		// Found a single optional Constrained.
-		constrained = ast.ConstrainedClass().Make(optional)
+		constrained = ast.ConstrainedClass().Constrained(optional)
 		return
 	}
 
@@ -198,7 +198,7 @@ func (v *parser_) parseConstrained() (
 	repeated, token, ok = v.parseToken(RepeatedToken)
 	if ok {
 		// Found a single repeated Constrained.
-		constrained = ast.ConstrainedClass().Make(repeated)
+		constrained = ast.ConstrainedClass().Constrained(repeated)
 		return
 	}
 
@@ -216,7 +216,7 @@ func (v *parser_) parseDefinition() (
 	multiline, token, ok = v.parseMultiline()
 	if ok {
 		// Found a single Multiline Definition.
-		definition = ast.DefinitionClass().Make(multiline)
+		definition = ast.DefinitionClass().Definition(multiline)
 		return
 	}
 
@@ -225,7 +225,7 @@ func (v *parser_) parseDefinition() (
 	inline, token, ok = v.parseInline()
 	if ok {
 		// Found a single Inline Definition.
-		definition = ast.DefinitionClass().Make(inline)
+		definition = ast.DefinitionClass().Definition(inline)
 		return
 	}
 
@@ -243,7 +243,7 @@ func (v *parser_) parseElement() (
 	group, token, ok = v.parseGroup()
 	if ok {
 		// Found a single Group Element.
-		element = ast.ElementClass().Make(group)
+		element = ast.ElementClass().Element(group)
 		return
 	}
 
@@ -252,7 +252,7 @@ func (v *parser_) parseElement() (
 	filter, token, ok = v.parseFilter()
 	if ok {
 		// Found a single Filter Element.
-		element = ast.ElementClass().Make(filter)
+		element = ast.ElementClass().Element(filter)
 		return
 	}
 
@@ -261,7 +261,7 @@ func (v *parser_) parseElement() (
 	text, token, ok = v.parseText()
 	if ok {
 		// Found a single Text Element.
-		element = ast.ElementClass().Make(text)
+		element = ast.ElementClass().Element(text)
 		return
 	}
 
@@ -305,7 +305,7 @@ func (v *parser_) parseExplicit() (
 	// Found a single Explicit rule.
 	ok = true
 	v.remove(tokens)
-	explicit = ast.ExplicitClass().Make(
+	explicit = ast.ExplicitClass().Explicit(
 		glyph,
 		optionalExtent,
 	)
@@ -398,7 +398,7 @@ func (v *parser_) parseExpression() (
 	// Found a single Expression rule.
 	ok = true
 	v.remove(tokens)
-	expression = ast.ExpressionClass().Make(
+	expression = ast.ExpressionClass().Expression(
 		lowercase,
 		pattern,
 		optionalNote,
@@ -451,7 +451,7 @@ func (v *parser_) parseExtent() (
 	// Found a single Extent rule.
 	ok = true
 	v.remove(tokens)
-	extent = ast.ExtentClass().Make(glyph)
+	extent = ast.ExtentClass().Extent(glyph)
 	return
 }
 
@@ -532,7 +532,7 @@ charactersLoop:
 	// Found a single Filter rule.
 	ok = true
 	v.remove(tokens)
-	filter = ast.FilterClass().Make(
+	filter = ast.FilterClass().Filter(
 		optionalExcluded,
 		characters,
 	)
@@ -600,7 +600,7 @@ func (v *parser_) parseGroup() (
 	// Found a single Group rule.
 	ok = true
 	v.remove(tokens)
-	group = ast.GroupClass().Make(pattern)
+	group = ast.GroupClass().Group(pattern)
 	return
 }
 
@@ -614,7 +614,7 @@ func (v *parser_) parseIdentifier() (
 	lowercase, token, ok = v.parseToken(LowercaseToken)
 	if ok {
 		// Found a single lowercase Identifier.
-		identifier = ast.IdentifierClass().Make(lowercase)
+		identifier = ast.IdentifierClass().Identifier(lowercase)
 		return
 	}
 
@@ -623,7 +623,7 @@ func (v *parser_) parseIdentifier() (
 	uppercase, token, ok = v.parseToken(UppercaseToken)
 	if ok {
 		// Found a single uppercase Identifier.
-		identifier = ast.IdentifierClass().Make(uppercase)
+		identifier = ast.IdentifierClass().Identifier(uppercase)
 		return
 	}
 
@@ -674,7 +674,7 @@ termsLoop:
 	// Found a single Inline rule.
 	ok = true
 	v.remove(tokens)
-	inline = ast.InlineClass().Make(
+	inline = ast.InlineClass().Inline(
 		terms,
 		optionalNote,
 	)
@@ -715,7 +715,7 @@ func (v *parser_) parseLimit() (
 	// Found a single Limit rule.
 	ok = true
 	v.remove(tokens)
-	limit = ast.LimitClass().Make(optionalNumber)
+	limit = ast.LimitClass().Limit(optionalNumber)
 	return
 }
 
@@ -770,7 +770,7 @@ func (v *parser_) parseLine() (
 	// Found a single Line rule.
 	ok = true
 	v.remove(tokens)
-	line = ast.LineClass().Make(
+	line = ast.LineClass().Line(
 		identifier,
 		optionalNote,
 	)
@@ -813,7 +813,7 @@ linesLoop:
 	// Found a single Multiline rule.
 	ok = true
 	v.remove(tokens)
-	multiline = ast.MultilineClass().Make(lines)
+	multiline = ast.MultilineClass().Multiline(lines)
 	return
 }
 
@@ -845,7 +845,7 @@ func (v *parser_) parseNotice() (
 	// Found a single Notice rule.
 	ok = true
 	v.remove(tokens)
-	notice = ast.NoticeClass().Make(comment)
+	notice = ast.NoticeClass().Notice(comment)
 	return
 }
 
@@ -885,7 +885,7 @@ repetitionsLoop:
 	// Found a single Option rule.
 	ok = true
 	v.remove(tokens)
-	option = ast.OptionClass().Make(repetitions)
+	option = ast.OptionClass().Option(repetitions)
 	return
 }
 
@@ -942,7 +942,7 @@ alternativesLoop:
 	// Found a single Pattern rule.
 	ok = true
 	v.remove(tokens)
-	pattern = ast.PatternClass().Make(
+	pattern = ast.PatternClass().Pattern(
 		option,
 		alternatives,
 	)
@@ -1019,7 +1019,7 @@ func (v *parser_) parseQuantified() (
 	// Found a single Quantified rule.
 	ok = true
 	v.remove(tokens)
-	quantified = ast.QuantifiedClass().Make(
+	quantified = ast.QuantifiedClass().Quantified(
 		number,
 		optionalLimit,
 	)
@@ -1061,7 +1061,7 @@ func (v *parser_) parseReference() (
 	// Found a single Reference rule.
 	ok = true
 	v.remove(tokens)
-	reference = ast.ReferenceClass().Make(
+	reference = ast.ReferenceClass().Reference(
 		identifier,
 		optionalCardinality,
 	)
@@ -1103,7 +1103,7 @@ func (v *parser_) parseRepetition() (
 	// Found a single Repetition rule.
 	ok = true
 	v.remove(tokens)
-	repetition = ast.RepetitionClass().Make(
+	repetition = ast.RepetitionClass().Repetition(
 		element,
 		optionalCardinality,
 	)
@@ -1189,7 +1189,7 @@ func (v *parser_) parseRule() (
 	// Found a single Rule rule.
 	ok = true
 	v.remove(tokens)
-	rule = ast.RuleClass().Make(
+	rule = ast.RuleClass().Rule(
 		uppercase,
 		definition,
 	)
@@ -1311,7 +1311,7 @@ expressionsLoop:
 	// Found a single Syntax rule.
 	ok = true
 	v.remove(tokens)
-	syntax = ast.SyntaxClass().Make(
+	syntax = ast.SyntaxClass().Syntax(
 		notice,
 		comment1,
 		rules,
@@ -1331,7 +1331,7 @@ func (v *parser_) parseTerm() (
 	reference, token, ok = v.parseReference()
 	if ok {
 		// Found a single Reference Term.
-		term = ast.TermClass().Make(reference)
+		term = ast.TermClass().Term(reference)
 		return
 	}
 
@@ -1340,7 +1340,7 @@ func (v *parser_) parseTerm() (
 	literal, token, ok = v.parseToken(LiteralToken)
 	if ok {
 		// Found a single literal Term.
-		term = ast.TermClass().Make(literal)
+		term = ast.TermClass().Term(literal)
 		return
 	}
 
@@ -1358,7 +1358,7 @@ func (v *parser_) parseText() (
 	intrinsic, token, ok = v.parseToken(IntrinsicToken)
 	if ok {
 		// Found a single intrinsic Text.
-		text = ast.TextClass().Make(intrinsic)
+		text = ast.TextClass().Text(intrinsic)
 		return
 	}
 
@@ -1367,7 +1367,7 @@ func (v *parser_) parseText() (
 	glyph, token, ok = v.parseToken(GlyphToken)
 	if ok {
 		// Found a single glyph Text.
-		text = ast.TextClass().Make(glyph)
+		text = ast.TextClass().Text(glyph)
 		return
 	}
 
@@ -1376,7 +1376,7 @@ func (v *parser_) parseText() (
 	literal, token, ok = v.parseToken(LiteralToken)
 	if ok {
 		// Found a single literal Text.
-		text = ast.TextClass().Make(literal)
+		text = ast.TextClass().Text(literal)
 		return
 	}
 
@@ -1385,7 +1385,7 @@ func (v *parser_) parseText() (
 	lowercase, token, ok = v.parseToken(LowercaseToken)
 	if ok {
 		// Found a single lowercase Text.
-		text = ast.TextClass().Make(lowercase)
+		text = ast.TextClass().Text(lowercase)
 		return
 	}
 

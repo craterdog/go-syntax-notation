@@ -82,7 +82,7 @@ concrete formatter-like class.
 */
 type FormatterClassLike interface {
 	// Constructor Methods
-	Make() FormatterLike
+	Formatter() FormatterLike
 }
 
 /*
@@ -92,7 +92,7 @@ concrete parser-like class.
 */
 type ParserClassLike interface {
 	// Constructor Methods
-	Make() ParserLike
+	Parser() ParserLike
 }
 
 /*
@@ -102,7 +102,7 @@ concrete processor-like class.
 */
 type ProcessorClassLike interface {
 	// Constructor Methods
-	Make() ProcessorLike
+	Processor() ProcessorLike
 }
 
 /*
@@ -118,7 +118,7 @@ MatchesType() determines whether or not a token value is of a specified type.
 */
 type ScannerClassLike interface {
 	// Constructor Methods
-	Make(
+	Scanner(
 		source string,
 		tokens abs.QueueLike[TokenLike],
 	) ScannerLike
@@ -143,7 +143,7 @@ concrete visitor-like class.
 */
 type TokenClassLike interface {
 	// Constructor Methods
-	Make(
+	Token(
 		line uint,
 		position uint,
 		type_ TokenType,
@@ -158,7 +158,7 @@ concrete validator-like class.
 */
 type ValidatorClassLike interface {
 	// Constructor Methods
-	Make() ValidatorLike
+	Validator() ValidatorLike
 }
 
 /*
@@ -168,7 +168,7 @@ concrete visitor-like class.
 */
 type VisitorClassLike interface {
 	// Constructor Methods
-	Make(
+	Visitor(
 		processor Methodical,
 	) VisitorLike
 }

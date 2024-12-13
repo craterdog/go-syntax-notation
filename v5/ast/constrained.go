@@ -26,7 +26,7 @@ func ConstrainedClass() ConstrainedClassLike {
 
 // Constructor Methods
 
-func (c *constrainedClass_) Make(
+func (c *constrainedClass_) Constrained(
 	any_ any,
 ) ConstrainedLike {
 	if uti.IsUndefined(any_) {

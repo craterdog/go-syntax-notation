@@ -26,7 +26,7 @@ func CardinalityClass() CardinalityClassLike {
 
 // Constructor Methods
 
-func (c *cardinalityClass_) Make(
+func (c *cardinalityClass_) Cardinality(
 	any_ any,
 ) CardinalityLike {
 	if uti.IsUndefined(any_) {

@@ -26,7 +26,7 @@ func ExtentClass() ExtentClassLike {
 
 // Constructor Methods
 
-func (c *extentClass_) Make(
+func (c *extentClass_) Extent(
 	glyph string,
 ) ExtentLike {
 	if uti.IsUndefined(glyph) {

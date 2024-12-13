@@ -27,7 +27,7 @@ func SyntaxClass() SyntaxClassLike {
 
 // Constructor Methods
 
-func (c *syntaxClass_) Make(
+func (c *syntaxClass_) Syntax(
 	notice NoticeLike,
 	comment1 string,
 	rules abs.Sequential[RuleLike],

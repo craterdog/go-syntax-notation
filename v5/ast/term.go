@@ -26,7 +26,7 @@ func TermClass() TermClassLike {
 
 // Constructor Methods
 
-func (c *termClass_) Make(
+func (c *termClass_) Term(
 	any_ any,
 ) TermLike {
 	if uti.IsUndefined(any_) {

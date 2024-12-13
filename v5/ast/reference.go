@@ -26,7 +26,7 @@ func ReferenceClass() ReferenceClassLike {
 
 // Constructor Methods
 
-func (c *referenceClass_) Make(
+func (c *referenceClass_) Reference(
 	identifier IdentifierLike,
 	optionalCardinality CardinalityLike,
 ) ReferenceLike {

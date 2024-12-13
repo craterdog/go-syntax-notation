@@ -26,7 +26,7 @@ func AlternativeClass() AlternativeClassLike {
 
 // Constructor Methods
 
-func (c *alternativeClass_) Make(
+func (c *alternativeClass_) Alternative(
 	option OptionLike,
 ) AlternativeLike {
 	if uti.IsUndefined(option) {

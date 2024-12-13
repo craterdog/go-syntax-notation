@@ -52,7 +52,7 @@ supported by each concrete alternative-like class.
 */
 type AlternativeClassLike interface {
 	// Constructor Methods
-	Make(
+	Alternative(
 		option OptionLike,
 	) AlternativeLike
 }
@@ -64,7 +64,7 @@ supported by each concrete cardinality-like class.
 */
 type CardinalityClassLike interface {
 	// Constructor Methods
-	Make(
+	Cardinality(
 		any_ any,
 	) CardinalityLike
 }
@@ -76,7 +76,7 @@ supported by each concrete character-like class.
 */
 type CharacterClassLike interface {
 	// Constructor Methods
-	Make(
+	Character(
 		any_ any,
 	) CharacterLike
 }
@@ -88,7 +88,7 @@ supported by each concrete constrained-like class.
 */
 type ConstrainedClassLike interface {
 	// Constructor Methods
-	Make(
+	Constrained(
 		any_ any,
 	) ConstrainedLike
 }
@@ -100,7 +100,7 @@ supported by each concrete definition-like class.
 */
 type DefinitionClassLike interface {
 	// Constructor Methods
-	Make(
+	Definition(
 		any_ any,
 	) DefinitionLike
 }
@@ -112,7 +112,7 @@ supported by each concrete element-like class.
 */
 type ElementClassLike interface {
 	// Constructor Methods
-	Make(
+	Element(
 		any_ any,
 	) ElementLike
 }
@@ -124,7 +124,7 @@ supported by each concrete explicit-like class.
 */
 type ExplicitClassLike interface {
 	// Constructor Methods
-	Make(
+	Explicit(
 		glyph string,
 		optionalExtent ExtentLike,
 	) ExplicitLike
@@ -137,7 +137,7 @@ supported by each concrete expression-like class.
 */
 type ExpressionClassLike interface {
 	// Constructor Methods
-	Make(
+	Expression(
 		lowercase string,
 		pattern PatternLike,
 		optionalNote string,
@@ -151,7 +151,7 @@ supported by each concrete extent-like class.
 */
 type ExtentClassLike interface {
 	// Constructor Methods
-	Make(
+	Extent(
 		glyph string,
 	) ExtentLike
 }
@@ -163,7 +163,7 @@ supported by each concrete filter-like class.
 */
 type FilterClassLike interface {
 	// Constructor Methods
-	Make(
+	Filter(
 		optionalExcluded string,
 		characters abs.Sequential[CharacterLike],
 	) FilterLike
@@ -176,7 +176,7 @@ supported by each concrete group-like class.
 */
 type GroupClassLike interface {
 	// Constructor Methods
-	Make(
+	Group(
 		pattern PatternLike,
 	) GroupLike
 }
@@ -188,7 +188,7 @@ supported by each concrete identifier-like class.
 */
 type IdentifierClassLike interface {
 	// Constructor Methods
-	Make(
+	Identifier(
 		any_ any,
 	) IdentifierLike
 }
@@ -200,7 +200,7 @@ supported by each concrete inline-like class.
 */
 type InlineClassLike interface {
 	// Constructor Methods
-	Make(
+	Inline(
 		terms abs.Sequential[TermLike],
 		optionalNote string,
 	) InlineLike
@@ -213,7 +213,7 @@ supported by each concrete limit-like class.
 */
 type LimitClassLike interface {
 	// Constructor Methods
-	Make(
+	Limit(
 		optionalNumber string,
 	) LimitLike
 }
@@ -225,7 +225,7 @@ supported by each concrete line-like class.
 */
 type LineClassLike interface {
 	// Constructor Methods
-	Make(
+	Line(
 		identifier IdentifierLike,
 		optionalNote string,
 	) LineLike
@@ -238,7 +238,7 @@ supported by each concrete multiline-like class.
 */
 type MultilineClassLike interface {
 	// Constructor Methods
-	Make(
+	Multiline(
 		lines abs.Sequential[LineLike],
 	) MultilineLike
 }
@@ -250,7 +250,7 @@ supported by each concrete notice-like class.
 */
 type NoticeClassLike interface {
 	// Constructor Methods
-	Make(
+	Notice(
 		comment string,
 	) NoticeLike
 }
@@ -262,7 +262,7 @@ supported by each concrete option-like class.
 */
 type OptionClassLike interface {
 	// Constructor Methods
-	Make(
+	Option(
 		repetitions abs.Sequential[RepetitionLike],
 	) OptionLike
 }
@@ -274,7 +274,7 @@ supported by each concrete pattern-like class.
 */
 type PatternClassLike interface {
 	// Constructor Methods
-	Make(
+	Pattern(
 		option OptionLike,
 		alternatives abs.Sequential[AlternativeLike],
 	) PatternLike
@@ -287,7 +287,7 @@ supported by each concrete quantified-like class.
 */
 type QuantifiedClassLike interface {
 	// Constructor Methods
-	Make(
+	Quantified(
 		number string,
 		optionalLimit LimitLike,
 	) QuantifiedLike
@@ -300,7 +300,7 @@ supported by each concrete reference-like class.
 */
 type ReferenceClassLike interface {
 	// Constructor Methods
-	Make(
+	Reference(
 		identifier IdentifierLike,
 		optionalCardinality CardinalityLike,
 	) ReferenceLike
@@ -313,7 +313,7 @@ supported by each concrete repetition-like class.
 */
 type RepetitionClassLike interface {
 	// Constructor Methods
-	Make(
+	Repetition(
 		element ElementLike,
 		optionalCardinality CardinalityLike,
 	) RepetitionLike
@@ -326,7 +326,7 @@ supported by each concrete rule-like class.
 */
 type RuleClassLike interface {
 	// Constructor Methods
-	Make(
+	Rule(
 		uppercase string,
 		definition DefinitionLike,
 	) RuleLike
@@ -339,7 +339,7 @@ supported by each concrete syntax-like class.
 */
 type SyntaxClassLike interface {
 	// Constructor Methods
-	Make(
+	Syntax(
 		notice NoticeLike,
 		comment1 string,
 		rules abs.Sequential[RuleLike],
@@ -355,7 +355,7 @@ supported by each concrete term-like class.
 */
 type TermClassLike interface {
 	// Constructor Methods
-	Make(
+	Term(
 		any_ any,
 	) TermLike
 }
@@ -367,7 +367,7 @@ supported by each concrete text-like class.
 */
 type TextClassLike interface {
 	// Constructor Methods
-	Make(
+	Text(
 		any_ any,
 	) TextLike
 }

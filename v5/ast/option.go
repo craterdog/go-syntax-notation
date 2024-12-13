@@ -27,7 +27,7 @@ func OptionClass() OptionClassLike {
 
 // Constructor Methods
 
-func (c *optionClass_) Make(
+func (c *optionClass_) Option(
 	repetitions abs.Sequential[RepetitionLike],
 ) OptionLike {
 	if uti.IsUndefined(repetitions) {
