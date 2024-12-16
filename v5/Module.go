@@ -107,7 +107,7 @@ type (
 
 // CLASS CONSTRUCTORS
 
-// ast/Alternative
+// Ast/Alternative
 
 func Alternative(
 	option OptionLike,
@@ -117,7 +117,7 @@ func Alternative(
 	)
 }
 
-// ast/Cardinality
+// Ast/Cardinality
 
 func Cardinality(
 	any_ any,
@@ -127,7 +127,7 @@ func Cardinality(
 	)
 }
 
-// ast/Character
+// Ast/Character
 
 func Character(
 	any_ any,
@@ -137,7 +137,7 @@ func Character(
 	)
 }
 
-// ast/Constrained
+// Ast/Constrained
 
 func Constrained(
 	any_ any,
@@ -147,7 +147,7 @@ func Constrained(
 	)
 }
 
-// ast/Definition
+// Ast/Definition
 
 func Definition(
 	any_ any,
@@ -157,7 +157,7 @@ func Definition(
 	)
 }
 
-// ast/Element
+// Ast/Element
 
 func Element(
 	any_ any,
@@ -167,7 +167,7 @@ func Element(
 	)
 }
 
-// ast/Explicit
+// Ast/Explicit
 
 func Explicit(
 	glyph string,
@@ -179,7 +179,7 @@ func Explicit(
 	)
 }
 
-// ast/Expression
+// Ast/Expression
 
 func Expression(
 	lowercase string,
@@ -193,7 +193,7 @@ func Expression(
 	)
 }
 
-// ast/Extent
+// Ast/Extent
 
 func Extent(
 	glyph string,
@@ -203,7 +203,7 @@ func Extent(
 	)
 }
 
-// ast/Filter
+// Ast/Filter
 
 func Filter(
 	optionalExcluded string,
@@ -215,7 +215,7 @@ func Filter(
 	)
 }
 
-// ast/Group
+// Ast/Group
 
 func Group(
 	pattern PatternLike,
@@ -225,7 +225,7 @@ func Group(
 	)
 }
 
-// ast/Identifier
+// Ast/Identifier
 
 func Identifier(
 	any_ any,
@@ -235,7 +235,7 @@ func Identifier(
 	)
 }
 
-// ast/Inline
+// Ast/Inline
 
 func Inline(
 	terms abs.Sequential[TermLike],
@@ -247,7 +247,7 @@ func Inline(
 	)
 }
 
-// ast/Limit
+// Ast/Limit
 
 func Limit(
 	optionalNumber string,
@@ -257,7 +257,7 @@ func Limit(
 	)
 }
 
-// ast/Line
+// Ast/Line
 
 func Line(
 	identifier IdentifierLike,
@@ -269,7 +269,7 @@ func Line(
 	)
 }
 
-// ast/Multiline
+// Ast/Multiline
 
 func Multiline(
 	lines abs.Sequential[LineLike],
@@ -279,7 +279,7 @@ func Multiline(
 	)
 }
 
-// ast/Notice
+// Ast/Notice
 
 func Notice(
 	comment string,
@@ -289,7 +289,7 @@ func Notice(
 	)
 }
 
-// ast/Option
+// Ast/Option
 
 func Option(
 	repetitions abs.Sequential[RepetitionLike],
@@ -299,7 +299,7 @@ func Option(
 	)
 }
 
-// ast/Pattern
+// Ast/Pattern
 
 func Pattern(
 	option OptionLike,
@@ -311,7 +311,7 @@ func Pattern(
 	)
 }
 
-// ast/Quantified
+// Ast/Quantified
 
 func Quantified(
 	number string,
@@ -323,7 +323,7 @@ func Quantified(
 	)
 }
 
-// ast/Reference
+// Ast/Reference
 
 func Reference(
 	identifier IdentifierLike,
@@ -335,7 +335,7 @@ func Reference(
 	)
 }
 
-// ast/Repetition
+// Ast/Repetition
 
 func Repetition(
 	element ElementLike,
@@ -347,7 +347,7 @@ func Repetition(
 	)
 }
 
-// ast/Rule
+// Ast/Rule
 
 func Rule(
 	uppercase string,
@@ -359,7 +359,7 @@ func Rule(
 	)
 }
 
-// ast/Syntax
+// Ast/Syntax
 
 func Syntax(
 	notice NoticeLike,
@@ -377,7 +377,7 @@ func Syntax(
 	)
 }
 
-// ast/Term
+// Ast/Term
 
 func Term(
 	any_ any,
@@ -387,7 +387,7 @@ func Term(
 	)
 }
 
-// ast/Text
+// Ast/Text
 
 func Text(
 	any_ any,
@@ -397,25 +397,25 @@ func Text(
 	)
 }
 
-// grammar/Formatter
+// Grammar/Formatter
 
 func Formatter() gra.FormatterLike {
 	return gra.FormatterClass().Formatter()
 }
 
-// grammar/Parser
+// Grammar/Parser
 
 func Parser() gra.ParserLike {
 	return gra.ParserClass().Parser()
 }
 
-// grammar/Processor
+// Grammar/Processor
 
 func Processor() gra.ProcessorLike {
 	return gra.ProcessorClass().Processor()
 }
 
-// grammar/Scanner
+// Grammar/Scanner
 
 func Scanner(
 	source string,
@@ -427,7 +427,7 @@ func Scanner(
 	)
 }
 
-// grammar/Token
+// Grammar/Token
 
 func Token(
 	line uint,
@@ -443,13 +443,13 @@ func Token(
 	)
 }
 
-// grammar/Validator
+// Grammar/Validator
 
 func Validator() gra.ValidatorLike {
 	return gra.ValidatorClass().Validator()
 }
 
-// grammar/Visitor
+// Grammar/Visitor
 
 func Visitor(
 	processor Methodical,
