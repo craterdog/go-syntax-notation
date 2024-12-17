@@ -190,9 +190,9 @@ loop:
 	for v.next_ < uint(len(v.runes_)) {
 		switch {
 		// Find the next token type.
+		case v.foundToken(DelimiterToken):
 		case v.foundToken(NewlineToken):
 		case v.foundToken(SpaceToken):
-		case v.foundToken(DelimiterToken):
 		case v.foundToken(CommentToken):
 		case v.foundToken(ExcludedToken):
 		case v.foundToken(GlyphToken):
@@ -297,9 +297,9 @@ const (
 	upper_   = "\\p{Lu}"
 
 	// Define the regular expression patterns for each token type.
+	delimiter_ = "(?:\\}|\\||\\{|\\]|\\[|\\.\\.|\\)|\\(|\\$|:|-)"
 	newline_   = "(?:" + eol_ + ")"
 	space_     = "(?:[ \\t]+)"
-	delimiter_ = "(?:\\}|\\||\\{|\\]|\\[|\\.\\.|\\)|\\(|\\$|:|-)"
 	base16_    = "(?:[0-9a-f])"
 	comment_   = "(?:!>" + eol_ + "(" + any_ + "|" + eol_ + ")*?" + eol_ + "<!" + eol_ + ")"
 	escape_    = "(?:\\\\((?:" + unicode_ + ")|[abfnrtv\"\\\\]))"
