@@ -57,7 +57,7 @@ func (v *parser_) GetClass() ParserClassLike {
 func (v *parser_) ParseSource(
 	source string,
 ) ast.SyntaxLike {
-	v.source_ = source
+	v.source_ = sts.ReplaceAll(source, "\t", "    ")
 	v.tokens_ = col.Queue[TokenLike]()
 	v.next_ = col.Stack[TokenLike]()
 

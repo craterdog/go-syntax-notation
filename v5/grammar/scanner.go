@@ -190,19 +190,19 @@ loop:
 	for v.next_ < uint(len(v.runes_)) {
 		switch {
 		// Find the next token type.
-		case v.foundToken(CommentToken):
+		case v.foundToken(NewlineToken):
+		case v.foundToken(SpaceToken):
 		case v.foundToken(DelimiterToken):
+		case v.foundToken(CommentToken):
 		case v.foundToken(ExcludedToken):
 		case v.foundToken(GlyphToken):
 		case v.foundToken(IntrinsicToken):
 		case v.foundToken(LiteralToken):
 		case v.foundToken(LowercaseToken):
-		case v.foundToken(NewlineToken):
 		case v.foundToken(NoteToken):
 		case v.foundToken(NumberToken):
 		case v.foundToken(OptionalToken):
 		case v.foundToken(RepeatedToken):
-		case v.foundToken(SpaceToken):
 		case v.foundToken(UppercaseToken):
 		default:
 			v.foundError()
@@ -297,21 +297,21 @@ const (
 	upper_   = "\\p{Lu}"
 
 	// Define the regular expression patterns for each token type.
+	newline_   = "(?:" + eol_ + ")"
+	space_     = "(?:[ \\t]+)"
+	delimiter_ = "(?:\\}|\\||\\{|\\]|\\[|\\.\\.|\\)|\\(|\\$|:|-)"
 	base16_    = "(?:[0-9a-f])"
 	comment_   = "(?:!>" + eol_ + "(" + any_ + "|" + eol_ + ")*?" + eol_ + "<!" + eol_ + ")"
-	delimiter_ = "(?:\\}|\\||\\{|\\]|\\[|\\.\\.|\\)|\\(|\\$|:|-)"
 	escape_    = "(?:\\\\((?:" + unicode_ + ")|[abfnrtv\"\\\\]))"
 	excluded_  = "(?:~)"
 	glyph_     = "(?:'[^" + control_ + "]')"
 	intrinsic_ = "(?:ANY|CONTROL|DIGIT|EOL|LOWER|UPPER)"
 	literal_   = "(?:\"((?:" + escape_ + ")|[^\"" + control_ + "])+\")"
 	lowercase_ = "(?:" + lower_ + "(" + digit_ + "|" + lower_ + "|" + upper_ + ")*)"
-	newline_   = "(?:" + eol_ + ")"
 	note_      = "(?:! [^" + control_ + "]*)"
 	number_    = "(?:" + digit_ + "+)"
 	optional_  = "(?:\\?)"
 	repeated_  = "(?:\\*|\\+)"
-	space_     = "(?:[ \\t]+)"
 	unicode_   = "(?:(x(?:" + base16_ + "){2})|(u(?:" + base16_ + "){4})|(U(?:" + base16_ + "){8}))"
 	uppercase_ = "(?:" + upper_ + "(" + digit_ + "|" + lower_ + "|" + upper_ + ")*)"
 )

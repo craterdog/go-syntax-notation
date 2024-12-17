@@ -10,6 +10,13 @@
 ................................................................................
 */
 
+/*
+┌────────────────────────────────── WARNING ───────────────────────────────────┐
+│                 This class file was automatically generated.                 │
+│                     Any updates to it may be overwritten.                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+*/
+
 package ast
 
 import ()
@@ -34,10 +41,6 @@ func (c *limitClass_) Limit(
 	return instance
 }
 
-// Constant Methods
-
-// Function Methods
-
 // INSTANCE INTERFACE
 
 // Principal Methods
@@ -53,8 +56,6 @@ func (v *limit_) GetOptionalNumber() string {
 }
 
 // PROTECTED INTERFACE
-
-// Private Methods
 
 // Instance Structure
 

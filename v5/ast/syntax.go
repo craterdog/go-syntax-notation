@@ -10,6 +10,13 @@
 ................................................................................
 */
 
+/*
+┌────────────────────────────────── WARNING ───────────────────────────────────┐
+│                 This class file was automatically generated.                 │
+│                     Any updates to it may be overwritten.                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+*/
+
 package ast
 
 import (
@@ -60,10 +67,6 @@ func (c *syntaxClass_) Syntax(
 	return instance
 }
 
-// Constant Methods
-
-// Function Methods
-
 // INSTANCE INTERFACE
 
 // Principal Methods
@@ -95,8 +98,6 @@ func (v *syntax_) GetExpressions() abs.Sequential[ExpressionLike] {
 }
 
 // PROTECTED INTERFACE
-
-// Private Methods
 
 // Instance Structure
 

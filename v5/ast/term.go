@@ -10,6 +10,13 @@
 ................................................................................
 */
 
+/*
+┌────────────────────────────────── WARNING ───────────────────────────────────┐
+│                 This class file was automatically generated.                 │
+│                     Any updates to it may be overwritten.                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+*/
+
 package ast
 
 import (
@@ -39,10 +46,6 @@ func (c *termClass_) Term(
 	return instance
 }
 
-// Constant Methods
-
-// Function Methods
-
 // INSTANCE INTERFACE
 
 // Principal Methods
@@ -58,8 +61,6 @@ func (v *term_) GetAny() any {
 }
 
 // PROTECTED INTERFACE
-
-// Private Methods
 
 // Instance Structure
 
