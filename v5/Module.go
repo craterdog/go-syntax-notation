@@ -39,6 +39,35 @@ import (
 // Ast
 
 type (
+	AlternativeClassLike = ast.AlternativeClassLike
+	CardinalityClassLike = ast.CardinalityClassLike
+	CharacterClassLike   = ast.CharacterClassLike
+	ConstrainedClassLike = ast.ConstrainedClassLike
+	DefinitionClassLike  = ast.DefinitionClassLike
+	ElementClassLike     = ast.ElementClassLike
+	ExplicitClassLike    = ast.ExplicitClassLike
+	ExpressionClassLike  = ast.ExpressionClassLike
+	ExtentClassLike      = ast.ExtentClassLike
+	FilterClassLike      = ast.FilterClassLike
+	GroupClassLike       = ast.GroupClassLike
+	IdentifierClassLike  = ast.IdentifierClassLike
+	InlineClassLike      = ast.InlineClassLike
+	LimitClassLike       = ast.LimitClassLike
+	LineClassLike        = ast.LineClassLike
+	MultilineClassLike   = ast.MultilineClassLike
+	NoticeClassLike      = ast.NoticeClassLike
+	OptionClassLike      = ast.OptionClassLike
+	PatternClassLike     = ast.PatternClassLike
+	QuantifiedClassLike  = ast.QuantifiedClassLike
+	ReferenceClassLike   = ast.ReferenceClassLike
+	RepetitionClassLike  = ast.RepetitionClassLike
+	RuleClassLike        = ast.RuleClassLike
+	SyntaxClassLike      = ast.SyntaxClassLike
+	TermClassLike        = ast.TermClassLike
+	TextClassLike        = ast.TextClassLike
+)
+
+type (
 	AlternativeLike = ast.AlternativeLike
 	CardinalityLike = ast.CardinalityLike
 	CharacterLike   = ast.CharacterLike
@@ -92,6 +121,16 @@ const (
 )
 
 type (
+	FormatterClassLike = gra.FormatterClassLike
+	ParserClassLike    = gra.ParserClassLike
+	ProcessorClassLike = gra.ProcessorClassLike
+	ScannerClassLike   = gra.ScannerClassLike
+	TokenClassLike     = gra.TokenClassLike
+	ValidatorClassLike = gra.ValidatorClassLike
+	VisitorClassLike   = gra.VisitorClassLike
+)
+
+type (
 	FormatterLike = gra.FormatterLike
 	ParserLike    = gra.ParserLike
 	ProcessorLike = gra.ProcessorLike
@@ -110,7 +149,7 @@ type (
 // Ast/Alternative
 
 func Alternative(
-	option OptionLike,
+	option ast.OptionLike,
 ) ast.AlternativeLike {
 	return ast.AlternativeClass().Alternative(
 		option,
@@ -171,7 +210,7 @@ func Element(
 
 func Explicit(
 	glyph string,
-	optionalExtent ExtentLike,
+	optionalExtent ast.ExtentLike,
 ) ast.ExplicitLike {
 	return ast.ExplicitClass().Explicit(
 		glyph,
@@ -183,7 +222,7 @@ func Explicit(
 
 func Expression(
 	lowercase string,
-	pattern PatternLike,
+	pattern ast.PatternLike,
 	optionalNote string,
 ) ast.ExpressionLike {
 	return ast.ExpressionClass().Expression(
@@ -207,7 +246,7 @@ func Extent(
 
 func Filter(
 	optionalExcluded string,
-	characters abs.Sequential[CharacterLike],
+	characters abs.Sequential[ast.CharacterLike],
 ) ast.FilterLike {
 	return ast.FilterClass().Filter(
 		optionalExcluded,
@@ -218,7 +257,7 @@ func Filter(
 // Ast/Group
 
 func Group(
-	pattern PatternLike,
+	pattern ast.PatternLike,
 ) ast.GroupLike {
 	return ast.GroupClass().Group(
 		pattern,
@@ -238,7 +277,7 @@ func Identifier(
 // Ast/Inline
 
 func Inline(
-	terms abs.Sequential[TermLike],
+	terms abs.Sequential[ast.TermLike],
 	optionalNote string,
 ) ast.InlineLike {
 	return ast.InlineClass().Inline(
@@ -260,7 +299,7 @@ func Limit(
 // Ast/Line
 
 func Line(
-	identifier IdentifierLike,
+	identifier ast.IdentifierLike,
 	optionalNote string,
 ) ast.LineLike {
 	return ast.LineClass().Line(
@@ -272,7 +311,7 @@ func Line(
 // Ast/Multiline
 
 func Multiline(
-	lines abs.Sequential[LineLike],
+	lines abs.Sequential[ast.LineLike],
 ) ast.MultilineLike {
 	return ast.MultilineClass().Multiline(
 		lines,
@@ -292,7 +331,7 @@ func Notice(
 // Ast/Option
 
 func Option(
-	repetitions abs.Sequential[RepetitionLike],
+	repetitions abs.Sequential[ast.RepetitionLike],
 ) ast.OptionLike {
 	return ast.OptionClass().Option(
 		repetitions,
@@ -302,8 +341,8 @@ func Option(
 // Ast/Pattern
 
 func Pattern(
-	option OptionLike,
-	alternatives abs.Sequential[AlternativeLike],
+	option ast.OptionLike,
+	alternatives abs.Sequential[ast.AlternativeLike],
 ) ast.PatternLike {
 	return ast.PatternClass().Pattern(
 		option,
@@ -315,7 +354,7 @@ func Pattern(
 
 func Quantified(
 	number string,
-	optionalLimit LimitLike,
+	optionalLimit ast.LimitLike,
 ) ast.QuantifiedLike {
 	return ast.QuantifiedClass().Quantified(
 		number,
@@ -326,8 +365,8 @@ func Quantified(
 // Ast/Reference
 
 func Reference(
-	identifier IdentifierLike,
-	optionalCardinality CardinalityLike,
+	identifier ast.IdentifierLike,
+	optionalCardinality ast.CardinalityLike,
 ) ast.ReferenceLike {
 	return ast.ReferenceClass().Reference(
 		identifier,
@@ -338,8 +377,8 @@ func Reference(
 // Ast/Repetition
 
 func Repetition(
-	element ElementLike,
-	optionalCardinality CardinalityLike,
+	element ast.ElementLike,
+	optionalCardinality ast.CardinalityLike,
 ) ast.RepetitionLike {
 	return ast.RepetitionClass().Repetition(
 		element,
@@ -351,7 +390,7 @@ func Repetition(
 
 func Rule(
 	uppercase string,
-	definition DefinitionLike,
+	definition ast.DefinitionLike,
 ) ast.RuleLike {
 	return ast.RuleClass().Rule(
 		uppercase,
@@ -362,11 +401,11 @@ func Rule(
 // Ast/Syntax
 
 func Syntax(
-	notice NoticeLike,
+	notice ast.NoticeLike,
 	comment1 string,
-	rules abs.Sequential[RuleLike],
+	rules abs.Sequential[ast.RuleLike],
 	comment2 string,
-	expressions abs.Sequential[ExpressionLike],
+	expressions abs.Sequential[ast.ExpressionLike],
 ) ast.SyntaxLike {
 	return ast.SyntaxClass().Syntax(
 		notice,
@@ -419,7 +458,7 @@ func Processor() gra.ProcessorLike {
 
 func Scanner(
 	source string,
-	tokens abs.QueueLike[TokenLike],
+	tokens abs.QueueLike[gra.TokenLike],
 ) gra.ScannerLike {
 	return gra.ScannerClass().Scanner(
 		source,
@@ -432,7 +471,7 @@ func Scanner(
 func Token(
 	line uint,
 	position uint,
-	type_ TokenType,
+	type_ gra.TokenType,
 	value string,
 ) gra.TokenLike {
 	return gra.TokenClass().Token(
@@ -452,7 +491,7 @@ func Validator() gra.ValidatorLike {
 // Grammar/Visitor
 
 func Visitor(
-	processor Methodical,
+	processor gra.Methodical,
 ) gra.VisitorLike {
 	return gra.VisitorClass().Visitor(
 		processor,
