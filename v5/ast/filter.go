@@ -20,7 +20,7 @@
 package ast
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v5/collection"
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 	uti "github.com/craterdog/go-missing-utilities/v2"
 )
 
@@ -36,7 +36,7 @@ func FilterClass() FilterClassLike {
 
 func (c *filterClass_) Filter(
 	optionalExcluded string,
-	characters abs.Sequential[CharacterLike],
+	characters col.Sequential[CharacterLike],
 ) FilterLike {
 	if uti.IsUndefined(characters) {
 		panic("The \"characters\" attribute is required by this class.")
@@ -63,7 +63,7 @@ func (v *filter_) GetOptionalExcluded() string {
 	return v.optionalExcluded_
 }
 
-func (v *filter_) GetCharacters() abs.Sequential[CharacterLike] {
+func (v *filter_) GetCharacters() col.Sequential[CharacterLike] {
 	return v.characters_
 }
 
@@ -74,7 +74,7 @@ func (v *filter_) GetCharacters() abs.Sequential[CharacterLike] {
 type filter_ struct {
 	// Declare the instance attributes.
 	optionalExcluded_ string
-	characters_       abs.Sequential[CharacterLike]
+	characters_       col.Sequential[CharacterLike]
 }
 
 // Class Structure

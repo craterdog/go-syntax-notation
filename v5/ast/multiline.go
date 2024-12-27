@@ -20,7 +20,7 @@
 package ast
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v5/collection"
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 	uti "github.com/craterdog/go-missing-utilities/v2"
 )
 
@@ -35,7 +35,7 @@ func MultilineClass() MultilineClassLike {
 // Constructor Methods
 
 func (c *multilineClass_) Multiline(
-	lines abs.Sequential[LineLike],
+	lines col.Sequential[LineLike],
 ) MultilineLike {
 	if uti.IsUndefined(lines) {
 		panic("The \"lines\" attribute is required by this class.")
@@ -57,7 +57,7 @@ func (v *multiline_) GetClass() MultilineClassLike {
 
 // Attribute Methods
 
-func (v *multiline_) GetLines() abs.Sequential[LineLike] {
+func (v *multiline_) GetLines() col.Sequential[LineLike] {
 	return v.lines_
 }
 
@@ -67,7 +67,7 @@ func (v *multiline_) GetLines() abs.Sequential[LineLike] {
 
 type multiline_ struct {
 	// Declare the instance attributes.
-	lines_ abs.Sequential[LineLike]
+	lines_ col.Sequential[LineLike]
 }
 
 // Class Structure

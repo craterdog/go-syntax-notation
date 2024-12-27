@@ -20,7 +20,7 @@
 package ast
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v5/collection"
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 	uti "github.com/craterdog/go-missing-utilities/v2"
 )
 
@@ -36,7 +36,7 @@ func PatternClass() PatternClassLike {
 
 func (c *patternClass_) Pattern(
 	option OptionLike,
-	alternatives abs.Sequential[AlternativeLike],
+	alternatives col.Sequential[AlternativeLike],
 ) PatternLike {
 	if uti.IsUndefined(option) {
 		panic("The \"option\" attribute is required by this class.")
@@ -66,7 +66,7 @@ func (v *pattern_) GetOption() OptionLike {
 	return v.option_
 }
 
-func (v *pattern_) GetAlternatives() abs.Sequential[AlternativeLike] {
+func (v *pattern_) GetAlternatives() col.Sequential[AlternativeLike] {
 	return v.alternatives_
 }
 
@@ -77,7 +77,7 @@ func (v *pattern_) GetAlternatives() abs.Sequential[AlternativeLike] {
 type pattern_ struct {
 	// Declare the instance attributes.
 	option_       OptionLike
-	alternatives_ abs.Sequential[AlternativeLike]
+	alternatives_ col.Sequential[AlternativeLike]
 }
 
 // Class Structure

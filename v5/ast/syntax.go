@@ -20,7 +20,7 @@
 package ast
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v5/collection"
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 	uti "github.com/craterdog/go-missing-utilities/v2"
 )
 
@@ -37,9 +37,9 @@ func SyntaxClass() SyntaxClassLike {
 func (c *syntaxClass_) Syntax(
 	notice NoticeLike,
 	comment1 string,
-	rules abs.Sequential[RuleLike],
+	rules col.Sequential[RuleLike],
 	comment2 string,
-	expressions abs.Sequential[ExpressionLike],
+	expressions col.Sequential[ExpressionLike],
 ) SyntaxLike {
 	if uti.IsUndefined(notice) {
 		panic("The \"notice\" attribute is required by this class.")
@@ -85,7 +85,7 @@ func (v *syntax_) GetComment1() string {
 	return v.comment1_
 }
 
-func (v *syntax_) GetRules() abs.Sequential[RuleLike] {
+func (v *syntax_) GetRules() col.Sequential[RuleLike] {
 	return v.rules_
 }
 
@@ -93,7 +93,7 @@ func (v *syntax_) GetComment2() string {
 	return v.comment2_
 }
 
-func (v *syntax_) GetExpressions() abs.Sequential[ExpressionLike] {
+func (v *syntax_) GetExpressions() col.Sequential[ExpressionLike] {
 	return v.expressions_
 }
 
@@ -105,9 +105,9 @@ type syntax_ struct {
 	// Declare the instance attributes.
 	notice_      NoticeLike
 	comment1_    string
-	rules_       abs.Sequential[RuleLike]
+	rules_       col.Sequential[RuleLike]
 	comment2_    string
-	expressions_ abs.Sequential[ExpressionLike]
+	expressions_ col.Sequential[ExpressionLike]
 }
 
 // Class Structure

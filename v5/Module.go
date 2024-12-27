@@ -29,7 +29,7 @@ For detailed documentation on this entire module refer to the wiki:
 package module
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v5/collection"
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 	ast "github.com/craterdog/go-syntax-notation/v5/ast"
 	gra "github.com/craterdog/go-syntax-notation/v5/grammar"
 )
@@ -246,7 +246,7 @@ func Extent(
 
 func Filter(
 	optionalExcluded string,
-	characters abs.Sequential[ast.CharacterLike],
+	characters col.Sequential[ast.CharacterLike],
 ) ast.FilterLike {
 	return ast.FilterClass().Filter(
 		optionalExcluded,
@@ -277,7 +277,7 @@ func Identifier(
 // Ast/Inline
 
 func Inline(
-	terms abs.Sequential[ast.TermLike],
+	terms col.Sequential[ast.TermLike],
 	optionalNote string,
 ) ast.InlineLike {
 	return ast.InlineClass().Inline(
@@ -311,7 +311,7 @@ func Line(
 // Ast/Multiline
 
 func Multiline(
-	lines abs.Sequential[ast.LineLike],
+	lines col.Sequential[ast.LineLike],
 ) ast.MultilineLike {
 	return ast.MultilineClass().Multiline(
 		lines,
@@ -331,7 +331,7 @@ func Notice(
 // Ast/Option
 
 func Option(
-	repetitions abs.Sequential[ast.RepetitionLike],
+	repetitions col.Sequential[ast.RepetitionLike],
 ) ast.OptionLike {
 	return ast.OptionClass().Option(
 		repetitions,
@@ -342,7 +342,7 @@ func Option(
 
 func Pattern(
 	option ast.OptionLike,
-	alternatives abs.Sequential[ast.AlternativeLike],
+	alternatives col.Sequential[ast.AlternativeLike],
 ) ast.PatternLike {
 	return ast.PatternClass().Pattern(
 		option,
@@ -403,9 +403,9 @@ func Rule(
 func Syntax(
 	notice ast.NoticeLike,
 	comment1 string,
-	rules abs.Sequential[ast.RuleLike],
+	rules col.Sequential[ast.RuleLike],
 	comment2 string,
-	expressions abs.Sequential[ast.ExpressionLike],
+	expressions col.Sequential[ast.ExpressionLike],
 ) ast.SyntaxLike {
 	return ast.SyntaxClass().Syntax(
 		notice,
@@ -458,7 +458,7 @@ func Processor() gra.ProcessorLike {
 
 func Scanner(
 	source string,
-	tokens abs.QueueLike[gra.TokenLike],
+	tokens col.QueueLike[gra.TokenLike],
 ) gra.ScannerLike {
 	return gra.ScannerClass().Scanner(
 		source,

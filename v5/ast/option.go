@@ -20,7 +20,7 @@
 package ast
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v5/collection"
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 	uti "github.com/craterdog/go-missing-utilities/v2"
 )
 
@@ -35,7 +35,7 @@ func OptionClass() OptionClassLike {
 // Constructor Methods
 
 func (c *optionClass_) Option(
-	repetitions abs.Sequential[RepetitionLike],
+	repetitions col.Sequential[RepetitionLike],
 ) OptionLike {
 	if uti.IsUndefined(repetitions) {
 		panic("The \"repetitions\" attribute is required by this class.")
@@ -57,7 +57,7 @@ func (v *option_) GetClass() OptionClassLike {
 
 // Attribute Methods
 
-func (v *option_) GetRepetitions() abs.Sequential[RepetitionLike] {
+func (v *option_) GetRepetitions() col.Sequential[RepetitionLike] {
 	return v.repetitions_
 }
 
@@ -67,7 +67,7 @@ func (v *option_) GetRepetitions() abs.Sequential[RepetitionLike] {
 
 type option_ struct {
 	// Declare the instance attributes.
-	repetitions_ abs.Sequential[RepetitionLike]
+	repetitions_ col.Sequential[RepetitionLike]
 }
 
 // Class Structure

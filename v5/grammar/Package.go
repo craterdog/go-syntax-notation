@@ -41,7 +41,7 @@ on interfaces, not on each other.
 package grammar
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v5/collection"
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 	ast "github.com/craterdog/go-syntax-notation/v5/ast"
 )
 
@@ -120,7 +120,7 @@ type ScannerClassLike interface {
 	// Constructor Methods
 	Scanner(
 		source string,
-		tokens abs.QueueLike[TokenLike],
+		tokens col.QueueLike[TokenLike],
 	) ScannerLike
 
 	// Function Methods

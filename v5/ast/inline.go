@@ -20,7 +20,7 @@
 package ast
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v5/collection"
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 	uti "github.com/craterdog/go-missing-utilities/v2"
 )
 
@@ -35,7 +35,7 @@ func InlineClass() InlineClassLike {
 // Constructor Methods
 
 func (c *inlineClass_) Inline(
-	terms abs.Sequential[TermLike],
+	terms col.Sequential[TermLike],
 	optionalNote string,
 ) InlineLike {
 	if uti.IsUndefined(terms) {
@@ -59,7 +59,7 @@ func (v *inline_) GetClass() InlineClassLike {
 
 // Attribute Methods
 
-func (v *inline_) GetTerms() abs.Sequential[TermLike] {
+func (v *inline_) GetTerms() col.Sequential[TermLike] {
 	return v.terms_
 }
 
@@ -73,7 +73,7 @@ func (v *inline_) GetOptionalNote() string {
 
 type inline_ struct {
 	// Declare the instance attributes.
-	terms_        abs.Sequential[TermLike]
+	terms_        col.Sequential[TermLike]
 	optionalNote_ string
 }
 

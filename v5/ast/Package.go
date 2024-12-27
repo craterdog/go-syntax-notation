@@ -36,7 +36,7 @@ on interfaces, not on each other.
 package ast
 
 import (
-	abs "github.com/craterdog/go-collection-framework/v5/collection"
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 )
 
 // TYPE DECLARATIONS
@@ -165,7 +165,7 @@ type FilterClassLike interface {
 	// Constructor Methods
 	Filter(
 		optionalExcluded string,
-		characters abs.Sequential[CharacterLike],
+		characters col.Sequential[CharacterLike],
 	) FilterLike
 }
 
@@ -201,7 +201,7 @@ supported by each concrete inline-like class.
 type InlineClassLike interface {
 	// Constructor Methods
 	Inline(
-		terms abs.Sequential[TermLike],
+		terms col.Sequential[TermLike],
 		optionalNote string,
 	) InlineLike
 }
@@ -239,7 +239,7 @@ supported by each concrete multiline-like class.
 type MultilineClassLike interface {
 	// Constructor Methods
 	Multiline(
-		lines abs.Sequential[LineLike],
+		lines col.Sequential[LineLike],
 	) MultilineLike
 }
 
@@ -263,7 +263,7 @@ supported by each concrete option-like class.
 type OptionClassLike interface {
 	// Constructor Methods
 	Option(
-		repetitions abs.Sequential[RepetitionLike],
+		repetitions col.Sequential[RepetitionLike],
 	) OptionLike
 }
 
@@ -276,7 +276,7 @@ type PatternClassLike interface {
 	// Constructor Methods
 	Pattern(
 		option OptionLike,
-		alternatives abs.Sequential[AlternativeLike],
+		alternatives col.Sequential[AlternativeLike],
 	) PatternLike
 }
 
@@ -342,9 +342,9 @@ type SyntaxClassLike interface {
 	Syntax(
 		notice NoticeLike,
 		comment1 string,
-		rules abs.Sequential[RuleLike],
+		rules col.Sequential[RuleLike],
 		comment2 string,
-		expressions abs.Sequential[ExpressionLike],
+		expressions col.Sequential[ExpressionLike],
 	) SyntaxLike
 }
 
@@ -505,7 +505,7 @@ type FilterLike interface {
 
 	// Attribute Methods
 	GetOptionalExcluded() string
-	GetCharacters() abs.Sequential[CharacterLike]
+	GetCharacters() col.Sequential[CharacterLike]
 }
 
 /*
@@ -544,7 +544,7 @@ type InlineLike interface {
 	GetClass() InlineClassLike
 
 	// Attribute Methods
-	GetTerms() abs.Sequential[TermLike]
+	GetTerms() col.Sequential[TermLike]
 	GetOptionalNote() string
 }
 
@@ -585,7 +585,7 @@ type MultilineLike interface {
 	GetClass() MultilineClassLike
 
 	// Attribute Methods
-	GetLines() abs.Sequential[LineLike]
+	GetLines() col.Sequential[LineLike]
 }
 
 /*
@@ -611,7 +611,7 @@ type OptionLike interface {
 	GetClass() OptionClassLike
 
 	// Attribute Methods
-	GetRepetitions() abs.Sequential[RepetitionLike]
+	GetRepetitions() col.Sequential[RepetitionLike]
 }
 
 /*
@@ -625,7 +625,7 @@ type PatternLike interface {
 
 	// Attribute Methods
 	GetOption() OptionLike
-	GetAlternatives() abs.Sequential[AlternativeLike]
+	GetAlternatives() col.Sequential[AlternativeLike]
 }
 
 /*
@@ -696,9 +696,9 @@ type SyntaxLike interface {
 	// Attribute Methods
 	GetNotice() NoticeLike
 	GetComment1() string
-	GetRules() abs.Sequential[RuleLike]
+	GetRules() col.Sequential[RuleLike]
 	GetComment2() string
-	GetExpressions() abs.Sequential[ExpressionLike]
+	GetExpressions() col.Sequential[ExpressionLike]
 }
 
 /*
