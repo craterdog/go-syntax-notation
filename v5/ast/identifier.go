@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func IdentifierClass() IdentifierClassLike {
-	return identifierClassReference()
+	return identifierClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *identifierClass_) Identifier(
 // Principal Methods
 
 func (v *identifier_) GetClass() IdentifierClassLike {
-	return identifierClassReference()
+	return identifierClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type identifierClass_ struct {
 
 // Class Reference
 
-func identifierClassReference() *identifierClass_ {
+func identifierClass() *identifierClass_ {
 	return identifierClassReference_
 }
 

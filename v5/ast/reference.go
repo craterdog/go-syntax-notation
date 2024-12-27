@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func ReferenceClass() ReferenceClassLike {
-	return referenceClassReference()
+	return referenceClass()
 }
 
 // Constructor Methods
@@ -53,7 +53,7 @@ func (c *referenceClass_) Reference(
 // Principal Methods
 
 func (v *reference_) GetClass() ReferenceClassLike {
-	return referenceClassReference()
+	return referenceClass()
 }
 
 // Attribute Methods
@@ -84,7 +84,7 @@ type referenceClass_ struct {
 
 // Class Reference
 
-func referenceClassReference() *referenceClass_ {
+func referenceClass() *referenceClass_ {
 	return referenceClassReference_
 }
 

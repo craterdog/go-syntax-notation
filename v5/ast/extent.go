@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func ExtentClass() ExtentClassLike {
-	return extentClassReference()
+	return extentClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *extentClass_) Extent(
 // Principal Methods
 
 func (v *extent_) GetClass() ExtentClassLike {
-	return extentClassReference()
+	return extentClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type extentClass_ struct {
 
 // Class Reference
 
-func extentClassReference() *extentClass_ {
+func extentClass() *extentClass_ {
 	return extentClassReference_
 }
 

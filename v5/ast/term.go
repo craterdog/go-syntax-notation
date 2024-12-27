@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func TermClass() TermClassLike {
-	return termClassReference()
+	return termClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *termClass_) Term(
 // Principal Methods
 
 func (v *term_) GetClass() TermClassLike {
-	return termClassReference()
+	return termClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type termClass_ struct {
 
 // Class Reference
 
-func termClassReference() *termClass_ {
+func termClass() *termClass_ {
 	return termClassReference_
 }
 

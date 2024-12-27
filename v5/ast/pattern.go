@@ -29,7 +29,7 @@ import (
 // Access Function
 
 func PatternClass() PatternClassLike {
-	return patternClassReference()
+	return patternClass()
 }
 
 // Constructor Methods
@@ -57,7 +57,7 @@ func (c *patternClass_) Pattern(
 // Principal Methods
 
 func (v *pattern_) GetClass() PatternClassLike {
-	return patternClassReference()
+	return patternClass()
 }
 
 // Attribute Methods
@@ -88,7 +88,7 @@ type patternClass_ struct {
 
 // Class Reference
 
-func patternClassReference() *patternClass_ {
+func patternClass() *patternClass_ {
 	return patternClassReference_
 }
 

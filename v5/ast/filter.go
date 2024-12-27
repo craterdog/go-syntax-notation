@@ -29,7 +29,7 @@ import (
 // Access Function
 
 func FilterClass() FilterClassLike {
-	return filterClassReference()
+	return filterClass()
 }
 
 // Constructor Methods
@@ -54,7 +54,7 @@ func (c *filterClass_) Filter(
 // Principal Methods
 
 func (v *filter_) GetClass() FilterClassLike {
-	return filterClassReference()
+	return filterClass()
 }
 
 // Attribute Methods
@@ -85,7 +85,7 @@ type filterClass_ struct {
 
 // Class Reference
 
-func filterClassReference() *filterClass_ {
+func filterClass() *filterClass_ {
 	return filterClassReference_
 }
 

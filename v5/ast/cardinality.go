@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func CardinalityClass() CardinalityClassLike {
-	return cardinalityClassReference()
+	return cardinalityClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *cardinalityClass_) Cardinality(
 // Principal Methods
 
 func (v *cardinality_) GetClass() CardinalityClassLike {
-	return cardinalityClassReference()
+	return cardinalityClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type cardinalityClass_ struct {
 
 // Class Reference
 
-func cardinalityClassReference() *cardinalityClass_ {
+func cardinalityClass() *cardinalityClass_ {
 	return cardinalityClassReference_
 }
 

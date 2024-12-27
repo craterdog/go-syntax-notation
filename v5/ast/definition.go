@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func DefinitionClass() DefinitionClassLike {
-	return definitionClassReference()
+	return definitionClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *definitionClass_) Definition(
 // Principal Methods
 
 func (v *definition_) GetClass() DefinitionClassLike {
-	return definitionClassReference()
+	return definitionClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type definitionClass_ struct {
 
 // Class Reference
 
-func definitionClassReference() *definitionClass_ {
+func definitionClass() *definitionClass_ {
 	return definitionClassReference_
 }
 

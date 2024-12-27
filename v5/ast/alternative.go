@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func AlternativeClass() AlternativeClassLike {
-	return alternativeClassReference()
+	return alternativeClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *alternativeClass_) Alternative(
 // Principal Methods
 
 func (v *alternative_) GetClass() AlternativeClassLike {
-	return alternativeClassReference()
+	return alternativeClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type alternativeClass_ struct {
 
 // Class Reference
 
-func alternativeClassReference() *alternativeClass_ {
+func alternativeClass() *alternativeClass_ {
 	return alternativeClassReference_
 }
 

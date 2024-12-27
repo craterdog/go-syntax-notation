@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func ExpressionClass() ExpressionClassLike {
-	return expressionClassReference()
+	return expressionClass()
 }
 
 // Constructor Methods
@@ -58,7 +58,7 @@ func (c *expressionClass_) Expression(
 // Principal Methods
 
 func (v *expression_) GetClass() ExpressionClassLike {
-	return expressionClassReference()
+	return expressionClass()
 }
 
 // Attribute Methods
@@ -94,7 +94,7 @@ type expressionClass_ struct {
 
 // Class Reference
 
-func expressionClassReference() *expressionClass_ {
+func expressionClass() *expressionClass_ {
 	return expressionClassReference_
 }
 

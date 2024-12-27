@@ -29,7 +29,7 @@ import (
 // Access Function
 
 func OptionClass() OptionClassLike {
-	return optionClassReference()
+	return optionClass()
 }
 
 // Constructor Methods
@@ -52,7 +52,7 @@ func (c *optionClass_) Option(
 // Principal Methods
 
 func (v *option_) GetClass() OptionClassLike {
-	return optionClassReference()
+	return optionClass()
 }
 
 // Attribute Methods
@@ -78,7 +78,7 @@ type optionClass_ struct {
 
 // Class Reference
 
-func optionClassReference() *optionClass_ {
+func optionClass() *optionClass_ {
 	return optionClassReference_
 }
 

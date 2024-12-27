@@ -29,7 +29,7 @@ import (
 // Access Function
 
 func SyntaxClass() SyntaxClassLike {
-	return syntaxClassReference()
+	return syntaxClass()
 }
 
 // Constructor Methods
@@ -72,7 +72,7 @@ func (c *syntaxClass_) Syntax(
 // Principal Methods
 
 func (v *syntax_) GetClass() SyntaxClassLike {
-	return syntaxClassReference()
+	return syntaxClass()
 }
 
 // Attribute Methods
@@ -118,7 +118,7 @@ type syntaxClass_ struct {
 
 // Class Reference
 
-func syntaxClassReference() *syntaxClass_ {
+func syntaxClass() *syntaxClass_ {
 	return syntaxClassReference_
 }
 

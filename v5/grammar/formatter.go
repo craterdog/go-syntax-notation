@@ -29,7 +29,7 @@ import (
 // Access Function
 
 func FormatterClass() FormatterClassLike {
-	return formatterClassReference()
+	return formatterClass()
 }
 
 // Constructor Methods
@@ -50,7 +50,7 @@ func (c *formatterClass_) Formatter() FormatterLike {
 // Principal Methods
 
 func (v *formatter_) GetClass() FormatterClassLike {
-	return formatterClassReference()
+	return formatterClass()
 }
 
 func (v *formatter_) FormatSyntax(syntax ast.SyntaxLike) string {
@@ -352,7 +352,7 @@ type formatterClass_ struct {
 
 // Class Reference
 
-func formatterClassReference() *formatterClass_ {
+func formatterClass() *formatterClass_ {
 	return formatterClassReference_
 }
 

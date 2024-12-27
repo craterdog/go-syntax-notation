@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func CharacterClass() CharacterClassLike {
-	return characterClassReference()
+	return characterClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *characterClass_) Character(
 // Principal Methods
 
 func (v *character_) GetClass() CharacterClassLike {
-	return characterClassReference()
+	return characterClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type characterClass_ struct {
 
 // Class Reference
 
-func characterClassReference() *characterClass_ {
+func characterClass() *characterClass_ {
 	return characterClassReference_
 }
 

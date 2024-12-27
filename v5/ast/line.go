@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func LineClass() LineClassLike {
-	return lineClassReference()
+	return lineClass()
 }
 
 // Constructor Methods
@@ -53,7 +53,7 @@ func (c *lineClass_) Line(
 // Principal Methods
 
 func (v *line_) GetClass() LineClassLike {
-	return lineClassReference()
+	return lineClass()
 }
 
 // Attribute Methods
@@ -84,7 +84,7 @@ type lineClass_ struct {
 
 // Class Reference
 
-func lineClassReference() *lineClass_ {
+func lineClass() *lineClass_ {
 	return lineClassReference_
 }
 

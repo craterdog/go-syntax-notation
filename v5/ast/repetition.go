@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func RepetitionClass() RepetitionClassLike {
-	return repetitionClassReference()
+	return repetitionClass()
 }
 
 // Constructor Methods
@@ -53,7 +53,7 @@ func (c *repetitionClass_) Repetition(
 // Principal Methods
 
 func (v *repetition_) GetClass() RepetitionClassLike {
-	return repetitionClassReference()
+	return repetitionClass()
 }
 
 // Attribute Methods
@@ -84,7 +84,7 @@ type repetitionClass_ struct {
 
 // Class Reference
 
-func repetitionClassReference() *repetitionClass_ {
+func repetitionClass() *repetitionClass_ {
 	return repetitionClassReference_
 }
 

@@ -29,7 +29,7 @@ import (
 // Access Function
 
 func InlineClass() InlineClassLike {
-	return inlineClassReference()
+	return inlineClass()
 }
 
 // Constructor Methods
@@ -54,7 +54,7 @@ func (c *inlineClass_) Inline(
 // Principal Methods
 
 func (v *inline_) GetClass() InlineClassLike {
-	return inlineClassReference()
+	return inlineClass()
 }
 
 // Attribute Methods
@@ -85,7 +85,7 @@ type inlineClass_ struct {
 
 // Class Reference
 
-func inlineClassReference() *inlineClass_ {
+func inlineClass() *inlineClass_ {
 	return inlineClassReference_
 }
 

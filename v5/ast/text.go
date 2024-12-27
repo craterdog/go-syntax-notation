@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func TextClass() TextClassLike {
-	return textClassReference()
+	return textClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *textClass_) Text(
 // Principal Methods
 
 func (v *text_) GetClass() TextClassLike {
-	return textClassReference()
+	return textClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type textClass_ struct {
 
 // Class Reference
 
-func textClassReference() *textClass_ {
+func textClass() *textClass_ {
 	return textClassReference_
 }
 

@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func QuantifiedClass() QuantifiedClassLike {
-	return quantifiedClassReference()
+	return quantifiedClass()
 }
 
 // Constructor Methods
@@ -53,7 +53,7 @@ func (c *quantifiedClass_) Quantified(
 // Principal Methods
 
 func (v *quantified_) GetClass() QuantifiedClassLike {
-	return quantifiedClassReference()
+	return quantifiedClass()
 }
 
 // Attribute Methods
@@ -84,7 +84,7 @@ type quantifiedClass_ struct {
 
 // Class Reference
 
-func quantifiedClassReference() *quantifiedClass_ {
+func quantifiedClass() *quantifiedClass_ {
 	return quantifiedClassReference_
 }
 

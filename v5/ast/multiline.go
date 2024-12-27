@@ -29,7 +29,7 @@ import (
 // Access Function
 
 func MultilineClass() MultilineClassLike {
-	return multilineClassReference()
+	return multilineClass()
 }
 
 // Constructor Methods
@@ -52,7 +52,7 @@ func (c *multilineClass_) Multiline(
 // Principal Methods
 
 func (v *multiline_) GetClass() MultilineClassLike {
-	return multilineClassReference()
+	return multilineClass()
 }
 
 // Attribute Methods
@@ -78,7 +78,7 @@ type multilineClass_ struct {
 
 // Class Reference
 
-func multilineClassReference() *multilineClass_ {
+func multilineClass() *multilineClass_ {
 	return multilineClassReference_
 }
 

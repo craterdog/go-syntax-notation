@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func ExplicitClass() ExplicitClassLike {
-	return explicitClassReference()
+	return explicitClass()
 }
 
 // Constructor Methods
@@ -53,7 +53,7 @@ func (c *explicitClass_) Explicit(
 // Principal Methods
 
 func (v *explicit_) GetClass() ExplicitClassLike {
-	return explicitClassReference()
+	return explicitClass()
 }
 
 // Attribute Methods
@@ -84,7 +84,7 @@ type explicitClass_ struct {
 
 // Class Reference
 
-func explicitClassReference() *explicitClass_ {
+func explicitClass() *explicitClass_ {
 	return explicitClassReference_
 }
 

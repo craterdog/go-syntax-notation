@@ -26,7 +26,7 @@ import ()
 // Access Function
 
 func LimitClass() LimitClassLike {
-	return limitClassReference()
+	return limitClass()
 }
 
 // Constructor Methods
@@ -46,7 +46,7 @@ func (c *limitClass_) Limit(
 // Principal Methods
 
 func (v *limit_) GetClass() LimitClassLike {
-	return limitClassReference()
+	return limitClass()
 }
 
 // Attribute Methods
@@ -72,7 +72,7 @@ type limitClass_ struct {
 
 // Class Reference
 
-func limitClassReference() *limitClass_ {
+func limitClass() *limitClass_ {
 	return limitClassReference_
 }
 

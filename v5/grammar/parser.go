@@ -34,7 +34,7 @@ import (
 // Access Function
 
 func ParserClass() ParserClassLike {
-	return parserClassReference()
+	return parserClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *parserClass_) Parser() ParserLike {
 // Principal Methods
 
 func (v *parser_) GetClass() ParserClassLike {
-	return parserClassReference()
+	return parserClass()
 }
 
 func (v *parser_) ParseSource(
@@ -1496,7 +1496,7 @@ func (v *parser_) formatError(
 func (v *parser_) getDefinition(
 	ruleName string,
 ) string {
-	var syntax = parserClassReference().syntax_
+	var syntax = parserClass().syntax_
 	var definition = syntax.GetValue(ruleName)
 	return definition
 }
@@ -1536,6 +1536,8 @@ func (v *parser_) putBack(
 func (v *parser_) remove(
 	tokens abs.Sequential[TokenLike],
 ) {
+	// NOTE: This method does nothing but must exist to satisfy the lint
+	// check on the generated parser code.
 }
 
 // Instance Structure
@@ -1556,13 +1558,13 @@ type parserClass_ struct {
 
 // Class Reference
 
-func parserClassReference() *parserClass_ {
+func parserClass() *parserClass_ {
 	return parserClassReference_
 }
 
 var parserClassReference_ = &parserClass_{
 	// Initialize the class constants.
-	syntax_: col.AnyCatalog[string, string](
+	syntax_: col.CatalogFromMap[string, string](
 		map[string]string{
 			"$Syntax": `Notice comment Rule+ comment Expression+`,
 			"$Notice": `comment`,

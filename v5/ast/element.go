@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func ElementClass() ElementClassLike {
-	return elementClassReference()
+	return elementClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *elementClass_) Element(
 // Principal Methods
 
 func (v *element_) GetClass() ElementClassLike {
-	return elementClassReference()
+	return elementClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type elementClass_ struct {
 
 // Class Reference
 
-func elementClassReference() *elementClass_ {
+func elementClass() *elementClass_ {
 	return elementClassReference_
 }
 

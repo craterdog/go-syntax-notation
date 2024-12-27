@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func GroupClass() GroupClassLike {
-	return groupClassReference()
+	return groupClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *groupClass_) Group(
 // Principal Methods
 
 func (v *group_) GetClass() GroupClassLike {
-	return groupClassReference()
+	return groupClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type groupClass_ struct {
 
 // Class Reference
 
-func groupClassReference() *groupClass_ {
+func groupClass() *groupClass_ {
 	return groupClassReference_
 }
 

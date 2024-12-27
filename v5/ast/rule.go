@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func RuleClass() RuleClassLike {
-	return ruleClassReference()
+	return ruleClass()
 }
 
 // Constructor Methods
@@ -56,7 +56,7 @@ func (c *ruleClass_) Rule(
 // Principal Methods
 
 func (v *rule_) GetClass() RuleClassLike {
-	return ruleClassReference()
+	return ruleClass()
 }
 
 // Attribute Methods
@@ -87,7 +87,7 @@ type ruleClass_ struct {
 
 // Class Reference
 
-func ruleClassReference() *ruleClass_ {
+func ruleClass() *ruleClass_ {
 	return ruleClassReference_
 }
 

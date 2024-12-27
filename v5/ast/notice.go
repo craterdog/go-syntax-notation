@@ -28,7 +28,7 @@ import (
 // Access Function
 
 func NoticeClass() NoticeClassLike {
-	return noticeClassReference()
+	return noticeClass()
 }
 
 // Constructor Methods
@@ -51,7 +51,7 @@ func (c *noticeClass_) Notice(
 // Principal Methods
 
 func (v *notice_) GetClass() NoticeClassLike {
-	return noticeClassReference()
+	return noticeClass()
 }
 
 // Attribute Methods
@@ -77,7 +77,7 @@ type noticeClass_ struct {
 
 // Class Reference
 
-func noticeClassReference() *noticeClass_ {
+func noticeClass() *noticeClass_ {
 	return noticeClassReference_
 }
 
