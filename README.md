@@ -1,6 +1,6 @@
 <img src="https://craterdog.com/images/CraterDog.png" width="50%">
 
-## Go Class Model
+## Go Syntax Notation
 
 ### Overview
 A Go module for parsing, validating and formatting language grammars defined
@@ -10,7 +10,7 @@ using _Crater Dog Syntax Notation_ (CDSN).
 For more information on this project click on the following links:
  * [project documentation](https://github.com/craterdog/go-syntax-notation/wiki)
  * [coding conventions](https://github.com/craterdog/go-class-model/wiki)
- * [command-line tools](https://github.com/craterdog/go-syntax-tools/wiki)
+ * [command-line tools](https://github.com/craterdog/go-development-tools/wiki)
 
 ### Getting Started
 To include the Go packages for this module use the following import statement:
