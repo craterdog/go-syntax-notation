@@ -66,7 +66,7 @@ func (v *parser_) ParseSource(
 
 	// Attempt to parse the syntax.
 	var syntax, token, ok = v.parseSyntax()
-	if !ok {
+	if !ok || !v.tokens_.IsEmpty() {
 		var message = v.formatError("$Syntax", token)
 		panic(message)
 	}
