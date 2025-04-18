@@ -1,0 +1,136 @@
+!>
+................................................................................
+.    Copyright (c) 2009-2025 Crater Dog Technologies.  All Rights Reserved.    .
+................................................................................
+.  DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.               .
+.                                                                              .
+.  This code is free software; you can redistribute it and/or modify it under  .
+.  the terms of The MIT License (MIT), as published by the Open Source         .
+.  Initiative. (See https://opensource.org/license/MIT)                        .
+................................................................................
+<!
+
+!>
+CRATER DOG SYNTAX NOTATION
+This document contains a formal definition of the Crater Dog Syntax Notation™
+(CDSN) using CDSN itself in homage to Douglas Hofstadter of Gödel, Escher, Bach
+fame.
+
+For more information on CDSN see the wiki at:
+  - https://github.com/craterdog/go-syntax-notation/wiki
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                               RULE DEFINITIONS                               │
+└──────────────────────────────────────────────────────────────────────────────┘
+<!
+$Syntax: Notice comment Definition+ comment Expression+
+
+$Notice: comment newline
+
+$Definition:
+    Multirule
+    Multiexpression
+    Rule
+
+$Multirule: "$" uppercase ":" RuleOption+
+
+$RuleOption: newline uppercase note?
+
+$Multiexpression: "$" uppercase ":" ExpressionOption+
+
+$ExpressionOption: newline lowercase note?
+
+$Rule: "$" uppercase ":" Term+ note?
+
+$Term:
+    Literal
+    Reference
+
+$Literal: quote
+
+$Reference: Identifier Cardinality?  ! The default cardinality is one.
+
+$Identifier:
+    lowercase
+    uppercase
+
+$Cardinality:
+    Constrained
+    Quantified
+
+$Constrained:
+    optional
+    repeated
+
+$Quantified: "{" number Limit? "}"
+
+$Limit: ".." number?  ! The limit of a range of numbers is inclusive.
+
+$Expression: "$" lowercase ":" Pattern note?
+
+$Pattern: Option Alternative*
+
+$Alternative: "|" Option
+
+$Option: Repetition+
+
+$Repetition: Element Cardinality?  ! The default cardinality is one.
+
+$Element:
+    Group
+    Filter
+    Text
+
+$Group: "(" Pattern ")"
+
+$Filter: excluded? "[" Character+ "]"
+
+$Character:
+    Implicit
+    Explicit
+
+$Implicit: intrinsic
+
+$Explicit: glyph Extent?
+
+$Extent: ".." glyph  ! The extent of a range of glyphs is inclusive.
+
+$Text:
+    intrinsic
+    glyph
+    quote
+    lowercase
+
+!>
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                            EXPRESSION DEFINITIONS                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+<!
+$base16: ['0'..'9' 'a'..'f']
+
+$comment: "!>" EOL (ANY | EOL)* EOL "<!" EOL  ! Chooses the shortest possible match.
+
+$escape: '\' (unicode | ['a' 'b' 'f' 'n' 'r' 't' 'v' '"' '\'])
+
+$excluded: "~"
+
+$glyph: "'" ~[CONTROL] "'"  ! Any printable unicode character.
+
+$intrinsic: "ANY" | "CONTROL" | "DIGIT" | "EOL" | "LOWER" | "UPPER"
+
+$lowercase: LOWER (DIGIT | LOWER | UPPER)*
+
+$note: "! " ~[CONTROL]*
+
+$number: DIGIT+
+
+$optional: "?"
+
+$quote: '"' (escape | ~['"' CONTROL])+ '"'
+
+$repeated: "*" | "+"
+
+$unicode: ('x' base16{2}) | ('u' base16{4}) | ('U' base16{8})
+
+$uppercase: UPPER (DIGIT | LOWER | UPPER)*
+
