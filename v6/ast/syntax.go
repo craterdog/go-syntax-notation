@@ -37,7 +37,7 @@ func SyntaxClass() SyntaxClassLike {
 func (c *syntaxClass_) Syntax(
 	notice NoticeLike,
 	comment1 string,
-	definitions col.Sequential[DefinitionLike],
+	rules col.Sequential[RuleLike],
 	comment2 string,
 	expressions col.Sequential[ExpressionLike],
 ) SyntaxLike {
@@ -47,8 +47,8 @@ func (c *syntaxClass_) Syntax(
 	if uti.IsUndefined(comment1) {
 		panic("The \"comment1\" attribute is required by this class.")
 	}
-	if uti.IsUndefined(definitions) {
-		panic("The \"definitions\" attribute is required by this class.")
+	if uti.IsUndefined(rules) {
+		panic("The \"rules\" attribute is required by this class.")
 	}
 	if uti.IsUndefined(comment2) {
 		panic("The \"comment2\" attribute is required by this class.")
@@ -60,7 +60,7 @@ func (c *syntaxClass_) Syntax(
 		// Initialize the instance attributes.
 		notice_:      notice,
 		comment1_:    comment1,
-		definitions_: definitions,
+		rules_:       rules,
 		comment2_:    comment2,
 		expressions_: expressions,
 	}
@@ -85,8 +85,8 @@ func (v *syntax_) GetComment1() string {
 	return v.comment1_
 }
 
-func (v *syntax_) GetDefinitions() col.Sequential[DefinitionLike] {
-	return v.definitions_
+func (v *syntax_) GetRules() col.Sequential[RuleLike] {
+	return v.rules_
 }
 
 func (v *syntax_) GetComment2() string {
@@ -105,7 +105,7 @@ type syntax_ struct {
 	// Declare the instance attributes.
 	notice_      NoticeLike
 	comment1_    string
-	definitions_ col.Sequential[DefinitionLike]
+	rules_       col.Sequential[RuleLike]
 	comment2_    string
 	expressions_ col.Sequential[ExpressionLike]
 }

@@ -185,8 +185,6 @@ func (v *processor_) PostprocessConstrained(
 
 func (v *processor_) PreprocessDefinition(
 	definition ast.DefinitionLike,
-	index uint,
-	size uint,
 ) {
 }
 
@@ -197,8 +195,6 @@ func (v *processor_) ProcessDefinitionSlot(
 
 func (v *processor_) PostprocessDefinition(
 	definition ast.DefinitionLike,
-	index uint,
-	size uint,
 ) {
 }
 
@@ -342,6 +338,21 @@ func (v *processor_) ProcessImplicitSlot(
 
 func (v *processor_) PostprocessImplicit(
 	implicit ast.ImplicitLike,
+) {
+}
+
+func (v *processor_) PreprocessInline(
+	inline ast.InlineLike,
+) {
+}
+
+func (v *processor_) ProcessInlineSlot(
+	slot uint,
+) {
+}
+
+func (v *processor_) PostprocessInline(
+	inline ast.InlineLike,
 ) {
 }
 
@@ -501,6 +512,8 @@ func (v *processor_) PostprocessRepetition(
 
 func (v *processor_) PreprocessRule(
 	rule ast.RuleLike,
+	index uint,
+	size uint,
 ) {
 }
 
@@ -511,6 +524,8 @@ func (v *processor_) ProcessRuleSlot(
 
 func (v *processor_) PostprocessRule(
 	rule ast.RuleLike,
+	index uint,
+	size uint,
 ) {
 }
 

@@ -221,8 +221,6 @@ func (v *validator_) PostprocessConstrained(
 
 func (v *validator_) PreprocessDefinition(
 	definition ast.DefinitionLike,
-	index uint,
-	size uint,
 ) {
 	// TBD - Add any validation checks.
 }
@@ -235,8 +233,6 @@ func (v *validator_) ProcessDefinitionSlot(
 
 func (v *validator_) PostprocessDefinition(
 	definition ast.DefinitionLike,
-	index uint,
-	size uint,
 ) {
 	// TBD - Add any validation checks.
 }
@@ -407,6 +403,24 @@ func (v *validator_) ProcessImplicitSlot(
 
 func (v *validator_) PostprocessImplicit(
 	implicit ast.ImplicitLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessInline(
+	inline ast.InlineLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessInlineSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessInline(
+	inline ast.InlineLike,
 ) {
 	// TBD - Add any validation checks.
 }
@@ -597,6 +611,8 @@ func (v *validator_) PostprocessRepetition(
 
 func (v *validator_) PreprocessRule(
 	rule ast.RuleLike,
+	index uint,
+	size uint,
 ) {
 	// TBD - Add any validation checks.
 }
@@ -609,6 +625,8 @@ func (v *validator_) ProcessRuleSlot(
 
 func (v *validator_) PostprocessRule(
 	rule ast.RuleLike,
+	index uint,
+	size uint,
 ) {
 	// TBD - Add any validation checks.
 }

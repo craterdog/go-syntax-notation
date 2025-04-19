@@ -53,6 +53,7 @@ type (
 	GroupClassLike            = ast.GroupClassLike
 	IdentifierClassLike       = ast.IdentifierClassLike
 	ImplicitClassLike         = ast.ImplicitClassLike
+	InlineClassLike           = ast.InlineClassLike
 	LimitClassLike            = ast.LimitClassLike
 	LiteralClassLike          = ast.LiteralClassLike
 	MultiexpressionClassLike  = ast.MultiexpressionClassLike
@@ -85,6 +86,7 @@ type (
 	GroupLike            = ast.GroupLike
 	IdentifierLike       = ast.IdentifierLike
 	ImplicitLike         = ast.ImplicitLike
+	InlineLike           = ast.InlineLike
 	LimitLike            = ast.LimitLike
 	LiteralLike          = ast.LiteralLike
 	MultiexpressionLike  = ast.MultiexpressionLike
@@ -304,6 +306,18 @@ func Implicit(
 	)
 }
 
+// Ast/Inline
+
+func Inline(
+	terms col.Sequential[ast.TermLike],
+	optionalNote string,
+) ast.InlineLike {
+	return ast.InlineClass().Inline(
+		terms,
+		optionalNote,
+	)
+}
+
 // Ast/Limit
 
 func Limit(
@@ -327,11 +341,9 @@ func Literal(
 // Ast/Multiexpression
 
 func Multiexpression(
-	uppercase string,
 	expressionOptions col.Sequential[ast.ExpressionOptionLike],
 ) ast.MultiexpressionLike {
 	return ast.MultiexpressionClass().Multiexpression(
-		uppercase,
 		expressionOptions,
 	)
 }
@@ -339,11 +351,9 @@ func Multiexpression(
 // Ast/Multirule
 
 func Multirule(
-	uppercase string,
 	ruleOptions col.Sequential[ast.RuleOptionLike],
 ) ast.MultiruleLike {
 	return ast.MultiruleClass().Multirule(
-		uppercase,
 		ruleOptions,
 	)
 }
@@ -422,13 +432,11 @@ func Repetition(
 
 func Rule(
 	uppercase string,
-	terms col.Sequential[ast.TermLike],
-	optionalNote string,
+	definition ast.DefinitionLike,
 ) ast.RuleLike {
 	return ast.RuleClass().Rule(
 		uppercase,
-		terms,
-		optionalNote,
+		definition,
 	)
 }
 
@@ -451,14 +459,14 @@ func RuleOption(
 func Syntax(
 	notice ast.NoticeLike,
 	comment1 string,
-	definitions col.Sequential[ast.DefinitionLike],
+	rules col.Sequential[ast.RuleLike],
 	comment2 string,
 	expressions col.Sequential[ast.ExpressionLike],
 ) ast.SyntaxLike {
 	return ast.SyntaxClass().Syntax(
 		notice,
 		comment1,
-		definitions,
+		rules,
 		comment2,
 		expressions,
 	)

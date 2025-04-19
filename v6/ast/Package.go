@@ -220,6 +220,19 @@ type ImplicitClassLike interface {
 }
 
 /*
+InlineClassLike is a class interface that declares the
+complete set of class constructors, constants and functions that must be
+supported by each concrete inline-like class.
+*/
+type InlineClassLike interface {
+	// Constructor Methods
+	Inline(
+		terms col.Sequential[TermLike],
+		optionalNote string,
+	) InlineLike
+}
+
+/*
 LimitClassLike is a class interface that declares the
 complete set of class constructors, constants and functions that must be
 supported by each concrete limit-like class.
@@ -251,7 +264,6 @@ supported by each concrete multiexpression-like class.
 type MultiexpressionClassLike interface {
 	// Constructor Methods
 	Multiexpression(
-		uppercase string,
 		expressionOptions col.Sequential[ExpressionOptionLike],
 	) MultiexpressionLike
 }
@@ -264,7 +276,6 @@ supported by each concrete multirule-like class.
 type MultiruleClassLike interface {
 	// Constructor Methods
 	Multirule(
-		uppercase string,
 		ruleOptions col.Sequential[RuleOptionLike],
 	) MultiruleLike
 }
@@ -355,8 +366,7 @@ type RuleClassLike interface {
 	// Constructor Methods
 	Rule(
 		uppercase string,
-		terms col.Sequential[TermLike],
-		optionalNote string,
+		definition DefinitionLike,
 	) RuleLike
 }
 
@@ -384,7 +394,7 @@ type SyntaxClassLike interface {
 	Syntax(
 		notice NoticeLike,
 		comment1 string,
-		definitions col.Sequential[DefinitionLike],
+		rules col.Sequential[RuleLike],
 		comment2 string,
 		expressions col.Sequential[ExpressionLike],
 	) SyntaxLike
@@ -605,6 +615,20 @@ type ImplicitLike interface {
 }
 
 /*
+InlineLike is an instance interface that declares the
+complete set of principal, attribute and aspect methods that must be supported
+by each instance of a concrete inline-like class.
+*/
+type InlineLike interface {
+	// Principal Methods
+	GetClass() InlineClassLike
+
+	// Attribute Methods
+	GetTerms() col.Sequential[TermLike]
+	GetOptionalNote() string
+}
+
+/*
 LimitLike is an instance interface that declares the
 complete set of principal, attribute and aspect methods that must be supported
 by each instance of a concrete limit-like class.
@@ -640,7 +664,6 @@ type MultiexpressionLike interface {
 	GetClass() MultiexpressionClassLike
 
 	// Attribute Methods
-	GetUppercase() string
 	GetExpressionOptions() col.Sequential[ExpressionOptionLike]
 }
 
@@ -654,7 +677,6 @@ type MultiruleLike interface {
 	GetClass() MultiruleClassLike
 
 	// Attribute Methods
-	GetUppercase() string
 	GetRuleOptions() col.Sequential[RuleOptionLike]
 }
 
@@ -752,8 +774,7 @@ type RuleLike interface {
 
 	// Attribute Methods
 	GetUppercase() string
-	GetTerms() col.Sequential[TermLike]
-	GetOptionalNote() string
+	GetDefinition() DefinitionLike
 }
 
 /*
@@ -783,7 +804,7 @@ type SyntaxLike interface {
 	// Attribute Methods
 	GetNotice() NoticeLike
 	GetComment1() string
-	GetDefinitions() col.Sequential[DefinitionLike]
+	GetRules() col.Sequential[RuleLike]
 	GetComment2() string
 	GetExpressions() col.Sequential[ExpressionLike]
 }

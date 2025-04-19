@@ -35,18 +35,13 @@ func MultiruleClass() MultiruleClassLike {
 // Constructor Methods
 
 func (c *multiruleClass_) Multirule(
-	uppercase string,
 	ruleOptions col.Sequential[RuleOptionLike],
 ) MultiruleLike {
-	if uti.IsUndefined(uppercase) {
-		panic("The \"uppercase\" attribute is required by this class.")
-	}
 	if uti.IsUndefined(ruleOptions) {
 		panic("The \"ruleOptions\" attribute is required by this class.")
 	}
 	var instance = &multirule_{
 		// Initialize the instance attributes.
-		uppercase_:   uppercase,
 		ruleOptions_: ruleOptions,
 	}
 	return instance
@@ -62,10 +57,6 @@ func (v *multirule_) GetClass() MultiruleClassLike {
 
 // Attribute Methods
 
-func (v *multirule_) GetUppercase() string {
-	return v.uppercase_
-}
-
 func (v *multirule_) GetRuleOptions() col.Sequential[RuleOptionLike] {
 	return v.ruleOptions_
 }
@@ -76,7 +67,6 @@ func (v *multirule_) GetRuleOptions() col.Sequential[RuleOptionLike] {
 
 type multirule_ struct {
 	// Declare the instance attributes.
-	uppercase_   string
 	ruleOptions_ col.Sequential[RuleOptionLike]
 }
 

@@ -20,6 +20,7 @@
 package ast
 
 import (
+	col "github.com/craterdog/go-collection-framework/v5/collection"
 	uti "github.com/craterdog/go-missing-utilities/v2"
 )
 
@@ -27,26 +28,23 @@ import (
 
 // Access Function
 
-func RuleClass() RuleClassLike {
-	return ruleClass()
+func InlineClass() InlineClassLike {
+	return inlineClass()
 }
 
 // Constructor Methods
 
-func (c *ruleClass_) Rule(
-	uppercase string,
-	definition DefinitionLike,
-) RuleLike {
-	if uti.IsUndefined(uppercase) {
-		panic("The \"uppercase\" attribute is required by this class.")
+func (c *inlineClass_) Inline(
+	terms col.Sequential[TermLike],
+	optionalNote string,
+) InlineLike {
+	if uti.IsUndefined(terms) {
+		panic("The \"terms\" attribute is required by this class.")
 	}
-	if uti.IsUndefined(definition) {
-		panic("The \"definition\" attribute is required by this class.")
-	}
-	var instance = &rule_{
+	var instance = &inline_{
 		// Initialize the instance attributes.
-		uppercase_:  uppercase,
-		definition_: definition,
+		terms_:        terms,
+		optionalNote_: optionalNote,
 	}
 	return instance
 }
@@ -55,42 +53,42 @@ func (c *ruleClass_) Rule(
 
 // Principal Methods
 
-func (v *rule_) GetClass() RuleClassLike {
-	return ruleClass()
+func (v *inline_) GetClass() InlineClassLike {
+	return inlineClass()
 }
 
 // Attribute Methods
 
-func (v *rule_) GetUppercase() string {
-	return v.uppercase_
+func (v *inline_) GetTerms() col.Sequential[TermLike] {
+	return v.terms_
 }
 
-func (v *rule_) GetDefinition() DefinitionLike {
-	return v.definition_
+func (v *inline_) GetOptionalNote() string {
+	return v.optionalNote_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type rule_ struct {
+type inline_ struct {
 	// Declare the instance attributes.
-	uppercase_  string
-	definition_ DefinitionLike
+	terms_        col.Sequential[TermLike]
+	optionalNote_ string
 }
 
 // Class Structure
 
-type ruleClass_ struct {
+type inlineClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func ruleClass() *ruleClass_ {
-	return ruleClassReference_
+func inlineClass() *inlineClass_ {
+	return inlineClassReference_
 }
 
-var ruleClassReference_ = &ruleClass_{
+var inlineClassReference_ = &inlineClass_{
 	// Initialize the class constants.
 }

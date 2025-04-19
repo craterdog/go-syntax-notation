@@ -364,16 +364,12 @@ type Methodical interface {
 	)
 	PreprocessDefinition(
 		definition ast.DefinitionLike,
-		index uint,
-		size uint,
 	)
 	ProcessDefinitionSlot(
 		slot uint,
 	)
 	PostprocessDefinition(
 		definition ast.DefinitionLike,
-		index uint,
-		size uint,
 	)
 	PreprocessElement(
 		element ast.ElementLike,
@@ -463,6 +459,15 @@ type Methodical interface {
 	)
 	PostprocessImplicit(
 		implicit ast.ImplicitLike,
+	)
+	PreprocessInline(
+		inline ast.InlineLike,
+	)
+	ProcessInlineSlot(
+		slot uint,
+	)
+	PostprocessInline(
+		inline ast.InlineLike,
 	)
 	PreprocessLimit(
 		limit ast.LimitLike,
@@ -560,12 +565,16 @@ type Methodical interface {
 	)
 	PreprocessRule(
 		rule ast.RuleLike,
+		index uint,
+		size uint,
 	)
 	ProcessRuleSlot(
 		slot uint,
 	)
 	PostprocessRule(
 		rule ast.RuleLike,
+		index uint,
+		size uint,
 	)
 	PreprocessRuleOption(
 		ruleOption ast.RuleOptionLike,

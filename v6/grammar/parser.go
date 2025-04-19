@@ -229,12 +229,12 @@ func (v *parser_) parseDefinition() (
 		return
 	}
 
-	// Attempt to parse a single Rule Definition.
-	var rule ast.RuleLike
-	rule, token, ok = v.parseRule()
+	// Attempt to parse a single Inline Definition.
+	var inline ast.InlineLike
+	inline, token, ok = v.parseInline()
 	if ok {
-		// Found a single Rule Definition.
-		definition = ast.DefinitionClass().Definition(rule)
+		// Found a single Inline Definition.
+		definition = ast.DefinitionClass().Definition(inline)
 		return
 	}
 
@@ -733,6 +733,56 @@ func (v *parser_) parseImplicit() (
 	return
 }
 
+func (v *parser_) parseInline() (
+	inline ast.InlineLike,
+	token TokenLike,
+	ok bool,
+) {
+	var tokens = fra.List[TokenLike]()
+
+	// Attempt to parse multiple Term rules.
+	var terms = fra.List[ast.TermLike]()
+termsLoop:
+	for count := 0; count < mat.MaxInt; count++ {
+		var term ast.TermLike
+		term, token, ok = v.parseTerm()
+		if !ok {
+			switch {
+			case count >= 1:
+				break termsLoop
+			case uti.IsDefined(tokens):
+				// This is not multiple Term rules.
+				v.putBack(tokens)
+				return
+			default:
+				// Found a syntax error.
+				var message = v.formatError("$Inline", token)
+				message += "1 or more Term rules are required."
+				panic(message)
+			}
+		}
+		// No additional put backs allowed at this point.
+		tokens = nil
+		terms.AppendValue(term)
+	}
+
+	// Attempt to parse an optional note token.
+	var optionalNote string
+	optionalNote, token, ok = v.parseToken(NoteToken)
+	if ok && uti.IsDefined(tokens) {
+		tokens.AppendValue(token)
+	}
+
+	// Found a single Inline rule.
+	ok = true
+	v.remove(tokens)
+	inline = ast.InlineClass().Inline(
+		terms,
+		optionalNote,
+	)
+	return
+}
+
 func (v *parser_) parseLimit() (
 	limit ast.LimitLike,
 	token TokenLike,
@@ -810,58 +860,6 @@ func (v *parser_) parseMultiexpression() (
 ) {
 	var tokens = fra.List[TokenLike]()
 
-	// Attempt to parse a single "$" delimiter.
-	_, token, ok = v.parseDelimiter("$")
-	if !ok {
-		if uti.IsDefined(tokens) {
-			// This is not a single Multiexpression rule.
-			v.putBack(tokens)
-			return
-		} else {
-			// Found a syntax error.
-			var message = v.formatError("$Multiexpression", token)
-			panic(message)
-		}
-	}
-	if uti.IsDefined(tokens) {
-		tokens.AppendValue(token)
-	}
-
-	// Attempt to parse a single uppercase token.
-	var uppercase string
-	uppercase, token, ok = v.parseToken(UppercaseToken)
-	if !ok {
-		if uti.IsDefined(tokens) {
-			// This is not a single Multiexpression rule.
-			v.putBack(tokens)
-			return
-		} else {
-			// Found a syntax error.
-			var message = v.formatError("$Multiexpression", token)
-			panic(message)
-		}
-	}
-	if uti.IsDefined(tokens) {
-		tokens.AppendValue(token)
-	}
-
-	// Attempt to parse a single ":" delimiter.
-	_, token, ok = v.parseDelimiter(":")
-	if !ok {
-		if uti.IsDefined(tokens) {
-			// This is not a single Multiexpression rule.
-			v.putBack(tokens)
-			return
-		} else {
-			// Found a syntax error.
-			var message = v.formatError("$Multiexpression", token)
-			panic(message)
-		}
-	}
-	if uti.IsDefined(tokens) {
-		tokens.AppendValue(token)
-	}
-
 	// Attempt to parse multiple ExpressionOption rules.
 	var expressionOptions = fra.List[ast.ExpressionOptionLike]()
 expressionOptionsLoop:
@@ -891,10 +889,7 @@ expressionOptionsLoop:
 	// Found a single Multiexpression rule.
 	ok = true
 	v.remove(tokens)
-	multiexpression = ast.MultiexpressionClass().Multiexpression(
-		uppercase,
-		expressionOptions,
-	)
+	multiexpression = ast.MultiexpressionClass().Multiexpression(expressionOptions)
 	return
 }
 
@@ -904,58 +899,6 @@ func (v *parser_) parseMultirule() (
 	ok bool,
 ) {
 	var tokens = fra.List[TokenLike]()
-
-	// Attempt to parse a single "$" delimiter.
-	_, token, ok = v.parseDelimiter("$")
-	if !ok {
-		if uti.IsDefined(tokens) {
-			// This is not a single Multirule rule.
-			v.putBack(tokens)
-			return
-		} else {
-			// Found a syntax error.
-			var message = v.formatError("$Multirule", token)
-			panic(message)
-		}
-	}
-	if uti.IsDefined(tokens) {
-		tokens.AppendValue(token)
-	}
-
-	// Attempt to parse a single uppercase token.
-	var uppercase string
-	uppercase, token, ok = v.parseToken(UppercaseToken)
-	if !ok {
-		if uti.IsDefined(tokens) {
-			// This is not a single Multirule rule.
-			v.putBack(tokens)
-			return
-		} else {
-			// Found a syntax error.
-			var message = v.formatError("$Multirule", token)
-			panic(message)
-		}
-	}
-	if uti.IsDefined(tokens) {
-		tokens.AppendValue(token)
-	}
-
-	// Attempt to parse a single ":" delimiter.
-	_, token, ok = v.parseDelimiter(":")
-	if !ok {
-		if uti.IsDefined(tokens) {
-			// This is not a single Multirule rule.
-			v.putBack(tokens)
-			return
-		} else {
-			// Found a syntax error.
-			var message = v.formatError("$Multirule", token)
-			panic(message)
-		}
-	}
-	if uti.IsDefined(tokens) {
-		tokens.AppendValue(token)
-	}
 
 	// Attempt to parse multiple RuleOption rules.
 	var ruleOptions = fra.List[ast.RuleOptionLike]()
@@ -986,10 +929,7 @@ ruleOptionsLoop:
 	// Found a single Multirule rule.
 	ok = true
 	v.remove(tokens)
-	multirule = ast.MultiruleClass().Multirule(
-		uppercase,
-		ruleOptions,
-	)
+	multirule = ast.MultiruleClass().Multirule(ruleOptions)
 	return
 }
 
@@ -1366,37 +1306,21 @@ func (v *parser_) parseRule() (
 		tokens.AppendValue(token)
 	}
 
-	// Attempt to parse multiple Term rules.
-	var terms = fra.List[ast.TermLike]()
-termsLoop:
-	for count := 0; count < mat.MaxInt; count++ {
-		var term ast.TermLike
-		term, token, ok = v.parseTerm()
-		if !ok {
-			switch {
-			case count >= 1:
-				break termsLoop
-			case uti.IsDefined(tokens):
-				// This is not multiple Term rules.
-				v.putBack(tokens)
-				return
-			default:
-				// Found a syntax error.
-				var message = v.formatError("$Rule", token)
-				message += "1 or more Term rules are required."
-				panic(message)
-			}
-		}
+	// Attempt to parse a single Definition rule.
+	var definition ast.DefinitionLike
+	definition, token, ok = v.parseDefinition()
+	switch {
+	case ok:
 		// No additional put backs allowed at this point.
 		tokens = nil
-		terms.AppendValue(term)
-	}
-
-	// Attempt to parse an optional note token.
-	var optionalNote string
-	optionalNote, token, ok = v.parseToken(NoteToken)
-	if ok && uti.IsDefined(tokens) {
-		tokens.AppendValue(token)
+	case uti.IsDefined(tokens):
+		// This is not a single Rule rule.
+		v.putBack(tokens)
+		return
+	default:
+		// Found a syntax error.
+		var message = v.formatError("$Rule", token)
+		panic(message)
 	}
 
 	// Found a single Rule rule.
@@ -1404,8 +1328,7 @@ termsLoop:
 	v.remove(tokens)
 	rule = ast.RuleClass().Rule(
 		uppercase,
-		terms,
-		optionalNote,
+		definition,
 	)
 	return
 }
@@ -1513,30 +1436,30 @@ func (v *parser_) parseSyntax() (
 		tokens.AppendValue(token)
 	}
 
-	// Attempt to parse multiple Definition rules.
-	var definitions = fra.List[ast.DefinitionLike]()
-definitionsLoop:
+	// Attempt to parse multiple Rule rules.
+	var rules = fra.List[ast.RuleLike]()
+rulesLoop:
 	for count := 0; count < mat.MaxInt; count++ {
-		var definition ast.DefinitionLike
-		definition, token, ok = v.parseDefinition()
+		var rule ast.RuleLike
+		rule, token, ok = v.parseRule()
 		if !ok {
 			switch {
 			case count >= 1:
-				break definitionsLoop
+				break rulesLoop
 			case uti.IsDefined(tokens):
-				// This is not multiple Definition rules.
+				// This is not multiple Rule rules.
 				v.putBack(tokens)
 				return
 			default:
 				// Found a syntax error.
 				var message = v.formatError("$Syntax", token)
-				message += "1 or more Definition rules are required."
+				message += "1 or more Rule rules are required."
 				panic(message)
 			}
 		}
 		// No additional put backs allowed at this point.
 		tokens = nil
-		definitions.AppendValue(definition)
+		rules.AppendValue(rule)
 	}
 
 	// Attempt to parse a single comment token.
@@ -1589,7 +1512,7 @@ expressionsLoop:
 	syntax = ast.SyntaxClass().Syntax(
 		notice,
 		comment1,
-		definitions,
+		rules,
 		comment2,
 		expressions,
 	)
@@ -1628,15 +1551,6 @@ func (v *parser_) parseText() (
 	token TokenLike,
 	ok bool,
 ) {
-	// Attempt to parse a single intrinsic Text.
-	var intrinsic string
-	intrinsic, token, ok = v.parseToken(IntrinsicToken)
-	if ok {
-		// Found a single intrinsic Text.
-		text = ast.TextClass().Text(intrinsic)
-		return
-	}
-
 	// Attempt to parse a single glyph Text.
 	var glyph string
 	glyph, token, ok = v.parseToken(GlyphToken)
@@ -1661,6 +1575,15 @@ func (v *parser_) parseText() (
 	if ok {
 		// Found a single lowercase Text.
 		text = ast.TextClass().Text(lowercase)
+		return
+	}
+
+	// Attempt to parse a single intrinsic Text.
+	var intrinsic string
+	intrinsic, token, ok = v.parseToken(IntrinsicToken)
+	if ok {
+		// Found a single intrinsic Text.
+		text = ast.TextClass().Text(intrinsic)
 		return
 	}
 
@@ -1841,17 +1764,18 @@ var parserClassReference_ = &parserClass_{
 	// Initialize the class constants.
 	syntax_: fra.CatalogFromMap[string, string](
 		map[string]string{
-			"$Syntax": `Notice comment Definition+ comment Expression+`,
+			"$Syntax": `Notice comment Rule+ comment Expression+`,
 			"$Notice": `comment newline`,
+			"$Rule":   `"$" uppercase ":" Definition`,
 			"$Definition": `
   - Multirule
   - Multiexpression
-  - Rule`,
-			"$Multirule":        `"$" uppercase ":" RuleOption+`,
+  - Inline  ! This must be the last option since it skips newlines.`,
+			"$Multirule":        `RuleOption+`,
 			"$RuleOption":       `newline uppercase note?`,
-			"$Multiexpression":  `"$" uppercase ":" ExpressionOption+`,
+			"$Multiexpression":  `ExpressionOption+`,
 			"$ExpressionOption": `newline lowercase note?`,
-			"$Rule":             `"$" uppercase ":" Term+ note?`,
+			"$Inline":           `Term+ note?`,
 			"$Term": `
   - Literal
   - Reference`,
@@ -1886,10 +1810,10 @@ var parserClassReference_ = &parserClass_{
 			"$Explicit": `glyph Extent?`,
 			"$Extent":   `".." glyph  ! The extent of a range of glyphs is inclusive.`,
 			"$Text": `
-  - intrinsic
   - glyph
   - quote
-  - lowercase`,
+  - lowercase
+  - intrinsic`,
 		},
 	),
 }

@@ -23,24 +23,26 @@ For more information on CDSN see the wiki at:
 │                               RULE DEFINITIONS                               │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$Syntax: Notice comment Definition+ comment Expression+
+$Syntax: Notice comment Rule+ comment Expression+
 
 $Notice: comment newline
+
+$Rule: "$" uppercase ":" Definition
 
 $Definition:
     Multirule
     Multiexpression
-    Rule
+    Inline  ! This must be the last option since it skips newlines.
 
-$Multirule: "$" uppercase ":" RuleOption+
+$Multirule: RuleOption+
 
 $RuleOption: newline uppercase note?
 
-$Multiexpression: "$" uppercase ":" ExpressionOption+
+$Multiexpression: ExpressionOption+
 
 $ExpressionOption: newline lowercase note?
 
-$Rule: "$" uppercase ":" Term+ note?
+$Inline: Term+ note?
 
 $Term:
     Literal
@@ -96,10 +98,10 @@ $Explicit: glyph Extent?
 $Extent: ".." glyph  ! The extent of a range of glyphs is inclusive.
 
 $Text:
-    intrinsic
     glyph
     quote
     lowercase
+    intrinsic
 
 !>
 ┌──────────────────────────────────────────────────────────────────────────────┐

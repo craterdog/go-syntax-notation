@@ -156,10 +156,10 @@ func (v *visitor_) visitDefinition(
 		v.processor_.PreprocessMultiexpression(actual)
 		v.visitMultiexpression(actual)
 		v.processor_.PostprocessMultiexpression(actual)
-	case ast.RuleLike:
-		v.processor_.PreprocessRule(actual)
-		v.visitRule(actual)
-		v.processor_.PostprocessRule(actual)
+	case ast.InlineLike:
+		v.processor_.PreprocessInline(actual)
+		v.visitInline(actual)
+		v.processor_.PostprocessInline(actual)
 	case string:
 		switch {
 		default:
@@ -344,6 +344,39 @@ func (v *visitor_) visitImplicit(
 	v.processor_.ProcessIntrinsic(intrinsic)
 }
 
+func (v *visitor_) visitInline(
+	inline ast.InlineLike,
+) {
+	// Visit each term rule.
+	var termIndex uint
+	var terms = inline.GetTerms().GetIterator()
+	var termsSize = uint(terms.GetSize())
+	for terms.HasNext() {
+		termIndex++
+		var term = terms.GetNext()
+		v.processor_.PreprocessTerm(
+			term,
+			termIndex,
+			termsSize,
+		)
+		v.visitTerm(term)
+		v.processor_.PostprocessTerm(
+			term,
+			termIndex,
+			termsSize,
+		)
+	}
+
+	// Visit slot 1 between references.
+	v.processor_.ProcessInlineSlot(1)
+
+	// Visit an optional note token.
+	var optionalNote = inline.GetOptionalNote()
+	if uti.IsDefined(optionalNote) {
+		v.processor_.ProcessNote(optionalNote)
+	}
+}
+
 func (v *visitor_) visitLimit(
 	limit ast.LimitLike,
 ) {
@@ -365,13 +398,6 @@ func (v *visitor_) visitLiteral(
 func (v *visitor_) visitMultiexpression(
 	multiexpression ast.MultiexpressionLike,
 ) {
-	// Visit a single uppercase token.
-	var uppercase = multiexpression.GetUppercase()
-	v.processor_.ProcessUppercase(uppercase)
-
-	// Visit slot 1 between references.
-	v.processor_.ProcessMultiexpressionSlot(1)
-
 	// Visit each expressionOption rule.
 	var expressionOptionIndex uint
 	var expressionOptions = multiexpression.GetExpressionOptions().GetIterator()
@@ -396,13 +422,6 @@ func (v *visitor_) visitMultiexpression(
 func (v *visitor_) visitMultirule(
 	multirule ast.MultiruleLike,
 ) {
-	// Visit a single uppercase token.
-	var uppercase = multirule.GetUppercase()
-	v.processor_.ProcessUppercase(uppercase)
-
-	// Visit slot 1 between references.
-	v.processor_.ProcessMultiruleSlot(1)
-
 	// Visit each ruleOption rule.
 	var ruleOptionIndex uint
 	var ruleOptions = multirule.GetRuleOptions().GetIterator()
@@ -567,34 +586,11 @@ func (v *visitor_) visitRule(
 	// Visit slot 1 between references.
 	v.processor_.ProcessRuleSlot(1)
 
-	// Visit each term rule.
-	var termIndex uint
-	var terms = rule.GetTerms().GetIterator()
-	var termsSize = uint(terms.GetSize())
-	for terms.HasNext() {
-		termIndex++
-		var term = terms.GetNext()
-		v.processor_.PreprocessTerm(
-			term,
-			termIndex,
-			termsSize,
-		)
-		v.visitTerm(term)
-		v.processor_.PostprocessTerm(
-			term,
-			termIndex,
-			termsSize,
-		)
-	}
-
-	// Visit slot 2 between references.
-	v.processor_.ProcessRuleSlot(2)
-
-	// Visit an optional note token.
-	var optionalNote = rule.GetOptionalNote()
-	if uti.IsDefined(optionalNote) {
-		v.processor_.ProcessNote(optionalNote)
-	}
+	// Visit a single definition rule.
+	var definition = rule.GetDefinition()
+	v.processor_.PreprocessDefinition(definition)
+	v.visitDefinition(definition)
+	v.processor_.PostprocessDefinition(definition)
 }
 
 func (v *visitor_) visitRuleOption(
@@ -640,23 +636,23 @@ func (v *visitor_) visitSyntax(
 	// Visit slot 2 between references.
 	v.processor_.ProcessSyntaxSlot(2)
 
-	// Visit each definition rule.
-	var definitionIndex uint
-	var definitions = syntax.GetDefinitions().GetIterator()
-	var definitionsSize = uint(definitions.GetSize())
-	for definitions.HasNext() {
-		definitionIndex++
-		var definition = definitions.GetNext()
-		v.processor_.PreprocessDefinition(
-			definition,
-			definitionIndex,
-			definitionsSize,
+	// Visit each rule rule.
+	var ruleIndex uint
+	var rules = syntax.GetRules().GetIterator()
+	var rulesSize = uint(rules.GetSize())
+	for rules.HasNext() {
+		ruleIndex++
+		var rule = rules.GetNext()
+		v.processor_.PreprocessRule(
+			rule,
+			ruleIndex,
+			rulesSize,
 		)
-		v.visitDefinition(definition)
-		v.processor_.PostprocessDefinition(
-			definition,
-			definitionIndex,
-			definitionsSize,
+		v.visitRule(rule)
+		v.processor_.PostprocessRule(
+			rule,
+			ruleIndex,
+			rulesSize,
 		)
 	}
 
@@ -721,14 +717,14 @@ func (v *visitor_) visitText(
 	switch actual := text.GetAny().(type) {
 	case string:
 		switch {
-		case ScannerClass().MatchesType(actual, IntrinsicToken):
-			v.processor_.ProcessIntrinsic(actual)
 		case ScannerClass().MatchesType(actual, GlyphToken):
 			v.processor_.ProcessGlyph(actual)
 		case ScannerClass().MatchesType(actual, QuoteToken):
 			v.processor_.ProcessQuote(actual)
 		case ScannerClass().MatchesType(actual, LowercaseToken):
 			v.processor_.ProcessLowercase(actual)
+		case ScannerClass().MatchesType(actual, IntrinsicToken):
+			v.processor_.ProcessIntrinsic(actual)
 		default:
 			panic(fmt.Sprintf("Invalid token: %v", actual))
 		}

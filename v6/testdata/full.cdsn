@@ -30,7 +30,7 @@ $Component:
 
 $Intrinsic:
     integer
-    rune
+    rune  ! Add a comment midway through.
     text
 
 $List: "[" Component Additional* "]"

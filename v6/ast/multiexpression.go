@@ -35,18 +35,13 @@ func MultiexpressionClass() MultiexpressionClassLike {
 // Constructor Methods
 
 func (c *multiexpressionClass_) Multiexpression(
-	uppercase string,
 	expressionOptions col.Sequential[ExpressionOptionLike],
 ) MultiexpressionLike {
-	if uti.IsUndefined(uppercase) {
-		panic("The \"uppercase\" attribute is required by this class.")
-	}
 	if uti.IsUndefined(expressionOptions) {
 		panic("The \"expressionOptions\" attribute is required by this class.")
 	}
 	var instance = &multiexpression_{
 		// Initialize the instance attributes.
-		uppercase_:         uppercase,
 		expressionOptions_: expressionOptions,
 	}
 	return instance
@@ -62,10 +57,6 @@ func (v *multiexpression_) GetClass() MultiexpressionClassLike {
 
 // Attribute Methods
 
-func (v *multiexpression_) GetUppercase() string {
-	return v.uppercase_
-}
-
 func (v *multiexpression_) GetExpressionOptions() col.Sequential[ExpressionOptionLike] {
 	return v.expressionOptions_
 }
@@ -76,7 +67,6 @@ func (v *multiexpression_) GetExpressionOptions() col.Sequential[ExpressionOptio
 
 type multiexpression_ struct {
 	// Declare the instance attributes.
-	uppercase_         string
 	expressionOptions_ col.Sequential[ExpressionOptionLike]
 }
 

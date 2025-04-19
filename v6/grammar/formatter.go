@@ -160,14 +160,6 @@ func (v *formatter_) PreprocessCharacter(
 	}
 }
 
-func (v *formatter_) PostprocessDefinition(
-	definition ast.DefinitionLike,
-	index uint,
-	size uint,
-) {
-	v.appendNewline()
-}
-
 func (v *formatter_) PreprocessExpression(
 	expression ast.ExpressionLike,
 	index uint,
@@ -237,6 +229,12 @@ func (v *formatter_) PostprocessGroup(
 	v.appendString(")")
 }
 
+func (v *formatter_) PostprocessInline(
+	inline ast.InlineLike,
+) {
+	v.appendNewline()
+}
+
 func (v *formatter_) PreprocessLimit(
 	limit ast.LimitLike,
 ) {
@@ -247,16 +245,6 @@ func (v *formatter_) PreprocessMultiexpression(
 	multiexpression ast.MultiexpressionLike,
 ) {
 	v.depth_++
-	v.appendString("$")
-}
-
-func (v *formatter_) ProcessMultiexpressionSlot(
-	slot uint,
-) {
-	switch slot {
-	case 1:
-		v.appendString(":")
-	}
 }
 
 func (v *formatter_) PostprocessMultiexpression(
@@ -270,16 +258,6 @@ func (v *formatter_) PreprocessMultirule(
 	multirule ast.MultiruleLike,
 ) {
 	v.depth_++
-	v.appendString("$")
-}
-
-func (v *formatter_) ProcessMultiruleSlot(
-	slot uint,
-) {
-	switch slot {
-	case 1:
-		v.appendString(":")
-	}
 }
 
 func (v *formatter_) PostprocessMultirule(
@@ -327,6 +305,8 @@ func (v *formatter_) PreprocessRepetition(
 
 func (v *formatter_) PreprocessRule(
 	rule ast.RuleLike,
+	index uint,
+	size uint,
 ) {
 	v.appendString("$")
 }
@@ -342,6 +322,8 @@ func (v *formatter_) ProcessRuleSlot(
 
 func (v *formatter_) PostprocessRule(
 	rule ast.RuleLike,
+	index uint,
+	size uint,
 ) {
 	v.appendNewline()
 }
