@@ -1768,28 +1768,28 @@ var parserClassReference_ = &parserClass_{
 			"$Notice": `comment newline`,
 			"$Rule":   `"$" uppercase ":" Definition`,
 			"$Definition": `
-  - Multirule
-  - Multiexpression
-  - Inline  ! This must be the last option since it skips newlines.`,
+    Multirule
+    Multiexpression
+    Inline  ! This must be the last option since it skips newlines.`,
 			"$Multirule":        `RuleOption+`,
 			"$RuleOption":       `newline uppercase note?`,
 			"$Multiexpression":  `ExpressionOption+`,
 			"$ExpressionOption": `newline lowercase note?`,
 			"$Inline":           `Term+ note?`,
 			"$Term": `
-  - Literal
-  - Reference`,
+    Literal
+    Reference`,
 			"$Literal":   `quote`,
 			"$Reference": `Identifier Cardinality?  ! The default cardinality is one.`,
 			"$Identifier": `
-  - lowercase
-  - uppercase`,
+    lowercase
+    uppercase`,
 			"$Cardinality": `
-  - Constrained
-  - Quantified`,
+    Constrained
+    Quantified`,
 			"$Constrained": `
-  - optional
-  - repeated`,
+    optional
+    repeated`,
 			"$Quantified":  `"{" number Limit? "}"`,
 			"$Limit":       `".." number?  ! The limit of a range of numbers is inclusive.`,
 			"$Expression":  `"$" lowercase ":" Pattern note?`,
@@ -1798,22 +1798,22 @@ var parserClassReference_ = &parserClass_{
 			"$Option":      `Repetition+`,
 			"$Repetition":  `Element Cardinality?  ! The default cardinality is one.`,
 			"$Element": `
-  - Group
-  - Filter
-  - Text`,
+    Group
+    Filter
+    Text`,
 			"$Group":  `"(" Pattern ")"`,
 			"$Filter": `excluded? "[" Character+ "]"`,
 			"$Character": `
-  - Implicit
-  - Explicit`,
+    Implicit
+    Explicit`,
 			"$Implicit": `intrinsic`,
 			"$Explicit": `glyph Extent?`,
 			"$Extent":   `".." glyph  ! The extent of a range of glyphs is inclusive.`,
 			"$Text": `
-  - glyph
-  - quote
-  - lowercase
-  - intrinsic`,
+    glyph
+    quote
+    lowercase
+    intrinsic`,
 		},
 	),
 }
