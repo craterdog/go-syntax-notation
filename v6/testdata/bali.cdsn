@@ -47,7 +47,11 @@ $InlineParameters: "(" Association AdditionalAssociation* ")"
 
 $AdditionalAssociation: "," Association
 
-$Association: symbol ":" Component
+$Association: Primitive ":" Component
+
+$Primitive:
+    Element
+    String
 
 $Element:
     angle
@@ -71,27 +75,21 @@ $String:
     tag
     version
 
-$Range: LowerBound Primitive ".." Primitive UpperBound
+$Range:
+    InclusiveRange
+    ExclusiveRange
 
-$LowerBound:
-    LowerInclusion
-    LowerExclusion
+$InclusiveRange: "[" Primitive ".." Primitive UpperBound
 
-$LowerInclusion: "[|"
-
-$LowerExclusion: "(|"
-
-$Primitive:
-    Element
-    String
+$ExclusiveRange: "(" Primitive ".." Primitive UpperBound
 
 $UpperBound:
-    UpperInclusion
-    UpperExclusion
+    Inclusion
+    Exclusion
 
-$UpperInclusion: "|]"
+$Inclusion: "]"
 
-$UpperExclusion: "|)"
+$Exclusion: ")"
 
 $Collection:
     MultilineAttributes
@@ -201,15 +199,11 @@ $AdditionalArgument: "," Argument
 
 $Argument: identifier
 
-$Method: identifier Threading identifier "(" Arguments? ")"
+$Method: identifier Blocking identifier "(" Arguments? ")"
 
-$Threading:
-    Dot
-    Arrow
-
-$Dot: "."
-
-$Arrow: "<-"
+$Blocking:
+    dot
+    arrow
 
 $Subcomponent: identifier "[" Indices "]"
 
@@ -247,9 +241,9 @@ $Invocation:
     Function
     Method
 
-$LetClause: "let" Recipient Assign Expression
+$LetClause: "let" Recipient Assignment Expression
 
-$Assign:
+$Assignment:
     ColonEqual
     DefaultEqual
     PlusEqual
@@ -289,19 +283,19 @@ $PublishClause: "publish" Event
 
 $Event: Expression
 
-$CheckoutClause: "checkout" Recipient AtLevel? "from" Citation
+$CheckoutClause: "checkout" Recipient AtLevel? "from" Cited
 
 $AtLevel: "at" "level" Expression
 
-$Citation: Expression
+$Cited: Expression
 
-$SaveClause: "save" Draft "as" Citation
+$SaveClause: "save" Draft "as" Cited
 
 $Draft: Expression
 
 $DiscardClause: "discard" Draft
 
-$NotarizeClause: "notarize" Draft "as" Citation
+$NotarizeClause: "notarize" Draft "as" Cited
 
 $Expression: Subject Predicate*
 
@@ -317,45 +311,31 @@ $Subject:
     Method
     Variable  ! This must be last since others also begin with an identifier.
 
-$Predicate: Operator Expression
+$Predicate: Action Expression
+
+$Action:
+    Operator
+    Operation
 
 $Operator:
-    Plus
-    Dash
-    Star
-    Slash
-    Double
-    Caret
-    Less
-    Equal
-    More
-    Ampersand
+    plus
+    dash
+    star
+    slash
+    double
+    caret
+    ampersand
+    less
+    equal
+    more
+
+$Operation:
     Is
     Matches
     And
     San
     Ior
     Xor
-
-$Plus: "+"
-
-$Dash: "-"
-
-$Star: "*"
-
-$Slash: "/"
-
-$Double: "//"
-
-$Caret: "^"
-
-$Less: "<"
-
-$Equal: "="
-
-$More: ">"
-
-$Ampersand: "&"
 
 $Is: "is"
 
@@ -396,9 +376,9 @@ $Logical:
 $Inversion: Inverse Numerical
 
 $Inverse:
-    Dash
-    Slash
-    Star
+    dash
+    slash
+    star
 
 $Numerical:
     Component
@@ -514,6 +494,8 @@ $real: '0' | float | infinity | undefined
 
 $rectangular: float sign float? 'i'
 
+$number: polar | rectangular | imaginary | real  ! Must be after other numerics.
+
 $regex: '"' character+ '"' '?'
 
 $resource: '<' scheme ':' ("//" authority)? '/' path ('?' query)? ('#' fragment)? '>'
@@ -538,13 +520,35 @@ $unicode: ('u' base16{4}) | ('U' base16{8})
 
 $version: 'v' ordinal ('.' ordinal)*
 
+$identifier: letter (letter | DIGIT)*  ! Must be after alphanumeric expressions.
+
 $weeks: timespan 'W'
 
 $year: '0' | ordinal
 
 $years: timespan 'Y'
 
-$number: polar | rectangular | imaginary | real  ! Must be after percentage.
+$dot: "."
 
-$identifier: letter (letter | DIGIT)*  ! Must be after other identifiers.
+$arrow: "<-"
+
+$plus: "+"
+
+$dash: "-"
+
+$star: "*"
+
+$double: "//"
+
+$slash: "/"
+
+$caret: "^"
+
+$ampersand: "&"
+
+$less: "<"
+
+$equal: "="
+
+$more: ">"
 

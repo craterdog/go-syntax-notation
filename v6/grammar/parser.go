@@ -109,7 +109,7 @@ func (v *parser_) parseAlternative() (
 		// No additional put backs allowed at this point.
 		tokens = nil
 	case uti.IsDefined(tokens):
-		// This is not a single Alternative rule.
+		// This is not a single Option rule.
 		v.putBack(tokens)
 		return
 	default:
@@ -290,7 +290,7 @@ func (v *parser_) parseExplicit() (
 	glyph, token, ok = v.parseToken(GlyphToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Explicit rule.
+			// This is not a single glyph token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -350,7 +350,7 @@ func (v *parser_) parseExpression() (
 	lowercase, token, ok = v.parseToken(LowercaseToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Expression rule.
+			// This is not a single lowercase token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -388,7 +388,7 @@ func (v *parser_) parseExpression() (
 		// No additional put backs allowed at this point.
 		tokens = nil
 	case uti.IsDefined(tokens):
-		// This is not a single Expression rule.
+		// This is not a single Pattern rule.
 		v.putBack(tokens)
 		return
 	default:
@@ -427,7 +427,7 @@ func (v *parser_) parseExpressionOption() (
 	newline, token, ok = v.parseToken(NewlineToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single ExpressionOption rule.
+			// This is not a single newline token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -445,7 +445,7 @@ func (v *parser_) parseExpressionOption() (
 	lowercase, token, ok = v.parseToken(LowercaseToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single ExpressionOption rule.
+			// This is not a single lowercase token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -505,7 +505,7 @@ func (v *parser_) parseExtent() (
 	glyph, token, ok = v.parseToken(GlyphToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Extent rule.
+			// This is not a single glyph token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -641,7 +641,7 @@ func (v *parser_) parseGroup() (
 		// No additional put backs allowed at this point.
 		tokens = nil
 	case uti.IsDefined(tokens):
-		// This is not a single Group rule.
+		// This is not a single Pattern rule.
 		v.putBack(tokens)
 		return
 	default:
@@ -713,7 +713,7 @@ func (v *parser_) parseImplicit() (
 	intrinsic, token, ok = v.parseToken(IntrinsicToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Implicit rule.
+			// This is not a single intrinsic token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -833,7 +833,7 @@ func (v *parser_) parseLiteral() (
 	quote, token, ok = v.parseToken(QuoteToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Literal rule.
+			// This is not a single quote token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -945,7 +945,7 @@ func (v *parser_) parseNotice() (
 	comment, token, ok = v.parseToken(CommentToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Notice rule.
+			// This is not a single comment token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -963,7 +963,7 @@ func (v *parser_) parseNotice() (
 	newline, token, ok = v.parseToken(NewlineToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Notice rule.
+			// This is not a single newline token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -1041,7 +1041,7 @@ func (v *parser_) parsePattern() (
 		// No additional put backs allowed at this point.
 		tokens = nil
 	case uti.IsDefined(tokens):
-		// This is not a single Pattern rule.
+		// This is not a single Option rule.
 		v.putBack(tokens)
 		return
 	default:
@@ -1115,7 +1115,7 @@ func (v *parser_) parseQuantified() (
 	number, token, ok = v.parseToken(NumberToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Quantified rule.
+			// This is not a single number token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -1175,10 +1175,12 @@ func (v *parser_) parseReference() (
 	identifier, token, ok = v.parseIdentifier()
 	switch {
 	case ok:
-		// No additional put backs allowed at this point.
-		tokens = nil
+		// Found a multiexpression token.
+		if uti.IsDefined(tokens) {
+			tokens.AppendValue(token)
+		}
 	case uti.IsDefined(tokens):
-		// This is not a single Reference rule.
+		// This is not a single Identifier rule.
 		v.putBack(tokens)
 		return
 	default:
@@ -1220,7 +1222,7 @@ func (v *parser_) parseRepetition() (
 		// No additional put backs allowed at this point.
 		tokens = nil
 	case uti.IsDefined(tokens):
-		// This is not a single Repetition rule.
+		// This is not a single Element rule.
 		v.putBack(tokens)
 		return
 	default:
@@ -1276,7 +1278,7 @@ func (v *parser_) parseRule() (
 	uppercase, token, ok = v.parseToken(UppercaseToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Rule rule.
+			// This is not a single uppercase token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -1314,7 +1316,7 @@ func (v *parser_) parseRule() (
 		// No additional put backs allowed at this point.
 		tokens = nil
 	case uti.IsDefined(tokens):
-		// This is not a single Rule rule.
+		// This is not a single Definition rule.
 		v.putBack(tokens)
 		return
 	default:
@@ -1345,7 +1347,7 @@ func (v *parser_) parseRuleOption() (
 	newline, token, ok = v.parseToken(NewlineToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single RuleOption rule.
+			// This is not a single newline token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -1363,7 +1365,7 @@ func (v *parser_) parseRuleOption() (
 	uppercase, token, ok = v.parseToken(UppercaseToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single RuleOption rule.
+			// This is not a single uppercase token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -1409,7 +1411,7 @@ func (v *parser_) parseSyntax() (
 		// No additional put backs allowed at this point.
 		tokens = nil
 	case uti.IsDefined(tokens):
-		// This is not a single Syntax rule.
+		// This is not a single Notice rule.
 		v.putBack(tokens)
 		return
 	default:
@@ -1423,7 +1425,7 @@ func (v *parser_) parseSyntax() (
 	comment1, token, ok = v.parseToken(CommentToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Syntax rule.
+			// This is not a single comment token.
 			v.putBack(tokens)
 			return
 		} else {
@@ -1467,7 +1469,7 @@ rulesLoop:
 	comment2, token, ok = v.parseToken(CommentToken)
 	if !ok {
 		if uti.IsDefined(tokens) {
-			// This is not a single Syntax rule.
+			// This is not a single comment token.
 			v.putBack(tokens)
 			return
 		} else {
