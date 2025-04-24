@@ -42,7 +42,7 @@ $Additional: "," Component
 │                            EXPRESSION DEFINITIONS                            │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$integer: '0' | '-'? ['1'..'9'] DIGIT*
+$integer: '0' | '-'? ['1'..'9']{4..} DIGIT*
 
 $rune: "'" ~[CONTROL] "'"  ! Any single printable unicode character.
 
