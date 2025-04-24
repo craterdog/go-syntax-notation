@@ -31,7 +31,6 @@ $Component: Entity Parameters?
 $Entity:
     Element
     String
-    Range
     Collection
     Procedure
 
@@ -75,45 +74,43 @@ $String:
     tag
     version
 
-$Range:
-    InclusiveRange
-    ExclusiveRange
-
-$InclusiveRange: "[" Primitive ".." Primitive UpperBound
-
-$ExclusiveRange: "(" Primitive ".." Primitive UpperBound
-
-$UpperBound:
-    Inclusion
-    Exclusion
-
-$Inclusion: "]"
-
-$Exclusion: ")"
-
 $Collection:
     MultilineAttributes
-    MultilineValues  ! Must be after the multiline attributes.
+    MultilineValues
+    InclusiveRange  ! Must be after the multiline rules.
+    ExclusiveRange
     InlineAttributes
-    InlineValues  ! Must be after the inline attributes.
+    InlineValues  ! Must be after the ranges and inline attributes.
     NoAttributes
     NoValues
 
-$MultilineAttributes: "[" newline AnnotatedAssociation+ "]"
+$InclusiveRange: "[" Primitive ".." Primitive Bracket
 
-$InlineAttributes: "[" Association AdditionalAssociation* "]"
+$ExclusiveRange: "(" Primitive ".." Primitive Bracket
+
+$Bracket:
+    Inclusive
+    Exclusive
+
+$Inclusive: "]"
+
+$Exclusive: ")"
 
 $NoAttributes: "[" ":" "]"
 
-$MultilineValues: "[" newline AnnotatedValue+ "]"
+$InlineAttributes: "[" Association AdditionalAssociation* "]"
 
-$AnnotatedValue: Component note?
+$MultilineAttributes: "[" newline AnnotatedAssociation+ "]"
+
+$NoValues: "[" "]"
 
 $InlineValues: "[" Component AdditionalValue* "]"
 
 $AdditionalValue: "," Component
 
-$NoValues: "[" "]"
+$MultilineValues: "[" newline AnnotatedValue+ "]"
+
+$AnnotatedValue: Component note?
 
 $Procedure:
     MultilineStatements
@@ -424,7 +421,7 @@ $bytecode: "'" (instruction (' ' instruction)*)* "'"
 
 $character: escape | ~['"' CONTROL]
 
-$citation: name '/' version
+$citation: name '@' version
 
 $comment: "!>" EOL (ANY | EOL)* EOL ' '* "<!"  ! Chooses the shortest match.
 
