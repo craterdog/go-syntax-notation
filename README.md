@@ -9,7 +9,7 @@ using _Crater Dog Syntax Notation_ (CDSN).
 ### Quick Links
 For more information on this project click on the following links:
  * [project documentation](https://github.com/craterdog/go-syntax-notation/wiki)
- * [coding conventions](https://github.com/craterdog/go-class-model/wiki)
+ * [coding conventions](https://github.com/craterdog/go-development-tools/wiki/Coding-Conventions)
  * [command-line tools](https://github.com/craterdog/go-development-tools/wiki)
 
 ### Getting Started
