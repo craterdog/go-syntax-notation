@@ -3,8 +3,8 @@
 ## Go Syntax Notation
 
 ### Overview
-A Go module for parsing, validating and formatting language grammars defined
-using _Crater Dog Syntax Notation_ (CDSN).
+This project provides a Go module for parsing, validating and formatting
+language grammars defined using _Crater Dog Syntax Notation_ (CDSN).
 
 ### Quick Links
 For more information on this project click on the following links:
