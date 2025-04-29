@@ -22,15 +22,15 @@ For more information on CDSN see the wiki at:
 │                               RULE DEFINITIONS                               │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$Document: Component+  ! This is the top-level rule.
+$Document: Component{3..}  ! An inline comment.
 
 $Component:
     Intrinsic
     List
 
 $Intrinsic:
-    integer
-    rune  ! Add a comment midway through.
+    number
+    rune  ! A multiline comment.
     text
 
 $List: "[" Component Additional* "]"
@@ -42,7 +42,7 @@ $Additional: "," Component
 │                            EXPRESSION DEFINITIONS                            │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$integer: '0' | '-'? ['1'..'9']{4..} DIGIT*
+$number: '0' | '-'? ['1'..'9'] DIGIT*
 
 $rune: "'" ~[CONTROL] "'"  ! Any single printable unicode character.
 
