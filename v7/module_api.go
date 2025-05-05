@@ -152,309 +152,367 @@ type (
 	Methodical = gra.Methodical
 )
 
-// CLASS CONSTRUCTORS
+// CLASS ACCESSORS
 
-// Ast/Alternative
+// Ast
+
+func AlternativeClass() AlternativeClassLike {
+	return ast.AlternativeClass()
+}
 
 func Alternative(
 	option ast.OptionLike,
-) ast.AlternativeLike {
-	return ast.AlternativeClass().Alternative(
+) AlternativeLike {
+	return AlternativeClass().Alternative(
 		option,
 	)
 }
 
-// Ast/Cardinality
+func CardinalityClass() CardinalityClassLike {
+	return ast.CardinalityClass()
+}
 
 func Cardinality(
 	any_ any,
-) ast.CardinalityLike {
-	return ast.CardinalityClass().Cardinality(
+) CardinalityLike {
+	return CardinalityClass().Cardinality(
 		any_,
 	)
 }
 
-// Ast/Character
+func CharacterClass() CharacterClassLike {
+	return ast.CharacterClass()
+}
 
 func Character(
 	any_ any,
-) ast.CharacterLike {
-	return ast.CharacterClass().Character(
+) CharacterLike {
+	return CharacterClass().Character(
 		any_,
 	)
 }
 
-// Ast/Constrained
+func ConstrainedClass() ConstrainedClassLike {
+	return ast.ConstrainedClass()
+}
 
 func Constrained(
 	any_ any,
-) ast.ConstrainedLike {
-	return ast.ConstrainedClass().Constrained(
+) ConstrainedLike {
+	return ConstrainedClass().Constrained(
 		any_,
 	)
 }
 
-// Ast/Definition
+func DefinitionClass() DefinitionClassLike {
+	return ast.DefinitionClass()
+}
 
 func Definition(
 	any_ any,
-) ast.DefinitionLike {
-	return ast.DefinitionClass().Definition(
+) DefinitionLike {
+	return DefinitionClass().Definition(
 		any_,
 	)
 }
 
-// Ast/Element
+func ElementClass() ElementClassLike {
+	return ast.ElementClass()
+}
 
 func Element(
 	any_ any,
-) ast.ElementLike {
-	return ast.ElementClass().Element(
+) ElementLike {
+	return ElementClass().Element(
 		any_,
 	)
 }
 
-// Ast/Explicit
+func ExplicitClass() ExplicitClassLike {
+	return ast.ExplicitClass()
+}
 
 func Explicit(
 	glyph string,
 	optionalExtent ast.ExtentLike,
-) ast.ExplicitLike {
-	return ast.ExplicitClass().Explicit(
+) ExplicitLike {
+	return ExplicitClass().Explicit(
 		glyph,
 		optionalExtent,
 	)
 }
 
-// Ast/Expression
+func ExpressionClass() ExpressionClassLike {
+	return ast.ExpressionClass()
+}
 
 func Expression(
 	lowercase string,
 	pattern ast.PatternLike,
 	optionalNote string,
-) ast.ExpressionLike {
-	return ast.ExpressionClass().Expression(
+) ExpressionLike {
+	return ExpressionClass().Expression(
 		lowercase,
 		pattern,
 		optionalNote,
 	)
 }
 
-// Ast/ExpressionOption
+func ExpressionOptionClass() ExpressionOptionClassLike {
+	return ast.ExpressionOptionClass()
+}
 
 func ExpressionOption(
 	newline string,
 	lowercase string,
 	optionalNote string,
-) ast.ExpressionOptionLike {
-	return ast.ExpressionOptionClass().ExpressionOption(
+) ExpressionOptionLike {
+	return ExpressionOptionClass().ExpressionOption(
 		newline,
 		lowercase,
 		optionalNote,
 	)
 }
 
-// Ast/Extent
+func ExtentClass() ExtentClassLike {
+	return ast.ExtentClass()
+}
 
 func Extent(
 	glyph string,
-) ast.ExtentLike {
-	return ast.ExtentClass().Extent(
+) ExtentLike {
+	return ExtentClass().Extent(
 		glyph,
 	)
 }
 
-// Ast/Filter
+func FilterClass() FilterClassLike {
+	return ast.FilterClass()
+}
 
 func Filter(
 	optionalExcluded string,
 	characters col.Sequential[ast.CharacterLike],
-) ast.FilterLike {
-	return ast.FilterClass().Filter(
+) FilterLike {
+	return FilterClass().Filter(
 		optionalExcluded,
 		characters,
 	)
 }
 
-// Ast/Group
+func GroupClass() GroupClassLike {
+	return ast.GroupClass()
+}
 
 func Group(
 	pattern ast.PatternLike,
-) ast.GroupLike {
-	return ast.GroupClass().Group(
+) GroupLike {
+	return GroupClass().Group(
 		pattern,
 	)
 }
 
-// Ast/Identifier
+func IdentifierClass() IdentifierClassLike {
+	return ast.IdentifierClass()
+}
 
 func Identifier(
 	any_ any,
-) ast.IdentifierLike {
-	return ast.IdentifierClass().Identifier(
+) IdentifierLike {
+	return IdentifierClass().Identifier(
 		any_,
 	)
 }
 
-// Ast/Implicit
+func ImplicitClass() ImplicitClassLike {
+	return ast.ImplicitClass()
+}
 
 func Implicit(
 	intrinsic string,
-) ast.ImplicitLike {
-	return ast.ImplicitClass().Implicit(
+) ImplicitLike {
+	return ImplicitClass().Implicit(
 		intrinsic,
 	)
 }
 
-// Ast/Inline
+func InlineClass() InlineClassLike {
+	return ast.InlineClass()
+}
 
 func Inline(
 	terms col.Sequential[ast.TermLike],
 	optionalNote string,
-) ast.InlineLike {
-	return ast.InlineClass().Inline(
+) InlineLike {
+	return InlineClass().Inline(
 		terms,
 		optionalNote,
 	)
 }
 
-// Ast/Limit
+func LimitClass() LimitClassLike {
+	return ast.LimitClass()
+}
 
 func Limit(
 	optionalNumber string,
-) ast.LimitLike {
-	return ast.LimitClass().Limit(
+) LimitLike {
+	return LimitClass().Limit(
 		optionalNumber,
 	)
 }
 
-// Ast/Literal
+func LiteralClass() LiteralClassLike {
+	return ast.LiteralClass()
+}
 
 func Literal(
 	quote string,
-) ast.LiteralLike {
-	return ast.LiteralClass().Literal(
+) LiteralLike {
+	return LiteralClass().Literal(
 		quote,
 	)
 }
 
-// Ast/Multiexpression
+func MultiexpressionClass() MultiexpressionClassLike {
+	return ast.MultiexpressionClass()
+}
 
 func Multiexpression(
 	expressionOptions col.Sequential[ast.ExpressionOptionLike],
-) ast.MultiexpressionLike {
-	return ast.MultiexpressionClass().Multiexpression(
+) MultiexpressionLike {
+	return MultiexpressionClass().Multiexpression(
 		expressionOptions,
 	)
 }
 
-// Ast/Multirule
+func MultiruleClass() MultiruleClassLike {
+	return ast.MultiruleClass()
+}
 
 func Multirule(
 	ruleOptions col.Sequential[ast.RuleOptionLike],
-) ast.MultiruleLike {
-	return ast.MultiruleClass().Multirule(
+) MultiruleLike {
+	return MultiruleClass().Multirule(
 		ruleOptions,
 	)
 }
 
-// Ast/Notice
+func NoticeClass() NoticeClassLike {
+	return ast.NoticeClass()
+}
 
 func Notice(
 	comment string,
 	newline string,
-) ast.NoticeLike {
-	return ast.NoticeClass().Notice(
+) NoticeLike {
+	return NoticeClass().Notice(
 		comment,
 		newline,
 	)
 }
 
-// Ast/Option
+func OptionClass() OptionClassLike {
+	return ast.OptionClass()
+}
 
 func Option(
 	repetitions col.Sequential[ast.RepetitionLike],
-) ast.OptionLike {
-	return ast.OptionClass().Option(
+) OptionLike {
+	return OptionClass().Option(
 		repetitions,
 	)
 }
 
-// Ast/Pattern
+func PatternClass() PatternClassLike {
+	return ast.PatternClass()
+}
 
 func Pattern(
 	option ast.OptionLike,
 	alternatives col.Sequential[ast.AlternativeLike],
-) ast.PatternLike {
-	return ast.PatternClass().Pattern(
+) PatternLike {
+	return PatternClass().Pattern(
 		option,
 		alternatives,
 	)
 }
 
-// Ast/Quantified
+func QuantifiedClass() QuantifiedClassLike {
+	return ast.QuantifiedClass()
+}
 
 func Quantified(
 	number string,
 	optionalLimit ast.LimitLike,
-) ast.QuantifiedLike {
-	return ast.QuantifiedClass().Quantified(
+) QuantifiedLike {
+	return QuantifiedClass().Quantified(
 		number,
 		optionalLimit,
 	)
 }
 
-// Ast/Reference
+func ReferenceClass() ReferenceClassLike {
+	return ast.ReferenceClass()
+}
 
 func Reference(
 	identifier ast.IdentifierLike,
 	optionalCardinality ast.CardinalityLike,
-) ast.ReferenceLike {
-	return ast.ReferenceClass().Reference(
+) ReferenceLike {
+	return ReferenceClass().Reference(
 		identifier,
 		optionalCardinality,
 	)
 }
 
-// Ast/Repetition
+func RepetitionClass() RepetitionClassLike {
+	return ast.RepetitionClass()
+}
 
 func Repetition(
 	element ast.ElementLike,
 	optionalCardinality ast.CardinalityLike,
-) ast.RepetitionLike {
-	return ast.RepetitionClass().Repetition(
+) RepetitionLike {
+	return RepetitionClass().Repetition(
 		element,
 		optionalCardinality,
 	)
 }
 
-// Ast/Rule
+func RuleClass() RuleClassLike {
+	return ast.RuleClass()
+}
 
 func Rule(
 	uppercase string,
 	definition ast.DefinitionLike,
-) ast.RuleLike {
-	return ast.RuleClass().Rule(
+) RuleLike {
+	return RuleClass().Rule(
 		uppercase,
 		definition,
 	)
 }
 
-// Ast/RuleOption
+func RuleOptionClass() RuleOptionClassLike {
+	return ast.RuleOptionClass()
+}
 
 func RuleOption(
 	newline string,
 	uppercase string,
 	optionalNote string,
-) ast.RuleOptionLike {
-	return ast.RuleOptionClass().RuleOption(
+) RuleOptionLike {
+	return RuleOptionClass().RuleOption(
 		newline,
 		uppercase,
 		optionalNote,
 	)
 }
 
-// Ast/Syntax
+func SyntaxClass() SyntaxClassLike {
+	return ast.SyntaxClass()
+}
 
 func Syntax(
 	notice ast.NoticeLike,
@@ -462,8 +520,8 @@ func Syntax(
 	rules col.Sequential[ast.RuleLike],
 	comment2 string,
 	expressions col.Sequential[ast.ExpressionLike],
-) ast.SyntaxLike {
-	return ast.SyntaxClass().Syntax(
+) SyntaxLike {
+	return SyntaxClass().Syntax(
 		notice,
 		comment1,
 		rules,
@@ -472,65 +530,81 @@ func Syntax(
 	)
 }
 
-// Ast/Term
+func TermClass() TermClassLike {
+	return ast.TermClass()
+}
 
 func Term(
 	any_ any,
-) ast.TermLike {
-	return ast.TermClass().Term(
+) TermLike {
+	return TermClass().Term(
 		any_,
 	)
 }
 
-// Ast/Text
+func TextClass() TextClassLike {
+	return ast.TextClass()
+}
 
 func Text(
 	any_ any,
-) ast.TextLike {
-	return ast.TextClass().Text(
+) TextLike {
+	return TextClass().Text(
 		any_,
 	)
 }
 
-// Grammar/Formatter
+// Grammar
 
-func Formatter() gra.FormatterLike {
-	return gra.FormatterClass().Formatter()
+func FormatterClass() FormatterClassLike {
+	return gra.FormatterClass()
 }
 
-// Grammar/Parser
-
-func Parser() gra.ParserLike {
-	return gra.ParserClass().Parser()
+func Formatter() FormatterLike {
+	return FormatterClass().Formatter()
 }
 
-// Grammar/Processor
-
-func Processor() gra.ProcessorLike {
-	return gra.ProcessorClass().Processor()
+func ParserClass() ParserClassLike {
+	return gra.ParserClass()
 }
 
-// Grammar/Scanner
+func Parser() ParserLike {
+	return ParserClass().Parser()
+}
+
+func ProcessorClass() ProcessorClassLike {
+	return gra.ProcessorClass()
+}
+
+func Processor() ProcessorLike {
+	return ProcessorClass().Processor()
+}
+
+func ScannerClass() ScannerClassLike {
+	return gra.ScannerClass()
+}
 
 func Scanner(
 	source string,
 	tokens col.QueueLike[gra.TokenLike],
-) gra.ScannerLike {
-	return gra.ScannerClass().Scanner(
+) ScannerLike {
+	return ScannerClass().Scanner(
 		source,
 		tokens,
 	)
 }
 
-// Grammar/Token
+func TokenClass() TokenClassLike {
+	return gra.TokenClass()
+}
 
 func Token(
 	line uint,
 	position uint,
 	type_ gra.TokenType,
 	value string,
-) gra.TokenLike {
-	return gra.TokenClass().Token(
+) TokenLike {
+	return TokenClass().Token(
 		line,
 		position,
 		type_,
@@ -538,18 +612,22 @@ func Token(
 	)
 }
 
-// Grammar/Validator
-
-func Validator() gra.ValidatorLike {
-	return gra.ValidatorClass().Validator()
+func ValidatorClass() ValidatorClassLike {
+	return gra.ValidatorClass()
 }
 
-// Grammar/Visitor
+func Validator() ValidatorLike {
+	return ValidatorClass().Validator()
+}
+
+func VisitorClass() VisitorClassLike {
+	return gra.VisitorClass()
+}
 
 func Visitor(
 	processor gra.Methodical,
-) gra.VisitorLike {
-	return gra.VisitorClass().Visitor(
+) VisitorLike {
+	return VisitorClass().Visitor(
 		processor,
 	)
 }
