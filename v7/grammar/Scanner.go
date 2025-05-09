@@ -197,11 +197,11 @@ loop:
 		case v.foundToken(ExcludedToken):
 		case v.foundToken(GlyphToken):
 		case v.foundToken(IntrinsicToken):
+		case v.foundToken(LiteralToken):
 		case v.foundToken(LowercaseToken):
 		case v.foundToken(NoteToken):
 		case v.foundToken(NumberToken):
 		case v.foundToken(OptionalToken):
-		case v.foundToken(QuoteToken):
 		case v.foundToken(RepeatedToken):
 		case v.foundToken(UppercaseToken):
 		default:
@@ -249,12 +249,12 @@ var scannerClassReference_ = &scannerClass_{
 			ExcludedToken:  "excluded",
 			GlyphToken:     "glyph",
 			IntrinsicToken: "intrinsic",
+			LiteralToken:   "literal",
 			LowercaseToken: "lowercase",
 			NewlineToken:   "newline",
 			NoteToken:      "note",
 			NumberToken:    "number",
 			OptionalToken:  "optional",
-			QuoteToken:     "quote",
 			RepeatedToken:  "repeated",
 			SpaceToken:     "space",
 			UppercaseToken: "uppercase",
@@ -268,12 +268,12 @@ var scannerClassReference_ = &scannerClass_{
 			ExcludedToken:  reg.MustCompile("^" + excluded_),
 			GlyphToken:     reg.MustCompile("^" + glyph_),
 			IntrinsicToken: reg.MustCompile("^" + intrinsic_),
+			LiteralToken:   reg.MustCompile("^" + literal_),
 			LowercaseToken: reg.MustCompile("^" + lowercase_),
 			NewlineToken:   reg.MustCompile("^" + newline_),
 			NoteToken:      reg.MustCompile("^" + note_),
 			NumberToken:    reg.MustCompile("^" + number_),
 			OptionalToken:  reg.MustCompile("^" + optional_),
-			QuoteToken:     reg.MustCompile("^" + quote_),
 			RepeatedToken:  reg.MustCompile("^" + repeated_),
 			SpaceToken:     reg.MustCompile("^" + space_),
 			UppercaseToken: reg.MustCompile("^" + uppercase_),
@@ -310,11 +310,11 @@ const (
 	excluded_  = "(?:~)"
 	glyph_     = "(?:'[^" + control_ + "]')"
 	intrinsic_ = "(?:ANY|CONTROL|DIGIT|EOL|LOWER|UPPER)"
+	literal_   = "(?:\"((?:" + escape_ + ")|[^\"" + control_ + "])+\")"
 	lowercase_ = "(?:" + lower_ + "(" + digit_ + "|" + lower_ + "|" + upper_ + ")*)"
 	note_      = "(?:! [^" + control_ + "]*)"
 	number_    = "(?:" + digit_ + "+)"
 	optional_  = "(?:\\?)"
-	quote_     = "(?:\"((?:" + escape_ + ")|[^\"" + control_ + "])+\")"
 	repeated_  = "(?:\\*|\\+)"
 	unicode_   = "(?:(x(?:" + base16_ + "){2})|(u(?:" + base16_ + "){4})|(U(?:" + base16_ + "){8}))"
 	uppercase_ = "(?:" + upper_ + "(" + digit_ + "|" + lower_ + "|" + upper_ + ")*)"

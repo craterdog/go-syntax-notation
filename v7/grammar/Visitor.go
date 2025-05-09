@@ -124,6 +124,27 @@ func (v *visitor_) visitCharacter(
 	}
 }
 
+func (v *visitor_) visitComponent(
+	component ast.ComponentLike,
+) {
+	// Visit the possible component types.
+	switch actual := component.GetAny().(type) {
+	case string:
+		switch {
+		case ScannerClass().MatchesType(actual, LiteralToken):
+			v.processor_.ProcessLiteral(actual)
+		case ScannerClass().MatchesType(actual, LowercaseToken):
+			v.processor_.ProcessLowercase(actual)
+		case ScannerClass().MatchesType(actual, UppercaseToken):
+			v.processor_.ProcessUppercase(actual)
+		default:
+			panic(fmt.Sprintf("Invalid token: %v", actual))
+		}
+	default:
+		panic(fmt.Sprintf("Invalid rule type: %T", actual))
+	}
+}
+
 func (v *visitor_) visitConstrained(
 	constrained ast.ConstrainedLike,
 ) {
@@ -148,22 +169,22 @@ func (v *visitor_) visitDefinition(
 ) {
 	// Visit the possible definition types.
 	switch actual := definition.GetAny().(type) {
-	case ast.MultiruleLike:
-		v.processor_.PreprocessMultirule(actual)
-		v.visitMultirule(actual)
-		v.processor_.PostprocessMultirule(actual)
-	case ast.MultiexpressionLike:
-		v.processor_.PreprocessMultiexpression(actual)
-		v.visitMultiexpression(actual)
-		v.processor_.PostprocessMultiexpression(actual)
-	case ast.MultiliteralLike:
-		v.processor_.PreprocessMultiliteral(actual)
-		v.visitMultiliteral(actual)
-		v.processor_.PostprocessMultiliteral(actual)
-	case ast.InlineLike:
-		v.processor_.PreprocessInline(actual)
-		v.visitInline(actual)
-		v.processor_.PostprocessInline(actual)
+	case ast.MultiLiteralLike:
+		v.processor_.PreprocessMultiLiteral(actual)
+		v.visitMultiLiteral(actual)
+		v.processor_.PostprocessMultiLiteral(actual)
+	case ast.MultiExpressionLike:
+		v.processor_.PreprocessMultiExpression(actual)
+		v.visitMultiExpression(actual)
+		v.processor_.PostprocessMultiExpression(actual)
+	case ast.MultiRuleLike:
+		v.processor_.PreprocessMultiRule(actual)
+		v.visitMultiRule(actual)
+		v.processor_.PostprocessMultiRule(actual)
+	case ast.InlineRuleLike:
+		v.processor_.PreprocessInlineRule(actual)
+		v.visitInlineRule(actual)
+		v.processor_.PostprocessInlineRule(actual)
 	case string:
 		switch {
 		default:
@@ -321,25 +342,6 @@ func (v *visitor_) visitGroup(
 	v.processor_.PostprocessPattern(pattern)
 }
 
-func (v *visitor_) visitIdentifier(
-	identifier ast.IdentifierLike,
-) {
-	// Visit the possible identifier types.
-	switch actual := identifier.GetAny().(type) {
-	case string:
-		switch {
-		case ScannerClass().MatchesType(actual, LowercaseToken):
-			v.processor_.ProcessLowercase(actual)
-		case ScannerClass().MatchesType(actual, UppercaseToken):
-			v.processor_.ProcessUppercase(actual)
-		default:
-			panic(fmt.Sprintf("Invalid token: %v", actual))
-		}
-	default:
-		panic(fmt.Sprintf("Invalid rule type: %T", actual))
-	}
-}
-
 func (v *visitor_) visitImplicit(
 	implicit ast.ImplicitLike,
 ) {
@@ -348,12 +350,12 @@ func (v *visitor_) visitImplicit(
 	v.processor_.ProcessIntrinsic(intrinsic)
 }
 
-func (v *visitor_) visitInline(
-	inline ast.InlineLike,
+func (v *visitor_) visitInlineRule(
+	inlineRule ast.InlineRuleLike,
 ) {
 	// Visit each term rule.
 	var termIndex uint
-	var terms = inline.GetTerms().GetIterator()
+	var terms = inlineRule.GetTerms().GetIterator()
 	var termsSize = uint(terms.GetSize())
 	for terms.HasNext() {
 		termIndex++
@@ -372,10 +374,10 @@ func (v *visitor_) visitInline(
 	}
 
 	// Visit slot 1 between references.
-	v.processor_.ProcessInlineSlot(1)
+	v.processor_.ProcessInlineRuleSlot(1)
 
 	// Visit an optional note token.
-	var optionalNote = inline.GetOptionalNote()
+	var optionalNote = inlineRule.GetOptionalNote()
 	if uti.IsDefined(optionalNote) {
 		v.processor_.ProcessNote(optionalNote)
 	}
@@ -391,14 +393,6 @@ func (v *visitor_) visitLimit(
 	}
 }
 
-func (v *visitor_) visitLiteral(
-	literal ast.LiteralLike,
-) {
-	// Visit a single quote token.
-	var quote = literal.GetQuote()
-	v.processor_.ProcessQuote(quote)
-}
-
 func (v *visitor_) visitLiteralOption(
 	literalOption ast.LiteralOptionLike,
 ) {
@@ -409,9 +403,9 @@ func (v *visitor_) visitLiteralOption(
 	// Visit slot 1 between references.
 	v.processor_.ProcessLiteralOptionSlot(1)
 
-	// Visit a single quote token.
-	var quote = literalOption.GetQuote()
-	v.processor_.ProcessQuote(quote)
+	// Visit a single literal token.
+	var literal = literalOption.GetLiteral()
+	v.processor_.ProcessLiteral(literal)
 
 	// Visit slot 2 between references.
 	v.processor_.ProcessLiteralOptionSlot(2)
@@ -423,12 +417,12 @@ func (v *visitor_) visitLiteralOption(
 	}
 }
 
-func (v *visitor_) visitMultiexpression(
-	multiexpression ast.MultiexpressionLike,
+func (v *visitor_) visitMultiExpression(
+	multiExpression ast.MultiExpressionLike,
 ) {
 	// Visit each expressionOption rule.
 	var expressionOptionIndex uint
-	var expressionOptions = multiexpression.GetExpressionOptions().GetIterator()
+	var expressionOptions = multiExpression.GetExpressionOptions().GetIterator()
 	var expressionOptionsSize = uint(expressionOptions.GetSize())
 	for expressionOptions.HasNext() {
 		expressionOptionIndex++
@@ -447,12 +441,12 @@ func (v *visitor_) visitMultiexpression(
 	}
 }
 
-func (v *visitor_) visitMultiliteral(
-	multiliteral ast.MultiliteralLike,
+func (v *visitor_) visitMultiLiteral(
+	multiLiteral ast.MultiLiteralLike,
 ) {
 	// Visit each literalOption rule.
 	var literalOptionIndex uint
-	var literalOptions = multiliteral.GetLiteralOptions().GetIterator()
+	var literalOptions = multiLiteral.GetLiteralOptions().GetIterator()
 	var literalOptionsSize = uint(literalOptions.GetSize())
 	for literalOptions.HasNext() {
 		literalOptionIndex++
@@ -471,12 +465,12 @@ func (v *visitor_) visitMultiliteral(
 	}
 }
 
-func (v *visitor_) visitMultirule(
-	multirule ast.MultiruleLike,
+func (v *visitor_) visitMultiRule(
+	multiRule ast.MultiRuleLike,
 ) {
 	// Visit each ruleOption rule.
 	var ruleOptionIndex uint
-	var ruleOptions = multirule.GetRuleOptions().GetIterator()
+	var ruleOptions = multiRule.GetRuleOptions().GetIterator()
 	var ruleOptionsSize = uint(ruleOptions.GetSize())
 	for ruleOptions.HasNext() {
 		ruleOptionIndex++
@@ -583,27 +577,6 @@ func (v *visitor_) visitQuantified(
 		v.processor_.PreprocessLimit(optionalLimit)
 		v.visitLimit(optionalLimit)
 		v.processor_.PostprocessLimit(optionalLimit)
-	}
-}
-
-func (v *visitor_) visitReference(
-	reference ast.ReferenceLike,
-) {
-	// Visit a single identifier rule.
-	var identifier = reference.GetIdentifier()
-	v.processor_.PreprocessIdentifier(identifier)
-	v.visitIdentifier(identifier)
-	v.processor_.PostprocessIdentifier(identifier)
-
-	// Visit slot 1 between references.
-	v.processor_.ProcessReferenceSlot(1)
-
-	// Visit an optional cardinality rule.
-	var optionalCardinality = reference.GetOptionalCardinality()
-	if uti.IsDefined(optionalCardinality) {
-		v.processor_.PreprocessCardinality(optionalCardinality)
-		v.visitCardinality(optionalCardinality)
-		v.processor_.PostprocessCardinality(optionalCardinality)
 	}
 }
 
@@ -742,23 +715,21 @@ func (v *visitor_) visitSyntax(
 func (v *visitor_) visitTerm(
 	term ast.TermLike,
 ) {
-	// Visit the possible term types.
-	switch actual := term.GetAny().(type) {
-	case ast.LiteralLike:
-		v.processor_.PreprocessLiteral(actual)
-		v.visitLiteral(actual)
-		v.processor_.PostprocessLiteral(actual)
-	case ast.ReferenceLike:
-		v.processor_.PreprocessReference(actual)
-		v.visitReference(actual)
-		v.processor_.PostprocessReference(actual)
-	case string:
-		switch {
-		default:
-			panic(fmt.Sprintf("Invalid token: %v", actual))
-		}
-	default:
-		panic(fmt.Sprintf("Invalid rule type: %T", actual))
+	// Visit a single component rule.
+	var component = term.GetComponent()
+	v.processor_.PreprocessComponent(component)
+	v.visitComponent(component)
+	v.processor_.PostprocessComponent(component)
+
+	// Visit slot 1 between references.
+	v.processor_.ProcessTermSlot(1)
+
+	// Visit an optional cardinality rule.
+	var optionalCardinality = term.GetOptionalCardinality()
+	if uti.IsDefined(optionalCardinality) {
+		v.processor_.PreprocessCardinality(optionalCardinality)
+		v.visitCardinality(optionalCardinality)
+		v.processor_.PostprocessCardinality(optionalCardinality)
 	}
 }
 
@@ -771,8 +742,8 @@ func (v *visitor_) visitText(
 		switch {
 		case ScannerClass().MatchesType(actual, GlyphToken):
 			v.processor_.ProcessGlyph(actual)
-		case ScannerClass().MatchesType(actual, QuoteToken):
-			v.processor_.ProcessQuote(actual)
+		case ScannerClass().MatchesType(actual, LiteralToken):
+			v.processor_.ProcessLiteral(actual)
 		case ScannerClass().MatchesType(actual, LowercaseToken):
 			v.processor_.ProcessLowercase(actual)
 		case ScannerClass().MatchesType(actual, IntrinsicToken):

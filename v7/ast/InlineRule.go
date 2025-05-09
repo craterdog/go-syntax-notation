@@ -20,6 +20,7 @@
 package ast
 
 import (
+	col "github.com/craterdog/go-collection-framework/v7"
 	uti "github.com/craterdog/go-missing-utilities/v7"
 )
 
@@ -27,21 +28,23 @@ import (
 
 // Access Function
 
-func IdentifierClass() IdentifierClassLike {
-	return identifierClass()
+func InlineRuleClass() InlineRuleClassLike {
+	return inlineRuleClass()
 }
 
 // Constructor Methods
 
-func (c *identifierClass_) Identifier(
-	any_ any,
-) IdentifierLike {
-	if uti.IsUndefined(any_) {
-		panic("The \"any\" attribute is required by this class.")
+func (c *inlineRuleClass_) InlineRule(
+	terms col.Sequential[TermLike],
+	optionalNote string,
+) InlineRuleLike {
+	if uti.IsUndefined(terms) {
+		panic("The \"terms\" attribute is required by this class.")
 	}
-	var instance = &identifier_{
+	var instance = &inlineRule_{
 		// Initialize the instance attributes.
-		any_: any_,
+		terms_:        terms,
+		optionalNote_: optionalNote,
 	}
 	return instance
 }
@@ -50,37 +53,42 @@ func (c *identifierClass_) Identifier(
 
 // Principal Methods
 
-func (v *identifier_) GetClass() IdentifierClassLike {
-	return identifierClass()
+func (v *inlineRule_) GetClass() InlineRuleClassLike {
+	return inlineRuleClass()
 }
 
 // Attribute Methods
 
-func (v *identifier_) GetAny() any {
-	return v.any_
+func (v *inlineRule_) GetTerms() col.Sequential[TermLike] {
+	return v.terms_
+}
+
+func (v *inlineRule_) GetOptionalNote() string {
+	return v.optionalNote_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type identifier_ struct {
+type inlineRule_ struct {
 	// Declare the instance attributes.
-	any_ any
+	terms_        col.Sequential[TermLike]
+	optionalNote_ string
 }
 
 // Class Structure
 
-type identifierClass_ struct {
+type inlineRuleClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func identifierClass() *identifierClass_ {
-	return identifierClassReference_
+func inlineRuleClass() *inlineRuleClass_ {
+	return inlineRuleClassReference_
 }
 
-var identifierClassReference_ = &identifierClass_{
+var inlineRuleClassReference_ = &inlineRuleClass_{
 	// Initialize the class constants.
 }

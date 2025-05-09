@@ -34,14 +34,16 @@ func TermClass() TermClassLike {
 // Constructor Methods
 
 func (c *termClass_) Term(
-	any_ any,
+	component ComponentLike,
+	optionalCardinality CardinalityLike,
 ) TermLike {
-	if uti.IsUndefined(any_) {
-		panic("The \"any\" attribute is required by this class.")
+	if uti.IsUndefined(component) {
+		panic("The \"component\" attribute is required by this class.")
 	}
 	var instance = &term_{
 		// Initialize the instance attributes.
-		any_: any_,
+		component_:           component,
+		optionalCardinality_: optionalCardinality,
 	}
 	return instance
 }
@@ -56,8 +58,12 @@ func (v *term_) GetClass() TermClassLike {
 
 // Attribute Methods
 
-func (v *term_) GetAny() any {
-	return v.any_
+func (v *term_) GetComponent() ComponentLike {
+	return v.component_
+}
+
+func (v *term_) GetOptionalCardinality() CardinalityLike {
+	return v.optionalCardinality_
 }
 
 // PROTECTED INTERFACE
@@ -66,7 +72,8 @@ func (v *term_) GetAny() any {
 
 type term_ struct {
 	// Declare the instance attributes.
-	any_ any
+	component_           ComponentLike
+	optionalCardinality_ CardinalityLike
 }
 
 // Class Structure

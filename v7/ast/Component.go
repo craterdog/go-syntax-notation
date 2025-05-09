@@ -27,23 +27,21 @@ import (
 
 // Access Function
 
-func ReferenceClass() ReferenceClassLike {
-	return referenceClass()
+func ComponentClass() ComponentClassLike {
+	return componentClass()
 }
 
 // Constructor Methods
 
-func (c *referenceClass_) Reference(
-	identifier IdentifierLike,
-	optionalCardinality CardinalityLike,
-) ReferenceLike {
-	if uti.IsUndefined(identifier) {
-		panic("The \"identifier\" attribute is required by this class.")
+func (c *componentClass_) Component(
+	any_ any,
+) ComponentLike {
+	if uti.IsUndefined(any_) {
+		panic("The \"any\" attribute is required by this class.")
 	}
-	var instance = &reference_{
+	var instance = &component_{
 		// Initialize the instance attributes.
-		identifier_:          identifier,
-		optionalCardinality_: optionalCardinality,
+		any_: any_,
 	}
 	return instance
 }
@@ -52,42 +50,37 @@ func (c *referenceClass_) Reference(
 
 // Principal Methods
 
-func (v *reference_) GetClass() ReferenceClassLike {
-	return referenceClass()
+func (v *component_) GetClass() ComponentClassLike {
+	return componentClass()
 }
 
 // Attribute Methods
 
-func (v *reference_) GetIdentifier() IdentifierLike {
-	return v.identifier_
-}
-
-func (v *reference_) GetOptionalCardinality() CardinalityLike {
-	return v.optionalCardinality_
+func (v *component_) GetAny() any {
+	return v.any_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type reference_ struct {
+type component_ struct {
 	// Declare the instance attributes.
-	identifier_          IdentifierLike
-	optionalCardinality_ CardinalityLike
+	any_ any
 }
 
 // Class Structure
 
-type referenceClass_ struct {
+type componentClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func referenceClass() *referenceClass_ {
-	return referenceClassReference_
+func componentClass() *componentClass_ {
+	return componentClassReference_
 }
 
-var referenceClassReference_ = &referenceClass_{
+var componentClassReference_ = &componentClass_{
 	// Initialize the class constants.
 }

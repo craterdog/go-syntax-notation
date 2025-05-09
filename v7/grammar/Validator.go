@@ -85,6 +85,12 @@ func (v *validator_) ProcessIntrinsic(
 	v.validateToken(intrinsic, IntrinsicToken)
 }
 
+func (v *validator_) ProcessLiteral(
+	literal string,
+) {
+	v.validateToken(literal, LiteralToken)
+}
+
 func (v *validator_) ProcessLowercase(
 	lowercase string,
 ) {
@@ -113,12 +119,6 @@ func (v *validator_) ProcessOptional(
 	optional string,
 ) {
 	v.validateToken(optional, OptionalToken)
-}
-
-func (v *validator_) ProcessQuote(
-	quote string,
-) {
-	v.validateToken(quote, QuoteToken)
 }
 
 func (v *validator_) ProcessRepeated(
@@ -197,6 +197,24 @@ func (v *validator_) PostprocessCharacter(
 	character ast.CharacterLike,
 	index uint,
 	size uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessComponent(
+	component ast.ComponentLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessComponentSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessComponent(
+	component ast.ComponentLike,
 ) {
 	// TBD - Add any validation checks.
 }
@@ -371,24 +389,6 @@ func (v *validator_) PostprocessGroup(
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) PreprocessIdentifier(
-	identifier ast.IdentifierLike,
-) {
-	// TBD - Add any validation checks.
-}
-
-func (v *validator_) ProcessIdentifierSlot(
-	slot uint,
-) {
-	// TBD - Add any validation checks.
-}
-
-func (v *validator_) PostprocessIdentifier(
-	identifier ast.IdentifierLike,
-) {
-	// TBD - Add any validation checks.
-}
-
 func (v *validator_) PreprocessImplicit(
 	implicit ast.ImplicitLike,
 ) {
@@ -407,20 +407,20 @@ func (v *validator_) PostprocessImplicit(
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) PreprocessInline(
-	inline ast.InlineLike,
+func (v *validator_) PreprocessInlineRule(
+	inlineRule ast.InlineRuleLike,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) ProcessInlineSlot(
+func (v *validator_) ProcessInlineRuleSlot(
 	slot uint,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) PostprocessInline(
-	inline ast.InlineLike,
+func (v *validator_) PostprocessInlineRule(
+	inlineRule ast.InlineRuleLike,
 ) {
 	// TBD - Add any validation checks.
 }
@@ -443,56 +443,78 @@ func (v *validator_) PostprocessLimit(
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) PreprocessLiteral(
-	literal ast.LiteralLike,
+func (v *validator_) PreprocessLiteralOption(
+	literalOption ast.LiteralOptionLike,
+	index uint,
+	size uint,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) ProcessLiteralSlot(
+func (v *validator_) ProcessLiteralOptionSlot(
 	slot uint,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) PostprocessLiteral(
-	literal ast.LiteralLike,
+func (v *validator_) PostprocessLiteralOption(
+	literalOption ast.LiteralOptionLike,
+	index uint,
+	size uint,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) PreprocessMultiexpression(
-	multiexpression ast.MultiexpressionLike,
+func (v *validator_) PreprocessMultiExpression(
+	multiExpression ast.MultiExpressionLike,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) ProcessMultiexpressionSlot(
+func (v *validator_) ProcessMultiExpressionSlot(
 	slot uint,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) PostprocessMultiexpression(
-	multiexpression ast.MultiexpressionLike,
+func (v *validator_) PostprocessMultiExpression(
+	multiExpression ast.MultiExpressionLike,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) PreprocessMultirule(
-	multirule ast.MultiruleLike,
+func (v *validator_) PreprocessMultiLiteral(
+	multiLiteral ast.MultiLiteralLike,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) ProcessMultiruleSlot(
+func (v *validator_) ProcessMultiLiteralSlot(
 	slot uint,
 ) {
 	// TBD - Add any validation checks.
 }
 
-func (v *validator_) PostprocessMultirule(
-	multirule ast.MultiruleLike,
+func (v *validator_) PostprocessMultiLiteral(
+	multiLiteral ast.MultiLiteralLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PreprocessMultiRule(
+	multiRule ast.MultiRuleLike,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) ProcessMultiRuleSlot(
+	slot uint,
+) {
+	// TBD - Add any validation checks.
+}
+
+func (v *validator_) PostprocessMultiRule(
+	multiRule ast.MultiRuleLike,
 ) {
 	// TBD - Add any validation checks.
 }
@@ -565,24 +587,6 @@ func (v *validator_) ProcessQuantifiedSlot(
 
 func (v *validator_) PostprocessQuantified(
 	quantified ast.QuantifiedLike,
-) {
-	// TBD - Add any validation checks.
-}
-
-func (v *validator_) PreprocessReference(
-	reference ast.ReferenceLike,
-) {
-	// TBD - Add any validation checks.
-}
-
-func (v *validator_) ProcessReferenceSlot(
-	slot uint,
-) {
-	// TBD - Add any validation checks.
-}
-
-func (v *validator_) PostprocessReference(
-	reference ast.ReferenceLike,
 ) {
 	// TBD - Add any validation checks.
 }

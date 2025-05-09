@@ -60,12 +60,12 @@ const (
 	ExcludedToken
 	GlyphToken
 	IntrinsicToken
+	LiteralToken
 	LowercaseToken
 	NewlineToken
 	NoteToken
 	NumberToken
 	OptionalToken
-	QuoteToken
 	RepeatedToken
 	SpaceToken
 	UppercaseToken
@@ -291,6 +291,9 @@ type Methodical interface {
 	ProcessIntrinsic(
 		intrinsic string,
 	)
+	ProcessLiteral(
+		literal string,
+	)
 	ProcessLowercase(
 		lowercase string,
 	)
@@ -305,9 +308,6 @@ type Methodical interface {
 	)
 	ProcessOptional(
 		optional string,
-	)
-	ProcessQuote(
-		quote string,
 	)
 	ProcessRepeated(
 		repeated string,
@@ -352,6 +352,15 @@ type Methodical interface {
 		character ast.CharacterLike,
 		index uint,
 		size uint,
+	)
+	PreprocessComponent(
+		component ast.ComponentLike,
+	)
+	ProcessComponentSlot(
+		slot uint,
+	)
+	PostprocessComponent(
+		component ast.ComponentLike,
 	)
 	PreprocessConstrained(
 		constrained ast.ConstrainedLike,
@@ -442,15 +451,6 @@ type Methodical interface {
 	PostprocessGroup(
 		group ast.GroupLike,
 	)
-	PreprocessIdentifier(
-		identifier ast.IdentifierLike,
-	)
-	ProcessIdentifierSlot(
-		slot uint,
-	)
-	PostprocessIdentifier(
-		identifier ast.IdentifierLike,
-	)
 	PreprocessImplicit(
 		implicit ast.ImplicitLike,
 	)
@@ -460,14 +460,14 @@ type Methodical interface {
 	PostprocessImplicit(
 		implicit ast.ImplicitLike,
 	)
-	PreprocessInline(
-		inline ast.InlineLike,
+	PreprocessInlineRule(
+		inlineRule ast.InlineRuleLike,
 	)
-	ProcessInlineSlot(
+	ProcessInlineRuleSlot(
 		slot uint,
 	)
-	PostprocessInline(
-		inline ast.InlineLike,
+	PostprocessInlineRule(
+		inlineRule ast.InlineRuleLike,
 	)
 	PreprocessLimit(
 		limit ast.LimitLike,
@@ -477,15 +477,6 @@ type Methodical interface {
 	)
 	PostprocessLimit(
 		limit ast.LimitLike,
-	)
-	PreprocessLiteral(
-		literal ast.LiteralLike,
-	)
-	ProcessLiteralSlot(
-		slot uint,
-	)
-	PostprocessLiteral(
-		literal ast.LiteralLike,
 	)
 	PreprocessLiteralOption(
 		literalOption ast.LiteralOptionLike,
@@ -500,32 +491,32 @@ type Methodical interface {
 		index uint,
 		size uint,
 	)
-	PreprocessMultiexpression(
-		multiexpression ast.MultiexpressionLike,
+	PreprocessMultiExpression(
+		multiExpression ast.MultiExpressionLike,
 	)
-	ProcessMultiexpressionSlot(
+	ProcessMultiExpressionSlot(
 		slot uint,
 	)
-	PostprocessMultiexpression(
-		multiexpression ast.MultiexpressionLike,
+	PostprocessMultiExpression(
+		multiExpression ast.MultiExpressionLike,
 	)
-	PreprocessMultiliteral(
-		multiliteral ast.MultiliteralLike,
+	PreprocessMultiLiteral(
+		multiLiteral ast.MultiLiteralLike,
 	)
-	ProcessMultiliteralSlot(
+	ProcessMultiLiteralSlot(
 		slot uint,
 	)
-	PostprocessMultiliteral(
-		multiliteral ast.MultiliteralLike,
+	PostprocessMultiLiteral(
+		multiLiteral ast.MultiLiteralLike,
 	)
-	PreprocessMultirule(
-		multirule ast.MultiruleLike,
+	PreprocessMultiRule(
+		multiRule ast.MultiRuleLike,
 	)
-	ProcessMultiruleSlot(
+	ProcessMultiRuleSlot(
 		slot uint,
 	)
-	PostprocessMultirule(
-		multirule ast.MultiruleLike,
+	PostprocessMultiRule(
+		multiRule ast.MultiRuleLike,
 	)
 	PreprocessNotice(
 		notice ast.NoticeLike,
@@ -562,15 +553,6 @@ type Methodical interface {
 	)
 	PostprocessQuantified(
 		quantified ast.QuantifiedLike,
-	)
-	PreprocessReference(
-		reference ast.ReferenceLike,
-	)
-	ProcessReferenceSlot(
-		slot uint,
-	)
-	PostprocessReference(
-		reference ast.ReferenceLike,
 	)
 	PreprocessRepetition(
 		repetition ast.RepetitionLike,

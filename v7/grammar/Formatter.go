@@ -237,8 +237,8 @@ func (v *formatter_) PostprocessGroup(
 	v.appendString(")")
 }
 
-func (v *formatter_) PostprocessInline(
-	inline ast.InlineLike,
+func (v *formatter_) PostprocessInlineRule(
+	inline ast.InlineRuleLike,
 ) {
 	v.appendNewline()
 }
@@ -249,40 +249,40 @@ func (v *formatter_) PreprocessLimit(
 	v.appendString("..")
 }
 
-func (v *formatter_) PreprocessMultiexpression(
-	multiexpression ast.MultiexpressionLike,
+func (v *formatter_) PreprocessMultiExpression(
+	multiexpression ast.MultiExpressionLike,
 ) {
 	v.depth_++
 }
 
-func (v *formatter_) PostprocessMultiexpression(
-	multiexpression ast.MultiexpressionLike,
+func (v *formatter_) PostprocessMultiExpression(
+	multiexpression ast.MultiExpressionLike,
 ) {
 	v.depth_--
 	v.appendNewline()
 }
 
-func (v *formatter_) PreprocessMultiliteral(
-	multiliteral ast.MultiliteralLike,
+func (v *formatter_) PreprocessMultiLiteral(
+	multiliteral ast.MultiLiteralLike,
 ) {
 	v.depth_++
 }
 
-func (v *formatter_) PostprocessMultiliteral(
-	multiliteral ast.MultiliteralLike,
+func (v *formatter_) PostprocessMultiLiteral(
+	multiliteral ast.MultiLiteralLike,
 ) {
 	v.depth_--
 	v.appendNewline()
 }
 
-func (v *formatter_) PreprocessMultirule(
-	multirule ast.MultiruleLike,
+func (v *formatter_) PreprocessMultiRule(
+	multirule ast.MultiRuleLike,
 ) {
 	v.depth_++
 }
 
-func (v *formatter_) PostprocessMultirule(
-	multirule ast.MultiruleLike,
+func (v *formatter_) PostprocessMultiRule(
+	multirule ast.MultiRuleLike,
 ) {
 	v.depth_--
 	v.appendNewline()

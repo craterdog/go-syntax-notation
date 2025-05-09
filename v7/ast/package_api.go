@@ -82,6 +82,18 @@ type CharacterClassLike interface {
 }
 
 /*
+ComponentClassLike is a class interface that declares the
+complete set of class constructors, constants and functions that must be
+supported by each concrete component-like class.
+*/
+type ComponentClassLike interface {
+	// Constructor Methods
+	Component(
+		any_ any,
+	) ComponentLike
+}
+
+/*
 ConstrainedClassLike is a class interface that declares the
 complete set of class constructors, constants and functions that must be
 supported by each concrete constrained-like class.
@@ -196,18 +208,6 @@ type GroupClassLike interface {
 }
 
 /*
-IdentifierClassLike is a class interface that declares the
-complete set of class constructors, constants and functions that must be
-supported by each concrete identifier-like class.
-*/
-type IdentifierClassLike interface {
-	// Constructor Methods
-	Identifier(
-		any_ any,
-	) IdentifierLike
-}
-
-/*
 ImplicitClassLike is a class interface that declares the
 complete set of class constructors, constants and functions that must be
 supported by each concrete implicit-like class.
@@ -220,16 +220,16 @@ type ImplicitClassLike interface {
 }
 
 /*
-InlineClassLike is a class interface that declares the
+InlineRuleClassLike is a class interface that declares the
 complete set of class constructors, constants and functions that must be
-supported by each concrete inline-like class.
+supported by each concrete inline-rule-like class.
 */
-type InlineClassLike interface {
+type InlineRuleClassLike interface {
 	// Constructor Methods
-	Inline(
+	InlineRule(
 		terms col.Sequential[TermLike],
 		optionalNote string,
-	) InlineLike
+	) InlineRuleLike
 }
 
 /*
@@ -245,18 +245,6 @@ type LimitClassLike interface {
 }
 
 /*
-LiteralClassLike is a class interface that declares the
-complete set of class constructors, constants and functions that must be
-supported by each concrete literal-like class.
-*/
-type LiteralClassLike interface {
-	// Constructor Methods
-	Literal(
-		quote string,
-	) LiteralLike
-}
-
-/*
 LiteralOptionClassLike is a class interface that declares the
 complete set of class constructors, constants and functions that must be
 supported by each concrete literal-option-like class.
@@ -265,45 +253,45 @@ type LiteralOptionClassLike interface {
 	// Constructor Methods
 	LiteralOption(
 		newline string,
-		quote string,
+		literal string,
 		optionalNote string,
 	) LiteralOptionLike
 }
 
 /*
-MultiexpressionClassLike is a class interface that declares the
+MultiExpressionClassLike is a class interface that declares the
 complete set of class constructors, constants and functions that must be
-supported by each concrete multiexpression-like class.
+supported by each concrete multi-expression-like class.
 */
-type MultiexpressionClassLike interface {
+type MultiExpressionClassLike interface {
 	// Constructor Methods
-	Multiexpression(
+	MultiExpression(
 		expressionOptions col.Sequential[ExpressionOptionLike],
-	) MultiexpressionLike
+	) MultiExpressionLike
 }
 
 /*
-MultiliteralClassLike is a class interface that declares the
+MultiLiteralClassLike is a class interface that declares the
 complete set of class constructors, constants and functions that must be
-supported by each concrete multiliteral-like class.
+supported by each concrete multi-literal-like class.
 */
-type MultiliteralClassLike interface {
+type MultiLiteralClassLike interface {
 	// Constructor Methods
-	Multiliteral(
+	MultiLiteral(
 		literalOptions col.Sequential[LiteralOptionLike],
-	) MultiliteralLike
+	) MultiLiteralLike
 }
 
 /*
-MultiruleClassLike is a class interface that declares the
+MultiRuleClassLike is a class interface that declares the
 complete set of class constructors, constants and functions that must be
-supported by each concrete multirule-like class.
+supported by each concrete multi-rule-like class.
 */
-type MultiruleClassLike interface {
+type MultiRuleClassLike interface {
 	// Constructor Methods
-	Multirule(
+	MultiRule(
 		ruleOptions col.Sequential[RuleOptionLike],
-	) MultiruleLike
+	) MultiRuleLike
 }
 
 /*
@@ -355,19 +343,6 @@ type QuantifiedClassLike interface {
 		number string,
 		optionalLimit LimitLike,
 	) QuantifiedLike
-}
-
-/*
-ReferenceClassLike is a class interface that declares the
-complete set of class constructors, constants and functions that must be
-supported by each concrete reference-like class.
-*/
-type ReferenceClassLike interface {
-	// Constructor Methods
-	Reference(
-		identifier IdentifierLike,
-		optionalCardinality CardinalityLike,
-	) ReferenceLike
 }
 
 /*
@@ -434,7 +409,8 @@ supported by each concrete term-like class.
 type TermClassLike interface {
 	// Constructor Methods
 	Term(
-		any_ any,
+		component ComponentLike,
+		optionalCardinality CardinalityLike,
 	) TermLike
 }
 
@@ -486,6 +462,19 @@ by each instance of a concrete character-like class.
 type CharacterLike interface {
 	// Principal Methods
 	GetClass() CharacterClassLike
+
+	// Attribute Methods
+	GetAny() any
+}
+
+/*
+ComponentLike is an instance interface that declares the
+complete set of principal, attribute and aspect methods that must be supported
+by each instance of a concrete component-like class.
+*/
+type ComponentLike interface {
+	// Principal Methods
+	GetClass() ComponentClassLike
 
 	// Attribute Methods
 	GetAny() any
@@ -615,19 +604,6 @@ type GroupLike interface {
 }
 
 /*
-IdentifierLike is an instance interface that declares the
-complete set of principal, attribute and aspect methods that must be supported
-by each instance of a concrete identifier-like class.
-*/
-type IdentifierLike interface {
-	// Principal Methods
-	GetClass() IdentifierClassLike
-
-	// Attribute Methods
-	GetAny() any
-}
-
-/*
 ImplicitLike is an instance interface that declares the
 complete set of principal, attribute and aspect methods that must be supported
 by each instance of a concrete implicit-like class.
@@ -641,13 +617,13 @@ type ImplicitLike interface {
 }
 
 /*
-InlineLike is an instance interface that declares the
+InlineRuleLike is an instance interface that declares the
 complete set of principal, attribute and aspect methods that must be supported
-by each instance of a concrete inline-like class.
+by each instance of a concrete inline-rule-like class.
 */
-type InlineLike interface {
+type InlineRuleLike interface {
 	// Principal Methods
-	GetClass() InlineClassLike
+	GetClass() InlineRuleClassLike
 
 	// Attribute Methods
 	GetTerms() col.Sequential[TermLike]
@@ -668,19 +644,6 @@ type LimitLike interface {
 }
 
 /*
-LiteralLike is an instance interface that declares the
-complete set of principal, attribute and aspect methods that must be supported
-by each instance of a concrete literal-like class.
-*/
-type LiteralLike interface {
-	// Principal Methods
-	GetClass() LiteralClassLike
-
-	// Attribute Methods
-	GetQuote() string
-}
-
-/*
 LiteralOptionLike is an instance interface that declares the
 complete set of principal, attribute and aspect methods that must be supported
 by each instance of a concrete literal-option-like class.
@@ -691,44 +654,44 @@ type LiteralOptionLike interface {
 
 	// Attribute Methods
 	GetNewline() string
-	GetQuote() string
+	GetLiteral() string
 	GetOptionalNote() string
 }
 
 /*
-MultiexpressionLike is an instance interface that declares the
+MultiExpressionLike is an instance interface that declares the
 complete set of principal, attribute and aspect methods that must be supported
-by each instance of a concrete multiexpression-like class.
+by each instance of a concrete multi-expression-like class.
 */
-type MultiexpressionLike interface {
+type MultiExpressionLike interface {
 	// Principal Methods
-	GetClass() MultiexpressionClassLike
+	GetClass() MultiExpressionClassLike
 
 	// Attribute Methods
 	GetExpressionOptions() col.Sequential[ExpressionOptionLike]
 }
 
 /*
-MultiliteralLike is an instance interface that declares the
+MultiLiteralLike is an instance interface that declares the
 complete set of principal, attribute and aspect methods that must be supported
-by each instance of a concrete multiliteral-like class.
+by each instance of a concrete multi-literal-like class.
 */
-type MultiliteralLike interface {
+type MultiLiteralLike interface {
 	// Principal Methods
-	GetClass() MultiliteralClassLike
+	GetClass() MultiLiteralClassLike
 
 	// Attribute Methods
 	GetLiteralOptions() col.Sequential[LiteralOptionLike]
 }
 
 /*
-MultiruleLike is an instance interface that declares the
+MultiRuleLike is an instance interface that declares the
 complete set of principal, attribute and aspect methods that must be supported
-by each instance of a concrete multirule-like class.
+by each instance of a concrete multi-rule-like class.
 */
-type MultiruleLike interface {
+type MultiRuleLike interface {
 	// Principal Methods
-	GetClass() MultiruleClassLike
+	GetClass() MultiRuleClassLike
 
 	// Attribute Methods
 	GetRuleOptions() col.Sequential[RuleOptionLike]
@@ -787,20 +750,6 @@ type QuantifiedLike interface {
 	// Attribute Methods
 	GetNumber() string
 	GetOptionalLimit() LimitLike
-}
-
-/*
-ReferenceLike is an instance interface that declares the
-complete set of principal, attribute and aspect methods that must be supported
-by each instance of a concrete reference-like class.
-*/
-type ReferenceLike interface {
-	// Principal Methods
-	GetClass() ReferenceClassLike
-
-	// Attribute Methods
-	GetIdentifier() IdentifierLike
-	GetOptionalCardinality() CardinalityLike
 }
 
 /*
@@ -873,7 +822,8 @@ type TermLike interface {
 	GetClass() TermClassLike
 
 	// Attribute Methods
-	GetAny() any
+	GetComponent() ComponentLike
+	GetOptionalCardinality() CardinalityLike
 }
 
 /*

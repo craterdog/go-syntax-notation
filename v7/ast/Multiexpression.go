@@ -28,19 +28,19 @@ import (
 
 // Access Function
 
-func MultiexpressionClass() MultiexpressionClassLike {
-	return multiexpressionClass()
+func MultiExpressionClass() MultiExpressionClassLike {
+	return multiExpressionClass()
 }
 
 // Constructor Methods
 
-func (c *multiexpressionClass_) Multiexpression(
+func (c *multiExpressionClass_) MultiExpression(
 	expressionOptions col.Sequential[ExpressionOptionLike],
-) MultiexpressionLike {
+) MultiExpressionLike {
 	if uti.IsUndefined(expressionOptions) {
 		panic("The \"expressionOptions\" attribute is required by this class.")
 	}
-	var instance = &multiexpression_{
+	var instance = &multiExpression_{
 		// Initialize the instance attributes.
 		expressionOptions_: expressionOptions,
 	}
@@ -51,13 +51,13 @@ func (c *multiexpressionClass_) Multiexpression(
 
 // Principal Methods
 
-func (v *multiexpression_) GetClass() MultiexpressionClassLike {
-	return multiexpressionClass()
+func (v *multiExpression_) GetClass() MultiExpressionClassLike {
+	return multiExpressionClass()
 }
 
 // Attribute Methods
 
-func (v *multiexpression_) GetExpressionOptions() col.Sequential[ExpressionOptionLike] {
+func (v *multiExpression_) GetExpressionOptions() col.Sequential[ExpressionOptionLike] {
 	return v.expressionOptions_
 }
 
@@ -65,23 +65,23 @@ func (v *multiexpression_) GetExpressionOptions() col.Sequential[ExpressionOptio
 
 // Instance Structure
 
-type multiexpression_ struct {
+type multiExpression_ struct {
 	// Declare the instance attributes.
 	expressionOptions_ col.Sequential[ExpressionOptionLike]
 }
 
 // Class Structure
 
-type multiexpressionClass_ struct {
+type multiExpressionClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func multiexpressionClass() *multiexpressionClass_ {
-	return multiexpressionClassReference_
+func multiExpressionClass() *multiExpressionClass_ {
+	return multiExpressionClassReference_
 }
 
-var multiexpressionClassReference_ = &multiexpressionClass_{
+var multiExpressionClassReference_ = &multiExpressionClass_{
 	// Initialize the class constants.
 }

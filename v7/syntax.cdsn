@@ -30,34 +30,29 @@ $Notice: comment newline
 $Rule: "$" uppercase ":" Definition
 
 $Definition:
-    Multirule
-    Multiexpression
-    Multiliteral
-    Inline  ! This must be the last option since it skips newlines.
+    MultiLiteral
+    MultiExpression
+    MultiRule
+    InlineRule  ! This must be the last option since it skips newlines.
 
-$Multirule: RuleOption+
+$MultiLiteral: LiteralOption+
 
-$RuleOption: newline uppercase note?
+$LiteralOption: newline literal note?
 
-$Multiexpression: ExpressionOption+
+$MultiExpression: ExpressionOption+
 
 $ExpressionOption: newline lowercase note?
 
-$Multiliteral: LiteralOption+
+$MultiRule: RuleOption+
 
-$LiteralOption: newline quote note?
+$RuleOption: newline uppercase note?
 
-$Inline: Term+ note?
+$InlineRule: Term+ note?
 
-$Term:
-    Literal
-    Reference
+$Term: Component Cardinality?  ! The default cardinality is one.
 
-$Literal: quote
-
-$Reference: Identifier Cardinality?  ! The default cardinality is one.
-
-$Identifier:
+$Component:
+    literal
     lowercase
     uppercase
 
@@ -104,7 +99,7 @@ $Extent: ".." glyph  ! The extent of a range of glyphs is inclusive.
 
 $Text:
     glyph
-    quote
+    literal
     lowercase
     intrinsic
 
@@ -125,6 +120,8 @@ $glyph: "'" ~[CONTROL] "'"  ! Any printable unicode character.
 
 $intrinsic: "ANY" | "CONTROL" | "DIGIT" | "EOL" | "LOWER" | "UPPER"
 
+$literal: '"' (escape | ~['"' CONTROL])+ '"'
+
 $lowercase: LOWER (DIGIT | LOWER | UPPER)*
 
 $note: "! " ~[CONTROL]*
@@ -132,8 +129,6 @@ $note: "! " ~[CONTROL]*
 $number: DIGIT+
 
 $optional: '?'
-
-$quote: '"' (escape | ~['"' CONTROL])+ '"'
 
 $repeated: '*' | '+'
 

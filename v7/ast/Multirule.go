@@ -28,19 +28,19 @@ import (
 
 // Access Function
 
-func MultiruleClass() MultiruleClassLike {
-	return multiruleClass()
+func MultiRuleClass() MultiRuleClassLike {
+	return multiRuleClass()
 }
 
 // Constructor Methods
 
-func (c *multiruleClass_) Multirule(
+func (c *multiRuleClass_) MultiRule(
 	ruleOptions col.Sequential[RuleOptionLike],
-) MultiruleLike {
+) MultiRuleLike {
 	if uti.IsUndefined(ruleOptions) {
 		panic("The \"ruleOptions\" attribute is required by this class.")
 	}
-	var instance = &multirule_{
+	var instance = &multiRule_{
 		// Initialize the instance attributes.
 		ruleOptions_: ruleOptions,
 	}
@@ -51,13 +51,13 @@ func (c *multiruleClass_) Multirule(
 
 // Principal Methods
 
-func (v *multirule_) GetClass() MultiruleClassLike {
-	return multiruleClass()
+func (v *multiRule_) GetClass() MultiRuleClassLike {
+	return multiRuleClass()
 }
 
 // Attribute Methods
 
-func (v *multirule_) GetRuleOptions() col.Sequential[RuleOptionLike] {
+func (v *multiRule_) GetRuleOptions() col.Sequential[RuleOptionLike] {
 	return v.ruleOptions_
 }
 
@@ -65,23 +65,23 @@ func (v *multirule_) GetRuleOptions() col.Sequential[RuleOptionLike] {
 
 // Instance Structure
 
-type multirule_ struct {
+type multiRule_ struct {
 	// Declare the instance attributes.
 	ruleOptions_ col.Sequential[RuleOptionLike]
 }
 
 // Class Structure
 
-type multiruleClass_ struct {
+type multiRuleClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func multiruleClass() *multiruleClass_ {
-	return multiruleClassReference_
+func multiRuleClass() *multiRuleClass_ {
+	return multiRuleClassReference_
 }
 
-var multiruleClassReference_ = &multiruleClass_{
+var multiRuleClassReference_ = &multiRuleClass_{
 	// Initialize the class constants.
 }

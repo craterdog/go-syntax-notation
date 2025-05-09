@@ -35,19 +35,19 @@ func LiteralOptionClass() LiteralOptionClassLike {
 
 func (c *literalOptionClass_) LiteralOption(
 	newline string,
-	quote string,
+	literal string,
 	optionalNote string,
 ) LiteralOptionLike {
 	if uti.IsUndefined(newline) {
 		panic("The \"newline\" attribute is required by this class.")
 	}
-	if uti.IsUndefined(quote) {
-		panic("The \"quote\" attribute is required by this class.")
+	if uti.IsUndefined(literal) {
+		panic("The \"literal\" attribute is required by this class.")
 	}
 	var instance = &literalOption_{
 		// Initialize the instance attributes.
 		newline_:      newline,
-		quote_:        quote,
+		literal_:      literal,
 		optionalNote_: optionalNote,
 	}
 	return instance
@@ -67,8 +67,8 @@ func (v *literalOption_) GetNewline() string {
 	return v.newline_
 }
 
-func (v *literalOption_) GetQuote() string {
-	return v.quote_
+func (v *literalOption_) GetLiteral() string {
+	return v.literal_
 }
 
 func (v *literalOption_) GetOptionalNote() string {
@@ -82,7 +82,7 @@ func (v *literalOption_) GetOptionalNote() string {
 type literalOption_ struct {
 	// Declare the instance attributes.
 	newline_      string
-	quote_        string
+	literal_      string
 	optionalNote_ string
 }
 

@@ -28,19 +28,19 @@ import (
 
 // Access Function
 
-func MultiliteralClass() MultiliteralClassLike {
-	return multiliteralClass()
+func MultiLiteralClass() MultiLiteralClassLike {
+	return multiLiteralClass()
 }
 
 // Constructor Methods
 
-func (c *multiliteralClass_) Multiliteral(
+func (c *multiLiteralClass_) MultiLiteral(
 	literalOptions col.Sequential[LiteralOptionLike],
-) MultiliteralLike {
+) MultiLiteralLike {
 	if uti.IsUndefined(literalOptions) {
 		panic("The \"literalOptions\" attribute is required by this class.")
 	}
-	var instance = &multiliteral_{
+	var instance = &multiLiteral_{
 		// Initialize the instance attributes.
 		literalOptions_: literalOptions,
 	}
@@ -51,13 +51,13 @@ func (c *multiliteralClass_) Multiliteral(
 
 // Principal Methods
 
-func (v *multiliteral_) GetClass() MultiliteralClassLike {
-	return multiliteralClass()
+func (v *multiLiteral_) GetClass() MultiLiteralClassLike {
+	return multiLiteralClass()
 }
 
 // Attribute Methods
 
-func (v *multiliteral_) GetLiteralOptions() col.Sequential[LiteralOptionLike] {
+func (v *multiLiteral_) GetLiteralOptions() col.Sequential[LiteralOptionLike] {
 	return v.literalOptions_
 }
 
@@ -65,23 +65,23 @@ func (v *multiliteral_) GetLiteralOptions() col.Sequential[LiteralOptionLike] {
 
 // Instance Structure
 
-type multiliteral_ struct {
+type multiLiteral_ struct {
 	// Declare the instance attributes.
 	literalOptions_ col.Sequential[LiteralOptionLike]
 }
 
 // Class Structure
 
-type multiliteralClass_ struct {
+type multiLiteralClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func multiliteralClass() *multiliteralClass_ {
-	return multiliteralClassReference_
+func multiLiteralClass() *multiLiteralClass_ {
+	return multiLiteralClassReference_
 }
 
-var multiliteralClassReference_ = &multiliteralClass_{
+var multiLiteralClassReference_ = &multiLiteralClass_{
 	// Initialize the class constants.
 }

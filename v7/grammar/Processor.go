@@ -70,6 +70,11 @@ func (v *processor_) ProcessIntrinsic(
 ) {
 }
 
+func (v *processor_) ProcessLiteral(
+	literal string,
+) {
+}
+
 func (v *processor_) ProcessLowercase(
 	lowercase string,
 ) {
@@ -92,11 +97,6 @@ func (v *processor_) ProcessNumber(
 
 func (v *processor_) ProcessOptional(
 	optional string,
-) {
-}
-
-func (v *processor_) ProcessQuote(
-	quote string,
 ) {
 }
 
@@ -165,6 +165,21 @@ func (v *processor_) PostprocessCharacter(
 	character ast.CharacterLike,
 	index uint,
 	size uint,
+) {
+}
+
+func (v *processor_) PreprocessComponent(
+	component ast.ComponentLike,
+) {
+}
+
+func (v *processor_) ProcessComponentSlot(
+	slot uint,
+) {
+}
+
+func (v *processor_) PostprocessComponent(
+	component ast.ComponentLike,
 ) {
 }
 
@@ -311,21 +326,6 @@ func (v *processor_) PostprocessGroup(
 ) {
 }
 
-func (v *processor_) PreprocessIdentifier(
-	identifier ast.IdentifierLike,
-) {
-}
-
-func (v *processor_) ProcessIdentifierSlot(
-	slot uint,
-) {
-}
-
-func (v *processor_) PostprocessIdentifier(
-	identifier ast.IdentifierLike,
-) {
-}
-
 func (v *processor_) PreprocessImplicit(
 	implicit ast.ImplicitLike,
 ) {
@@ -341,18 +341,18 @@ func (v *processor_) PostprocessImplicit(
 ) {
 }
 
-func (v *processor_) PreprocessInline(
-	inline ast.InlineLike,
+func (v *processor_) PreprocessInlineRule(
+	inlineRule ast.InlineRuleLike,
 ) {
 }
 
-func (v *processor_) ProcessInlineSlot(
+func (v *processor_) ProcessInlineRuleSlot(
 	slot uint,
 ) {
 }
 
-func (v *processor_) PostprocessInline(
-	inline ast.InlineLike,
+func (v *processor_) PostprocessInlineRule(
+	inlineRule ast.InlineRuleLike,
 ) {
 }
 
@@ -368,21 +368,6 @@ func (v *processor_) ProcessLimitSlot(
 
 func (v *processor_) PostprocessLimit(
 	limit ast.LimitLike,
-) {
-}
-
-func (v *processor_) PreprocessLiteral(
-	literal ast.LiteralLike,
-) {
-}
-
-func (v *processor_) ProcessLiteralSlot(
-	slot uint,
-) {
-}
-
-func (v *processor_) PostprocessLiteral(
-	literal ast.LiteralLike,
 ) {
 }
 
@@ -405,48 +390,48 @@ func (v *processor_) PostprocessLiteralOption(
 ) {
 }
 
-func (v *processor_) PreprocessMultiexpression(
-	multiexpression ast.MultiexpressionLike,
+func (v *processor_) PreprocessMultiExpression(
+	multiExpression ast.MultiExpressionLike,
 ) {
 }
 
-func (v *processor_) ProcessMultiexpressionSlot(
+func (v *processor_) ProcessMultiExpressionSlot(
 	slot uint,
 ) {
 }
 
-func (v *processor_) PostprocessMultiexpression(
-	multiexpression ast.MultiexpressionLike,
+func (v *processor_) PostprocessMultiExpression(
+	multiExpression ast.MultiExpressionLike,
 ) {
 }
 
-func (v *processor_) PreprocessMultiliteral(
-	multiliteral ast.MultiliteralLike,
+func (v *processor_) PreprocessMultiLiteral(
+	multiLiteral ast.MultiLiteralLike,
 ) {
 }
 
-func (v *processor_) ProcessMultiliteralSlot(
+func (v *processor_) ProcessMultiLiteralSlot(
 	slot uint,
 ) {
 }
 
-func (v *processor_) PostprocessMultiliteral(
-	multiliteral ast.MultiliteralLike,
+func (v *processor_) PostprocessMultiLiteral(
+	multiLiteral ast.MultiLiteralLike,
 ) {
 }
 
-func (v *processor_) PreprocessMultirule(
-	multirule ast.MultiruleLike,
+func (v *processor_) PreprocessMultiRule(
+	multiRule ast.MultiRuleLike,
 ) {
 }
 
-func (v *processor_) ProcessMultiruleSlot(
+func (v *processor_) ProcessMultiRuleSlot(
 	slot uint,
 ) {
 }
 
-func (v *processor_) PostprocessMultirule(
-	multirule ast.MultiruleLike,
+func (v *processor_) PostprocessMultiRule(
+	multiRule ast.MultiRuleLike,
 ) {
 }
 
@@ -507,21 +492,6 @@ func (v *processor_) ProcessQuantifiedSlot(
 
 func (v *processor_) PostprocessQuantified(
 	quantified ast.QuantifiedLike,
-) {
-}
-
-func (v *processor_) PreprocessReference(
-	reference ast.ReferenceLike,
-) {
-}
-
-func (v *processor_) ProcessReferenceSlot(
-	slot uint,
-) {
-}
-
-func (v *processor_) PostprocessReference(
-	reference ast.ReferenceLike,
 ) {
 }
 
