@@ -31,7 +31,7 @@ $Rule: "$" uppercase ":" Definition
 
 $Definition:
     MultiLiteral
-    MultiExpression
+    MultiToken
     MultiRule
     InlineRule  ! This must be the last option since it skips newlines.
 
@@ -39,9 +39,9 @@ $MultiLiteral: LiteralOption+
 
 $LiteralOption: newline literal note?
 
-$MultiExpression: ExpressionOption+
+$MultiToken: TokenOption+
 
-$ExpressionOption: newline lowercase note?
+$TokenOption: newline lowercase note?
 
 $MultiRule: RuleOption+
 
