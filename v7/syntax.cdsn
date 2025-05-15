@@ -30,24 +30,24 @@ $Notice: comment newline
 $Rule: "$" uppercase ":" Definition
 
 $Definition:
-    MultiLiteral
-    MultiToken
-    MultiRule
-    InlineRule  ! This must be the last option since it skips newlines.
+    LiteralValueAlternatives
+    TokenNameAlternatives
+    RuleNameAlternatives
+    SequentialRuleTerms  ! This must be last since it skips newlines.
 
-$MultiLiteral: LiteralOption+
+$LiteralValueAlternatives: LiteralValueAlternative+
 
-$LiteralOption: newline literal note?
+$LiteralValueAlternative: newline literal note?
 
-$MultiToken: TokenOption+
+$TokenNameAlternatives: TokenNameAlternative+
 
-$TokenOption: newline lowercase note?
+$TokenNameAlternative: newline lowercase note?
 
-$MultiRule: RuleOption+
+$RuleNameAlternatives: RuleNameAlternative+
 
-$RuleOption: newline uppercase note?
+$RuleNameAlternative: newline uppercase note?
 
-$InlineRule: Term+ note?
+$SequentialRuleTerms: Term+ note?
 
 $Term: Component Cardinality?  ! The default cardinality is one.
 
@@ -71,11 +71,11 @@ $Limit: ".." number?  ! The limit of a range of numbers is inclusive.
 
 $Expression: "$" lowercase ":" Pattern note?
 
-$Pattern: Option Alternative*
+$Pattern: Elements Alternative*
 
-$Alternative: "|" Option
+$Alternative: "|" Elements
 
-$Option: Repetition+
+$Elements: Repetition+
 
 $Repetition: Element Cardinality?  ! The default cardinality is one.
 
