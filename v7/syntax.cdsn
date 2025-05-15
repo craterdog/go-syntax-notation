@@ -71,11 +71,11 @@ $Limit: ".." number?  ! The limit of a range of numbers is inclusive.
 
 $Expression: "$" lowercase ":" Pattern note?
 
-$Pattern: Elements Alternative*
+$Pattern: Sequence Alternative*
 
-$Alternative: "|" Elements
+$Alternative: "|" Sequence
 
-$Elements: Repetition+
+$Sequence: Repetition+
 
 $Repetition: Element Cardinality?  ! The default cardinality is one.
 
