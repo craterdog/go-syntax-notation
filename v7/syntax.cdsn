@@ -33,23 +33,23 @@ $Definition:
     LiteralValueAlternatives
     TokenNameAlternatives
     RuleNameAlternatives
-    SequentialRuleTerms  ! This must be last since it skips newlines.
+    RuleTermSequence  ! This must be last since it skips newlines.
 
-$LiteralValueAlternatives: LiteralValueAlternative+
+$LiteralValueAlternatives: LiteralValue+
 
-$LiteralValueAlternative: newline literal note?
+$LiteralValue: newline literal note?
 
-$TokenNameAlternatives: TokenNameAlternative+
+$TokenNameAlternatives: TokenName+
 
-$TokenNameAlternative: newline lowercase note?
+$TokenName: newline lowercase note?
 
-$RuleNameAlternatives: RuleNameAlternative+
+$RuleNameAlternatives: RuleName+
 
-$RuleNameAlternative: newline uppercase note?
+$RuleName: newline uppercase note?
 
-$SequentialRuleTerms: Term+ note?
+$RuleTermSequence: RuleTerm+ note?
 
-$Term: Component Cardinality?  ! The default cardinality is one.
+$RuleTerm: Component Cardinality?  ! The default cardinality is one.
 
 $Component:
     literal
@@ -61,13 +61,13 @@ $Cardinality:
     Quantified
 
 $Constrained:
-    "?"
-    "*"
-    "+"
+    "?"  ! Zero or one.
+    "*"  ! Zero or more.
+    "+"  ! One or more.
 
-$Quantified: "{" number Limit? "}"
+$Quantified: "{" number Limit? "}"  ! A quantified range of numbers is inclusive.
 
-$Limit: ".." number?  ! The limit of a range of numbers is inclusive.
+$Limit: ".." number?  ! A quantified range may have no upper limit.
 
 $Expression: "$" lowercase ":" Pattern note?
 
@@ -94,9 +94,9 @@ $Character:
 
 $Implicit: intrinsic
 
-$Explicit: glyph Extent?
+$Explicit: glyph Extent?  ! An explicit range of glyphs is inclusive.
 
-$Extent: ".." glyph  ! The extent of a range of glyphs is inclusive.
+$Extent: ".." glyph
 
 $Text:
     glyph
