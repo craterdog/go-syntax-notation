@@ -27,28 +27,21 @@ import (
 
 // Access Function
 
-func RuleOptionClass() RuleOptionClassLike {
-	return ruleOptionClass()
+func AdditionalRepetitionClass() AdditionalRepetitionClassLike {
+	return additionalRepetitionClass()
 }
 
 // Constructor Methods
 
-func (c *ruleOptionClass_) RuleOption(
-	newline string,
-	uppercase string,
-	optionalNote string,
-) RuleOptionLike {
-	if uti.IsUndefined(newline) {
-		panic("The \"newline\" attribute is required by this class.")
+func (c *additionalRepetitionClass_) AdditionalRepetition(
+	repetition RepetitionLike,
+) AdditionalRepetitionLike {
+	if uti.IsUndefined(repetition) {
+		panic("The \"repetition\" attribute is required by this class.")
 	}
-	if uti.IsUndefined(uppercase) {
-		panic("The \"uppercase\" attribute is required by this class.")
-	}
-	var instance = &ruleOption_{
+	var instance = &additionalRepetition_{
 		// Initialize the instance attributes.
-		newline_:      newline,
-		uppercase_:    uppercase,
-		optionalNote_: optionalNote,
+		repetition_: repetition,
 	}
 	return instance
 }
@@ -57,47 +50,37 @@ func (c *ruleOptionClass_) RuleOption(
 
 // Principal Methods
 
-func (v *ruleOption_) GetClass() RuleOptionClassLike {
-	return ruleOptionClass()
+func (v *additionalRepetition_) GetClass() AdditionalRepetitionClassLike {
+	return additionalRepetitionClass()
 }
 
 // Attribute Methods
 
-func (v *ruleOption_) GetNewline() string {
-	return v.newline_
-}
-
-func (v *ruleOption_) GetUppercase() string {
-	return v.uppercase_
-}
-
-func (v *ruleOption_) GetOptionalNote() string {
-	return v.optionalNote_
+func (v *additionalRepetition_) GetRepetition() RepetitionLike {
+	return v.repetition_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type ruleOption_ struct {
+type additionalRepetition_ struct {
 	// Declare the instance attributes.
-	newline_      string
-	uppercase_    string
-	optionalNote_ string
+	repetition_ RepetitionLike
 }
 
 // Class Structure
 
-type ruleOptionClass_ struct {
+type additionalRepetitionClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func ruleOptionClass() *ruleOptionClass_ {
-	return ruleOptionClassReference_
+func additionalRepetitionClass() *additionalRepetitionClass_ {
+	return additionalRepetitionClassReference_
 }
 
-var ruleOptionClassReference_ = &ruleOptionClass_{
+var additionalRepetitionClassReference_ = &additionalRepetitionClass_{
 	// Initialize the class constants.
 }

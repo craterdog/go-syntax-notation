@@ -28,21 +28,26 @@ import (
 
 // Access Function
 
-func MultiRuleClass() MultiRuleClassLike {
-	return multiRuleClass()
+func SequenceClass() SequenceClassLike {
+	return sequenceClass()
 }
 
 // Constructor Methods
 
-func (c *multiRuleClass_) MultiRule(
-	ruleOptions col.Sequential[RuleOptionLike],
-) MultiRuleLike {
-	if uti.IsUndefined(ruleOptions) {
-		panic("The \"ruleOptions\" attribute is required by this class.")
+func (c *sequenceClass_) Sequence(
+	repetition RepetitionLike,
+	additionalRepetitions col.Sequential[AdditionalRepetitionLike],
+) SequenceLike {
+	if uti.IsUndefined(repetition) {
+		panic("The \"repetition\" attribute is required by this class.")
 	}
-	var instance = &multiRule_{
+	if uti.IsUndefined(additionalRepetitions) {
+		panic("The \"additionalRepetitions\" attribute is required by this class.")
+	}
+	var instance = &sequence_{
 		// Initialize the instance attributes.
-		ruleOptions_: ruleOptions,
+		repetition_:            repetition,
+		additionalRepetitions_: additionalRepetitions,
 	}
 	return instance
 }
@@ -51,37 +56,42 @@ func (c *multiRuleClass_) MultiRule(
 
 // Principal Methods
 
-func (v *multiRule_) GetClass() MultiRuleClassLike {
-	return multiRuleClass()
+func (v *sequence_) GetClass() SequenceClassLike {
+	return sequenceClass()
 }
 
 // Attribute Methods
 
-func (v *multiRule_) GetRuleOptions() col.Sequential[RuleOptionLike] {
-	return v.ruleOptions_
+func (v *sequence_) GetRepetition() RepetitionLike {
+	return v.repetition_
+}
+
+func (v *sequence_) GetAdditionalRepetitions() col.Sequential[AdditionalRepetitionLike] {
+	return v.additionalRepetitions_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type multiRule_ struct {
+type sequence_ struct {
 	// Declare the instance attributes.
-	ruleOptions_ col.Sequential[RuleOptionLike]
+	repetition_            RepetitionLike
+	additionalRepetitions_ col.Sequential[AdditionalRepetitionLike]
 }
 
 // Class Structure
 
-type multiRuleClass_ struct {
+type sequenceClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func multiRuleClass() *multiRuleClass_ {
-	return multiRuleClassReference_
+func sequenceClass() *sequenceClass_ {
+	return sequenceClassReference_
 }
 
-var multiRuleClassReference_ = &multiRuleClass_{
+var sequenceClassReference_ = &sequenceClass_{
 	// Initialize the class constants.
 }

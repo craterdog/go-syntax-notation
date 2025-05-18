@@ -20,6 +20,7 @@
 package ast
 
 import (
+	col "github.com/craterdog/go-collection-framework/v7"
 	uti "github.com/craterdog/go-missing-utilities/v7"
 )
 
@@ -27,27 +28,22 @@ import (
 
 // Access Function
 
-func LiteralOptionClass() LiteralOptionClassLike {
-	return literalOptionClass()
+func RuleTermSequenceClass() RuleTermSequenceClassLike {
+	return ruleTermSequenceClass()
 }
 
 // Constructor Methods
 
-func (c *literalOptionClass_) LiteralOption(
-	newline string,
-	literal string,
+func (c *ruleTermSequenceClass_) RuleTermSequence(
+	ruleTerms col.Sequential[RuleTermLike],
 	optionalNote string,
-) LiteralOptionLike {
-	if uti.IsUndefined(newline) {
-		panic("The \"newline\" attribute is required by this class.")
+) RuleTermSequenceLike {
+	if uti.IsUndefined(ruleTerms) {
+		panic("The \"ruleTerms\" attribute is required by this class.")
 	}
-	if uti.IsUndefined(literal) {
-		panic("The \"literal\" attribute is required by this class.")
-	}
-	var instance = &literalOption_{
+	var instance = &ruleTermSequence_{
 		// Initialize the instance attributes.
-		newline_:      newline,
-		literal_:      literal,
+		ruleTerms_:    ruleTerms,
 		optionalNote_: optionalNote,
 	}
 	return instance
@@ -57,21 +53,17 @@ func (c *literalOptionClass_) LiteralOption(
 
 // Principal Methods
 
-func (v *literalOption_) GetClass() LiteralOptionClassLike {
-	return literalOptionClass()
+func (v *ruleTermSequence_) GetClass() RuleTermSequenceClassLike {
+	return ruleTermSequenceClass()
 }
 
 // Attribute Methods
 
-func (v *literalOption_) GetNewline() string {
-	return v.newline_
+func (v *ruleTermSequence_) GetRuleTerms() col.Sequential[RuleTermLike] {
+	return v.ruleTerms_
 }
 
-func (v *literalOption_) GetLiteral() string {
-	return v.literal_
-}
-
-func (v *literalOption_) GetOptionalNote() string {
+func (v *ruleTermSequence_) GetOptionalNote() string {
 	return v.optionalNote_
 }
 
@@ -79,25 +71,24 @@ func (v *literalOption_) GetOptionalNote() string {
 
 // Instance Structure
 
-type literalOption_ struct {
+type ruleTermSequence_ struct {
 	// Declare the instance attributes.
-	newline_      string
-	literal_      string
+	ruleTerms_    col.Sequential[RuleTermLike]
 	optionalNote_ string
 }
 
 // Class Structure
 
-type literalOptionClass_ struct {
+type ruleTermSequenceClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func literalOptionClass() *literalOptionClass_ {
-	return literalOptionClassReference_
+func ruleTermSequenceClass() *ruleTermSequenceClass_ {
+	return ruleTermSequenceClassReference_
 }
 
-var literalOptionClassReference_ = &literalOptionClass_{
+var ruleTermSequenceClassReference_ = &ruleTermSequenceClass_{
 	// Initialize the class constants.
 }

@@ -20,7 +20,6 @@
 package ast
 
 import (
-	col "github.com/craterdog/go-collection-framework/v7"
 	uti "github.com/craterdog/go-missing-utilities/v7"
 )
 
@@ -28,21 +27,21 @@ import (
 
 // Access Function
 
-func MultiLiteralClass() MultiLiteralClassLike {
-	return multiLiteralClass()
+func AdditionalCharacterClass() AdditionalCharacterClassLike {
+	return additionalCharacterClass()
 }
 
 // Constructor Methods
 
-func (c *multiLiteralClass_) MultiLiteral(
-	literalOptions col.Sequential[LiteralOptionLike],
-) MultiLiteralLike {
-	if uti.IsUndefined(literalOptions) {
-		panic("The \"literalOptions\" attribute is required by this class.")
+func (c *additionalCharacterClass_) AdditionalCharacter(
+	character CharacterLike,
+) AdditionalCharacterLike {
+	if uti.IsUndefined(character) {
+		panic("The \"character\" attribute is required by this class.")
 	}
-	var instance = &multiLiteral_{
+	var instance = &additionalCharacter_{
 		// Initialize the instance attributes.
-		literalOptions_: literalOptions,
+		character_: character,
 	}
 	return instance
 }
@@ -51,37 +50,37 @@ func (c *multiLiteralClass_) MultiLiteral(
 
 // Principal Methods
 
-func (v *multiLiteral_) GetClass() MultiLiteralClassLike {
-	return multiLiteralClass()
+func (v *additionalCharacter_) GetClass() AdditionalCharacterClassLike {
+	return additionalCharacterClass()
 }
 
 // Attribute Methods
 
-func (v *multiLiteral_) GetLiteralOptions() col.Sequential[LiteralOptionLike] {
-	return v.literalOptions_
+func (v *additionalCharacter_) GetCharacter() CharacterLike {
+	return v.character_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type multiLiteral_ struct {
+type additionalCharacter_ struct {
 	// Declare the instance attributes.
-	literalOptions_ col.Sequential[LiteralOptionLike]
+	character_ CharacterLike
 }
 
 // Class Structure
 
-type multiLiteralClass_ struct {
+type additionalCharacterClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func multiLiteralClass() *multiLiteralClass_ {
-	return multiLiteralClassReference_
+func additionalCharacterClass() *additionalCharacterClass_ {
+	return additionalCharacterClassReference_
 }
 
-var multiLiteralClassReference_ = &multiLiteralClass_{
+var additionalCharacterClassReference_ = &additionalCharacterClass_{
 	// Initialize the class constants.
 }

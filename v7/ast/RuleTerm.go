@@ -20,7 +20,6 @@
 package ast
 
 import (
-	col "github.com/craterdog/go-collection-framework/v7"
 	uti "github.com/craterdog/go-missing-utilities/v7"
 )
 
@@ -28,23 +27,23 @@ import (
 
 // Access Function
 
-func InlineRuleClass() InlineRuleClassLike {
-	return inlineRuleClass()
+func RuleTermClass() RuleTermClassLike {
+	return ruleTermClass()
 }
 
 // Constructor Methods
 
-func (c *inlineRuleClass_) InlineRule(
-	terms col.Sequential[TermLike],
-	optionalNote string,
-) InlineRuleLike {
-	if uti.IsUndefined(terms) {
-		panic("The \"terms\" attribute is required by this class.")
+func (c *ruleTermClass_) RuleTerm(
+	component ComponentLike,
+	optionalCardinality CardinalityLike,
+) RuleTermLike {
+	if uti.IsUndefined(component) {
+		panic("The \"component\" attribute is required by this class.")
 	}
-	var instance = &inlineRule_{
+	var instance = &ruleTerm_{
 		// Initialize the instance attributes.
-		terms_:        terms,
-		optionalNote_: optionalNote,
+		component_:           component,
+		optionalCardinality_: optionalCardinality,
 	}
 	return instance
 }
@@ -53,42 +52,42 @@ func (c *inlineRuleClass_) InlineRule(
 
 // Principal Methods
 
-func (v *inlineRule_) GetClass() InlineRuleClassLike {
-	return inlineRuleClass()
+func (v *ruleTerm_) GetClass() RuleTermClassLike {
+	return ruleTermClass()
 }
 
 // Attribute Methods
 
-func (v *inlineRule_) GetTerms() col.Sequential[TermLike] {
-	return v.terms_
+func (v *ruleTerm_) GetComponent() ComponentLike {
+	return v.component_
 }
 
-func (v *inlineRule_) GetOptionalNote() string {
-	return v.optionalNote_
+func (v *ruleTerm_) GetOptionalCardinality() CardinalityLike {
+	return v.optionalCardinality_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type inlineRule_ struct {
+type ruleTerm_ struct {
 	// Declare the instance attributes.
-	terms_        col.Sequential[TermLike]
-	optionalNote_ string
+	component_           ComponentLike
+	optionalCardinality_ CardinalityLike
 }
 
 // Class Structure
 
-type inlineRuleClass_ struct {
+type ruleTermClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func inlineRuleClass() *inlineRuleClass_ {
-	return inlineRuleClassReference_
+func ruleTermClass() *ruleTermClass_ {
+	return ruleTermClassReference_
 }
 
-var inlineRuleClassReference_ = &inlineRuleClass_{
+var ruleTermClassReference_ = &ruleTermClass_{
 	// Initialize the class constants.
 }

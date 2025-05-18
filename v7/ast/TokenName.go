@@ -27,22 +27,27 @@ import (
 
 // Access Function
 
-func PatternClass() PatternClassLike {
-	return patternClass()
+func TokenNameClass() TokenNameClassLike {
+	return tokenNameClass()
 }
 
 // Constructor Methods
 
-func (c *patternClass_) Pattern(
-	alternatives AlternativesLike,
+func (c *tokenNameClass_) TokenName(
+	newline string,
+	lowercase string,
 	optionalNote string,
-) PatternLike {
-	if uti.IsUndefined(alternatives) {
-		panic("The \"alternatives\" attribute is required by this class.")
+) TokenNameLike {
+	if uti.IsUndefined(newline) {
+		panic("The \"newline\" attribute is required by this class.")
 	}
-	var instance = &pattern_{
+	if uti.IsUndefined(lowercase) {
+		panic("The \"lowercase\" attribute is required by this class.")
+	}
+	var instance = &tokenName_{
 		// Initialize the instance attributes.
-		alternatives_: alternatives,
+		newline_:      newline,
+		lowercase_:    lowercase,
 		optionalNote_: optionalNote,
 	}
 	return instance
@@ -52,17 +57,21 @@ func (c *patternClass_) Pattern(
 
 // Principal Methods
 
-func (v *pattern_) GetClass() PatternClassLike {
-	return patternClass()
+func (v *tokenName_) GetClass() TokenNameClassLike {
+	return tokenNameClass()
 }
 
 // Attribute Methods
 
-func (v *pattern_) GetAlternatives() AlternativesLike {
-	return v.alternatives_
+func (v *tokenName_) GetNewline() string {
+	return v.newline_
 }
 
-func (v *pattern_) GetOptionalNote() string {
+func (v *tokenName_) GetLowercase() string {
+	return v.lowercase_
+}
+
+func (v *tokenName_) GetOptionalNote() string {
 	return v.optionalNote_
 }
 
@@ -70,24 +79,25 @@ func (v *pattern_) GetOptionalNote() string {
 
 // Instance Structure
 
-type pattern_ struct {
+type tokenName_ struct {
 	// Declare the instance attributes.
-	alternatives_ AlternativesLike
+	newline_      string
+	lowercase_    string
 	optionalNote_ string
 }
 
 // Class Structure
 
-type patternClass_ struct {
+type tokenNameClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func patternClass() *patternClass_ {
-	return patternClassReference_
+func tokenNameClass() *tokenNameClass_ {
+	return tokenNameClassReference_
 }
 
-var patternClassReference_ = &patternClass_{
+var tokenNameClassReference_ = &tokenNameClass_{
 	// Initialize the class constants.
 }

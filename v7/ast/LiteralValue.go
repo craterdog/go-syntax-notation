@@ -27,21 +27,28 @@ import (
 
 // Access Function
 
-func AlternativeClass() AlternativeClassLike {
-	return alternativeClass()
+func LiteralValueClass() LiteralValueClassLike {
+	return literalValueClass()
 }
 
 // Constructor Methods
 
-func (c *alternativeClass_) Alternative(
-	option OptionLike,
-) AlternativeLike {
-	if uti.IsUndefined(option) {
-		panic("The \"option\" attribute is required by this class.")
+func (c *literalValueClass_) LiteralValue(
+	newline string,
+	literal string,
+	optionalNote string,
+) LiteralValueLike {
+	if uti.IsUndefined(newline) {
+		panic("The \"newline\" attribute is required by this class.")
 	}
-	var instance = &alternative_{
+	if uti.IsUndefined(literal) {
+		panic("The \"literal\" attribute is required by this class.")
+	}
+	var instance = &literalValue_{
 		// Initialize the instance attributes.
-		option_: option,
+		newline_:      newline,
+		literal_:      literal,
+		optionalNote_: optionalNote,
 	}
 	return instance
 }
@@ -50,37 +57,47 @@ func (c *alternativeClass_) Alternative(
 
 // Principal Methods
 
-func (v *alternative_) GetClass() AlternativeClassLike {
-	return alternativeClass()
+func (v *literalValue_) GetClass() LiteralValueClassLike {
+	return literalValueClass()
 }
 
 // Attribute Methods
 
-func (v *alternative_) GetOption() OptionLike {
-	return v.option_
+func (v *literalValue_) GetNewline() string {
+	return v.newline_
+}
+
+func (v *literalValue_) GetLiteral() string {
+	return v.literal_
+}
+
+func (v *literalValue_) GetOptionalNote() string {
+	return v.optionalNote_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type alternative_ struct {
+type literalValue_ struct {
 	// Declare the instance attributes.
-	option_ OptionLike
+	newline_      string
+	literal_      string
+	optionalNote_ string
 }
 
 // Class Structure
 
-type alternativeClass_ struct {
+type literalValueClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func alternativeClass() *alternativeClass_ {
-	return alternativeClassReference_
+func literalValueClass() *literalValueClass_ {
+	return literalValueClassReference_
 }
 
-var alternativeClassReference_ = &alternativeClass_{
+var literalValueClassReference_ = &literalValueClass_{
 	// Initialize the class constants.
 }

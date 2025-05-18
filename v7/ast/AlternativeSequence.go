@@ -20,7 +20,6 @@
 package ast
 
 import (
-	col "github.com/craterdog/go-collection-framework/v7"
 	uti "github.com/craterdog/go-missing-utilities/v7"
 )
 
@@ -28,21 +27,26 @@ import (
 
 // Access Function
 
-func MultiExpressionClass() MultiExpressionClassLike {
-	return multiExpressionClass()
+func AlternativeSequenceClass() AlternativeSequenceClassLike {
+	return alternativeSequenceClass()
 }
 
 // Constructor Methods
 
-func (c *multiExpressionClass_) MultiExpression(
-	expressionOptions col.Sequential[ExpressionOptionLike],
-) MultiExpressionLike {
-	if uti.IsUndefined(expressionOptions) {
-		panic("The \"expressionOptions\" attribute is required by this class.")
+func (c *alternativeSequenceClass_) AlternativeSequence(
+	delimiter string,
+	sequence SequenceLike,
+) AlternativeSequenceLike {
+	if uti.IsUndefined(delimiter) {
+		panic("The \"delimiter\" attribute is required by this class.")
 	}
-	var instance = &multiExpression_{
+	if uti.IsUndefined(sequence) {
+		panic("The \"sequence\" attribute is required by this class.")
+	}
+	var instance = &alternativeSequence_{
 		// Initialize the instance attributes.
-		expressionOptions_: expressionOptions,
+		delimiter_: delimiter,
+		sequence_:  sequence,
 	}
 	return instance
 }
@@ -51,37 +55,42 @@ func (c *multiExpressionClass_) MultiExpression(
 
 // Principal Methods
 
-func (v *multiExpression_) GetClass() MultiExpressionClassLike {
-	return multiExpressionClass()
+func (v *alternativeSequence_) GetClass() AlternativeSequenceClassLike {
+	return alternativeSequenceClass()
 }
 
 // Attribute Methods
 
-func (v *multiExpression_) GetExpressionOptions() col.Sequential[ExpressionOptionLike] {
-	return v.expressionOptions_
+func (v *alternativeSequence_) GetDelimiter() string {
+	return v.delimiter_
+}
+
+func (v *alternativeSequence_) GetSequence() SequenceLike {
+	return v.sequence_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type multiExpression_ struct {
+type alternativeSequence_ struct {
 	// Declare the instance attributes.
-	expressionOptions_ col.Sequential[ExpressionOptionLike]
+	delimiter_ string
+	sequence_  SequenceLike
 }
 
 // Class Structure
 
-type multiExpressionClass_ struct {
+type alternativeSequenceClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func multiExpressionClass() *multiExpressionClass_ {
-	return multiExpressionClassReference_
+func alternativeSequenceClass() *alternativeSequenceClass_ {
+	return alternativeSequenceClassReference_
 }
 
-var multiExpressionClassReference_ = &multiExpressionClass_{
+var alternativeSequenceClassReference_ = &alternativeSequenceClass_{
 	// Initialize the class constants.
 }

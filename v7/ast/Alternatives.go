@@ -20,6 +20,7 @@
 package ast
 
 import (
+	col "github.com/craterdog/go-collection-framework/v7"
 	uti "github.com/craterdog/go-missing-utilities/v7"
 )
 
@@ -27,23 +28,26 @@ import (
 
 // Access Function
 
-func PatternClass() PatternClassLike {
-	return patternClass()
+func AlternativesClass() AlternativesClassLike {
+	return alternativesClass()
 }
 
 // Constructor Methods
 
-func (c *patternClass_) Pattern(
-	alternatives AlternativesLike,
-	optionalNote string,
-) PatternLike {
-	if uti.IsUndefined(alternatives) {
-		panic("The \"alternatives\" attribute is required by this class.")
+func (c *alternativesClass_) Alternatives(
+	sequence SequenceLike,
+	alternativeSequences col.Sequential[AlternativeSequenceLike],
+) AlternativesLike {
+	if uti.IsUndefined(sequence) {
+		panic("The \"sequence\" attribute is required by this class.")
 	}
-	var instance = &pattern_{
+	if uti.IsUndefined(alternativeSequences) {
+		panic("The \"alternativeSequences\" attribute is required by this class.")
+	}
+	var instance = &alternatives_{
 		// Initialize the instance attributes.
-		alternatives_: alternatives,
-		optionalNote_: optionalNote,
+		sequence_:             sequence,
+		alternativeSequences_: alternativeSequences,
 	}
 	return instance
 }
@@ -52,42 +56,42 @@ func (c *patternClass_) Pattern(
 
 // Principal Methods
 
-func (v *pattern_) GetClass() PatternClassLike {
-	return patternClass()
+func (v *alternatives_) GetClass() AlternativesClassLike {
+	return alternativesClass()
 }
 
 // Attribute Methods
 
-func (v *pattern_) GetAlternatives() AlternativesLike {
-	return v.alternatives_
+func (v *alternatives_) GetSequence() SequenceLike {
+	return v.sequence_
 }
 
-func (v *pattern_) GetOptionalNote() string {
-	return v.optionalNote_
+func (v *alternatives_) GetAlternativeSequences() col.Sequential[AlternativeSequenceLike] {
+	return v.alternativeSequences_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type pattern_ struct {
+type alternatives_ struct {
 	// Declare the instance attributes.
-	alternatives_ AlternativesLike
-	optionalNote_ string
+	sequence_             SequenceLike
+	alternativeSequences_ col.Sequential[AlternativeSequenceLike]
 }
 
 // Class Structure
 
-type patternClass_ struct {
+type alternativesClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func patternClass() *patternClass_ {
-	return patternClassReference_
+func alternativesClass() *alternativesClass_ {
+	return alternativesClassReference_
 }
 
-var patternClassReference_ = &patternClass_{
+var alternativesClassReference_ = &alternativesClass_{
 	// Initialize the class constants.
 }

@@ -20,6 +20,7 @@
 package ast
 
 import (
+	col "github.com/craterdog/go-collection-framework/v7"
 	uti "github.com/craterdog/go-missing-utilities/v7"
 )
 
@@ -27,23 +28,21 @@ import (
 
 // Access Function
 
-func TermClass() TermClassLike {
-	return termClass()
+func TokenNameAlternativesClass() TokenNameAlternativesClassLike {
+	return tokenNameAlternativesClass()
 }
 
 // Constructor Methods
 
-func (c *termClass_) Term(
-	component ComponentLike,
-	optionalCardinality CardinalityLike,
-) TermLike {
-	if uti.IsUndefined(component) {
-		panic("The \"component\" attribute is required by this class.")
+func (c *tokenNameAlternativesClass_) TokenNameAlternatives(
+	tokenNames col.Sequential[TokenNameLike],
+) TokenNameAlternativesLike {
+	if uti.IsUndefined(tokenNames) {
+		panic("The \"tokenNames\" attribute is required by this class.")
 	}
-	var instance = &term_{
+	var instance = &tokenNameAlternatives_{
 		// Initialize the instance attributes.
-		component_:           component,
-		optionalCardinality_: optionalCardinality,
+		tokenNames_: tokenNames,
 	}
 	return instance
 }
@@ -52,42 +51,37 @@ func (c *termClass_) Term(
 
 // Principal Methods
 
-func (v *term_) GetClass() TermClassLike {
-	return termClass()
+func (v *tokenNameAlternatives_) GetClass() TokenNameAlternativesClassLike {
+	return tokenNameAlternativesClass()
 }
 
 // Attribute Methods
 
-func (v *term_) GetComponent() ComponentLike {
-	return v.component_
-}
-
-func (v *term_) GetOptionalCardinality() CardinalityLike {
-	return v.optionalCardinality_
+func (v *tokenNameAlternatives_) GetTokenNames() col.Sequential[TokenNameLike] {
+	return v.tokenNames_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type term_ struct {
+type tokenNameAlternatives_ struct {
 	// Declare the instance attributes.
-	component_           ComponentLike
-	optionalCardinality_ CardinalityLike
+	tokenNames_ col.Sequential[TokenNameLike]
 }
 
 // Class Structure
 
-type termClass_ struct {
+type tokenNameAlternativesClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func termClass() *termClass_ {
-	return termClassReference_
+func tokenNameAlternativesClass() *tokenNameAlternativesClass_ {
+	return tokenNameAlternativesClassReference_
 }
 
-var termClassReference_ = &termClass_{
+var tokenNameAlternativesClassReference_ = &tokenNameAlternativesClass_{
 	// Initialize the class constants.
 }

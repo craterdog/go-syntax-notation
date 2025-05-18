@@ -27,27 +27,27 @@ import (
 
 // Access Function
 
-func ExpressionOptionClass() ExpressionOptionClassLike {
-	return expressionOptionClass()
+func RuleNameClass() RuleNameClassLike {
+	return ruleNameClass()
 }
 
 // Constructor Methods
 
-func (c *expressionOptionClass_) ExpressionOption(
+func (c *ruleNameClass_) RuleName(
 	newline string,
-	lowercase string,
+	uppercase string,
 	optionalNote string,
-) ExpressionOptionLike {
+) RuleNameLike {
 	if uti.IsUndefined(newline) {
 		panic("The \"newline\" attribute is required by this class.")
 	}
-	if uti.IsUndefined(lowercase) {
-		panic("The \"lowercase\" attribute is required by this class.")
+	if uti.IsUndefined(uppercase) {
+		panic("The \"uppercase\" attribute is required by this class.")
 	}
-	var instance = &expressionOption_{
+	var instance = &ruleName_{
 		// Initialize the instance attributes.
 		newline_:      newline,
-		lowercase_:    lowercase,
+		uppercase_:    uppercase,
 		optionalNote_: optionalNote,
 	}
 	return instance
@@ -57,21 +57,21 @@ func (c *expressionOptionClass_) ExpressionOption(
 
 // Principal Methods
 
-func (v *expressionOption_) GetClass() ExpressionOptionClassLike {
-	return expressionOptionClass()
+func (v *ruleName_) GetClass() RuleNameClassLike {
+	return ruleNameClass()
 }
 
 // Attribute Methods
 
-func (v *expressionOption_) GetNewline() string {
+func (v *ruleName_) GetNewline() string {
 	return v.newline_
 }
 
-func (v *expressionOption_) GetLowercase() string {
-	return v.lowercase_
+func (v *ruleName_) GetUppercase() string {
+	return v.uppercase_
 }
 
-func (v *expressionOption_) GetOptionalNote() string {
+func (v *ruleName_) GetOptionalNote() string {
 	return v.optionalNote_
 }
 
@@ -79,25 +79,25 @@ func (v *expressionOption_) GetOptionalNote() string {
 
 // Instance Structure
 
-type expressionOption_ struct {
+type ruleName_ struct {
 	// Declare the instance attributes.
 	newline_      string
-	lowercase_    string
+	uppercase_    string
 	optionalNote_ string
 }
 
 // Class Structure
 
-type expressionOptionClass_ struct {
+type ruleNameClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func expressionOptionClass() *expressionOptionClass_ {
-	return expressionOptionClassReference_
+func ruleNameClass() *ruleNameClass_ {
+	return ruleNameClassReference_
 }
 
-var expressionOptionClassReference_ = &expressionOptionClass_{
+var ruleNameClassReference_ = &ruleNameClass_{
 	// Initialize the class constants.
 }

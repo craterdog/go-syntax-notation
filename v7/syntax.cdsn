@@ -69,13 +69,17 @@ $Quantified: "{" number Limit? "}"  ! A quantified range of numbers is inclusive
 
 $Limit: ".." number?  ! A quantified range may have no upper limit.
 
-$Expression: "$" lowercase ":" Pattern note?
+$Expression: "$" lowercase ":" Pattern
 
-$Pattern: Sequence Alternative*
+$Pattern: Alternatives note?
 
-$Alternative: "|" Sequence
+$Alternatives: Sequence AlternativeSequence*
 
-$Sequence: Repetition+
+$AlternativeSequence: "|" Sequence
+
+$Sequence: Repetition AdditionalRepetition*
+
+$AdditionalRepetition: Repetition
 
 $Repetition: Element Cardinality?  ! The default cardinality is one.
 
@@ -84,9 +88,13 @@ $Element:
     Filter
     Text
 
-$Group: "(" Pattern ")"
+$Group: "(" Alternatives ")"
 
-$Filter: "~"? "[" Character+ "]"
+$Filter: "~"? "[" AllowedCharacters "]"
+
+$AllowedCharacters: Character AdditionalCharacter*
+
+$AdditionalCharacter: Character
 
 $Character:
     Implicit

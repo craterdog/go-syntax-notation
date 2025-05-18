@@ -28,21 +28,21 @@ import (
 
 // Access Function
 
-func OptionClass() OptionClassLike {
-	return optionClass()
+func RuleNameAlternativesClass() RuleNameAlternativesClassLike {
+	return ruleNameAlternativesClass()
 }
 
 // Constructor Methods
 
-func (c *optionClass_) Option(
-	repetitions col.Sequential[RepetitionLike],
-) OptionLike {
-	if uti.IsUndefined(repetitions) {
-		panic("The \"repetitions\" attribute is required by this class.")
+func (c *ruleNameAlternativesClass_) RuleNameAlternatives(
+	ruleNames col.Sequential[RuleNameLike],
+) RuleNameAlternativesLike {
+	if uti.IsUndefined(ruleNames) {
+		panic("The \"ruleNames\" attribute is required by this class.")
 	}
-	var instance = &option_{
+	var instance = &ruleNameAlternatives_{
 		// Initialize the instance attributes.
-		repetitions_: repetitions,
+		ruleNames_: ruleNames,
 	}
 	return instance
 }
@@ -51,37 +51,37 @@ func (c *optionClass_) Option(
 
 // Principal Methods
 
-func (v *option_) GetClass() OptionClassLike {
-	return optionClass()
+func (v *ruleNameAlternatives_) GetClass() RuleNameAlternativesClassLike {
+	return ruleNameAlternativesClass()
 }
 
 // Attribute Methods
 
-func (v *option_) GetRepetitions() col.Sequential[RepetitionLike] {
-	return v.repetitions_
+func (v *ruleNameAlternatives_) GetRuleNames() col.Sequential[RuleNameLike] {
+	return v.ruleNames_
 }
 
 // PROTECTED INTERFACE
 
 // Instance Structure
 
-type option_ struct {
+type ruleNameAlternatives_ struct {
 	// Declare the instance attributes.
-	repetitions_ col.Sequential[RepetitionLike]
+	ruleNames_ col.Sequential[RuleNameLike]
 }
 
 // Class Structure
 
-type optionClass_ struct {
+type ruleNameAlternativesClass_ struct {
 	// Declare the class constants.
 }
 
 // Class Reference
 
-func optionClass() *optionClass_ {
-	return optionClassReference_
+func ruleNameAlternativesClass() *ruleNameAlternativesClass_ {
+	return ruleNameAlternativesClassReference_
 }
 
-var optionClassReference_ = &optionClass_{
+var ruleNameAlternativesClassReference_ = &ruleNameAlternativesClass_{
 	// Initialize the class constants.
 }

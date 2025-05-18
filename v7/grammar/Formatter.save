@@ -135,29 +135,12 @@ func (v *formatter_) PreprocessAdditionalCharacter(
 	v.appendString(" ")
 }
 
-func (v *formatter_) PreprocessAdditionalRepetition(
-	additionalRepetition ast.AdditionalRepetitionLike,
-	index uint,
-	count uint,
-) {
-	v.appendString(" ")
-}
-
 func (v *formatter_) PreprocessAlternativeSequence(
 	alternativeSequence ast.AlternativeSequenceLike,
 	index uint,
 	count uint,
 ) {
 	v.appendString(" ")
-}
-
-func (v *formatter_) ProcessAlternativeSequenceSlot(
-	slot uint,
-) {
-	switch slot {
-	case 1:
-		v.appendString(" ")
-	}
 }
 
 func (v *formatter_) PreprocessDefinition(
@@ -177,20 +160,20 @@ func (v *formatter_) PostprocessDefinition(
 	v.appendNewline()
 }
 
+func (v *formatter_) PreprocessElement(
+	element ast.ElementLike,
+	index uint,
+	count uint,
+) {
+	v.appendString(" ")
+}
+
 func (v *formatter_) PostprocessExpression(
 	expression ast.ExpressionLike,
 	index uint,
 	count uint,
 ) {
 	v.appendNewline()
-}
-
-func (v *formatter_) PreprocessPattern(
-	pattern ast.PatternLike,
-	index uint,
-	count uint,
-) {
-	v.appendString(" ")
 }
 
 func (v *formatter_) PostprocessPattern(
