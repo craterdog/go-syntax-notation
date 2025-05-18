@@ -405,29 +405,29 @@ func (v *parser_) parseConstrained() (
 	token TokenLike,
 	ok bool,
 ) {
-	var literal string
+	var delimiter string
 
-	// Attempt to parse a single ""?"" literal.
-	literal, token, ok = v.parseDelimiter("?")
+	// Attempt to parse a single "?" delimiter.
+	delimiter, token, ok = v.parseDelimiter("?")
 	if ok {
-		// Found a single ""?"" literal.
-		constrained = ast.ConstrainedClass().Constrained(literal)
+		// Found a single "?" delimiter.
+		constrained = ast.ConstrainedClass().Constrained(delimiter)
 		return
 	}
 
-	// Attempt to parse a single ""*"" literal.
-	literal, token, ok = v.parseDelimiter("*")
+	// Attempt to parse a single "*" delimiter.
+	delimiter, token, ok = v.parseDelimiter("*")
 	if ok {
-		// Found a single ""*"" literal.
-		constrained = ast.ConstrainedClass().Constrained(literal)
+		// Found a single "*" delimiter.
+		constrained = ast.ConstrainedClass().Constrained(delimiter)
 		return
 	}
 
-	// Attempt to parse a single ""+"" literal.
-	literal, token, ok = v.parseDelimiter("+")
+	// Attempt to parse a single "+" delimiter.
+	delimiter, token, ok = v.parseDelimiter("+")
 	if ok {
-		// Found a single ""+"" literal.
-		constrained = ast.ConstrainedClass().Constrained(literal)
+		// Found a single "+" delimiter.
+		constrained = ast.ConstrainedClass().Constrained(delimiter)
 		return
 	}
 
