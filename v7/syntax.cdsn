@@ -25,7 +25,7 @@ For more information on CDSN see the wiki at:
 <!
 $Syntax: Notice comment Rule+ comment Expression+
 
-$Notice: comment newline
+$Notice: comment
 
 $Rule: "$" uppercase ":" Definition
 

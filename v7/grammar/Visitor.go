@@ -532,11 +532,6 @@ func (v *visitor_) visitNotice(
 ) {
 	var comment = notice.GetComment()
 	v.processor_.ProcessComment(comment)
-	// Visit slot 1 between terms.
-	v.processor_.ProcessNoticeSlot(1)
-
-	var newline = notice.GetNewline()
-	v.processor_.ProcessNewline(newline)
 }
 
 func (v *visitor_) visitPattern(

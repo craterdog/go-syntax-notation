@@ -395,11 +395,9 @@ func NoticeClass() NoticeClassLike {
 
 func Notice(
 	comment string,
-	newline string,
 ) NoticeLike {
 	return NoticeClass().Notice(
 		comment,
-		newline,
 	)
 }
 

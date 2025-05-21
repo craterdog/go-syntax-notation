@@ -273,7 +273,6 @@ type NoticeClassLike interface {
 	// Constructor Methods
 	Notice(
 		comment string,
-		newline string,
 	) NoticeLike
 }
 
@@ -700,7 +699,6 @@ type NoticeLike interface {
 
 	// Attribute Methods
 	GetComment() string
-	GetNewline() string
 }
 
 /*

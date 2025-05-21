@@ -35,18 +35,13 @@ func NoticeClass() NoticeClassLike {
 
 func (c *noticeClass_) Notice(
 	comment string,
-	newline string,
 ) NoticeLike {
 	if uti.IsUndefined(comment) {
 		panic("The \"comment\" attribute is required by this class.")
 	}
-	if uti.IsUndefined(newline) {
-		panic("The \"newline\" attribute is required by this class.")
-	}
 	var instance = &notice_{
 		// Initialize the instance attributes.
 		comment_: comment,
-		newline_: newline,
 	}
 	return instance
 }
@@ -65,10 +60,6 @@ func (v *notice_) GetComment() string {
 	return v.comment_
 }
 
-func (v *notice_) GetNewline() string {
-	return v.newline_
-}
-
 // PROTECTED INTERFACE
 
 // Instance Structure
@@ -76,7 +67,6 @@ func (v *notice_) GetNewline() string {
 type notice_ struct {
 	// Declare the instance attributes.
 	comment_ string
-	newline_ string
 }
 
 // Class Structure
