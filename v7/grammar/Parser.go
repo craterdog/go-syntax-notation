@@ -775,6 +775,38 @@ func (v *parser_) parseImplicit() (
 	return
 }
 
+func (v *parser_) parseLegalNotice() (
+	legalNotice ast.LegalNoticeLike,
+	token TokenLike,
+	ok bool,
+) {
+	var tokens = col.List[TokenLike]()
+
+	// Attempt to parse a single comment token.
+	var comment string
+	comment, token, ok = v.parseToken(CommentToken)
+	if !ok {
+		if uti.IsDefined(tokens) {
+			// This is not a single comment token.
+			v.putBack(tokens)
+			return
+		} else {
+			// Found a syntax error.
+			var message = v.formatError("$LegalNotice", token)
+			panic(message)
+		}
+	}
+	if uti.IsDefined(tokens) {
+		tokens.AppendValue(token)
+	}
+
+	// Found a single LegalNotice rule.
+	ok = true
+	v.remove(tokens)
+	legalNotice = ast.LegalNoticeClass().LegalNotice(comment)
+	return
+}
+
 func (v *parser_) parseLimit() (
 	limit ast.LimitLike,
 	token TokenLike,
@@ -923,38 +955,6 @@ func (v *parser_) parseLiteralValue() (
 		literal,
 		optionalNote,
 	)
-	return
-}
-
-func (v *parser_) parseNotice() (
-	notice ast.NoticeLike,
-	token TokenLike,
-	ok bool,
-) {
-	var tokens = col.List[TokenLike]()
-
-	// Attempt to parse a single comment token.
-	var comment string
-	comment, token, ok = v.parseToken(CommentToken)
-	if !ok {
-		if uti.IsDefined(tokens) {
-			// This is not a single comment token.
-			v.putBack(tokens)
-			return
-		} else {
-			// Found a syntax error.
-			var message = v.formatError("$Notice", token)
-			panic(message)
-		}
-	}
-	if uti.IsDefined(tokens) {
-		tokens.AppendValue(token)
-	}
-
-	// Found a single Notice rule.
-	ok = true
-	v.remove(tokens)
-	notice = ast.NoticeClass().Notice(comment)
 	return
 }
 
@@ -1412,15 +1412,15 @@ func (v *parser_) parseSyntax() (
 ) {
 	var tokens = col.List[TokenLike]()
 
-	// Attempt to parse a single Notice rule.
-	var notice ast.NoticeLike
-	notice, token, ok = v.parseNotice()
+	// Attempt to parse a single LegalNotice rule.
+	var legalNotice ast.LegalNoticeLike
+	legalNotice, token, ok = v.parseLegalNotice()
 	switch {
 	case ok:
 		// No additional put backs allowed at this point.
 		tokens = nil
 	case uti.IsDefined(tokens):
-		// This is not a single Notice rule.
+		// This is not a single LegalNotice rule.
 		v.putBack(tokens)
 		return
 	default:
@@ -1521,7 +1521,7 @@ expressionsLoop:
 	ok = true
 	v.remove(tokens)
 	syntax = ast.SyntaxClass().Syntax(
-		notice,
+		legalNotice,
 		comment1,
 		rules,
 		comment2,
@@ -1909,9 +1909,9 @@ var parserClassReference_ = &parserClass_{
 	// Initialize the class constants.
 	syntax_: col.CatalogFromMap[string, string](
 		map[string]string{
-			"$Syntax": `Notice comment Rule+ comment Expression+`,
-			"$Notice": `comment`,
-			"$Rule":   `"$" uppercase ":" Definition`,
+			"$Syntax":      `LegalNotice comment Rule+ comment Expression+`,
+			"$LegalNotice": `comment`,
+			"$Rule":        `"$" uppercase ":" Definition`,
 			"$Definition": `
     LiteralAlternatives
     TokenAlternatives

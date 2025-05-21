@@ -491,6 +491,19 @@ type Methodical interface {
 		index_ uint,
 		count_ uint,
 	)
+	PreprocessLegalNotice(
+		legalNotice ast.LegalNoticeLike,
+		index_ uint,
+		count_ uint,
+	)
+	ProcessLegalNoticeSlot(
+		slot uint,
+	)
+	PostprocessLegalNotice(
+		legalNotice ast.LegalNoticeLike,
+		index_ uint,
+		count_ uint,
+	)
 	PreprocessLimit(
 		limit ast.LimitLike,
 		index_ uint,
@@ -527,19 +540,6 @@ type Methodical interface {
 	)
 	PostprocessLiteralValue(
 		literalValue ast.LiteralValueLike,
-		index_ uint,
-		count_ uint,
-	)
-	PreprocessNotice(
-		notice ast.NoticeLike,
-		index_ uint,
-		count_ uint,
-	)
-	ProcessNoticeSlot(
-		slot uint,
-	)
-	PostprocessNotice(
-		notice ast.NoticeLike,
 		index_ uint,
 		count_ uint,
 	)

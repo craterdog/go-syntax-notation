@@ -226,6 +226,18 @@ type ImplicitClassLike interface {
 }
 
 /*
+LegalNoticeClassLike is a class interface that declares the
+complete set of class constructors, constants and functions that must be
+supported by each concrete legal-notice-like class.
+*/
+type LegalNoticeClassLike interface {
+	// Constructor Methods
+	LegalNotice(
+		comment string,
+	) LegalNoticeLike
+}
+
+/*
 LimitClassLike is a class interface that declares the
 complete set of class constructors, constants and functions that must be
 supported by each concrete limit-like class.
@@ -262,18 +274,6 @@ type LiteralValueClassLike interface {
 		literal string,
 		optionalNote string,
 	) LiteralValueLike
-}
-
-/*
-NoticeClassLike is a class interface that declares the
-complete set of class constructors, constants and functions that must be
-supported by each concrete notice-like class.
-*/
-type NoticeClassLike interface {
-	// Constructor Methods
-	Notice(
-		comment string,
-	) NoticeLike
 }
 
 /*
@@ -391,7 +391,7 @@ supported by each concrete syntax-like class.
 type SyntaxClassLike interface {
 	// Constructor Methods
 	Syntax(
-		notice NoticeLike,
+		legalNotice LegalNoticeLike,
 		comment1 string,
 		rules col.Sequential[RuleLike],
 		comment2 string,
@@ -647,6 +647,19 @@ type ImplicitLike interface {
 }
 
 /*
+LegalNoticeLike is an instance interface that declares the
+complete set of principal, attribute and aspect methods that must be supported
+by each instance of a concrete legal-notice-like class.
+*/
+type LegalNoticeLike interface {
+	// Principal Methods
+	GetClass() LegalNoticeClassLike
+
+	// Attribute Methods
+	GetComment() string
+}
+
+/*
 LimitLike is an instance interface that declares the
 complete set of principal, attribute and aspect methods that must be supported
 by each instance of a concrete limit-like class.
@@ -686,19 +699,6 @@ type LiteralValueLike interface {
 	GetNewline() string
 	GetLiteral() string
 	GetOptionalNote() string
-}
-
-/*
-NoticeLike is an instance interface that declares the
-complete set of principal, attribute and aspect methods that must be supported
-by each instance of a concrete notice-like class.
-*/
-type NoticeLike interface {
-	// Principal Methods
-	GetClass() NoticeClassLike
-
-	// Attribute Methods
-	GetComment() string
 }
 
 /*
@@ -826,7 +826,7 @@ type SyntaxLike interface {
 	GetClass() SyntaxClassLike
 
 	// Attribute Methods
-	GetNotice() NoticeLike
+	GetLegalNotice() LegalNoticeLike
 	GetComment1() string
 	GetRules() col.Sequential[RuleLike]
 	GetComment2() string

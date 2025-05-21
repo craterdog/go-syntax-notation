@@ -189,8 +189,8 @@ func (v *formatter_) PostprocessExpression(
 	v.appendNewline()
 }
 
-func (v *formatter_) PostprocessNotice(
-	notice ast.NoticeLike,
+func (v *formatter_) PostprocessLegalNotice(
+	legalNotice ast.LegalNoticeLike,
 	index_ uint,
 	count_ uint,
 ) {

@@ -371,6 +371,25 @@ func (v *processor_) PostprocessImplicit(
 ) {
 }
 
+func (v *processor_) PreprocessLegalNotice(
+	legalNotice ast.LegalNoticeLike,
+	index_ uint,
+	count_ uint,
+) {
+}
+
+func (v *processor_) ProcessLegalNoticeSlot(
+	slot uint,
+) {
+}
+
+func (v *processor_) PostprocessLegalNotice(
+	legalNotice ast.LegalNoticeLike,
+	index_ uint,
+	count_ uint,
+) {
+}
+
 func (v *processor_) PreprocessLimit(
 	limit ast.LimitLike,
 	index_ uint,
@@ -423,25 +442,6 @@ func (v *processor_) ProcessLiteralValueSlot(
 
 func (v *processor_) PostprocessLiteralValue(
 	literalValue ast.LiteralValueLike,
-	index_ uint,
-	count_ uint,
-) {
-}
-
-func (v *processor_) PreprocessNotice(
-	notice ast.NoticeLike,
-	index_ uint,
-	count_ uint,
-) {
-}
-
-func (v *processor_) ProcessNoticeSlot(
-	slot uint,
-) {
-}
-
-func (v *processor_) PostprocessNotice(
-	notice ast.NoticeLike,
 	index_ uint,
 	count_ uint,
 ) {
