@@ -49,7 +49,7 @@ $Keyword:
 <!
 $number: '0' | '-'? ['1'..'9'] DIGIT*
 
-$rune: "'" ~[CONTROL] "'"  ! Any single printable unicode character.
+$rune: ''' ~[CONTROL] "'"  ! Any single printable unicode character.
 
 $text: '"' ~['"' CONTROL]+ '"'
 
