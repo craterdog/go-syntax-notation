@@ -339,7 +339,9 @@ $alpha: ['A'..'Z' 'a'..'z']
 
 $alphanumeric: alpha | base10
 
-$angle: '~' ('0' | amplitude | "pi" | 'π' | "tau" | 'τ')
+$amplitude: ('0' fraction | ordinal fraction? | transcendental) exponent?
+
+$angle: '~' ('0' | amplitude)
 
 $authority: ~['/' CONTROL]+
 
@@ -394,8 +396,6 @@ $infinity: sign? ("infinity" | '∞')
 $instruction: base16{4}
 
 $letter: LOWER | UPPER
-
-$amplitude: ('0' fraction | ordinal fraction?) exponent?
 
 $minute: ['0'..'5'] ['0'..'9']
 
@@ -452,6 +452,8 @@ $symbol: '$' identifier
 $tag: '#' base32+
 
 $timespan: '0' | (ordinal fraction?)
+
+$transcendental: "e" | "pi" | 'π' | "tau" | 'τ' | "phi" | 'φ'
 
 $undefined: "undefined"
 
