@@ -147,7 +147,7 @@ func (v *scanner_) foundToken(
 		return false
 	}
 
-	// Check for false delimiter matches.
+	// Check for partial identifier matches.
 	var token = []rune(match)
 	var length = uint(len(token))
 	var previous = token[length-1]
