@@ -1,0 +1,122 @@
+!>
+................................................................................
+.    Copyright (c) 2009-2025 Crater Dog Technologies.  All Rights Reserved.    .
+................................................................................
+.  DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.               .
+.                                                                              .
+.  This code is free software; you can redistribute it and/or modify it under  .
+.  the terms of The MIT License (MIT), as published by the Open Source         .
+.  Initiative. (See https://opensource.org/license/MIT)                        .
+................................................................................
+<!
+
+!>
+BALI INSTRUCTION NOTATION
+This document contains a formal definition of the Bali Instruction Notation™
+using Crater Dog Syntax Notation™ (CDSN).
+
+For more information on CDSN see the wiki at:
+  - https://github.com/craterdog/go-syntax-notation/wiki
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                               RULE DEFINITIONS                               │
+└──────────────────────────────────────────────────────────────────────────────┘
+<!
+$Assembly: Instruction*
+
+$Instruction: Prefix? Action
+
+$Prefix: label ":"
+
+$Action:
+    Note
+    Noop
+    Jump
+    Push
+    Pull
+    Load
+    Save
+    Drop
+    Call
+    Send
+
+$Note: "NOTE" explanation
+
+$Noop: "NOOP"
+
+$Jump: "JUMP" "TO" label Conditionally?
+
+$Conditionally: "ON" Condition
+
+$Condition:
+    "EMPTY"
+    "NONE"
+    "FALSE"
+
+$Push: "PUSH" Source
+
+$Source:
+    Handler
+    Literal
+    Constant
+    Argument
+
+$Handler: "HANDLER" label
+
+$Literal: "LITERAL" quoted
+
+$Constant: "CONSTANT" symbol
+
+$Argument: "ARGUMENT" symbol
+
+$Pull: "PULL" Value
+
+$Value:
+    "HANDLER"
+    "COMPONENT"
+    "RESULT"
+    "EXCEPTION"
+
+$Load: "LOAD" Component symbol
+
+$Save: "SAVE" Component symbol
+
+$Drop: "DROP" Component symbol
+
+$Component:
+    "VARIABLE"
+    "DOCUMENT"
+    "CONTRACT"
+    "MESSAGE"
+
+$Call: "CALL" symbol Cardinality?
+
+$Cardinality: "WITH" count "ARGUMENTS"  ! The argument count is in the range [1..3].
+
+$Send: "SEND" symbol "TO" Destination Parameterized?
+
+$Destination:
+    "COMPONENT"
+    "DOCUMENT"
+
+$Parameterized: "WITH" "ARGUMENTS"
+
+!>
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                            EXPRESSION DEFINITIONS                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+<!
+$label: (index '.')+ identifier  ! This must be declared before count.
+
+$count: ['1'..'3']
+
+$explanation: "--" ~[CONTROL]*
+
+$identifier: (LOWER | UPPER) (DIGIT | LOWER | UPPER)*
+
+$index: ['1'..'9'] DIGIT*
+
+$quoted: '`' ("\\`" | ANY | EOL)* '`'  ! Chooses the shortest possible match.
+
+$symbol: '$' identifier ('-' index)?
+

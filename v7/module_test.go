@@ -14,14 +14,15 @@ package module_test
 
 import (
 	fmt "fmt"
+	uti "github.com/craterdog/go-missing-utilities/v7"
 	not "github.com/craterdog/go-syntax-notation/v7"
 	ass "github.com/stretchr/testify/assert"
-	osx "os"
 	tes "testing"
 )
 
 var syntaxFiles = []string{
 	"./syntax.cdsn",
+	"./testdata/basm.cdsn",
 	"./testdata/bali.cdsn",
 	"./testdata/gcmn.cdsn",
 	"./testdata/full.cdsn",
@@ -31,11 +32,7 @@ func TestRoundTrips(t *tes.T) {
 	fmt.Println("Round Trip Tests:")
 	for _, syntaxFile := range syntaxFiles {
 		fmt.Printf("   %v\n", syntaxFile)
-		var bytes, err = osx.ReadFile(syntaxFile)
-		if err != nil {
-			panic(err)
-		}
-		var source = string(bytes)
+		var source = uti.ReadFile(syntaxFile)
 		var syntax = not.ParseSource(source)
 		not.ValidateSyntax(syntax)
 		var actual = not.FormatSyntax(syntax)
