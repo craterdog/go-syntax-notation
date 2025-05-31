@@ -158,11 +158,11 @@ $Argument:
 
 $Value: identifier
 
-$Method: identifier Blocking identifier "(" Argument* ")"
+$Method: identifier Invoke identifier "(" Argument* ")"
 
-$Blocking:
-    dot
-    arrow
+$Invoke:
+    synchronous
+    asynchronous
 
 $Subcomponent: identifier "[" Index+ "]"
 
@@ -275,10 +275,10 @@ $Logic:
 
 $Arithmetic:
     plus
-    minus
+    dash
     star
     slash
-    percent
+    modulo
     caret
 
 $Comparison:
@@ -313,7 +313,7 @@ $Logical:
 $Inversion: Inverse Numerical
 
 $Inverse:
-    minus
+    dash
     slash
     star
 
@@ -335,77 +335,31 @@ $Magnitude: "|" Numerical "|"
 │                            EXPRESSION DEFINITIONS                            │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$alpha: ['A'..'Z' 'a'..'z']
-
-$alphanumeric: alpha | base10
-
-$amplitude: ('0' fraction | ordinal fraction? | transcendental) exponent?
-
-$angle: '~' ('0' | amplitude)
-
-$authority: ~['/' CONTROL]+
-
-$base10: ['0'..'9']
-
-$base16: base10 | ['a'..'f']
-
-$base32: base10 | ['A'..'D' 'F'..'H' 'J'..'N' 'P'..'T' 'V'..'Z']
-
-$base64: alphanumeric | ['+' '/']
+$angle: '~' ('0' | AMPLITUDE)
 
 $binary: "'>" (EOL block+)? ' '* "<'"
 
-$block: ' '* base64{1..60} EOL
+$block: ' '* BASE64{1..60} EOL
 
 $boolean: "false" | "true"
 
-$glyph: "'" (escape | ~[CONTROL]) "'"  ! Must be declared before bytecode.
+$caret: '^'
 
-$bytecode: "'" (instruction (' ' instruction)*)? "'"
+$glyph: "'" (ESCAPE | ~[CONTROL]) "'"  ! Must be declared before bytecode.
 
-$character: escape | '\' '"' | ~['"' CONTROL]
+$bytecode: "'" (INSTRUCTION (' ' INSTRUCTION)*)? "'"
 
 $citation: name '@' version
 
 $comment: "!>" EOL (ANY | EOL)* EOL ' '* "<!"  ! Chooses the shortest match.
 
-$day: (['0'..'2'] ['1'..'9']) | ('3' ['0'..'1'])
+$duration: '~' SIGN? 'P' (WEEKS | (YEARS? MONTHS? DAYS? ('T' HOURS? MINUTES? SECONDS?)?))
 
-$days: timespan 'D'
+$equal: '='
 
-$duration: '~' sign? 'P' (weeks | (years? months? days? ('T' hours? minutes? seconds?)?))
+$modulo: '%'
 
-$escape: '\' (unicode | ['a' 'b' 'f' 'n' 'r' 't' 'v' '\'])
-
-$exponent: 'E' sign? ordinal
-
-$float: sign? amplitude
-
-$fraction: '.' base10+
-
-$fragment: ~['>' CONTROL]*
-
-$hour: (['0'..'1'] ['0'..'9']) | ('2' ['0'..'3'])
-
-$hours: timespan 'H'
-
-$imaginary: sign? amplitude 'i'
-
-$infinity: sign? ("infinity" | '∞')
-
-$instruction: base16{4}
-
-$letter: LOWER | UPPER
-
-$minute: ['0'..'5'] ['0'..'9']
-
-$minutes: timespan 'M'
-
-$moment: '<' sign? year ('-' month ('-' day ('T' hour (':' minute (':' second fraction?)?)?)?)?)? '>'
-
-$month: ('0' ['1'..'9']) | ('1' ['0'..'2'])
-
-$months: timespan 'M'
+$moment: '<' SIGN? YEAR ('-' MONTH ('-' DAY ('T' HOUR (':' MINUTE (':' SECOND FRACTION?)?)?)?)?)? '>'
 
 $name: ('/' identifier)+
 
@@ -413,81 +367,132 @@ $narrative: '"' '>' EOL (ANY | EOL)* EOL ' '* '<' '"'  ! Chooses the shortest ma
 
 $note: "! " ~[CONTROL]*
 
-$ordinal: ['1'..'9'] base10*
+$pattern: "none" | REGEX | "any"
 
-$path: ~['?' '#' '>' CONTROL]*
+$percentage: REAL '%'
 
-$pattern: "none" | regex | "any"
+$probability: 'p' ('0' FRACTION? | "1")
 
-$percentage: real '%'
+$quote: '"' CHARACTER* '"'
 
-$probability: fraction | "one"
+$number: POLAR | RECTANGULAR | IMAGINARY | REAL  ! Must be after other numerics.
 
-$polar: amplitude "e^" angle? 'i'
-
-$query: ~['#' '>' CONTROL]*
-
-$quote: '"' character* '"'
-
-$real: '0' | float | infinity | undefined
-
-$rectangular: float sign float? 'i'
-
-$number: polar | rectangular | imaginary | real  ! Must be after other numerics.
-
-$regex: '"' character+ '"' '?'
-
-$resource: '<' scheme ':' ("//" authority)? '/' path ('?' query)? ('#' fragment)? '>'
-
-$scheme: alpha (alphanumeric | '+' | '-' | '.')*
-
-$second: (['0'..'5'] ['0'..'9']) | ('6' ['0'..'1'])
-
-$seconds: timespan 'S'
-
-$sign: '+' | '-'
+$resource: '<' SCHEME ':' ("//" AUTHORITY)? '/' PATH ('?' QUERY)? ('#' FRAGMENT)? '>'
 
 $symbol: '$' identifier
 
-$tag: '#' base32+
+$tag: '#' BASE32+
 
-$timespan: '0' | (ordinal fraction?)
+$version: 'v' ORDINAL ('.' ORDINAL)*
 
-$transcendental: "e" | "pi" | 'π' | "tau" | 'τ' | "phi" | 'φ'
+$identifier: LETTER (LETTER | DIGIT)*  ! Must be last alphanumeric expression.
 
-$undefined: "undefined"
+$synchronous: "<-"  ! Must be after other expressions beginning with "<-".
 
-$unicode: ('u' base16{4}) | ('U' base16{8})
+$asynchronous: "<~"
 
-$version: 'v' ordinal ('.' ordinal)*
+$less: '<'  ! Must be after all other expressions beginning with "<".
 
-$weeks: timespan 'W'
+$more: '>'
 
-$year: '0' | ordinal
+$plus: '+'  ! Must be after all other expressions beginning with an operator.
 
-$years: timespan 'Y'
+$dash: '-'  ! Must be after all other expressions beginning with an operator.
 
-$identifier: letter (letter | DIGIT)*  ! Must be after all alphanumeric expressions.
+$star: '*'  ! Must be after all other expressions beginning with an operator.
 
-$arrow: "<-"
+$slash: '/'  ! Must be after all other expressions beginning with an operator.
 
-$less: "<"
+!>
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                             FRAGMENT DEFINITIONS                             │
+└──────────────────────────────────────────────────────────────────────────────┘
+<!
+$ALPHA: ['A'..'Z' 'a'..'z']
 
-$equal: "="
+$ALPHANUMERIC: ALPHA | BASE10
 
-$more: ">"
+$AMPLITUDE: ('0' FRACTION | ORDINAL FRACTION? | TRANSCENDENTAL) EXPONENT?
 
-$plus: "+"
+$AUTHORITY: ~['/' CONTROL]+
 
-$minus: "-"
+$BASE10: ['0'..'9']
 
-$star: "*"
+$BASE16: BASE10 | ['a'..'f']
 
-$slash: "/"
+$BASE32: BASE10 | ['A'..'D' 'F'..'H' 'J'..'N' 'P'..'T' 'V'..'Z']
 
-$percent: "%"
+$BASE64: ALPHANUMERIC | ['+' '/']
 
-$caret: "^"
+$CHARACTER: ESCAPE | '\' '"' | ~['"' CONTROL]
 
-$dot: "."
+$DAY: (['0'..'2'] ['1'..'9']) | ('3' ['0'..'1'])
+
+$DAYS: TIMESPAN 'D'
+
+$ESCAPE: '\' (UNICODE | ['a' 'b' 'f' 'n' 'r' 't' 'v' '\'])
+
+$EXPONENT: 'E' SIGN? ORDINAL
+
+$FLOAT: SIGN? AMPLITUDE
+
+$FRACTION: '.' BASE10+
+
+$FRAGMENT: ~['>' CONTROL]*
+
+$HOUR: (['0'..'1'] ['0'..'9']) | ('2' ['0'..'3'])
+
+$HOURS: TIMESPAN 'H'
+
+$IMAGINARY: SIGN? AMPLITUDE 'i'
+
+$INFINITY: SIGN? ("infinity" | '∞')
+
+$INSTRUCTION: BASE16{4}
+
+$LETTER: LOWER | UPPER
+
+$MINUTE: ['0'..'5'] ['0'..'9']
+
+$MINUTES: TIMESPAN 'M'
+
+$MONTH: ('0' ['1'..'9']) | ('1' ['0'..'2'])
+
+$MONTHS: TIMESPAN 'M'
+
+$ORDINAL: ['1'..'9'] BASE10*
+
+$PATH: ~['?' '#' '>' CONTROL]*
+
+$POLAR: AMPLITUDE "e^" ('~' ('0' | AMPLITUDE))? 'i'
+
+$QUERY: ~['#' '>' CONTROL]*
+
+$REAL: '0' | FLOAT | INFINITY | UNDEFINED
+
+$RECTANGULAR: FLOAT SIGN FLOAT? 'i'
+
+$REGEX: '"' CHARACTER+ '"' '?'
+
+$SCHEME: ALPHA (ALPHANUMERIC | '+' | '-' | '.')*
+
+$SECOND: (['0'..'5'] ['0'..'9']) | ('6' ['0'..'1'])
+
+$SECONDS: TIMESPAN 'S'
+
+$SIGN: '+' | '-'
+
+$TIMESPAN: '0' | (ORDINAL FRACTION?)
+
+$TRANSCENDENTAL: "e" | "pi" | 'π' | "tau" | 'τ' | "phi" | 'φ'
+
+$UNDEFINED: "undefined"
+
+$UNICODE: ('u' BASE16{4}) | ('U' BASE16{8})
+
+$WEEKS: TIMESPAN 'W'
+
+$YEAR: '0' | ORDINAL
+
+$YEARS: TIMESPAN 'Y'
 

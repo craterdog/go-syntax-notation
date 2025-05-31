@@ -106,17 +106,22 @@ $Parameterized: "WITH" "ARGUMENTS"
 │                            EXPRESSION DEFINITIONS                            │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$label: (index '.')+ identifier  ! This must be declared before count.
+$label: (INDEX '.')+ IDENTIFIER  ! This must be declared before count.
 
 $count: ['1'..'3']
 
 $explanation: "--" ~[CONTROL]*
 
-$identifier: (LOWER | UPPER) (DIGIT | LOWER | UPPER)*
-
-$index: ['1'..'9'] DIGIT*
-
 $quoted: '`' ("\\`" | ANY | EOL)* '`'  ! Chooses the shortest possible match.
 
-$symbol: '$' identifier ('-' index)?
+$symbol: '$' IDENTIFIER ('-' INDEX)?
+
+!>
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                             FRAGMENT DEFINITIONS                             │
+└──────────────────────────────────────────────────────────────────────────────┘
+<!
+$IDENTIFIER: (LOWER | UPPER) (DIGIT | LOWER | UPPER)*
+
+$INDEX: ['1'..'9'] DIGIT*
 
