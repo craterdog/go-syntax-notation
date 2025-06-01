@@ -101,6 +101,24 @@ func (v *validator_) ValidateSyntax(
 			panic(message)
 		}
 	}
+	var fragments = syntax.GetFragments()
+	fragments.SortValuesWithRanker(
+		func(
+			first ast.FragmentLike,
+			second ast.FragmentLike,
+		) col.Rank {
+			var firstName = first.GetAllcaps()
+			var secondName = second.GetAllcaps()
+			switch {
+			case firstName < secondName:
+				return col.LesserRank
+			case firstName > secondName:
+				return col.GreaterRank
+			default:
+				return col.EqualRank
+			}
+		},
+	)
 }
 
 // Methodical Methods
