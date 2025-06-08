@@ -50,7 +50,6 @@ $Element:
     glyph
     moment
     number
-    pattern
     percentage
     probability
     resource
@@ -60,16 +59,19 @@ $Series:
     bytecode
     name
     narrative
+    pattern
     quote
     symbol
     tag
     version
 
 $Collection:
-    Range
     Empty
+    Range
     Attributes
     Items  ! Must be after ranges and attributes.
+
+$Empty: "[" ":"? "]"
 
 $Range: LeftBracket Primitive ".." Primitive RightBracket
 
@@ -81,11 +83,9 @@ $RightBracket:
     "]"
     ")"
 
-$Empty: "[" ":" "]"
-
 $Attributes: "[" Association+ "]"
 
-$Items: "[" Component* "]"
+$Items: "[" Component+ "]"
 
 $Procedure: "{" Line* "}"
 
@@ -337,9 +337,7 @@ $Magnitude: "|" Numerical "|"
 <!
 $angle: '~' ('0' | AMPLITUDE)
 
-$binary: "'>" (EOL block+)? ' '* "<'"
-
-$block: ' '* BASE64{1..60} EOL
+$binary: "'>" (BASE64 | SPACE | EOL)* "<'"
 
 $boolean: "false" | "true"
 
@@ -347,11 +345,11 @@ $caret: '^'
 
 $glyph: "'" (ESCAPE | ~[CONTROL]) "'"  ! Must be declared before bytecode.
 
-$bytecode: "'" (INSTRUCTION (' ' INSTRUCTION)*)? "'"
+$bytecode: "'" INSTRUCTION (SPACE INSTRUCTION)* "'"
 
 $citation: name '@' version
 
-$comment: "!>" EOL (ANY | EOL)* EOL ' '* "<!"  ! Chooses the shortest match.
+$comment: "!>" (ANY | EOL)* "<!"  ! Chooses the shortest match.
 
 $duration: '~' SIGN? 'P' (WEEKS | (YEARS? MONTHS? DAYS? ('T' HOURS? MINUTES? SECONDS?)?))
 
@@ -363,7 +361,7 @@ $moment: '<' SIGN? YEAR ('-' MONTH ('-' DAY ('T' HOUR (':' MINUTE (':' SECOND FR
 
 $name: ('/' identifier)+
 
-$narrative: '"' '>' EOL (ANY | EOL)* EOL ' '* '<' '"'  ! Chooses the shortest match.
+$narrative: '"' '>' (ANY | EOL)* '<' '"'  ! Chooses the shortest match.
 
 $note: "! " ~[CONTROL]*
 
@@ -481,6 +479,8 @@ $SECOND: (['0'..'5'] ['0'..'9']) | ('6' ['0'..'1'])
 $SECONDS: TIMESPAN 'S'
 
 $SIGN: '+' | '-'
+
+$SPACE: ' '
 
 $TIMESPAN: '0' | (ORDINAL FRACTION?)
 
