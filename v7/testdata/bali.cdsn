@@ -22,25 +22,25 @@ For more information on CDSN see the wiki at:
 │                               RULE DEFINITIONS                               │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$Document: Header? Component
+$Document: Header? Entity
 
 $Header: comment
 
-$Component: Entity Parameters? note?
+$Entity: Component Parameters? note?
 
-$Entity:
+$Component:
     Element
-    Series
+    String
     Collection
     Procedure
 
 $Parameters: "(" Association* ")"
 
-$Association: Primitive ":" Component
+$Association: Primitive ":" Entity
 
 $Primitive:
     Element
-    Series
+    String
 
 $Element:
     angle
@@ -54,7 +54,7 @@ $Element:
     probability
     resource
 
-$Series:
+$String:
     binary
     bytecode
     name
@@ -85,7 +85,7 @@ $RightBracket:
 
 $Attributes: "[" Association+ "]"
 
-$Items: "[" Component+ "]"
+$Items: "[" Entity+ "]"
 
 $Procedure: "{" Line* "}"
 
@@ -147,7 +147,7 @@ $SelectClause: "select" Target MatchingClause+
 $Target:
     Function
     Method
-    Subcomponent
+    Subentity
     Value  ! This must be last since others also begin with an identifier.
 
 $Function: identifier "(" Argument* ")"
@@ -164,7 +164,7 @@ $Invoke:
     synchronous
     asynchronous
 
-$Subcomponent: identifier "[" Index+ "]"
+$Subentity: identifier "[" Index+ "]"
 
 $Index:
     Value
@@ -208,7 +208,7 @@ $Assignment:
 
 $Recipient:
     Variable
-    Subcomponent
+    Subentity
 
 $PostClause: "post" Message "to" Bag
 
@@ -243,8 +243,8 @@ $NotarizeClause: "notarize" Draft "as" Cited
 $Expression: Subject Predicate*
 
 $Subject:
-    Component
-    Subcomponent
+    Entity
+    Subentity
     Precedence
     Referent
     Complement
@@ -291,8 +291,8 @@ $Precedence: "(" Expression ")"
 $Referent: "@" Indirect
 
 $Indirect:
-    Component
-    Subcomponent
+    Entity
+    Subentity
     Referent
     Function
     Method
@@ -301,8 +301,8 @@ $Indirect:
 $Complement: "not" Logical
 
 $Logical:
-    Component
-    Subcomponent
+    Entity
+    Subentity
     Precedence
     Referent
     Complement
@@ -318,8 +318,8 @@ $Inverse:
     star
 
 $Numerical:
-    Component
-    Subcomponent
+    Entity
+    Subentity
     Precedence
     Referent
     Inversion
