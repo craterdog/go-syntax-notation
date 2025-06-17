@@ -53,6 +53,7 @@ $Element:
     percentage
     probability
     resource
+    symbol
 
 $String:
     binary
@@ -61,19 +62,18 @@ $String:
     narrative
     pattern
     quote
-    symbol
     tag
     version
 
 $Collection:
     Empty
-    Range
+    Interval
     Attributes
     Items  ! Must be after ranges and attributes.
 
 $Empty: "[" ":"? "]"
 
-$Range: LeftBracket Primitive ".." Primitive RightBracket
+$Interval: LeftBracket Primitive ".." Primitive RightBracket
 
 $LeftBracket:
     "["
@@ -351,7 +351,7 @@ $citation: name '@' version
 
 $comment: "!>" (ANY | EOL)* "<!"  ! Chooses the shortest match.
 
-$duration: '~' SIGN? 'P' (WEEKS | (YEARS? MONTHS? DAYS? ('T' HOURS? MINUTES? SECONDS?)?))
+$duration: "~P" (WEEKS | (YEARS? MONTHS? DAYS? ('T' HOURS? MINUTES? SECONDS?)?))
 
 $equal: '='
 
@@ -379,11 +379,11 @@ $resource: '<' SCHEME ':' ("//" AUTHORITY)? '/' PATH ('?' QUERY)? ('#' FRAGMENT)
 
 $symbol: '$' identifier
 
-$tag: '#' BASE32+
+$tag: '#' BASE32{13..}
 
 $version: 'v' ORDINAL ('.' ORDINAL)*
 
-$identifier: LETTER (LETTER | DIGIT)*  ! Must be last alphanumeric expression.
+$identifier: LETTER (LETTER | DIGIT | '-')*  ! Must be last alphanumeric expression.
 
 $synchronous: "<-"  ! Must be after other expressions beginning with "<-".
 
@@ -480,7 +480,7 @@ $SECONDS: TIMESPAN 'S'
 
 $SIGN: '+' | '-'
 
-$SPACE: ' '
+$SPACE: ' '+
 
 $TIMESPAN: '0' | (ORDINAL FRACTION?)
 

@@ -39,8 +39,9 @@ $List: "[" Component Additional* "]"
 $Additional: "," Component
 
 $Keyword:
-    "Foo"
-    "Bar"
+    "if"
+    "then"
+    "else"
 
 !>
 ┌──────────────────────────────────────────────────────────────────────────────┐
