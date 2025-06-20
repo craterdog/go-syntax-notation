@@ -45,7 +45,6 @@ $Primitive:
 $Element:
     angle
     boolean
-    citation
     duration
     glyph
     moment
@@ -337,23 +336,21 @@ $Magnitude: "|" Numerical "|"
 <!
 $angle: '~' ('0' | AMPLITUDE)
 
-$binary: "'>" (BASE64 | SPACE | EOL)* "<'"
+$binary: "'>" (EOL (SPACE* BASE64{2..60} EOL)+ SPACE*)? "<'"
 
 $boolean: "false" | "true"
 
+$bytecode: "'>" EOL (SPACE* INSTRUCTION{1..12} EOL)+ SPACE* "<'"
+
 $caret: '^'
 
-$glyph: "'" (ESCAPE | ~[CONTROL]) "'"  ! Must be declared before bytecode.
-
-$bytecode: "'" INSTRUCTION (SPACE INSTRUCTION)* "'"
-
-$citation: name '@' version
-
-$comment: "!>" (ANY | EOL)* "<!"  ! Chooses the shortest match.
+$comment: "!>" EOL (ANY | EOL)+ EOL SPACE* "<!"  ! Chooses the shortest match.
 
 $duration: "~P" (WEEKS | (YEARS? MONTHS? DAYS? ('T' HOURS? MINUTES? SECONDS?)?))
 
 $equal: '='
+
+$glyph: "'" (ESCAPE | ~[CONTROL]) "'"
 
 $modulo: '%'
 
@@ -361,7 +358,7 @@ $moment: '<' SIGN? YEAR ('-' MONTH ('-' DAY ('T' HOUR (':' MINUTE (':' SECOND FR
 
 $name: ('/' identifier)+
 
-$narrative: '"' '>' (ANY | EOL)* '<' '"'  ! Chooses the shortest match.
+$narrative: "\">" EOL (ANY | EOL)+ EOL SPACE* "<\""  ! Chooses the shortest match.
 
 $note: "! " ~[CONTROL]*
 
@@ -446,7 +443,7 @@ $IMAGINARY: FLOAT 'i'
 
 $INFINITY: SIGN? ("infinity" | '∞')
 
-$INSTRUCTION: BASE16{4}
+$INSTRUCTION: '-' BASE16{4}
 
 $LETTER: LOWER | UPPER
 
