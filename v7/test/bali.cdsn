@@ -22,11 +22,7 @@ For more information on CDSN see the wiki at:
 │                               RULE DEFINITIONS                               │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$Document: Header? Entity
-
-$Header: comment
-
-$Entity: Component Parameters? note?
+$Document: Component Parameters? note?
 
 $Component:
     Element
@@ -36,7 +32,7 @@ $Component:
 
 $Parameters: "(" Association* ")"
 
-$Association: Primitive ":" Entity
+$Association: Primitive ":" Document
 
 $Primitive:
     Element
@@ -66,13 +62,13 @@ $String:
 
 $Collection:
     Empty
-    Interval
+    Range
     Attributes
-    Items  ! Must be after interval and attributes.
+    Items  ! Must be after range and attributes.
 
 $Empty: "[" ":"? "]"
 
-$Interval: Bra Primitive ".." Primitive Ket
+$Range: Bra Primitive ".." Primitive Ket
 
 $Bra:
     "["
@@ -84,7 +80,7 @@ $Ket:
 
 $Attributes: "[" Association+ "]"
 
-$Items: "[" Entity+ "]"
+$Items: "[" Document+ "]"
 
 $Procedure: "{" Line* "}"
 
@@ -92,15 +88,17 @@ $Line:
     Annotation
     Statement
 
-$Annotation: comment
+$Annotation:
+    comment
+    note
 
-$Statement: MainClause OnClause? note?
+$Statement: MainClause OnClause?
 
 $MainClause:
-    Flow
-    Induction
-    Messaging
-    Repository
+    FlowControl
+    ActionInduction
+    MessageHandling
+    RepositoryAccess
 
 $OnClause: "on" Failure MatchingClause+
 
@@ -110,7 +108,7 @@ $Failure: symbol
 
 $Template: Expression
 
-$Flow:
+$FlowControl:
     IfClause
     SelectClause
     WhileClause
@@ -120,18 +118,18 @@ $Flow:
     ReturnClause
     ThrowClause
 
-$Induction:
+$ActionInduction:
     DoClause
     LetClause
 
-$Messaging:
+$MessageHandling:
     PostClause
     RetrieveClause
     AcceptClause
     RejectClause
     PublishClause
 
-$Repository:
+$RepositoryAccess:
     CheckoutClause
     SaveClause
     DiscardClause
@@ -242,7 +240,7 @@ $NotarizeClause: "notarize" Draft "as" Cited
 $Expression: Subject Predicate*
 
 $Subject:
-    Entity
+    Document
     Subentity
     Precedence
     Referent
@@ -290,7 +288,7 @@ $Precedence: "(" Expression ")"
 $Referent: "@" Indirect
 
 $Indirect:
-    Entity
+    Document
     Subentity
     Referent
     Function
@@ -300,7 +298,7 @@ $Indirect:
 $Complement: "not" Logical
 
 $Logical:
-    Entity
+    Document
     Subentity
     Precedence
     Referent
@@ -317,7 +315,7 @@ $Inverse:
     star
 
 $Numerical:
-    Entity
+    Document
     Subentity
     Precedence
     Referent

@@ -22,10 +22,10 @@ import (
 
 var syntaxFiles = []string{
 	"./syntax.cdsn",
-	"./testdata/basm.cdsn",
-	"./testdata/bali.cdsn",
-	"./testdata/gcmn.cdsn",
-	"./testdata/full.cdsn",
+	"./test/basm.cdsn",
+	"./test/bali.cdsn",
+	"./test/gcmn.cdsn",
+	"./test/full.cdsn",
 }
 
 func TestRoundTrips(t *tes.T) {
