@@ -11,8 +11,8 @@
 <!
 
 !>
-BALI INSTRUCTION NOTATION
-This document contains a formal definition of the Bali Instruction Notation™
+BALI ASSEMBLY LANGUAGE
+This document contains a formal definition of the Bali Assembly Language™
 using Crater Dog Syntax Notation™ (CDSN).
 
 For more information on CDSN see the wiki at:
@@ -22,7 +22,7 @@ For more information on CDSN see the wiki at:
 │                               RULE DEFINITIONS                               │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$Assembly: Instruction*
+$Assembly: Instruction+
 
 $Instruction: Prefix? Action
 
@@ -30,7 +30,7 @@ $Prefix: label ":"
 
 $Action:
     Note
-    Noop
+    Skip
     Jump
     Push
     Pull
@@ -40,9 +40,9 @@ $Action:
     Call
     Send
 
-$Note: "NOTE" explanation
+$Note: "NOTE" comment
 
-$Noop: "NOOP"
+$Skip: "SKIP"
 
 $Jump: "JUMP" "TO" label Conditionally?
 
@@ -106,15 +106,15 @@ $Parameterized: "WITH" "ARGUMENTS"
 │                            EXPRESSION DEFINITIONS                            │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$label: (INDEX '.')+ IDENTIFIER  ! This must be declared before count.
+$label: (ORDINAL '.')+ IDENTIFIER  ! This must be declared before count.
 
 $count: ['1'..'3']
 
-$explanation: "--" ~[CONTROL]*
+$comment: "--" ~[CONTROL]*
 
-$quoted: '`' ("\\`" | ANY | EOL)* '`'  ! Chooses the shortest possible match.
+$quoted: "`>" EOL (ANY | EOL)+ EOL SPACE* "<`"  ! Chooses the shortest possible match.
 
-$symbol: '$' IDENTIFIER ('-' INDEX)?
+$symbol: '$' IDENTIFIER ('-' ORDINAL)?
 
 !>
 ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -123,5 +123,7 @@ $symbol: '$' IDENTIFIER ('-' INDEX)?
 <!
 $IDENTIFIER: (LOWER | UPPER) (DIGIT | LOWER | UPPER)*
 
-$INDEX: ['1'..'9'] DIGIT*
+$ORDINAL: ['1'..'9'] DIGIT*
+
+$SPACE: ' '+
 

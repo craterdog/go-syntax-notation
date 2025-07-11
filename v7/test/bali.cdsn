@@ -80,7 +80,9 @@ $Ket:
 
 $Attributes: "[" Association+ "]"
 
-$Items: "[" Document+ "]"
+$Items: "[" Entity+ "]"
+
+$Entity: Document
 
 $Procedure: "{" Line* "}"
 
@@ -89,8 +91,8 @@ $Line:
     Statement
 
 $Annotation:
-    comment
     note
+    comment
 
 $Statement: MainClause OnClause?
 
@@ -102,9 +104,9 @@ $MainClause:
 
 $OnClause: "on" Failure MatchingClause+
 
-$MatchingClause: "matching" Template "do" Procedure
-
 $Failure: symbol
+
+$MatchingClause: "matching" Template "do" Procedure
 
 $Template: Expression
 
@@ -144,10 +146,16 @@ $SelectClause: "select" Target MatchingClause+
 $Target:
     Function
     Method
-    Subentity
+    Subcomponent
     Value  ! This must be last since others also begin with an identifier.
 
 $Function: identifier "(" Argument* ")"
+
+$Method: identifier Invoke identifier "(" Argument* ")"
+
+$Invoke:
+    "<-"
+    "<~"
 
 $Argument:
     Value
@@ -155,13 +163,7 @@ $Argument:
 
 $Value: identifier
 
-$Method: identifier Invoke identifier "(" Argument* ")"
-
-$Invoke:
-    synchronous
-    asynchronous
-
-$Subentity: identifier "[" Index+ "]"
+$Subcomponent: identifier "[" Index+ "]"
 
 $Index:
     Value
@@ -205,7 +207,7 @@ $Assignment:
 
 $Recipient:
     Variable
-    Subentity
+    Subcomponent
 
 $PostClause: "post" Message "to" Bag
 
@@ -241,7 +243,7 @@ $Expression: Subject Predicate*
 
 $Subject:
     Document
-    Subentity
+    Subcomponent
     Precedence
     Referent
     Complement
@@ -254,34 +256,34 @@ $Subject:
 $Predicate: Operation Expression
 
 $Operation:
-    Textual
-    Logic
-    Arithmetic
-    Comparison
+    LexicalOperator
+    LogicalOperator
+    ArithmeticOperator
+    ComparisonOperator
 
-$Textual:
+$LexicalOperator:
     "&"
-    "is"
-    "matches"
 
-$Logic:
+$LogicalOperator:
     "and"
     "san"
     "ior"
     "xor"
 
-$Arithmetic:
-    plus
-    dash
-    star
-    slash
-    modulo
-    caret
+$ArithmeticOperator:
+    "+"
+    "-"
+    "*"
+    "/"
+    "%"
+    "^"
 
-$Comparison:
-    less
-    equal
-    more
+$ComparisonOperator:
+    "<"
+    "="
+    ">"
+    "is"
+    "matches"
 
 $Precedence: "(" Expression ")"
 
@@ -289,7 +291,7 @@ $Referent: "@" Indirect
 
 $Indirect:
     Document
-    Subentity
+    Subcomponent
     Referent
     Function
     Method
@@ -299,7 +301,7 @@ $Complement: "not" Logical
 
 $Logical:
     Document
-    Subentity
+    Subcomponent
     Precedence
     Referent
     Complement
@@ -310,13 +312,13 @@ $Logical:
 $Inversion: Inverse Numerical
 
 $Inverse:
-    dash
-    slash
-    star
+    "-"
+    "/"
+    "*"
 
 $Numerical:
     Document
-    Subentity
+    Subcomponent
     Precedence
     Referent
     Inversion
@@ -325,7 +327,7 @@ $Numerical:
     Method
     Value  ! This must be last since others also begin with an identifier.
 
-$Magnitude: "|" Numerical "|"
+$Magnitude: "|" Expression "|"
 
 !>
 ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -340,17 +342,11 @@ $boolean: "false" | "true"
 
 $bytecode: "'>" EOL (SPACE* INSTRUCTION{1..12} EOL)+ SPACE* "<'"
 
-$caret: '^'
-
 $comment: "!>" EOL (ANY | EOL)+ EOL SPACE* "<!"  ! Chooses the shortest match.
 
 $duration: "~P" (WEEKS | (YEARS? MONTHS? DAYS? ('T' HOURS? MINUTES? SECONDS?)?))
 
-$equal: '='
-
 $glyph: "'" (ESCAPE | ~[CONTROL]) "'"
-
-$modulo: '%'
 
 $moment: '<' SIGN? YEAR ('-' MONTH ('-' DAY ('T' HOUR (':' MINUTE (':' SECOND FRACTION?)?)?)?)?)? '>'
 
@@ -368,8 +364,6 @@ $probability: 'p' ('0' FRACTION? | "1")
 
 $quote: '"' CHARACTER* '"'
 
-$number: POLAR | RECTANGULAR | IMAGINARY | REAL  ! Must be after other numerics.
-
 $resource: '<' SCHEME ':' ("//" AUTHORITY)? '/' PATH ('?' QUERY)? ('#' FRAGMENT)? '>'
 
 $symbol: '$' identifier
@@ -378,23 +372,9 @@ $tag: '#' BASE32{13..}
 
 $version: 'v' ORDINAL ('.' ORDINAL)*
 
+$number: POLAR | RECTANGULAR | IMAGINARY | REAL  ! Must be after other numerics.
+
 $identifier: LETTER (LETTER | DIGIT | '-')*  ! Must be last alphanumeric expression.
-
-$synchronous: "<-"  ! Must be after other expressions beginning with "<-".
-
-$asynchronous: "<~"
-
-$less: '<'  ! Must be after all other expressions beginning with "<".
-
-$more: '>'
-
-$plus: '+'  ! Must be after all other expressions beginning with an operator.
-
-$dash: '-'  ! Must be after all other expressions beginning with an operator.
-
-$star: '*'  ! Must be after all other expressions beginning with an operator.
-
-$slash: '/'  ! Must be after all other expressions beginning with an operator.
 
 !>
 ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -441,7 +421,7 @@ $IMAGINARY: FLOAT 'i'
 
 $INFINITY: SIGN? ("infinity" | '∞')
 
-$INSTRUCTION: '-' BASE16{4}
+$INSTRUCTION: ':' BASE16{4}
 
 $LETTER: LOWER | UPPER
 
