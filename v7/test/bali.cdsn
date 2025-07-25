@@ -27,10 +27,11 @@ $Document: Component Parameters? note?
 $Component:
     Element
     String
+    Range
     Collection
     Procedure
 
-$Parameters: "(" Association* ")"
+$Parameters: "(" Association+ ")"
 
 $Association: Primitive ":" Document
 
@@ -60,14 +61,6 @@ $String:
     tag
     version
 
-$Collection:
-    Empty
-    Range
-    Attributes
-    Items  ! Must be after range and attributes.
-
-$Empty: "[" ":"? "]"
-
 $Range: Bra Primitive ".." Primitive Ket
 
 $Bra:
@@ -78,9 +71,13 @@ $Ket:
     "]"
     ")"
 
+$Collection:
+    Attributes
+    Items  ! Must be after attributes.
+
 $Attributes: "[" Association+ "]"
 
-$Items: "[" Entity+ "]"
+$Items: "[" Entity* "]"
 
 $Entity: Document
 
