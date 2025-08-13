@@ -61,25 +61,25 @@ $String:
     tag
     version
 
-$Range: Bra Primitive ".." Primitive Ket
+$Range: Left Primitive ".." Primitive Right
 
-$Bra:
+$Left:
     "["
     "("
 
-$Ket:
+$Right:
     "]"
     ")"
 
 $Collection:
     Attributes
-    Items  ! Must be after attributes.
+    Entities  ! Must be after attributes.
 
 $Attributes: "[" Association+ "]"
 
-$Items: "[" Entity* "]"
+$Entities: "[" Item* "]"
 
-$Entity: Document
+$Item: Document
 
 $Procedure: "{" Line* "}"
 
@@ -138,21 +138,15 @@ $IfClause: "if" Condition "do" Procedure
 
 $Condition: Expression
 
-$SelectClause: "select" Target MatchingClause+
-
-$Target:
-    Function
-    Method
-    Subcomponent
-    Value  ! This must be last since others also begin with an identifier.
+$SelectClause: "select" Expression MatchingClause+
 
 $Function: identifier "(" Argument* ")"
 
 $Method: identifier Invoke identifier "(" Argument* ")"
 
 $Invoke:
-    "<-"
-    "<~"
+    "<-"  ! The method is invoked synchronously.
+    "<~"  ! The method is invoked asynchronously.
 
 $Argument:
     Value
@@ -186,11 +180,7 @@ $ThrowClause: "throw" Exception
 
 $Exception: Expression
 
-$DoClause: "do" Invocation
-
-$Invocation:
-    Function
-    Method
+$DoClause: "do" Method
 
 $LetClause: "let" Recipient Assignment Expression
 
@@ -250,9 +240,9 @@ $Subject:
     Method
     Value  ! This must be last since others also begin with an identifier.
 
-$Predicate: Operation Expression
+$Predicate: Operator Expression
 
-$Operation:
+$Operator:
     LexicalOperator
     LogicalOperator
     ArithmeticOperator
@@ -284,9 +274,9 @@ $ComparisonOperator:
 
 $Precedence: "(" Expression ")"
 
-$Referent: "@" Indirect
+$Referent: "@" Reference
 
-$Indirect:
+$Reference:
     Document
     Subcomponent
     Referent
