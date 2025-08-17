@@ -45,8 +45,8 @@ $Element:
     duration
     glyph
     moment
-    number
     percentage
+    number
     probability
     resource
     symbol
@@ -372,7 +372,7 @@ $ALPHA: ['A'..'Z' 'a'..'z']
 
 $ALPHANUMERIC: ALPHA | BASE10
 
-$AMPLITUDE: ('0' FRACTION | ORDINAL FRACTION? | TRANSCENDENTAL) EXPONENT?
+$AMPLITUDE: ('0' FRACTION | ORDINAL FRACTION?) EXPONENT? | TRANSCENDENTAL
 
 $AUTHORITY: ~['/' CONTROL]+
 
@@ -424,7 +424,7 @@ $ORDINAL: ['1'..'9'] BASE10*
 
 $PATH: ~['?' '#' '>' CONTROL]*
 
-$POLAR: AMPLITUDE "e^" ('~' ('0' | AMPLITUDE))? 'i'
+$POLAR: AMPLITUDE "e^~" AMPLITUDE 'i'
 
 $QUERY: ~['#' '>' CONTROL]*
 
