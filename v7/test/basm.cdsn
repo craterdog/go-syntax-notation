@@ -47,19 +47,17 @@ $Skip: "SKIP"
 $Jump: "JUMP TO" label Conditionally?
 
 $Conditionally:
-    "ON EMPTY"
     "ON NONE"
     "ON FALSE"
+    "ON EMPTY"
 
 $Push: "PUSH" Source
 
 $Source:
-    Handler
     Literal
     Constant
     Argument
-
-$Handler: "HANDLER" label
+    Handler
 
 $Literal: "LITERAL" quoted
 
@@ -67,13 +65,15 @@ $Constant: "CONSTANT" symbol
 
 $Argument: "ARGUMENT" symbol
 
+$Handler: "HANDLER" label
+
 $Pull: "PULL" Value
 
 $Value:
-    "HANDLER"
-    "EXCEPTION"
     "COMPONENT"
     "RESULT"
+    "EXCEPTION"
+    "HANDLER"
 
 $Load: "LOAD" Component symbol
 
@@ -82,8 +82,8 @@ $Save: "SAVE" Component symbol
 $Drop: "DROP" Component symbol
 
 $Component:
-    "CONTRACT"
     "DRAFT"
+    "CONTRACT"
     "VARIABLE"
     "MESSAGE"
 
@@ -97,8 +97,8 @@ $Cardinality:
 $Send: "SEND" symbol "TO" Destination Parameterized?
 
 $Destination:
-    "CONTRACT"
     "COMPONENT"
+    "CONTRACT"
 
 $Parameterized: "WITH ARGUMENTS"
 
