@@ -25,7 +25,7 @@ var syntaxFiles = []string{
 	"./test/basm.cdsn",
 	"./test/bali.cdsn",
 	"./test/gcmn.cdsn",
-	"./test/full.cdsn",
+	"./test/template.cdsn",
 }
 
 func TestRoundTrips(t *tes.T) {
