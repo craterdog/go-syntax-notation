@@ -3,8 +3,17 @@
 ## Go Syntax Notation
 
 ### Overview
-This project provides a Go module for parsing, validating and formatting
-language grammars defined using _Crater Dog Syntax Notation_ (CDSN).
+This project was automatically generated based on the Crater Dog Syntax Notation™
+(CDSN) file located
+[here](https://github.com/craterdog/go-syntax-notation/blob/main/v7/syntax.cdsn).
+It provides a framework for parsing, validating and formatting language grammars
+defined using CDSN.  And yes, this project was used by a
+[code generator](https://github.com/craterdog/go-code-generation/wiki) to
+generate _itself_ 🤯.
+
+⚠️  However, this project is not meant to be used by other projects.  The
+command-line tools referenced below allow easy access to the functionality
+provided by this project.
 
 ### Quick Links
 For more information on this project click on the following links:
