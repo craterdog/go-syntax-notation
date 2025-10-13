@@ -22,7 +22,7 @@ For more information on CDSN see the wiki at:
 │                               RULE DEFINITIONS                               │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$Document: Component
+$Document: Annotation? Component
 
 $Component: Entity Parameterization?
 
@@ -348,7 +348,7 @@ $glyph: "'" (ESCAPE | ~[CONTROL]) "'"
 
 $moment: '<' SIGN? YEAR ('-' MONTH ('-' DAY ('T' HOUR (':' MINUTE (':' SECOND FRACTION?)?)?)?)?)? '>'
 
-$name: ('/' (LETTER | DIGIT | '-')+)+
+$name: ('/' FOLDER)+
 
 $narrative: "\">" EOL (ANY | EOL)+ EOL SPACE* "<\""  ! Chooses the shortest match.
 
@@ -406,6 +406,8 @@ $ESCAPE: '\' (UNICODE | ['a' 'b' 'f' 'n' 'r' 't' 'v' '\'])
 $EXPONENT: 'E' SIGN? ORDINAL
 
 $FLOAT: SIGN? AMPLITUDE
+
+$FOLDER: ALPHANUMERIC (('-' | '.')? ALPHANUMERIC)+
 
 $FRACTION: '.' BASE10+
 

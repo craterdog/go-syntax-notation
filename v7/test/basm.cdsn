@@ -83,9 +83,9 @@ $Drop: "DROP" Component symbol
 
 $Component:
     "DRAFT"
-    "CONTRACT"
-    "VARIABLE"
+    "DOCUMENT"
     "MESSAGE"
+    "VARIABLE"
 
 $Call: "CALL" symbol Cardinality?
 
@@ -94,13 +94,13 @@ $Cardinality:
     "WITH 2 ARGUMENTS"
     "WITH 3 ARGUMENTS"
 
-$Send: "SEND" symbol "TO" Destination Parameterized?
+$Send: "SEND" symbol "TO" Destination Context?
 
 $Destination:
     "COMPONENT"
-    "CONTRACT"
+    "DOCUMENT"
 
-$Parameterized: "WITH ARGUMENTS"
+$Context: "WITH ARGUMENTS"
 
 !>
 ┌──────────────────────────────────────────────────────────────────────────────┐
