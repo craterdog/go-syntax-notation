@@ -5,7 +5,7 @@
 ### Overview
 This project was automatically generated based on the Crater Dog Syntax Notation™
 (CDSN) file located
-[here](https://github.com/craterdog/go-syntax-notation/blob/main/v7/syntax.cdsn).
+[here](https://github.com/craterdog/go-syntax-notation/blob/main/v8/syntax.cdsn).
 It provides a framework for parsing, validating and formatting language grammars
 defined using CDSN.  And yes, this project was used by a
 [code generator](https://github.com/craterdog/go-code-generation/wiki) to
