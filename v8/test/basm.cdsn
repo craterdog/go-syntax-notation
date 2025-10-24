@@ -40,7 +40,7 @@ $Action:
     Call
     Send
 
-$Note: "NOTE" comment
+$Note: "NOTE" description
 
 $Skip: "SKIP"
 
@@ -107,7 +107,7 @@ $Context: "WITH ARGUMENTS"
 │                            EXPRESSION DEFINITIONS                            │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$comment: "--" ~[CONTROL]*
+$description: "! " ~[CONTROL]*
 
 $label: (ORDINAL '.')+ IDENTIFIER
 
