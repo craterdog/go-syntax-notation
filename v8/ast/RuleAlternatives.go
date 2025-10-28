@@ -22,8 +22,8 @@
 package ast
 
 import (
-	fra "github.com/craterdog/go-essential-composites/v8"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 )
 
 // CLASS INTERFACE
@@ -37,7 +37,7 @@ func RuleAlternativesClass() RuleAlternativesClassLike {
 // Constructor Methods
 
 func (c *ruleAlternativesClass_) RuleAlternatives(
-	ruleNames fra.Sequential[RuleNameLike],
+	ruleNames com.Sequential[RuleNameLike],
 ) RuleAlternativesLike {
 	if uti.IsUndefined(ruleNames) {
 		panic("The \"ruleNames\" attribute is required by this class.")
@@ -59,7 +59,7 @@ func (v *ruleAlternatives_) GetClass() RuleAlternativesClassLike {
 
 // Attribute Methods
 
-func (v *ruleAlternatives_) GetRuleNames() fra.Sequential[RuleNameLike] {
+func (v *ruleAlternatives_) GetRuleNames() com.Sequential[RuleNameLike] {
 	return v.ruleNames_
 }
 
@@ -69,7 +69,7 @@ func (v *ruleAlternatives_) GetRuleNames() fra.Sequential[RuleNameLike] {
 
 type ruleAlternatives_ struct {
 	// Declare the instance attributes.
-	ruleNames_ fra.Sequential[RuleNameLike]
+	ruleNames_ com.Sequential[RuleNameLike]
 }
 
 // Class Structure

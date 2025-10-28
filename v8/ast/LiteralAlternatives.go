@@ -22,8 +22,8 @@
 package ast
 
 import (
-	fra "github.com/craterdog/go-essential-composites/v8"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 )
 
 // CLASS INTERFACE
@@ -37,7 +37,7 @@ func LiteralAlternativesClass() LiteralAlternativesClassLike {
 // Constructor Methods
 
 func (c *literalAlternativesClass_) LiteralAlternatives(
-	literalValues fra.Sequential[LiteralValueLike],
+	literalValues com.Sequential[LiteralValueLike],
 ) LiteralAlternativesLike {
 	if uti.IsUndefined(literalValues) {
 		panic("The \"literalValues\" attribute is required by this class.")
@@ -59,7 +59,7 @@ func (v *literalAlternatives_) GetClass() LiteralAlternativesClassLike {
 
 // Attribute Methods
 
-func (v *literalAlternatives_) GetLiteralValues() fra.Sequential[LiteralValueLike] {
+func (v *literalAlternatives_) GetLiteralValues() com.Sequential[LiteralValueLike] {
 	return v.literalValues_
 }
 
@@ -69,7 +69,7 @@ func (v *literalAlternatives_) GetLiteralValues() fra.Sequential[LiteralValueLik
 
 type literalAlternatives_ struct {
 	// Declare the instance attributes.
-	literalValues_ fra.Sequential[LiteralValueLike]
+	literalValues_ com.Sequential[LiteralValueLike]
 }
 
 // Class Structure

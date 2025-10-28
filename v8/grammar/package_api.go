@@ -43,7 +43,7 @@ on interfaces, not on each other.
 package grammar
 
 import (
-	fra "github.com/craterdog/go-essential-composites/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
 	ast "github.com/craterdog/go-syntax-notation/v8/ast"
 )
 
@@ -120,7 +120,7 @@ type ScannerClassLike interface {
 	// Constructor Methods
 	Scanner(
 		source string,
-		tokens fra.QueueLike[TokenLike],
+		tokens com.QueueLike[TokenLike],
 	) ScannerLike
 
 	// Function Methods

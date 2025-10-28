@@ -22,8 +22,8 @@
 package ast
 
 import (
-	fra "github.com/craterdog/go-essential-composites/v8"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 )
 
 // CLASS INTERFACE
@@ -38,7 +38,7 @@ func AlternativesClass() AlternativesClassLike {
 
 func (c *alternativesClass_) Alternatives(
 	sequence SequenceLike,
-	alternativeSequences fra.Sequential[AlternativeSequenceLike],
+	alternativeSequences com.Sequential[AlternativeSequenceLike],
 ) AlternativesLike {
 	if uti.IsUndefined(sequence) {
 		panic("The \"sequence\" attribute is required by this class.")
@@ -68,7 +68,7 @@ func (v *alternatives_) GetSequence() SequenceLike {
 	return v.sequence_
 }
 
-func (v *alternatives_) GetAlternativeSequences() fra.Sequential[AlternativeSequenceLike] {
+func (v *alternatives_) GetAlternativeSequences() com.Sequential[AlternativeSequenceLike] {
 	return v.alternativeSequences_
 }
 
@@ -79,7 +79,7 @@ func (v *alternatives_) GetAlternativeSequences() fra.Sequential[AlternativeSequ
 type alternatives_ struct {
 	// Declare the instance attributes.
 	sequence_             SequenceLike
-	alternativeSequences_ fra.Sequential[AlternativeSequenceLike]
+	alternativeSequences_ com.Sequential[AlternativeSequenceLike]
 }
 
 // Class Structure

@@ -22,8 +22,8 @@
 package ast
 
 import (
-	fra "github.com/craterdog/go-essential-composites/v8"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 )
 
 // CLASS INTERFACE
@@ -39,11 +39,11 @@ func SyntaxClass() SyntaxClassLike {
 func (c *syntaxClass_) Syntax(
 	legalNotice LegalNoticeLike,
 	comment1 string,
-	rules fra.Sequential[RuleLike],
+	rules com.Sequential[RuleLike],
 	comment2 string,
-	expressions fra.Sequential[ExpressionLike],
+	expressions com.Sequential[ExpressionLike],
 	comment3 string,
-	fragments fra.Sequential[FragmentLike],
+	fragments com.Sequential[FragmentLike],
 ) SyntaxLike {
 	if uti.IsUndefined(legalNotice) {
 		panic("The \"legalNotice\" attribute is required by this class.")
@@ -97,7 +97,7 @@ func (v *syntax_) GetComment1() string {
 	return v.comment1_
 }
 
-func (v *syntax_) GetRules() fra.Sequential[RuleLike] {
+func (v *syntax_) GetRules() com.Sequential[RuleLike] {
 	return v.rules_
 }
 
@@ -105,7 +105,7 @@ func (v *syntax_) GetComment2() string {
 	return v.comment2_
 }
 
-func (v *syntax_) GetExpressions() fra.Sequential[ExpressionLike] {
+func (v *syntax_) GetExpressions() com.Sequential[ExpressionLike] {
 	return v.expressions_
 }
 
@@ -113,7 +113,7 @@ func (v *syntax_) GetComment3() string {
 	return v.comment3_
 }
 
-func (v *syntax_) GetFragments() fra.Sequential[FragmentLike] {
+func (v *syntax_) GetFragments() com.Sequential[FragmentLike] {
 	return v.fragments_
 }
 
@@ -125,11 +125,11 @@ type syntax_ struct {
 	// Declare the instance attributes.
 	legalNotice_ LegalNoticeLike
 	comment1_    string
-	rules_       fra.Sequential[RuleLike]
+	rules_       com.Sequential[RuleLike]
 	comment2_    string
-	expressions_ fra.Sequential[ExpressionLike]
+	expressions_ com.Sequential[ExpressionLike]
 	comment3_    string
-	fragments_   fra.Sequential[FragmentLike]
+	fragments_   com.Sequential[FragmentLike]
 }
 
 // Class Structure

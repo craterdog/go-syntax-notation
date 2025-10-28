@@ -22,8 +22,8 @@
 package ast
 
 import (
-	fra "github.com/craterdog/go-essential-composites/v8"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 )
 
 // CLASS INTERFACE
@@ -37,7 +37,7 @@ func SequenceClass() SequenceClassLike {
 // Constructor Methods
 
 func (c *sequenceClass_) Sequence(
-	repetitions fra.Sequential[RepetitionLike],
+	repetitions com.Sequential[RepetitionLike],
 ) SequenceLike {
 	if uti.IsUndefined(repetitions) {
 		panic("The \"repetitions\" attribute is required by this class.")
@@ -59,7 +59,7 @@ func (v *sequence_) GetClass() SequenceClassLike {
 
 // Attribute Methods
 
-func (v *sequence_) GetRepetitions() fra.Sequential[RepetitionLike] {
+func (v *sequence_) GetRepetitions() com.Sequential[RepetitionLike] {
 	return v.repetitions_
 }
 
@@ -69,7 +69,7 @@ func (v *sequence_) GetRepetitions() fra.Sequential[RepetitionLike] {
 
 type sequence_ struct {
 	// Declare the instance attributes.
-	repetitions_ fra.Sequential[RepetitionLike]
+	repetitions_ com.Sequential[RepetitionLike]
 }
 
 // Class Structure

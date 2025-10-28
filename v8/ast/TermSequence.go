@@ -22,8 +22,8 @@
 package ast
 
 import (
-	fra "github.com/craterdog/go-essential-composites/v8"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 )
 
 // CLASS INTERFACE
@@ -37,7 +37,7 @@ func TermSequenceClass() TermSequenceClassLike {
 // Constructor Methods
 
 func (c *termSequenceClass_) TermSequence(
-	ruleTerms fra.Sequential[RuleTermLike],
+	ruleTerms com.Sequential[RuleTermLike],
 	optionalNote string,
 ) TermSequenceLike {
 	if uti.IsUndefined(ruleTerms) {
@@ -61,7 +61,7 @@ func (v *termSequence_) GetClass() TermSequenceClassLike {
 
 // Attribute Methods
 
-func (v *termSequence_) GetRuleTerms() fra.Sequential[RuleTermLike] {
+func (v *termSequence_) GetRuleTerms() com.Sequential[RuleTermLike] {
 	return v.ruleTerms_
 }
 
@@ -75,7 +75,7 @@ func (v *termSequence_) GetOptionalNote() string {
 
 type termSequence_ struct {
 	// Declare the instance attributes.
-	ruleTerms_    fra.Sequential[RuleTermLike]
+	ruleTerms_    com.Sequential[RuleTermLike]
 	optionalNote_ string
 }
 

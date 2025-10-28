@@ -22,8 +22,8 @@
 package ast
 
 import (
-	fra "github.com/craterdog/go-essential-composites/v8"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 )
 
 // CLASS INTERFACE
@@ -37,7 +37,7 @@ func ExpressionAlternativesClass() ExpressionAlternativesClassLike {
 // Constructor Methods
 
 func (c *expressionAlternativesClass_) ExpressionAlternatives(
-	expressionNames fra.Sequential[ExpressionNameLike],
+	expressionNames com.Sequential[ExpressionNameLike],
 ) ExpressionAlternativesLike {
 	if uti.IsUndefined(expressionNames) {
 		panic("The \"expressionNames\" attribute is required by this class.")
@@ -59,7 +59,7 @@ func (v *expressionAlternatives_) GetClass() ExpressionAlternativesClassLike {
 
 // Attribute Methods
 
-func (v *expressionAlternatives_) GetExpressionNames() fra.Sequential[ExpressionNameLike] {
+func (v *expressionAlternatives_) GetExpressionNames() com.Sequential[ExpressionNameLike] {
 	return v.expressionNames_
 }
 
@@ -69,7 +69,7 @@ func (v *expressionAlternatives_) GetExpressionNames() fra.Sequential[Expression
 
 type expressionAlternatives_ struct {
 	// Declare the instance attributes.
-	expressionNames_ fra.Sequential[ExpressionNameLike]
+	expressionNames_ com.Sequential[ExpressionNameLike]
 }
 
 // Class Structure

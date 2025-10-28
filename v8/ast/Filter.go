@@ -22,8 +22,8 @@
 package ast
 
 import (
-	fra "github.com/craterdog/go-essential-composites/v8"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 )
 
 // CLASS INTERFACE
@@ -39,7 +39,7 @@ func FilterClass() FilterClassLike {
 func (c *filterClass_) Filter(
 	optionalDelimiter string,
 	delimiter1 string,
-	characters fra.Sequential[CharacterLike],
+	characters com.Sequential[CharacterLike],
 	delimiter2 string,
 ) FilterLike {
 	if uti.IsUndefined(delimiter1) {
@@ -79,7 +79,7 @@ func (v *filter_) GetDelimiter1() string {
 	return v.delimiter1_
 }
 
-func (v *filter_) GetCharacters() fra.Sequential[CharacterLike] {
+func (v *filter_) GetCharacters() com.Sequential[CharacterLike] {
 	return v.characters_
 }
 
@@ -95,7 +95,7 @@ type filter_ struct {
 	// Declare the instance attributes.
 	optionalDelimiter_ string
 	delimiter1_        string
-	characters_        fra.Sequential[CharacterLike]
+	characters_        com.Sequential[CharacterLike]
 	delimiter2_        string
 }
 
