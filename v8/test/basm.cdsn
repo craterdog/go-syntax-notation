@@ -87,20 +87,20 @@ $Component:
     "MESSAGE"
     "VARIABLE"
 
-$Call: "CALL" symbol Cardinality?
+$Call: "CALL" symbol Context?
 
-$Cardinality:
+$Context:
     "WITH 1 ARGUMENT"
     "WITH 2 ARGUMENTS"
     "WITH 3 ARGUMENTS"
 
-$Send: "SEND" symbol "TO" Destination Context?
+$Send: "SEND" symbol "TO" Destination
 
 $Destination:
     "COMPONENT"
+    "COMPONENT WITH ARGUMENTS"
     "DOCUMENT"
-
-$Context: "WITH ARGUMENTS"
+    "DOCUMENT WITH ARGUMENTS"
 
 !>
 ┌──────────────────────────────────────────────────────────────────────────────┐

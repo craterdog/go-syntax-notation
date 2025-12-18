@@ -22,13 +22,15 @@ For more information on CDSN see the wiki at:
 │                               RULE DEFINITIONS                               │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$Document: Annotation? Component
+$Document: Heading? Component
+
+$Heading: comment
 
 $Component: Entity Generics?
 
 $Entity:
     Element
-    String
+    Sequence
     Range
     Collection
     Procedure
@@ -41,7 +43,7 @@ $Constraint: Metadata Generics?
 
 $Metadata:
     Element
-    String
+    Sequence
     Range
 
 $Element:
@@ -54,15 +56,15 @@ $Element:
     number
     probability
     resource
-    symbol
 
-$String:
+$Sequence:
     binary
     bytecode
     name
     narrative
     pattern
     quote
+    symbol
     tag
     version
 
@@ -78,7 +80,7 @@ $Right:
 
 $Primitive:
     Element
-    String
+    Sequence
 
 $Collection:
     Attributes
@@ -86,11 +88,11 @@ $Collection:
 
 $Attributes: "[" Association+ "]"
 
-$Association: Primitive ":" Composite
+$Association: Primitive ":" Content
 
-$Items: "[" Composite* "]"
+$Items: "[" Content* "]"
 
-$Composite: Component note?
+$Content: Component note?
 
 $Procedure: "{" Line* "}"
 
