@@ -39,9 +39,9 @@ $Generics: "(" Parameter+ ")"
 
 $Parameter: symbol ":" Constraint
 
-$Constraint: Metadata Generics?
+$Constraint: Literal Generics?
 
-$Metadata:
+$Literal:
     Element
     Sequence
     Range
@@ -68,7 +68,7 @@ $Sequence:
     tag
     version
 
-$Range: Left Primitive ".." Primitive Right
+$Range: Left Primitive? ".." Primitive? Right
 
 $Left:
     "["
@@ -83,16 +83,19 @@ $Primitive:
     Sequence
 
 $Collection:
+    Empty
     Attributes
     Items  ! Must be after attributes.
 
+$Empty: "[:]"
+
 $Attributes: "[" Association+ "]"
 
-$Association: Primitive ":" Content
+$Association: Primitive ":" Entry
 
-$Items: "[" Content* "]"
+$Items: "[" Entry* "]"
 
-$Content: Component note?
+$Entry: Component note?
 
 $Procedure: "{" Line* "}"
 
@@ -108,9 +111,9 @@ $Statement: MainClause OnClause?
 
 $MainClause:
     FlowControl
+    LocalTransformation
     MessageHandling
     RepositoryAccess
-    ActionInduction
 
 $OnClause: "on" symbol MatchingClause+
 
@@ -126,6 +129,11 @@ $FlowControl:
     ReturnClause
     ThrowClause
 
+$LocalTransformation:
+    DefineClause
+    AssignClause
+    InvokeClause
+
 $MessageHandling:
     SendClause
     ReceiveClause
@@ -140,10 +148,6 @@ $RepositoryAccess:
     NotarizeClause
     InspectClause
     CheckoutClause
-
-$ActionInduction:
-    DoClause
-    LetClause
 
 $IfClause: "if" Expression "do" Procedure
 
@@ -161,6 +165,47 @@ $ReturnClause: "return" Expression
 
 $ThrowClause: "throw" Expression
 
+$DefineClause: "define" Constant "as" Expression
+
+$Constant: symbol
+
+$AssignClause: "assign" Recipient Assignment Expression
+
+$Recipient:
+    Variable
+    Subcomponent
+
+$Variable: symbol
+
+$Subcomponent: identifier "[" Index+ "]"
+
+$Index:
+    Value
+    Primitive
+
+$Value: identifier
+
+$Assignment:
+    "?="  ! Assign a default value if not already initialized.
+    ":="
+    "+="
+    "-="
+    "*="
+    "/="
+    "&="
+
+$InvokeClause: "invoke" Method
+
+$Method: identifier Invocation identifier "(" Argument* ")"
+
+$Invocation:
+    "<-"  ! The method is invoked synchronously.
+    "<~"  ! The method is invoked asynchronously.
+
+$Argument:
+    Value
+    Literal
+
 $SendClause: "send" Message "to" Bag
 
 $ReceiveClause: "receive" Recipient "from" Bag  ! Returns a message.
@@ -174,18 +219,6 @@ $PublishClause: "publish" Message
 $Message: Expression
 
 $Bag: Expression  ! The global name of the message bag.
-
-$Recipient:
-    Variable
-    Subcomponent
-
-$Variable: symbol
-
-$Subcomponent: identifier "[" Index+ "]"
-
-$Index:
-    Value
-    Primitive
 
 $SaveClause: "save" Draft "to" Recipient  ! The recipient receives a citation.
 
@@ -206,19 +239,6 @@ $CheckoutClause: "checkout" Recipient AtLevel? "from" Location  ! Returns a draf
 $Location: Expression  ! The global name of a document.
 
 $AtLevel: "at" "level" Expression
-
-$DoClause: "do" Method
-
-$LetClause: "let" Recipient Assignment Expression
-
-$Assignment:
-    "?="  ! Assign a default value if not already initialized.
-    ":="
-    "+="
-    "-="
-    "*="
-    "/="
-    "&="
 
 $Expression: Subject Predicate*
 
@@ -280,18 +300,6 @@ $Magnitude: "|" Expression "|"
 
 $Function: identifier "(" Argument* ")"
 
-$Method: identifier Invoke identifier "(" Argument* ")"
-
-$Invoke:
-    "<-"  ! The method is invoked synchronously.
-    "<~"  ! The method is invoked asynchronously.
-
-$Argument:
-    Value
-    Primitive
-
-$Value: identifier
-
 $Predicate: Operator Expression
 
 $Operator:
@@ -343,7 +351,7 @@ $duration: "~P" (WEEKS | (YEARS? MONTHS? DAYS? ('T' HOURS? MINUTES? SECONDS?)?))
 
 $glyph: "'" (ESCAPE | ~[CONTROL]) "'"
 
-$moment: '<' SIGN? YEAR ('-' MONTH ('-' DAY ('T' HOUR (':' MINUTE (':' SECOND FRACTION?)?)?)?)?)? '>'
+$moment: '<' SIGN? YEAR '-' MONTH '-' DAY ('T' HOUR (':' MINUTE (':' SECOND FRACTION?)?)?)? '>'
 
 $name: ('/' FOLDER)+
 

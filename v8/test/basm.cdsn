@@ -22,7 +22,7 @@ For more information on CDSN see the wiki at:
 │                               RULE DEFINITIONS                               │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$Assembly: Instruction+
+$Method: Instruction+
 
 $Instruction: Prefix? Action
 
@@ -44,12 +44,12 @@ $Note: "NOTE" description
 
 $Skip: "SKIP"
 
-$Jump: "JUMP TO" label Conditionally?
+$Jump: "JUMP TO" label Condition?
 
-$Conditionally:
+$Condition:
+    "ON EMPTY"
     "ON NONE"
     "ON FALSE"
-    "ON EMPTY"
 
 $Push: "PUSH" Source
 
@@ -82,10 +82,10 @@ $Save: "SAVE" Component symbol
 $Drop: "DROP" Component symbol
 
 $Component:
+    "VARIABLE"
     "DRAFT"
     "DOCUMENT"
     "MESSAGE"
-    "VARIABLE"
 
 $Call: "CALL" symbol Context?
 
