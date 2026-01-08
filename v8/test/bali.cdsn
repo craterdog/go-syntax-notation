@@ -22,13 +22,11 @@ For more information on CDSN see the wiki at:
 │                               RULE DEFINITIONS                               │
 └──────────────────────────────────────────────────────────────────────────────┘
 <!
-$Document: Heading? Component
+$Document: comment? Component
 
-$Heading: comment
+$Component: Literal Generics? note?
 
-$Component: Entity Generics?
-
-$Entity:
+$Literal:
     Element
     Sequence
     Range
@@ -39,9 +37,9 @@ $Generics: "(" Parameter+ ")"
 
 $Parameter: symbol ":" Constraint
 
-$Constraint: Literal Generics?
+$Constraint: Entity Generics?
 
-$Literal:
+$Entity:
     Element
     Sequence
     Range
@@ -87,27 +85,17 @@ $Collection:
     Attributes
     Items  ! Must be after attributes.
 
-$Empty: "[:]"
+$Empty: "[" ":"? "]"
 
 $Attributes: "[" Association+ "]"
 
-$Association: Primitive ":" Entry
+$Association: Primitive ":" Component
 
-$Items: "[" Entry* "]"
+$Items: "[" Component+ "]"
 
-$Entry: Component note?
+$Procedure: "{" Statement* "}"
 
-$Procedure: "{" Line* "}"
-
-$Line:
-    Annotation
-    Statement
-
-$Annotation:
-    note
-    comment
-
-$Statement: MainClause OnClause?
+$Statement: comment? MainClause OnClause?
 
 $MainClause:
     FlowControl
@@ -181,7 +169,7 @@ $Subcomponent: identifier "[" Index+ "]"
 
 $Index:
     Value
-    Primitive
+    Entity
 
 $Value: identifier
 
@@ -204,7 +192,7 @@ $Invocation:
 
 $Argument:
     Value
-    Literal
+    Entity
 
 $SendClause: "send" Message "to" Bag
 
@@ -345,7 +333,7 @@ $boolean: "false" | "true"
 
 $bytecode: "'>" EOL (SPACE* INSTRUCTION{1..12} EOL)+ SPACE* "<'"
 
-$comment: "!>" EOL (ANY | EOL)+ EOL SPACE* "<!"  ! Chooses the shortest match.
+$comment: "!>" (ANY | EOL)+ SPACE* "<!"  ! Chooses the shortest match.
 
 $duration: "~P" (WEEKS | (YEARS? MONTHS? DAYS? ('T' HOURS? MINUTES? SECONDS?)?))
 
