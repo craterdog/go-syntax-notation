@@ -24,7 +24,7 @@ For more information on CDSN see the wiki at:
 <!
 $Document: comment? Component
 
-$Component: Literal Generics? note?
+$Component: Literal Parameters? note?
 
 $Literal:
     Element
@@ -33,16 +33,9 @@ $Literal:
     Collection
     Procedure
 
-$Generics: "(" Parameter+ ")"
+$Parameters: "(" Constraint+ ")"
 
-$Parameter: symbol ":" Constraint
-
-$Constraint: Entity Generics?
-
-$Entity:
-    Element
-    Sequence
-    Range
+$Constraint: symbol ":" Component
 
 $Element:
     angle
@@ -169,7 +162,7 @@ $Subcomponent: identifier "[" Index+ "]"
 
 $Index:
     Value
-    Entity
+    Primitive
 
 $Value: identifier
 
@@ -192,7 +185,7 @@ $Invocation:
 
 $Argument:
     Value
-    Entity
+    Component
 
 $SendClause: "send" Message "to" Bag
 
