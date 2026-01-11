@@ -281,9 +281,9 @@ $Magnitude: "|" Expression "|"
 
 $Function: identifier "(" Argument* ")"
 
-$Predicate: Operator Expression
+$Predicate: Operation Expression
 
-$Operator:
+$Operation:
     Comparison
     Logical
     Arithmetic
@@ -383,7 +383,7 @@ $BASE64: ALPHANUMERIC | ['+' '/']
 
 $CHARACTER: ESCAPE | '\' '"' | ~['"' CONTROL]
 
-$DAY: (['0'..'2'] ['1'..'9']) | ('3' ['0'..'1'])
+$DAY: ('0' ['1'..'9']) | (['1'..'2'] ['0'..'9']) | ('3' ['0'..'1'])
 
 $DAYS: TIMESPAN 'D'
 
