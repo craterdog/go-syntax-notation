@@ -221,97 +221,52 @@ $Location: Expression  ! The global name of a document.
 
 $AtLevel: "at" "level" Expression
 
-$Expression: Subject Predicate*
+$Expression: Subject Predicate?
 
 $Subject:
     Component
     Subcomponent
     Precedence
-    Referent
-    Complement
-    Inversion
+    Refinement
     Magnitude
     Function
     Method
     Value  ! This must be last since others also begin with an identifier.
-
-$Precedence: "(" Expression ")"
-
-$Referent: "@" Reference
-
-$Reference:
-    Component
-    Subcomponent
-    Referent
-    Function
-    Method
-    Value  ! This must be last since others also begin with an identifier.
-
-$Complement: "not" Reversible
-
-$Reversible:
-    Component
-    Subcomponent
-    Precedence
-    Referent
-    Complement
-    Function
-    Method
-    Value  ! This must be last since others also begin with an identifier.
-
-$Inversion: Inverse Numerical
-
-$Inverse:
-    "-"
-    "/"
-    "*"
-
-$Numerical:
-    Component
-    Subcomponent
-    Precedence
-    Referent
-    Inversion
-    Magnitude
-    Function
-    Method
-    Value  ! This must be last since others also begin with an identifier.
-
-$Magnitude: "|" Expression "|"
-
-$Function: identifier "(" Argument* ")"
 
 $Predicate: Operation Expression
 
 $Operation:
-    Comparison
-    Logical
-    Arithmetic
-    Lexical
+    "&"        ! Lexical Concatenation
+    "+"        ! Arithmetic Addition
+    "-"        ! Arithmetic Subtraction
+    "*"        ! Arithmetic Multiplication
+    "/"        ! Arithmetic Division
+    "%"        ! Arithmetic Remainder
+    "^"        ! Arithmetic Exponential
+    "<"        ! Comparison Less Than
+    "="        ! Comparison Equal To
+    ">"        ! Comparison More Than
+    "is"       ! Comparison Same Component
+    "matches"  ! Comparison Matches Pattern
+    "and"      ! Logical AND
+    "san"      ! Logical AND NOT
+    "ior"      ! Logical Inclusive OR
+    "xor"      ! Logical Exclusive OR
 
-$Comparison:
-    "<"
-    "="
-    ">"
-    "is"
-    "matches"
+$Precedence: "(" Expression ")"
 
-$Logical:
-    "and"
-    "san"
-    "ior"
-    "xor"
+$Refinement: Modifier Subject
 
-$Arithmetic:
-    "+"
-    "-"
-    "*"
-    "/"
-    "%"
-    "^"
+$Modifier:
+    "@"    ! Dereferenced Value
+    "not"  ! Logical Complement
+    "-"    ! Arithmetic Inverse
+    "/"    ! Multiplicative Inverse
+    "*"    ! Complex Conjugate
 
-$Lexical:
-    "&"
+$Magnitude: "|" Expression "|"
+
+$Function: identifier "(" Argument* ")"
 
 !>
 ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -334,7 +289,7 @@ $glyph: "'" (ESCAPE | ~[CONTROL]) "'"
 
 $moment: '<' SIGN? YEAR '-' MONTH '-' DAY ('T' HOUR (':' MINUTE (':' SECOND FRACTION?)?)?)? '>'
 
-$name: ('/' FOLDER)+
+$name: ('/' (LETTER | DIGIT) (('-' | '.')? (LETTER | DIGIT))*)+
 
 $narrative: "\">" EOL (ANY | EOL)+ EOL SPACE* "<\""  ! Chooses the shortest match.
 
@@ -358,7 +313,7 @@ $version: 'v' ORDINAL ('.' ORDINAL)*
 
 $number: POLAR | RECTANGULAR | IMAGINARY | REAL  ! Must be after other numerics.
 
-$identifier: LETTER (LETTER | DIGIT | '-')*  ! Must be after other alphanumerics.
+$identifier: LETTER ('-'? (LETTER | DIGIT))*  ! Must be after other alphanumerics.
 
 !>
 ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -392,8 +347,6 @@ $ESCAPE: '\' (UNICODE | ['a' 'b' 'f' 'n' 'r' 't' 'v' '\'])
 $EXPONENT: 'E' SIGN? ORDINAL
 
 $FLOAT: SIGN? AMPLITUDE
-
-$FOLDER: ALPHANUMERIC (('-' | '.')? ALPHANUMERIC)+
 
 $FRACTION: '.' BASE10+
 
